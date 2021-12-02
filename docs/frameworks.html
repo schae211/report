@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Overview</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Report</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li>
+  <a href="tutorial.html">Tutorial</a>
+</li>
+<li>
+  <a href="benchmark.html">Benchmark</a>
+</li>
+<li class="dropdown-header">Frameworks</li>
+<li class="dropdown-header">Model API</li>
+<li>
+  <a href="random.html">Random</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/schae211/mibi_analysis">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Overview</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-12-02
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211125code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211125)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20211125code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20211125)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/Saez/report
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong0547337"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 0547337 </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrong0547337" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version 0547337. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Untracked files:
+    Untracked:  analysis/benchmark.Rmd
+    Untracked:  analysis/model_api.Rmd
+    Untracked:  analysis/random.Rmd
+    Untracked:  analysis/tutorial.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/frameworks.Rmd</code>) and HTML (<code>docs/frameworks.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+0547337
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-02
+</td>
+<td>
+wflow_publish(files = “analysis/frameworks.Rmd”)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_knit$set(root.dir = &quot;~/Saez/report&quot;)</code></pre>
+<pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidymodels))
+suppressPackageStartupMessages(library(caret))
+suppressPackageStartupMessages(library(mlr3))</code></pre>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This document is supposed to show the caveats of using machine learning frameworks in R such as <code>tidymodels</code>, <code>caret</code>, or <code>mlr3</code> for MISTy.</p>
+<p>It would have been nice if we could have plugged some existing framework into the backbone of MISTy such that user’s could for example use any model that is part of <code>caret</code> to model views.</p>
+<p>However, it turns out that the libraries are slow and not flexible enough. For example, in <code>caret</code> it is difficult to get out-of-bag predictions and it is impossible to pass <code>NULL</code> parameters as I will show below.</p>
+<p>Let’s get some data to explain the statements above.</p>
+<pre class="r"><code>data(&quot;synthetic&quot;)
+expr &lt;- synthetic$synthetic1 %&gt;% select(-c(row, col, type))
+target &lt;- &quot;ECM&quot;
+targets &lt;- names(expr)
+predictors &lt;- expr %&gt;% select(-c(all_of(target)))
+outcome &lt;- as.numeric(expr %&gt;% pull(target))
+seed &lt;- 42</code></pre>
+</div>
+<div id="run-times" class="section level1">
+<h1>Run Times</h1>
+<p>The frameworks are usually much slower although they call the same underlying implementations of ML algorithms in R.</p>
+<div id="bagged-linear-model" class="section level2">
+<h2>Bagged Linear Model</h2>
+<p>Parameters:</p>
+<pre class="r"><code>n.bags &lt;- 100</code></pre>
+<div id="caret" class="section level3">
+<h3>Caret</h3>
+<pre class="r"><code>fit.func &lt;- function (x, y, ...) {
+  y &lt;- data.frame(y = y)
+  data &lt;- cbind(x, y)
+  lm(formula = y ~ ., data = data)
+}
+
+pred.func &lt;- function(object, x) {
+  predict(object, newdata = x)
+}
+
+agg.func &lt;- function(x, type) {
+  x &lt;- matrix(unlist(x), ncol = length(x))
+  out &lt;- apply(x, 1, mean)
+}
+
+tictoc::tic()
+results &lt;- targets %&gt;%
+  purrr::set_names() %&gt;%
+  purrr::map(function(target) {
+    # get data
+    predictors &lt;- expr %&gt;% select(-c(all_of(target)))
+    outcome &lt;- as.numeric(expr %&gt;% pull(target))
+    
+    # train bagged lm
+    bag(x=predictors, y=outcome, B = n.bags,
+               bagControl = bagControl(fit = fit.func,
+                                       predict = pred.func,
+                                       aggregate = agg.func,
+                                       oob = TRUE,
+                                       allowParallel = FALSE))
+  })
+tictoc::toc()
+6.752 sec elapsed</code></pre>
+</div>
+<div id="tidymodels" class="section level3">
+<h3>Tidymodels</h3>
+<p>Since this is so slow, I will only use <strong>3</strong> targets here.</p>
+<p>Apart from that tidymodels (here: parsnip or baguette) do not allow the construction of bagged models as it is possible in <code>caret::bag()</code>. The argument <code>base_model</code> in <code>baguette::bagger()</code> must be: a single character value for the model being bagged. Possible values are “CART”, “MARS”, and “C5.0” (classification only).</p>
+<p>So this takes about 60s! For only for 3 of the 11 targets</p>
+<pre class="r"><code>num.targets &lt;- 3
+red.targets &lt;- sample(targets, 3)
+
+b.samples &lt;- rsample::bootstraps(expr, n.bags)
+
+l_model &lt;- parsnip::linear_reg() %&gt;%
+      parsnip::set_mode(&quot;regression&quot;) %&gt;%
+      parsnip::set_engine(&quot;lm&quot;)
+
+tictoc::tic()
+results &lt;- red.targets %&gt;%
+  purrr::set_names() %&gt;%
+  purrr::map(function(target) {
+    
+    wf &lt;- workflows::workflow() %&gt;%
+      workflows::add_formula(as.formula(paste0(target, &quot; ~ .&quot;))) %&gt;%
+      workflows::add_model(l_model)
+    
+    tune_test &lt;- tune::fit_resamples(
+      object = wf,
+      resamples = b.samples,
+      control = tune::control_resamples(
+        save_pred = TRUE,
+        allow_par = FALSE,
+        extract = function (x) workflows::extract_fit_parsnip(x))
+      )
+  })
+tictoc::toc()
+62.089 sec elapsed</code></pre>
+</div>
+<div id="own-function" class="section level3">
+<h3>Own function</h3>
+<pre class="r"><code>lm_bag &lt;- function(expr, target, n.bags, n.vars = (ncol(expr)-1), 
+                   seed = 42) {
+  
+  set.seed(seed)
+  
+  # Formula
+  form &lt;- as.formula(paste0(target, &quot; ~ .&quot;))
+  
+  # Map over all bags
+  seq_len(n.bags) %&gt;%
+      purrr::map(function(x) {
+      
+      # Features
+      vars &lt;- sample(colnames(expr)[colnames(expr) != target], n.vars)
+      
+      # Bootstrap
+      in.bag &lt;- sample.int(nrow(expr), nrow(expr), replace=TRUE)
+      out.bag &lt;- dplyr::setdiff(seq_len(nrow(expr)), in.bag)
+      
+      # Base Model
+      base.model &lt;- lm(
+        formula = form,
+        data = expr[in.bag, c(vars, target)] )
+      
+      # OOB
+      oob.predictions &lt;- data.frame(
+        index = out.bag,
+        pred = predict.lm(base.model, newdata = expr[out.bag, vars],
+                          type = &quot;response&quot;)
+      )
+      
+      # Return
+      list(model = base.model, oob = oob.predictions, vars = vars)
+    })
+}
+
+
+tictoc::tic()
+res &lt;- names(expr) %&gt;%
+  purrr::set_names() %&gt;%
+  purrr::map(~ lm_bag(expr, .x, n.bags))
+tictoc::toc()
+4.194 sec elapsed</code></pre>
+</div>
+</div>
+<div id="random-forest" class="section level2">
+<h2>Random Forest</h2>
+<div id="tidymodels-1" class="section level3">
+<h3>tidymodels</h3>
+<pre class="r"><code>tictoc::tic()
+test &lt;- purrr::map(targets, function(target) {
+  parsnip::rand_forest(trees = n.bags) %&gt;%
+  parsnip::set_mode(&quot;regression&quot;) %&gt;%
+  parsnip::set_engine(&quot;ranger&quot;,
+            importance = &quot;impurity&quot;,
+            seed = seed, 
+            verbose = FALSE,
+            num.threads = 1) %&gt;%
+  parsnip::fit(as.formula(paste0(target, &quot; ~ .&quot;)), 
+      data=expr)
+})
+tictoc::toc()
+5.398 sec elapsed</code></pre>
+</div>
+<div id="ranger" class="section level3">
+<h3>ranger</h3>
+<pre class="r"><code>tictoc::tic()
+test &lt;- purrr::map(targets, function(target) {
+  ranger::ranger(
+    formula = as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = expr,
+    importance = &quot;impurity&quot;,
+    seed = seed,
+    verbose = FALSE,
+    num.threads = 1,
+    num.trees = n.bags
+  )
+})
+tictoc::toc()
+3.501 sec elapsed</code></pre>
+</div>
+</div>
+</div>
+<div id="passing-arguments" class="section level1">
+<h1>Passing Arguments</h1>
+<div id="caret-1" class="section level2">
+<h2>caret</h2>
+<p>It is difficult to simply try to call ranger from caret::train() without doing a grid search for parameter tuning. I would assume that if I tell caret::train() in the trainControl not do any tuning (see method = “none”) that it simply fits the models with the default parameters. But that is not what is happening.</p>
+<p>See more details in “5.9 Fitting Models Without Parameter Tuning” in the caret book. <a href="https://topepo.github.io/caret/" class="uri">https://topepo.github.io/caret/</a></p>
+<pre class="r"><code>tictoc::tic()
+fitControl &lt;- caret::trainControl(method = &quot;none&quot;, allowParallel = FALSE)
+
+test &lt;- purrr::map(targets, function(target) {
+  caret::train(
+    form = as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = expr,
+    num.trees = n.bags,
+    method = &quot;ranger&quot;,
+    trControl = fitControl
+  )
+})
+Error: Only one model should be specified in tuneGrid with no resampling
+tictoc::toc()
+0.029 sec elapsed</code></pre>
+<p>So it tells me I should specify the parameters in tuneGrid and if I simply try to do that the following happens.</p>
+<p>More here: <a href="https://stackoverflow.com/questions/10498477/carettrain-specify-model-generation-parameters" class="uri">https://stackoverflow.com/questions/10498477/carettrain-specify-model-generation-parameters</a></p>
+<pre class="r"><code>tictoc::tic()
+fitControl &lt;- caret::trainControl(method = &quot;none&quot;)
+
+test &lt;- purrr::map(targets, function(target) {
+  caret::train(
+    form = as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = expr,
+    num.trees = n.bags,
+    method = &quot;ranger&quot;,
+    trControl = fitControl,
+    tuneGrid = data.frame(mtry = NULL,
+                          importance = &quot;impurity&quot;,
+                          min.node.size = NULL,
+                          splitrule = &quot;variance&quot;)
+  )
+})
+Error in data.frame(mtry = NULL, importance = &quot;impurity&quot;, min.node.size = NULL, : arguments imply differing number of rows: 0, 1
+tictoc::toc()
+0.021 sec elapsed</code></pre>
+<p>Simply because I cannot put <code>NULL</code> values in a data.frame which I would need to do to specify the normal default arguments in the <code>ranger</code> model for <code>mtry</code> and <code>min.node.size</code>.</p>
+<pre class="r"><code>tibble::tibble(mtry = NULL,
+          importance = &quot;impurity&quot;,
+          min.node.size = NULL,
+          splitrule = &quot;variance&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["importance"],"name":[1],"type":["chr"],"align":["left"]},{"label":["splitrule"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"impurity","2":"variance"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Unfortunately, <code>caret</code> often uses different default arguments compared to the actual implementations of the algorithms. See for example MARS:</p>
+<pre class="r"><code>in.bag &lt;- sample(nrow(expr))</code></pre>
+<p><code>earth</code> implementaiton:</p>
+<pre class="r"><code>suppressMessages(
+original.model &lt;- earth::earth(
+  ECM ~ .,
+  expr[in.bag, ]
+  )
+)
+original.model
+Selected 10 of 12 terms, and 5 of 10 predictors
+Termination condition: RSq changed by less than 0.001 at 12 terms
+Importance: protE, prodD, ligB, prodC, ligA, ligC-unused, ligD-unused, ...
+Number of terms at each degree of interaction: 1 9 (additive model)
+GCV 0.02370542    RSS 98.78252    GRSq 0.8435438    RSq 0.8448807
+original.model$nprune
+NULL</code></pre>
+<p>So in the default <code>nprune</code> is <code>NULL</code>.</p>
+<p><code>caret</code> wrapper:</p>
+<pre class="r"><code>caret.model &lt;- caret::train(
+  ECM ~ .,
+  expr[in.bag, ],
+  method = &quot;earth&quot;,
+  trControl = caret::trainControl(method = &quot;none&quot;, allowParallel = FALSE)
+)
+Loading required package: earth
+Loading required package: Formula
+Loading required package: plotmo
+Loading required package: plotrix
+
+Attaching package: &#39;plotrix&#39;
+The following object is masked from &#39;package:scales&#39;:
+
+    rescale
+Loading required package: TeachingDemos
+caret.model$finalModel
+Selected 2 of 12 terms, and 1 of 10 predictors (nprune=2)
+Termination condition: RSq changed by less than 0.001 at 12 terms
+Importance: protE, ligA-unused, ligB-unused, ligC-unused, ligD-unused, ...
+Number of terms at each degree of interaction: 1 1 (additive model)
+GCV 0.098578    RSS 413.9292    GRSq 0.3493836    RSq 0.3500025
+caret.model$finalModel$tuneValue</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["nprune"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"1","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Whereas in the <code>caret</code> wrapper the default for <code>nrpune</code> is 2.</p>
+</div>
+</div>
+<div id="out-of-bag-predictions" class="section level1">
+<h1>Out-of-Bag Predictions</h1>
+<div id="caret-2" class="section level2">
+<h2><code>caret</code></h2>
+<p>Although caret allow to construct bagged models (though the documentation is bad) the returned OOB predictions have no index, meaning you get a data.frame contraining the OOB predictions and the actual values which allow you to calculate errors. However, this does not allow you to get overall OOB predictions for every observation, which is super stupid. I guess this is due to the fact that caret::bag is not build for our purposes (similary to caret::train).</p>
+<p>And I also have no clue what this key is supposed to be useful for.</p>
+<pre class="r"><code>library(caret)
+
+tictoc::tic()
+
+fit.func &lt;- function (x, y, ...) {
+  y &lt;- data.frame(y = y)
+  expr &lt;- cbind(x, y)
+  lm(formula = y ~ ., data = expr)
+}
+
+pred.func &lt;- function(object, x) {
+  predict(object, newdata = x)
+}
+
+agg.func &lt;- function(x, type) {
+  x &lt;- matrix(unlist(x), ncol = length(x))
+  out &lt;- apply(x, 1, mean)
+}
+
+res &lt;- targets %&gt;%
+  purrr::set_names() %&gt;%
+  purrr::map(function(target) {
+    # get expr
+    predictors &lt;- expr %&gt;% select(-c(target))
+    outcome &lt;- as.numeric(expr %&gt;% pull(target))
+    
+    # train bagged lm
+    bag(x=predictors, y=outcome, B = n.bags,
+               bagControl = bagControl(fit = fit.func,
+                                       predict = pred.func,
+                                       aggregate = agg.func,
+                                       oob = TRUE,
+                                       allowParallel = FALSE))
+  })
+Note: Using an external vector in selections is ambiguous.
+ℹ Use `all_of(target)` instead of `target` to silence this message.
+ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+This message is displayed once per session.
+
+str(res$ECM$fits[[1]]$oob)
+&#39;data.frame&#39;:   1566 obs. of  3 variables:
+ $ pred: num  0.22778 0.18198 0.12684 -0.00326 0.17075 ...
+ $ obs : num  0.387 0.1635 0.2033 0.0196 0.1595 ...
+ $ key : chr  &quot;oxeuvqoqvs&quot; &quot;oxeuvqoqvs&quot; &quot;oxeuvqoqvs&quot; &quot;oxeuvqoqvs&quot; ...</code></pre>
+</div>
+</div>
+<div id="installation" class="section level1">
+<h1>Installation</h1>
+<div id="mlr3" class="section level2">
+<h2><code>mlr3</code></h2>
+<p>There is another (academic) ML libary in R which works just fine, but the learners we need such as <code>earth</code> (MARS) are only available in the package <code>mlr3extralearners</code>.</p>
+<p>See here for more details: <a href="https://mlr3extralearners.mlr-org.com/" class="uri">https://mlr3extralearners.mlr-org.com/</a></p>
+<pre class="r"><code># has to be installed via GitHub!
+remotes::install_github(&quot;mlr-org/mlr3extralearners&quot;)</code></pre>
+<p>Otherwise the syntax would look like this.</p>
+<pre class="r"><code>library(mlr3)
+library(mlr3extralearners)
+
+Attaching package: &#39;mlr3extralearners&#39;
+The following objects are masked from &#39;package:mlr3&#39;:
+
+    lrn, lrns
+learner &lt;- lrn(&quot;regr.earth&quot;)
+learner
+&lt;LearnerRegrEarth:regr.earth&gt;
+* Model: -
+* Parameters: list()
+* Packages: earth
+* Predict Type: response
+* Feature types: numeric, factor, integer
+* Properties: weights
+#learner$param_set
+
+task = TaskRegr$new(&quot;test&quot;, expr, target = &quot;ECM&quot;)
+task
+&lt;TaskRegr:test&gt; (4205 x 11)
+* Target: ECM
+* Properties: -
+* Features (10):
+  - dbl (10): ligA, ligB, ligC, ligD, prodA, prodB, prodC, prodD,
+    protE, protF
+
+learner$train(task, row_ids = sample(nrow(expr)))
+learner$model
+Selected 10 of 12 terms, and 5 of 10 predictors
+Termination condition: RSq changed by less than 0.001 at 12 terms
+Importance: protE, prodD, ligB, prodC, ligA, ligC-unused, ligD-unused, ...
+Number of terms at each degree of interaction: 1 9 (additive model)
+GCV 0.02370542    RSS 98.78252    GRSq 0.8435438    RSq 0.8448807</code></pre>
+</div>
+</div>
+<div id="appendix" class="section level1">
+<h1>Appendix</h1>
+<div id="merge_two" class="section level2">
+<h2>merge_two</h2>
+<p>Why did I create a function to merge two lists, while there is a function in the <code>rlist</code> package (<code>list.merge</code>) to do just that?</p>
+</div>
+</div>
+<div id="rlistlist.merge" class="section level1">
+<h1>rlist::list.merge</h1>
+<p>Why does <code>rlist::list.merge</code> removes list entries which are NULL? This is incredibly stupid.</p>
+<p>Consider the following lists.</p>
+<pre class="r"><code>x = list(a = &quot;hello&quot;, b = &quot;world&quot;, c = NULL, z = &quot;other_stuff&quot;)
+y = list(a = &quot;bar&quot;, b = &quot;foo&quot;, d = &quot;new&quot;)</code></pre>
+<p>We can see that <code>rlist::list.merge</code> removes list entries which are NULL. And thus far I have not found out how to prevent this from happening.</p>
+<pre class="r"><code>rlist::list.merge(x, y)
+$a
+[1] &quot;bar&quot;
+
+$b
+[1] &quot;foo&quot;
+
+$z
+[1] &quot;other_stuff&quot;
+
+$d
+[1] &quot;new&quot;</code></pre>
+<p>Therefore, I defined my own function which simply merges <strong>2</strong> named lists.</p>
+<pre class="r"><code>merge_two &lt;- function(l1, l2) {
+  
+  n1 &lt;- names(l1)
+  n2 &lt;- names(l2)
+  diff &lt;- n1[!(n1 %in% n2)]
+  n1_list &lt;- diff %&gt;%
+    purrr::set_names() %&gt;%
+    purrr::map(function(name) l1[[name]])
+  
+  union &lt;- n2[!(n2 %in% diff)]
+  n2_list &lt;- union %&gt;%
+    purrr::set_names() %&gt;%
+    purrr::map(function(name) l2[[name]])
+  return(c(n1_list, n2_list))
+}</code></pre>
+<pre class="r"><code>merge_two(x, y)
+$c
+NULL
+
+$z
+[1] &quot;other_stuff&quot;
+
+$a
+[1] &quot;bar&quot;
+
+$b
+[1] &quot;foo&quot;
+
+$d
+[1] &quot;new&quot;</code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()
+R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] mlr3extralearners_0.5.8 earth_5.3.1             plotmo_3.6.1           
+ [4] TeachingDemos_2.12      plotrix_3.8-2           Formula_1.2-4          
+ [7] vctrs_0.3.8             rlang_0.4.12            mlr3_0.12.0            
+[10] caret_6.0-90            lattice_0.20-45         yardstick_0.0.8        
+[13] workflowsets_0.1.0      workflows_0.2.4         tune_0.1.6             
+[16] rsample_0.1.0           recipes_0.1.17          parsnip_0.1.7          
+[19] modeldata_0.1.1         infer_1.0.0             dials_0.0.10           
+[22] scales_1.1.1            broom_0.7.9             tidymodels_0.1.4       
+[25] forcats_0.5.1           stringr_1.4.0           dplyr_1.0.7            
+[28] purrr_0.3.4             readr_2.0.2             tidyr_1.1.4            
+[31] tibble_3.1.5            ggplot2_3.3.5           tidyverse_1.3.1        
+[34] mistyR_1.3.1            workflowr_1.6.2        
+
+loaded via a namespace (and not attached):
+  [1] readxl_1.3.1         uuid_0.1-4           backports_1.3.0     
+  [4] plyr_1.8.6           splines_4.1.2        listenv_0.8.0       
+  [7] digest_0.6.28        foreach_1.5.1        htmltools_0.5.2     
+ [10] fansi_0.5.0          magrittr_2.0.1       checkmate_2.0.0     
+ [13] tzdb_0.1.2           globals_0.14.0       modelr_0.1.8        
+ [16] gower_0.2.2          hardhat_0.1.6        colorspace_2.0-2    
+ [19] rvest_1.0.1          haven_2.4.3          xfun_0.26           
+ [22] crayon_1.4.1         jsonlite_1.7.2       survival_3.2-13     
+ [25] iterators_1.0.13     glue_1.4.2           gtable_0.3.0        
+ [28] ipred_0.9-12         future.apply_1.8.1   DBI_1.1.1           
+ [31] Rcpp_1.0.7           palmerpenguins_0.1.0 GPfit_1.0-8         
+ [34] proxy_0.4-26         stats4_4.1.2         lava_1.6.10         
+ [37] prodlim_2019.11.13   httr_1.4.2           ellipsis_0.3.2      
+ [40] pkgconfig_2.0.3      nnet_7.3-16          sass_0.4.0          
+ [43] dbplyr_2.1.1         utf8_1.2.2           tidyselect_1.1.1    
+ [46] DiceDesign_1.9       reshape2_1.4.4       later_1.3.0         
+ [49] munsell_0.5.0        cellranger_1.1.0     tools_4.1.2         
+ [52] cli_3.0.1            generics_0.1.0       ranger_0.13.1       
+ [55] evaluate_0.14        fastmap_1.1.0        yaml_2.2.1          
+ [58] ModelMetrics_1.2.2.2 knitr_1.36           fs_1.5.0            
+ [61] lgr_0.4.3            future_1.22.1        nlme_3.1-152        
+ [64] whisker_0.4          paradox_0.7.1        tictoc_1.0.1        
+ [67] xml2_1.3.2           compiler_4.1.2       rstudioapi_0.13     
+ [70] e1071_1.7-9          reprex_2.0.1         lhs_1.1.3           
+ [73] bslib_0.3.1          stringi_1.7.5        highr_0.9           
+ [76] Matrix_1.3-4         pillar_1.6.3         lifecycle_1.0.1     
+ [79] furrr_0.2.3          jquerylib_0.1.4      data.table_1.14.2   
+ [82] httpuv_1.6.3         R6_2.5.1             promises_1.2.0.1    
+ [85] mlr3misc_0.9.4       parallelly_1.28.1    codetools_0.2-18    
+ [88] MASS_7.3-54          assertthat_0.2.1     rprojroot_2.0.2     
+ [91] withr_2.4.2          rlist_0.4.6.2        parallel_4.1.2      
+ [94] hms_1.1.1            grid_4.1.2           rpart_4.1-15        
+ [97] timeDate_3043.102    class_7.3-19         rmarkdown_2.11      
+[100] git2r_0.28.0         pROC_1.18.0          lubridate_1.8.0     </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
