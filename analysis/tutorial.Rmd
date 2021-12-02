@@ -1,0 +1,628 @@
+---
+title: "Tutorial"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+Setup.
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_knit$set(root.dir = "~/Saez/report")
+```
+
+Loaded packages.
+
+```{r}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+suppressPackageStartupMessages(library(tidyverse))
+plan("multisession", workers=14)
+```
+
+# Introduction
+
+In this tutorial, I will briefly explain how I envision the new MISTy workflow.
+Instead of only offering a pre-defined set of ML algorithms to model each 
+view, I refactored the code such that users can supply their own function
+if they would like. If not, we ship MISTy with several implemented functions
+that can simply be plugged into the model. More details can be found below.
+
+## Data
+
+For the sake of this tutorial we will be using the synthetic dataset
+supplied in the MISTy package. As explained in the 
+[Get Started Vignette](https://saezlab.github.io/mistyR/articles/mistyR.html),
+this dataset is based on a two-dimensional cellular automata model which 
+models the production, diffusion, degradation and interactions of 11 
+molecular species in 4 different cell types. 
+
+In total there are 10 tibbles, each of which contains about 4000 cells and 
+their corresponding expresssion of the markers, position in a 100x100 grid
+(randomly assigned) as well as the cell type identity. (For more information
+see `help("synthetic")`).
+
+```{r}
+data("synthetic")
+```
+
+## MISTy Views
+
+For the sake of keeping things simply, we will only look at the first
+instance of the synthetic dataset for now.
+
+We will start by creating two MISTy views: a) Intraview and b) Paraview
+with a Gaussian kernel (default) and a radius of 10.
+
+```{r}
+expr <- synthetic$synthetic1 %>% dplyr::select(-c(row, col, type))
+pos <- synthetic$synthetic1 %>% dplyr::select(c(row, col))
+misty.views <- expr %>%
+  create_initial_view() %>%
+  add_paraview(l = 10, positions = pos)
+```
+
+## Running MISty
+
+The default ML algorithm is still random forest and thus we do not even
+have to specify it.
+
+```{r}
+misty.run <- misty.views %>%
+  run_misty()
+```
+
+To make things more explicitly the above call is the same as:
+
+```{r}
+misty.run <- misty.views %>%
+  run_misty(model.function = random_forest_model)
+```
+
+But what is this `random_forest_model` actually?
+
+```{r}
+random_forest_model
+```
+
+It is a function that takes in the data of a single view, for example the
+`paraview` - 
+
+```{r}
+misty.views$paraview.10$data %>% slice_head(n=6)
+```
+
+and models the target variable with the RF algorithm. Importantly, within
+the `run_misty` function before the `view_data` are supplied to the
+random_forest_model,
+the target column is replaced by the actual values from the `intraview`.
+
+So assuming the target is "ECM" the following happens within the MISTy framework.
+
+```{r}
+target <- "ECM"
+expr <- misty.views$intraview$data
+target.vector <- expr %>% dplyr::pull(target)
+view_data <- misty.views$paraview.10$data %>%
+  mutate(!!target := target.vector)
+# compare to the above
+view_data %>% slice_head(n=6)
+```
+
+And then the RF algorithm is called with the default algorithms merged
+with the additional ellipsis arguments.
+
+```{r}
+seed <- 42 # default
+
+ellipsis.args <- list() # assume no ellipsis arguments were given
+
+# default ranger arguments
+algo.arguments <- list(
+  formula = stats::as.formula(paste0(target, " ~ .")),
+  data = view_data,
+  num.trees = 100,
+  importance = "impurity",
+  mtry = NULL, 
+  verbose = FALSE, 
+  num.threads = 1,
+  seed = seed)
+
+if (!(length(ellipsis.args) == 0)) {
+  algo.arguments <- merge_2(algo.arguments, ellipsis.args)
+}
+
+model <- do.call(ranger::ranger, algo.arguments)
+
+predictions <- tibble::tibble(index = seq_len(nrow(view_data)), 
+                              prediction = model$predictions)
+
+list(unbiased.predictions = predictions, 
+     importances = model$variable.importance) %>%
+  str() # add str here to show output
+```
+
+(Note that `merge_2` is a function that is also exported by `mistyR`)
+
+```{r echo=FALSE}
+rm(view_data, target.vector, expr, model, ellipsis.args, algo.arguments)
+```
+
+
+As seen above, we can also easily supply arguments to the `ranger` RF implementation.
+Say we would like to increase the number of trees and use another splitrule.
+Let's compare the runtime for example (should be higher with more trees).
+
+```{r}
+tictoc::tic()
+misty.run <- misty.views %>%
+  run_misty(model.function = random_forest_model, num.trees = 500, 
+            splitrule = "extratrees")
+tictoc::toc()
+```
+
+```{r}
+tictoc::tic()
+misty.run <- misty.views %>%
+  run_misty(model.function = random_forest_model, num.trees = 100, 
+            splitrule = "extratrees")
+tictoc::toc()
+```
+
+## MISTy results
+
+On the side of processing and plotting the results nothing has changed.
+
+```{r}
+misty.results <- collect_results(misty.run)
+misty.results %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+Below all the supplied function will be desribed in more detail.
+
+# All Supplied Functions {.tabset}
+
+## Random Forest
+
+ - Unbiased predictions are based on OOB predictions.
+
+```{r}
+random_forest_model
+```
+
+ - Running the model
+ 
+```{r}
+misty.views %>%
+  run_misty(model.function = random_forest_model) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+ 
+## Gradient Boosting
+
+ - Unbiased predictions are based on k-fold cross-validation (aggregarted 
+ predictions for the holdout sets)
+
+```{r}
+gradient_boosting_model
+```
+
+ - Running the model:
+ 
+```{r}
+misty.views %>%
+  run_misty(model.function = gradient_boosting_model) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+## MARS
+
+ - MARS: Multivariate Adaptive Regression Splines
+ 
+```{r}
+mars_model
+```
+
+```{r}
+misty.views %>%
+  run_misty(model.function = mars_model) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+## Bagged MARS
+
+ - MARS: Multivariate Adaptive Regression Splines
+
+ - Unbiased predictions are based on OOB predictions.
+ 
+ - The name `bagged_earth_model` comes from the fact that the name mars
+ is protected and thus the implementation of the algorithm is called `earth` 
+ (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert
+ Tibshirani)
+
+```{r}
+bagged_mars_model
+```
+
+ - Running the model:
+ 
+```{r}
+misty.views %>%
+  run_misty(model.function = bagged_mars_model) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+## Linear Model
+
+ - Unbiased predictions are based on k-fold cross-validation (aggregated 
+ predictions for the holdout sets)
+ 
+ - In particular this model was supplied to understand more easily, how
+ a view-specifc model based on cross-validation can be constructed
+
+```{r}
+linear_model
+```
+
+ - Running the model:
+ 
+```{r}
+misty.views %>%
+  run_misty(model.function = linear_model) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+## Support Vector Machine
+
+ - Unbiased predictions are based on k-fold cross-validation (aggregarted 
+ predictions for the holdout sets)
+ 
+ - Importantly, we added an approximation argument to the implementation which
+ basically says at what fraction of the training instances the SVM will be
+ trained on. This drastically decreases the training time and does not 
+ really effect the performance.
+
+```{r}
+svm_model
+```
+
+ - Running the model:
+ 
+```{r}
+misty.views %>%
+  run_misty(model.function = svm_model) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+## Neural Network
+
+ - Unbiased predictions are based on k-fold cross-validation (aggregarted 
+ predictions for the holdout sets)
+ 
+ - Importantly, the feature importances is here calculated based on a global 
+ model agnostic method. More specifically each feature is permuated (one at a time)
+ and then the reduction in preditive performance is used as measure for the
+ variable importance.
+
+```{r}
+mlp_model
+```
+
+ - Running the model:
+
+```{r}
+misty.views %>%
+  run_misty(model.function = mlp_model,
+            k = 10, approx.frac = 0.5) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+# How to construct you own function
+
+1. To construct a view-specific function we need to clearly state the
+expected input and output to the function.
+
+## Input
+
+The input will be:
+
+1. `view_data`: A tibble with each row corresponding to a spatial unit 
+(e.g. Visium spot or single cell) and each column corresponding to a marker.
+
+Based on the assert statements in `run_misty`, one can be sure that the 
+variance of each target is non-zero.
+
+For example the intraview from above.
+
+```{r}
+misty.views$intraview$data %>% slice_head(n=6)
+```
+
+2. `target`: String corresponding to the marker which should be modeled.
+
+For example "ECM"
+
+3. `seed`: Integer (passed down from `run_misty`)
+
+Default seed is 42.
+
+## Output
+
+The output must be a named list comprising of:
+
+1. `unbiased.predictions`: Tibble with one column called `index` for the "cell id"
+and another column called `prediction` for the unbiased prediction.
+
+These unbiased predictions for the specified target can either come from the
+aggregated out-of-bag (OOB) predictions of a bagged ensembl model or the 
+aggregated predictions for holdout set for k-fold cross-validation.
+
+The unbiased predictions are needed as input for the linear fusion model,
+which combined the unbiased predictions from each view-specific model to 
+assess the contribution from each view (using the coefficients).
+
+2. `importances` : Named Vector with the importances of the predictors as 
+values and the names of the predictors as names (see the example below)
+
+---
+
+For example let's have a look at the result list returned by the ranger model.
+
+```{r}
+res.list <- random_forest_model(view_data = misty.views$intraview$data, 
+                         target = "ECM", 
+                         seed = 42)
+str(res.list)
+```
+
+a) Top 6 entries of the `unbiased.predictions` tibble.
+
+```{r}
+res.list$unbiased.predictions %>% slice_head(n = 6)
+```
+
+b) Importances
+
+```{r}
+res.list$importances
+```
+
+## Example Function
+
+To showcase how one can construct such a function, we will build a 
+view-specific model based on a decision tree (implemented by `rpart`)
+
+To visualize what each step is necessary for, we will use the paraview from 
+above and model "ECM". So in general our input is going to look somehow
+like that. We have a tibble with the rows as spatial units (e.g. cells) 
+and the columns are the markers (target or predictors).
+
+```{r}
+seed <- 42
+target <- "ECM"
+expr <- misty.views$intraview$data
+target.vector <- expr %>% dplyr::pull(target)
+view_data <- misty.views$paraview.10$data %>%
+  mutate(!!target := target.vector)
+
+view_data %>% slice_head(n=6)
+```
+
+So in the end the function should call `rpart` with this formula:
+
+```{r}
+as.formula(paste0(target, "~ ."))
+```
+
+
+```{r}
+test.model <- rpart::rpart(formula = as.formula(paste0(target, "~ .")), 
+                           data = view_data
+)
+summary(test.model)
+```
+
+Now to get unbiased predictions we need to do cross validation and aggregate 
+the predictions for the holdout instances.
+
+First we will create the 5 folds using `caret::createFolds`
+
+```{r}
+seed <- 42
+k <- 5
+folds <- withr::with_seed(
+  seed,
+  caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+)
+str(folds)
+```
+
+Next we will train a model for each fold and aggregate the prediction of the
+holdout instances.
+
+```{r}
+holdout.predictions <- purrr::map_dfr(folds, function(holdout) {
+  
+  in.fold <- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+  
+  train <- view_data[in.fold, ]
+  test <- view_data[holdout, ]
+  
+  algo.arguments <- list(formula = as.formula(paste0(target, "~ .")), 
+                        data = train)
+  
+  model <- do.call(rpart::rpart, algo.arguments)
+  
+  label.hat <- predict(model, test)
+  
+  tibble::tibble(index = holdout, prediction = label.hat)
+}) %>% dplyr::arrange(index)
+str(holdout.predictions)
+```
+
+As described above, apart from the unbiased predictions, we need the importances
+of the predictors (interpretable model!). Therefore we will train one more
+model on the whole dataset. And return the importances as named vector.
+
+```{r}
+algo.arguments.wm <- list(formula = as.formula(paste0(target, "~ .")), 
+                          data = view_data)
+  
+whole.model <- do.call(rpart::rpart, algo.arguments.wm)
+
+importances <- whole.model$variable.importance
+importances
+```
+
+In the end we need to return everything in one list with the following names:
+
+```{r}
+list(unbiased.predictions = holdout.predictions, 
+       importances = importances) %>% str # again added str for visualization
+```
+
+So up to this point our function would look like this.
+
+```{r}
+reg_tree_model_1 <- function(view_data, seed = 42, k = 5) {
+  
+  folds <- withr::with_seed(
+  seed,
+  caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions <- purrr::map_dfr(folds, function(holdout) {
+  
+  in.fold <- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+  
+  train <- view_data[in.fold, ]
+  test <- view_data[holdout, ]
+  
+  algo.arguments <- list(formula = as.formula(paste0(target, "~ .")), 
+                        data = train)
+  
+  model <- do.call(rpart::rpart, algo.arguments)
+  
+  label.hat <- predict(model, test)
+  
+  tibble::tibble(index = holdout, prediction = label.hat)
+}) %>% dplyr::arrange(index)
+  
+  algo.arguments.wm <- list(formula = as.formula(paste0(target, "~ .")), 
+                          data = view_data)
+  
+  whole.model <- do.call(rpart::rpart, algo.arguments.wm)
+  
+  importances <- whole.model$variable.importance
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+```
+
+And it works perfectly.
+
+```{r}
+test <- reg_tree_model_1(view_data = view_data)
+str(test)
+```
+
+Now in the final step we will add the possibility to supply ellipsis arguments
+to the `rpart` model.
+
+```{r}
+reg_tree_model_2 <- function(view_data, seed = 42, k = 5, ...) {
+  
+  ellipsis.args <- list(...)
+  
+  folds <- withr::with_seed(
+  seed,
+  caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions <- purrr::map_dfr(folds, function(holdout) {
+  
+  in.fold <- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+  
+  train <- view_data[in.fold, ]
+  test <- view_data[holdout, ]
+  
+  algo.arguments <- list(formula = as.formula(paste0(target, "~ .")), 
+                        data = train)
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments <- merge_two(algo.arguments, ellipsis.args)
+  }
+  
+  model <- do.call(rpart::rpart, algo.arguments)
+  
+  label.hat <- predict(model, test)
+  
+  tibble::tibble(index = holdout, prediction = label.hat)
+}) %>% dplyr::arrange(index)
+  
+  algo.arguments.wm <- list(formula = as.formula(paste0(target, "~ .")), 
+                          data = view_data)
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm <- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+  
+  whole.model <- do.call(rpart::rpart, algo.arguments.wm)
+  
+  importances <- whole.model$variable.importance
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+```
+
+Now check by supplying some parameters to `rpart.control`. For example
+changing the complexity parameter `cp` from 0.01 to 0.001. In regression setting
+this means that if a split does not decreae the $R^2$ by at least a factor of `cp`, 
+the split is not attempted.
+
+```{r}
+test2 <- reg_tree_model_2(view_data = view_data, cp = 0.001)
+str(test2)
+```
+
+For the sake of it we could compare the performance of both test models.
+
+```{r}
+# Model 1
+caret::defaultSummary(data = data.frame(obs = target.vector,
+                                        pred = test$unbiased.predictions$prediction))
+# Model 2
+caret::defaultSummary(data = data.frame(obs = target.vector,
+                                        pred = test2$unbiased.predictions$prediction))
+```
+
