@@ -10,9 +10,9 @@ navbar:
   - text: Benchmark
     href: benchmark.html
   - text: Frameworks
-    hred: frameworks.html
+    href: frameworks.html
   - text: Model API
-    hred: model_api.html
+    href: model_api.html
   - text: Random
     href: random.html
   - text: License
