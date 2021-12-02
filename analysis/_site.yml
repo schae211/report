@@ -20,7 +20,7 @@ navbar:
   right:
   - icon: fa-github
     text: Source code
-    href: https://github.com/schae211/mibi_analysis
+    href: https://github.com/schae211/report
 output:
   workflowr::wflow_html:
     toc: yes
@@ -29,4 +29,3 @@ output:
     highlight: textmate
     code_folding: hide
     df_print: paged
-
