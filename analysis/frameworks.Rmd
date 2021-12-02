@@ -1,0 +1,461 @@
+---
+title: "Overview"
+editor_options: 
+  chunk_output_type: inline
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_knit$set(root.dir = "~/Saez/report")
+```
+
+```{r}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(tidymodels))
+suppressPackageStartupMessages(library(caret))
+suppressPackageStartupMessages(library(mlr3))
+```
+
+# Introduction
+
+This document is supposed to show the caveats of using machine learning
+frameworks in R such as `tidymodels`, `caret`, or `mlr3` for MISTy.
+
+It would have been nice if we could have plugged some existing framework
+into the backbone of MISTy such that user's could for example use any
+model that is part of `caret` to model views.
+
+However, it turns out that the libraries are slow and not flexible enough.
+For example, in `caret` it is difficult to get out-of-bag predictions and
+it is impossible to pass `NULL` parameters as I will show below.
+
+Let's get some data to explain the statements above.
+
+```{r}
+data("synthetic")
+expr <- synthetic$synthetic1 %>% select(-c(row, col, type))
+target <- "ECM"
+targets <- names(expr)
+predictors <- expr %>% select(-c(all_of(target)))
+outcome <- as.numeric(expr %>% pull(target))
+seed <- 42
+```
+
+# Run Times
+
+The frameworks are usually much slower although they call the same underlying
+implementations of ML algorithms in R.
+
+## Bagged Linear Model
+
+Parameters:
+
+```{r}
+n.bags <- 100
+```
+
+
+### Caret
+
+```{r}
+fit.func <- function (x, y, ...) {
+  y <- data.frame(y = y)
+  data <- cbind(x, y)
+  lm(formula = y ~ ., data = data)
+}
+
+pred.func <- function(object, x) {
+  predict(object, newdata = x)
+}
+
+agg.func <- function(x, type) {
+  x <- matrix(unlist(x), ncol = length(x))
+  out <- apply(x, 1, mean)
+}
+
+tictoc::tic()
+results <- targets %>%
+  purrr::set_names() %>%
+  purrr::map(function(target) {
+    # get data
+    predictors <- expr %>% select(-c(all_of(target)))
+    outcome <- as.numeric(expr %>% pull(target))
+    
+    # train bagged lm
+    bag(x=predictors, y=outcome, B = n.bags,
+               bagControl = bagControl(fit = fit.func,
+                                       predict = pred.func,
+                                       aggregate = agg.func,
+                                       oob = TRUE,
+                                       allowParallel = FALSE))
+  })
+tictoc::toc()
+```
+
+### Tidymodels
+
+Since this is so slow, I will only use **3** targets here.
+
+Apart from that tidymodels (here: parsnip or baguette) do not allow the 
+construction of bagged models as it is possible in `caret::bag()`.
+The argument `base_model` in `baguette::bagger()` must be: a single 
+character value for the model being bagged. Possible values are 
+"CART", "MARS", and "C5.0" (classification only).
+
+So this takes about 60s! For only for 3 of the 11 targets
+
+```{r}
+num.targets <- 3
+red.targets <- sample(targets, 3)
+
+b.samples <- rsample::bootstraps(expr, n.bags)
+
+l_model <- parsnip::linear_reg() %>%
+      parsnip::set_mode("regression") %>%
+      parsnip::set_engine("lm")
+
+tictoc::tic()
+results <- red.targets %>%
+  purrr::set_names() %>%
+  purrr::map(function(target) {
+    
+    wf <- workflows::workflow() %>%
+      workflows::add_formula(as.formula(paste0(target, " ~ ."))) %>%
+      workflows::add_model(l_model)
+    
+    tune_test <- tune::fit_resamples(
+      object = wf,
+      resamples = b.samples,
+      control = tune::control_resamples(
+        save_pred = TRUE,
+        allow_par = FALSE,
+        extract = function (x) workflows::extract_fit_parsnip(x))
+      )
+  })
+tictoc::toc()
+```
+
+### Own function
+
+```{r}
+lm_bag <- function(expr, target, n.bags, n.vars = (ncol(expr)-1), 
+                   seed = 42) {
+  
+  set.seed(seed)
+  
+  # Formula
+  form <- as.formula(paste0(target, " ~ ."))
+  
+  # Map over all bags
+  seq_len(n.bags) %>%
+      purrr::map(function(x) {
+      
+      # Features
+      vars <- sample(colnames(expr)[colnames(expr) != target], n.vars)
+      
+      # Bootstrap
+      in.bag <- sample.int(nrow(expr), nrow(expr), replace=TRUE)
+      out.bag <- dplyr::setdiff(seq_len(nrow(expr)), in.bag)
+      
+      # Base Model
+      base.model <- lm(
+        formula = form,
+        data = expr[in.bag, c(vars, target)] )
+      
+      # OOB
+      oob.predictions <- data.frame(
+        index = out.bag,
+        pred = predict.lm(base.model, newdata = expr[out.bag, vars],
+                          type = "response")
+      )
+      
+      # Return
+      list(model = base.model, oob = oob.predictions, vars = vars)
+    })
+}
+
+
+tictoc::tic()
+res <- names(expr) %>%
+  purrr::set_names() %>%
+  purrr::map(~ lm_bag(expr, .x, n.bags))
+tictoc::toc()
+```
+
+## Random Forest
+
+### tidymodels
+
+```{r}
+tictoc::tic()
+test <- purrr::map(targets, function(target) {
+  parsnip::rand_forest(trees = n.bags) %>%
+  parsnip::set_mode("regression") %>%
+  parsnip::set_engine("ranger",
+            importance = "impurity",
+            seed = seed, 
+            verbose = FALSE,
+            num.threads = 1) %>%
+  parsnip::fit(as.formula(paste0(target, " ~ .")), 
+      data=expr)
+})
+tictoc::toc()
+```
+
+
+### ranger
+
+```{r}
+tictoc::tic()
+test <- purrr::map(targets, function(target) {
+  ranger::ranger(
+    formula = as.formula(paste0(target, " ~ .")),
+    data = expr,
+    importance = "impurity",
+    seed = seed,
+    verbose = FALSE,
+    num.threads = 1,
+    num.trees = n.bags
+  )
+})
+tictoc::toc()
+```
+
+# Passing Arguments
+
+## caret
+
+It is difficult to simply try to call ranger from 
+caret::train() without doing a grid search for parameter tuning. 
+I would assume that if I tell caret::train() in the trainControl not do any
+tuning (see method = "none") that it simply fits the models with the default
+parameters. But that is not what is happening.
+
+See more details in "5.9 Fitting Models Without Parameter Tuning" in the 
+caret book.
+https://topepo.github.io/caret/
+
+```{r error=TRUE}
+tictoc::tic()
+fitControl <- caret::trainControl(method = "none", allowParallel = FALSE)
+
+test <- purrr::map(targets, function(target) {
+  caret::train(
+    form = as.formula(paste0(target, " ~ .")),
+    data = expr,
+    num.trees = n.bags,
+    method = "ranger",
+    trControl = fitControl
+  )
+})
+tictoc::toc()
+```
+
+So it tells me I should specify the parameters in tuneGrid and if I simply try
+to do that the following happens.
+
+More here: 
+https://stackoverflow.com/questions/10498477/carettrain-specify-model-generation-parameters
+
+```{r error=TRUE}
+tictoc::tic()
+fitControl <- caret::trainControl(method = "none")
+
+test <- purrr::map(targets, function(target) {
+  caret::train(
+    form = as.formula(paste0(target, " ~ .")),
+    data = expr,
+    num.trees = n.bags,
+    method = "ranger",
+    trControl = fitControl,
+    tuneGrid = data.frame(mtry = NULL,
+                          importance = "impurity",
+                          min.node.size = NULL,
+                          splitrule = "variance")
+  )
+})
+tictoc::toc()
+```
+
+Simply because I cannot put `NULL` values in a data.frame which I would need
+to do to specify the normal default arguments in the `ranger` model 
+ for `mtry` and `min.node.size`.
+ 
+```{r error=TRUE}
+tibble::tibble(mtry = NULL,
+          importance = "impurity",
+          min.node.size = NULL,
+          splitrule = "variance")
+```
+
+Unfortunately, `caret` often uses different default arguments compared
+to the actual implementations of the algorithms. See for example MARS:
+
+```{r}
+in.bag <- sample(nrow(expr))
+```
+
+`earth` implementaiton:
+
+```{r}
+suppressMessages(
+original.model <- earth::earth(
+  ECM ~ .,
+  expr[in.bag, ]
+  )
+)
+original.model
+original.model$nprune
+```
+
+So in the default `nprune` is `NULL`.
+
+`caret` wrapper:
+
+```{r}
+caret.model <- caret::train(
+  ECM ~ .,
+  expr[in.bag, ],
+  method = "earth",
+  trControl = caret::trainControl(method = "none", allowParallel = FALSE)
+)
+caret.model$finalModel
+caret.model$finalModel$tuneValue
+```
+
+Whereas in the `caret` wrapper the default for `nrpune` is 2.
+
+# Out-of-Bag Predictions
+
+## `caret`
+
+Although caret allow to construct bagged models (though the documentation is
+bad) the returned OOB predictions have no index, meaning you get a data.frame contraining the OOB predictions and the actual
+values which allow you to calculate errors. However, this does not allow
+you to get overall OOB predictions for every observation, which is super 
+stupid. I guess this is due to the fact that caret::bag is not build for
+our purposes (similary to caret::train).
+
+And I also have no clue what this key is supposed to be useful for.
+
+```{r}
+library(caret)
+
+tictoc::tic()
+
+fit.func <- function (x, y, ...) {
+  y <- data.frame(y = y)
+  expr <- cbind(x, y)
+  lm(formula = y ~ ., data = expr)
+}
+
+pred.func <- function(object, x) {
+  predict(object, newdata = x)
+}
+
+agg.func <- function(x, type) {
+  x <- matrix(unlist(x), ncol = length(x))
+  out <- apply(x, 1, mean)
+}
+
+res <- targets %>%
+  purrr::set_names() %>%
+  purrr::map(function(target) {
+    # get expr
+    predictors <- expr %>% select(-c(target))
+    outcome <- as.numeric(expr %>% pull(target))
+    
+    # train bagged lm
+    bag(x=predictors, y=outcome, B = n.bags,
+               bagControl = bagControl(fit = fit.func,
+                                       predict = pred.func,
+                                       aggregate = agg.func,
+                                       oob = TRUE,
+                                       allowParallel = FALSE))
+  })
+
+str(res$ECM$fits[[1]]$oob)
+```
+
+# Installation
+
+## `mlr3`
+
+There is another (academic) ML libary in R which works just fine, but the
+learners we need such as `earth` (MARS) are only available in the package
+`mlr3extralearners`.
+
+See here for more details:
+https://mlr3extralearners.mlr-org.com/
+
+```{r eval=FALSE}
+# has to be installed via GitHub!
+remotes::install_github("mlr-org/mlr3extralearners")
+```
+
+Otherwise the syntax would look like this.
+
+```{r}
+library(mlr3)
+library(mlr3extralearners)
+learner <- lrn("regr.earth")
+learner
+#learner$param_set
+
+task = TaskRegr$new("test", expr, target = "ECM")
+task
+
+learner$train(task, row_ids = sample(nrow(expr)))
+learner$model
+```
+
+# Appendix
+
+## merge_two
+
+Why did I create a function to merge two lists, while there is a function
+in the `rlist` package (`list.merge`) to do just that?
+
+# rlist::list.merge
+
+Why does `rlist::list.merge` removes list entries which are NULL? This is
+incredibly stupid.
+
+Consider the following lists.
+
+```{r}
+x = list(a = "hello", b = "world", c = NULL, z = "other_stuff")
+y = list(a = "bar", b = "foo", d = "new")
+```
+
+We can see that `rlist::list.merge` removes list entries which are NULL.
+And thus far I have not found out how to prevent this from happening.
+
+```{r}
+rlist::list.merge(x, y)
+```
+
+Therefore, I defined my own function which simply merges **2** named lists.
+
+```{r}
+merge_two <- function(l1, l2) {
+  
+  n1 <- names(l1)
+  n2 <- names(l2)
+  diff <- n1[!(n1 %in% n2)]
+  n1_list <- diff %>%
+    purrr::set_names() %>%
+    purrr::map(function(name) l1[[name]])
+  
+  union <- n2[!(n2 %in% diff)]
+  n2_list <- union %>%
+    purrr::set_names() %>%
+    purrr::map(function(name) l2[[name]])
+  return(c(n1_list, n2_list))
+}
+```
+
+```{r}
+merge_two(x, y)
+```
