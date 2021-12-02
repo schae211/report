@@ -344,8 +344,12 @@ div.tocify {
 <li>
   <a href="benchmark.html">Benchmark</a>
 </li>
-<li class="dropdown-header">Frameworks</li>
-<li class="dropdown-header">Model API</li>
+<li>
+  <a href="frameworks.html">Frameworks</a>
+</li>
+<li>
+  <a href="model_api.html">Model API</a>
+</li>
 <li>
   <a href="random.html">Random</a>
 </li>
@@ -518,22 +522,27 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree565f4e02511a796a9de49f418982b5a8cb298745targetblank565f4e0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/565f4e02511a796a9de49f418982b5a8cb298745" target="_blank">565f4e0</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree77e38fe81ccd601e498ad01d7243ca14776428f9targetblank77e38fea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/77e38fe81ccd601e498ad01d7243ca14776428f9" target="_blank">77e38fe</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree565f4e02511a796a9de49f418982b5a8cb298745targetblank565f4e0a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree77e38fe81ccd601e498ad01d7243ca14776428f9targetblank77e38fea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/565f4e02511a796a9de49f418982b5a8cb298745" target="_blank">565f4e0</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/77e38fe81ccd601e498ad01d7243ca14776428f9" target="_blank">77e38fe</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
-working directory clean
+Ignored files:
+    Ignored:    results/
+
+Unstaged changes:
+    Modified:   analysis/_site.yml
+
 </code></pre>
 <p>
 Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
@@ -571,6 +580,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/b68d23d819a8167d19093d76853ba64c512ca32d/docs/frameworks.html" target="_blank">b68d23d</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-02
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -691,7 +717,7 @@ results &lt;- targets %&gt;%
                                        allowParallel = FALSE))
   })
 tictoc::toc()
-6.829 sec elapsed</code></pre>
+6.791 sec elapsed</code></pre>
 </div>
 <div id="tidymodels" class="section level3">
 <h3>Tidymodels</h3>
@@ -726,7 +752,7 @@ results &lt;- red.targets %&gt;%
       )
   })
 tictoc::toc()
-63.068 sec elapsed</code></pre>
+62.841 sec elapsed</code></pre>
 </div>
 <div id="own-function" class="section level3">
 <h3>Own function</h3>
@@ -772,7 +798,7 @@ res &lt;- names(expr) %&gt;%
   purrr::set_names() %&gt;%
   purrr::map(~ lm_bag(expr, .x, n.bags))
 tictoc::toc()
-4.122 sec elapsed</code></pre>
+4.097 sec elapsed</code></pre>
 </div>
 </div>
 <div id="random-forest" class="section level2">
@@ -792,7 +818,7 @@ test &lt;- purrr::map(targets, function(target) {
       data=expr)
 })
 tictoc::toc()
-5.453 sec elapsed</code></pre>
+5.537 sec elapsed</code></pre>
 </div>
 <div id="ranger" class="section level3">
 <h3>ranger</h3>
@@ -809,7 +835,7 @@ test &lt;- purrr::map(targets, function(target) {
   )
 })
 tictoc::toc()
-3.507 sec elapsed</code></pre>
+3.53 sec elapsed</code></pre>
 </div>
 </div>
 </div>
@@ -833,7 +859,7 @@ test &lt;- purrr::map(targets, function(target) {
 })
 Error: Only one model should be specified in tuneGrid with no resampling
 tictoc::toc()
-0.029 sec elapsed</code></pre>
+0.03 sec elapsed</code></pre>
 <p>So it tells me I should specify the parameters in tuneGrid and if I simply try to do that the following happens.</p>
 <p>More here: <a href="https://stackoverflow.com/questions/10498477/carettrain-specify-model-generation-parameters" class="uri">https://stackoverflow.com/questions/10498477/carettrain-specify-model-generation-parameters</a></p>
 <pre class="r"><code>tictoc::tic()
