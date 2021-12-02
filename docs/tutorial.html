@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tutorial</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Report</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Overview</a>
+</li>
+<li>
+  <a href="tutorial.html">Tutorial</a>
+</li>
+<li>
+  <a href="benchmark.html">Benchmark</a>
+</li>
+<li class="dropdown-header">Frameworks</li>
+<li class="dropdown-header">Model API</li>
+<li>
+  <a href="random.html">Random</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/schae211/mibi_analysis">
+    <span class="fa fa-github"></span>
+     
+    Source code
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Tutorial</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2021-12-02
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20211125code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20211125)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20211125code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20211125)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
+</p>
+</div>
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/Saez/report
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrong70f04f3"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> 70f04f3 </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrong70f04f3" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+</p>
+<p>
+The results in this page were generated with repository version 70f04f3. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+</p>
+<p>
+Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    analysis/figure/
+
+Untracked files:
+    Untracked:  analysis/benchmark.Rmd
+    Untracked:  analysis/model_api.Rmd
+    Untracked:  analysis/random.Rmd
+    Untracked:  results/
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+
+<p>
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/tutorial.Rmd</code>) and HTML (<code>docs/tutorial.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+</p>
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+File
+</th>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+<th>
+Message
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+70f04f3
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-02
+</td>
+<td>
+wflow_publish(files = “analysis/tutorial.Rmd”)
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<hr>
+</div>
+</div>
+</div>
+<p>Setup.</p>
+<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_knit$set(root.dir = &quot;~/Saez/report&quot;)</code></pre>
+<p>Loaded packages.</p>
+<pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+suppressPackageStartupMessages(library(tidyverse))
+plan(&quot;multisession&quot;, workers=14)</code></pre>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>In this tutorial, I will briefly explain how I envision the new MISTy workflow. Instead of only offering a pre-defined set of ML algorithms to model each view, I refactored the code such that users can supply their own function if they would like. If not, we ship MISTy with several implemented functions that can simply be plugged into the model. More details can be found below.</p>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>For the sake of this tutorial we will be using the synthetic dataset supplied in the MISTy package. As explained in the <a href="https://saezlab.github.io/mistyR/articles/mistyR.html">Get Started Vignette</a>, this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.</p>
+<p>In total there are 10 tibbles, each of which contains about 4000 cells and their corresponding expresssion of the markers, position in a 100x100 grid (randomly assigned) as well as the cell type identity. (For more information see <code>help("synthetic")</code>).</p>
+<pre class="r"><code>data(&quot;synthetic&quot;)</code></pre>
+</div>
+<div id="misty-views" class="section level2">
+<h2>MISTy Views</h2>
+<p>For the sake of keeping things simply, we will only look at the first instance of the synthetic dataset for now.</p>
+<p>We will start by creating two MISTy views: a) Intraview and b) Paraview with a Gaussian kernel (default) and a radius of 10.</p>
+<pre class="r"><code>expr &lt;- synthetic$synthetic1 %&gt;% dplyr::select(-c(row, col, type))
+pos &lt;- synthetic$synthetic1 %&gt;% dplyr::select(c(row, col))
+misty.views &lt;- expr %&gt;%
+  create_initial_view() %&gt;%
+  add_paraview(l = 10, positions = pos)
+
+Generating paraview</code></pre>
+</div>
+<div id="running-misty" class="section level2">
+<h2>Running MISty</h2>
+<p>The default ML algorithm is still random forest and thus we do not even have to specify it.</p>
+<pre class="r"><code>misty.run &lt;- misty.views %&gt;%
+  run_misty()
+
+Training models</code></pre>
+<p>To make things more explicitly the above call is the same as:</p>
+<pre class="r"><code>misty.run &lt;- misty.views %&gt;%
+  run_misty(model.function = random_forest_model)
+
+Training models</code></pre>
+<p>But what is this <code>random_forest_model</code> actually?</p>
+<pre class="r"><code>random_forest_model
+function(view_data, target, seed, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  
+  # default ranger arguments
+  algo.arguments &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    num.trees = 100,
+    importance = &quot;impurity&quot;,
+    mtry = NULL, 
+    verbose = FALSE, 
+    num.threads = 1,
+    seed = seed)
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+  }
+  
+  model &lt;- do.call(ranger::ranger, algo.arguments)
+  
+  predictions &lt;- tibble::tibble(index = seq_len(nrow(view_data)), 
+                                prediction = model$predictions)
+  
+  list(unbiased.predictions = predictions, 
+       importances = model$variable.importance)
+}
+&lt;bytecode: 0x5614ee136208&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<p>It is a function that takes in the data of a single view, for example the <code>paraview</code> -</p>
+<pre class="r"><code>misty.views$paraview.10$data %&gt;% slice_head(n=6)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ECM"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ligA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ligB"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ligC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ligD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["protE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["protF"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["prodA"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["prodB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["prodC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["prodD"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"6.979321","2":"13.15935","3":"1.285712","4":"9.557256","5":"17.04973","6":"13.97745","7":"28.12211","8":"4.366114","9":"0.8159148","10":"3.870546","11":"5.637949"},{"1":"15.047960","2":"12.93732","3":"2.314226","4":"18.517582","5":"15.10552","6":"26.59867","7":"27.74473","8":"5.238444","9":"1.6585141","10":"7.287498","11":"6.013656"},{"1":"17.366190","2":"13.57398","3":"2.782903","4":"20.417886","5":"16.08916","6":"28.14198","7":"29.03742","8":"5.041102","9":"1.9478960","10":"8.227380","11":"5.975769"},{"1":"18.401444","2":"14.27625","3":"3.002274","4":"20.974014","5":"16.90832","6":"31.49055","7":"30.87604","8":"5.614053","9":"2.0930029","10":"8.001041","11":"6.506692"},{"1":"19.932558","2":"14.73801","3":"3.163228","4":"21.988465","5":"17.54009","6":"33.20876","7":"32.66920","8":"5.689368","9":"2.0762916","10":"8.614926","11":"6.644928"},{"1":"26.260790","2":"15.73162","3":"4.316208","4":"25.595469","5":"19.70285","6":"41.80724","7":"35.88199","8":"5.734761","9":"2.8539163","10":"9.239076","11":"7.115921"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>and models the target variable with the RF algorithm. Importantly, within the <code>run_misty</code> function before the <code>view_data</code> are supplied to the random_forest_model, the target column is replaced by the actual values from the <code>intraview</code>.</p>
+<p>So assuming the target is “ECM” the following happens within the MISTy framework.</p>
+<pre class="r"><code>target &lt;- &quot;ECM&quot;
+expr &lt;- misty.views$intraview$data
+target.vector &lt;- expr %&gt;% dplyr::pull(target)
+view_data &lt;- misty.views$paraview.10$data %&gt;%
+  mutate(!!target := target.vector)
+# compare to the above
+view_data %&gt;% slice_head(n=6)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ECM"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ligA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ligB"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ligC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ligD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["protE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["protF"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["prodA"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["prodB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["prodC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["prodD"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.03854680","2":"13.15935","3":"1.285712","4":"9.557256","5":"17.04973","6":"13.97745","7":"28.12211","8":"4.366114","9":"0.8159148","10":"3.870546","11":"5.637949"},{"1":"0.03266024","2":"12.93732","3":"2.314226","4":"18.517582","5":"15.10552","6":"26.59867","7":"27.74473","8":"5.238444","9":"1.6585141","10":"7.287498","11":"6.013656"},{"1":"0.14441839","2":"13.57398","3":"2.782903","4":"20.417886","5":"16.08916","6":"28.14198","7":"29.03742","8":"5.041102","9":"1.9478960","10":"8.227380","11":"5.975769"},{"1":"0.38700715","2":"14.27625","3":"3.002274","4":"20.974014","5":"16.90832","6":"31.49055","7":"30.87604","8":"5.614053","9":"2.0930029","10":"8.001041","11":"6.506692"},{"1":"0.16346509","2":"14.73801","3":"3.163228","4":"21.988465","5":"17.54009","6":"33.20876","7":"32.66920","8":"5.689368","9":"2.0762916","10":"8.614926","11":"6.644928"},{"1":"0.20329497","2":"15.73162","3":"4.316208","4":"25.595469","5":"19.70285","6":"41.80724","7":"35.88199","8":"5.734761","9":"2.8539163","10":"9.239076","11":"7.115921"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>And then the RF algorithm is called with the default algorithms merged with the additional ellipsis arguments.</p>
+<pre class="r"><code>seed &lt;- 42 # default
+
+ellipsis.args &lt;- list() # assume no ellipsis arguments were given
+
+# default ranger arguments
+algo.arguments &lt;- list(
+  formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+  data = view_data,
+  num.trees = 100,
+  importance = &quot;impurity&quot;,
+  mtry = NULL, 
+  verbose = FALSE, 
+  num.threads = 1,
+  seed = seed)
+
+if (!(length(ellipsis.args) == 0)) {
+  algo.arguments &lt;- merge_2(algo.arguments, ellipsis.args)
+}
+
+model &lt;- do.call(ranger::ranger, algo.arguments)
+
+predictions &lt;- tibble::tibble(index = seq_len(nrow(view_data)), 
+                              prediction = model$predictions)
+
+list(unbiased.predictions = predictions, 
+     importances = model$variable.importance) %&gt;%
+  str() # add str here to show output
+List of 2
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
+  ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ prediction: num [1:4205] 0.141 0.115 0.266 0.673 0.494 ...
+ $ importances         : Named num [1:10] 54.1 60.9 60.3 49.9 69 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;ligA&quot; &quot;ligB&quot; &quot;ligC&quot; &quot;ligD&quot; ...</code></pre>
+<p>(Note that <code>merge_2</code> is a function that is also exported by <code>mistyR</code>)</p>
+<p>As seen above, we can also easily supply arguments to the <code>ranger</code> RF implementation. Say we would like to increase the number of trees and use another splitrule. Let’s compare the runtime for example (should be higher with more trees).</p>
+<pre class="r"><code>tictoc::tic()
+misty.run &lt;- misty.views %&gt;%
+  run_misty(model.function = random_forest_model, num.trees = 500, 
+            splitrule = &quot;extratrees&quot;)
+
+Training models
+tictoc::toc()
+4.572 sec elapsed</code></pre>
+<pre class="r"><code>tictoc::tic()
+misty.run &lt;- misty.views %&gt;%
+  run_misty(model.function = random_forest_model, num.trees = 100, 
+            splitrule = &quot;extratrees&quot;)
+
+Training models
+tictoc::toc()
+1.445 sec elapsed</code></pre>
+</div>
+<div id="misty-results" class="section level2">
+<h2>MISTy results</h2>
+<p>On the side of processing and plotting the results nothing has changed.</p>
+<pre class="r"><code>misty.results &lt;- collect_results(misty.run)
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+misty.results %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-13-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-13-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Below all the supplied function will be desribed in more detail.</p>
+</div>
+</div>
+<div id="all-supplied-functions" class="section level1 tabset">
+<h1 class="tabset">All Supplied Functions</h1>
+<div id="random-forest" class="section level2">
+<h2>Random Forest</h2>
+<ul>
+<li>Unbiased predictions are based on OOB predictions.</li>
+</ul>
+<pre class="r"><code>random_forest_model
+function(view_data, target, seed, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  
+  # default ranger arguments
+  algo.arguments &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    num.trees = 100,
+    importance = &quot;impurity&quot;,
+    mtry = NULL, 
+    verbose = FALSE, 
+    num.threads = 1,
+    seed = seed)
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+  }
+  
+  model &lt;- do.call(ranger::ranger, algo.arguments)
+  
+  predictions &lt;- tibble::tibble(index = seq_len(nrow(view_data)), 
+                                prediction = model$predictions)
+  
+  list(unbiased.predictions = predictions, 
+       importances = model$variable.importance)
+}
+&lt;bytecode: 0x5614ee136208&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = random_forest_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-15-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-15-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="gradient-boosting" class="section level2">
+<h2>Gradient Boosting</h2>
+<ul>
+<li>Unbiased predictions are based on k-fold cross-validation (aggregarted predictions for the holdout sets)</li>
+</ul>
+<pre class="r"><code>gradient_boosting_model
+function(view_data, target, seed, k = 10, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+    
+    train &lt;- view_data[in.fold, ]
+    test &lt;- view_data[holdout, ]
+    
+    pred.train &lt;- train %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% as.matrix
+    label.train &lt;- train %&gt;% dplyr::pull(tidyselect::all_of(target))
+    
+    algo.arguments &lt;- list(
+      data = pred.train,
+      label = label.train,
+      booster = &quot;gbtree&quot;,
+      nrounds = 10,
+      verbose = 0,
+      eta = 0.3, 
+      objective = &quot;reg:squarederror&quot;,
+      max_depth = 6, 
+      nthread = 1
+    )
+    
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+    
+    model &lt;- do.call(xgboost::xgboost, algo.arguments)
+    
+    pred.test &lt;- test %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% as.matrix
+    
+    label.hat &lt;- predict(model, pred.test)
+    
+    tibble::tibble(index = holdout, prediction = label.hat)
+  }) %&gt;% dplyr::arrange(index)
+  
+  predictors &lt;- view_data %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% as.matrix
+  labels &lt;- view_data %&gt;% dplyr::pull(tidyselect::all_of(target))
+  
+  algo.arguments.wm &lt;- list(
+    data = predictors,
+    label = labels,
+    booster = &quot;gbtree&quot;,
+    nrounds = 10,
+    verbose = 0, 
+    eta = 0.3, 
+    objective = &quot;reg:squarederror&quot;,
+    max_depth = 6, 
+    nthread = 1
+  )
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+  
+  whole.model &lt;- do.call(xgboost::xgboost, algo.arguments.wm)
+  
+  # if bypass intra is true, we need to catch the error
+  importances &lt;- tryCatch({
+    importance_matrix &lt;- xgboost::xgb.importance(model = whole.model)
+    importances &lt;- unlist(importance_matrix[, &quot;Gain&quot;])
+    names(importances) &lt;- unlist(importance_matrix[, &quot;Feature&quot;])
+    importances
+  }, error = function(cond){
+    importances &lt;- rep(0, ncol(predictors))
+    names(importances) &lt;- colnames(predictors)
+    importances
+  })
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+&lt;bytecode: 0x5614f92239e0&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model:</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = gradient_boosting_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-17-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mars" class="section level2">
+<h2>MARS</h2>
+<ul>
+<li>MARS: Multivariate Adaptive Regression Splines</li>
+</ul>
+<pre class="r"><code>mars_model
+function(view_data, target, seed, k = 10, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+    
+    train &lt;- view_data[in.fold, ]
+    test &lt;- view_data[holdout, ]
+    
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = train,
+      degree = 2
+    )
+    
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+    
+    model &lt;- do.call(earth::earth, algo.arguments)
+    
+    label.hat &lt;- predict(model, test)
+    
+    tibble::tibble(index = holdout, prediction = label.hat)
+  }) %&gt;% dplyr::arrange(index)
+  
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    degree = 2
+  )
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+  
+  whole.model &lt;- do.call(earth::earth, algo.arguments.wm)
+  
+  importances &lt;- earth::evimp(whole.model, trim = FALSE, sqrt. = TRUE)[, 6]
+  names(importances) &lt;- stringr::str_remove(names(importances), &quot;-unused&quot;)
+  # fix for bypass intra
+  if (is.na(names(importances))) importances &lt;- c(&quot;no.var&quot; = 0)
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+&lt;bytecode: 0x5614f8d70ed0&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = mars_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Warning in if (is.na(names(importances))) importances &lt;- c(no.var = 0): the
+condition has length &gt; 1 and only the first element will be used
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-19-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-19-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="bagged-mars" class="section level2">
+<h2>Bagged MARS</h2>
+<ul>
+<li><p>MARS: Multivariate Adaptive Regression Splines</p></li>
+<li><p>Unbiased predictions are based on OOB predictions.</p></li>
+<li><p>The name <code>bagged_earth_model</code> comes from the fact that the name mars is protected and thus the implementation of the algorithm is called <code>earth</code> (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert Tibshirani)</p></li>
+</ul>
+<pre class="r"><code>bagged_mars_model
+function(view_data, target, seed, 
+                               n.bags = 50, ...) {
+  
+  ellipsis.args &lt;- list(...)
+
+  # generate the bags
+  bags &lt;- withr::with_seed(
+    seed,
+    caret::createResample(1:nrow(view_data), times = n.bags)
+  )
+  
+  # build one model for each bag, return oob predictions and importances
+  models &lt;- purrr::map(bags, function(bag) {
+    
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[bag, ],
+      degree = 2
+    )
+    
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+    
+    model &lt;- do.call(earth::earth, algo.arguments)
+    
+    oob &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% bag)]
+    
+    pred &lt;- predict(model, view_data[oob, ])
+    list(model = model, 
+         prediction = tibble::tibble(index = oob, prediction = as.vector(pred)))
+  })
+  
+  # Generate the OOB predictions, using the average for each sample
+  predictions &lt;- purrr::map_dfr(models, function(model) {
+    tibble::tibble(model$prediction)
+  }) %&gt;% 
+    dplyr::group_by(index) %&gt;%
+    dplyr::summarise(prediction = mean(prediction)) %&gt;%
+    dplyr::arrange(index)
+  
+  assertthat::assert_that(nrow(predictions) == nrow(view_data),
+      msg = &quot;There are too few bags to get OOB predictions for all observations.
+      Consider increasing the number of bags or using CV.&quot;)
+  
+  importances &lt;- purrr::map_dfr(models, function(model) {
+    coefs &lt;- earth::evimp(model$model, trim = FALSE, sqrt. = TRUE)[, 6]
+    names(coefs) &lt;- stringr::str_remove(names(coefs), &quot;-unused&quot;)
+    # fix for bypass intra
+    names(coefs) &lt;- ifelse(is.na(names(coefs)), &quot;no.var&quot;, names(coefs))
+    coefs
+  }) %&gt;% colMeans(na.rm = TRUE)
+  
+  
+  
+  list(unbiased.predictions = predictions, 
+       importances = importances)
+}
+&lt;bytecode: 0x5614f1f84b70&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model:</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = bagged_mars_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-21-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-21-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="linear-model" class="section level2">
+<h2>Linear Model</h2>
+<ul>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
+<li><p>In particular this model was supplied to understand more easily, how a view-specifc model based on cross-validation can be constructed</p></li>
+</ul>
+<pre class="r"><code>linear_model
+function(view_data, target, seed, k = 10, ...) {
+  
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+    
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ]
+    )
+    
+    model &lt;- do.call(stats::lm, algo.arguments)
+    
+    pred &lt;- predict.lm(model, view_data[holdout, ])
+    
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+  
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data
+  )
+  
+  whole.model &lt;- do.call(stats::lm, algo.arguments.wm)
+  
+  importances &lt;- whole.model$coefficients[names(whole.model$coefficients) != &quot;(Intercept)&quot;]
+  # fix for bypass intra (replace NA with 0 for consistent behavior)
+  importances &lt;- ifelse(is.na(importances), 0, importances)
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+&lt;bytecode: 0x5614f3fecd60&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model:</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = linear_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-23-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-23-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="support-vector-machine" class="section level2">
+<h2>Support Vector Machine</h2>
+<ul>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregarted predictions for the holdout sets)</p></li>
+<li><p>Importantly, we added an approximation argument to the implementation which basically says at what fraction of the training instances the SVM will be trained on. This drastically decreases the training time and does not really effect the performance.</p></li>
+</ul>
+<pre class="r"><code>svm_model
+function(view_data, target, seed, approx = 0.4, k = 10, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+    
+    # subsampling to reduce the computational cost
+    if (approx) in.fold &lt;- in.fold[sample(1:length(in.fold), 
+                                          length(in.fold)*approx)]
+    
+    algo.arguments &lt;- list(
+      x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ],
+      kernel = &quot;vanilladot&quot;,
+      C = 1,
+      type = &quot;eps-svr&quot;,
+      kpar = list() # no hyperparameters for linear kernel
+    )
+    
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+
+    model &lt;- do.call(kernlab::ksvm, algo.arguments)
+    
+    pred &lt;- kernlab::predict(model, view_data[holdout, ])
+    
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+  
+  algo.arguments.wm &lt;- list(
+    x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    kernel = &quot;vanilladot&quot;,
+    C = 1,
+    type = &quot;eps-svr&quot;,
+    kpar = list() # no hyperparameters for linear kernel
+  )
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+  
+  whole.model &lt;- do.call(kernlab::ksvm, algo.arguments.wm)
+  
+  importances &lt;- (t(whole.model@coef) %*% whole.model@xmatrix)[1,]
+  # fix for bypass intra
+  if (is.null(names(importances))) importances &lt;- c(&quot;no.var&quot; = 0)
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+&lt;bytecode: 0x5614f08d0f98&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model:</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = svm_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-25-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-25-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="neural-network" class="section level2">
+<h2>Neural Network</h2>
+<ul>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregarted predictions for the holdout sets)</p></li>
+<li><p>Importantly, the feature importances is here calculated based on a global model agnostic method. More specifically each feature is permuated (one at a time) and then the reduction in preditive performance is used as measure for the variable importance.</p></li>
+</ul>
+<pre class="r"><code>mlp_model
+function(view_data, target, seed, approx = 0.6, k = 10, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  predictors &lt;- colnames(view_data)[colnames(view_data) != target]
+  X &lt;- view_data %&gt;% dplyr::select(tidyselect::all_of(predictors)) %&gt;% as.matrix()
+  Y &lt;- view_data %&gt;% dplyr::pull(target)
+  
+  # made this an imap to track the folds!
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+    
+    # subsampling to reduce the computational cost
+    in.fold &lt;- in.fold[sample(1:length(in.fold), length(in.fold)*approx)]
+    
+    X_train &lt;- X[in.fold, ] %&gt;% as.matrix
+    Y_train &lt;- Y[in.fold]
+    
+    X_test &lt;- X[holdout, ] %&gt;% as.matrix
+    Y_test &lt;- Y[holdout]
+    
+    algo.arguments &lt;- list(
+      x = X_train,
+      y = Y_train,
+      size = c(10)
+    )
+    
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+    
+    model &lt;- do.call(RSNNS::mlp, algo.arguments)
+    
+    label.hat &lt;- predict(model, X_test)
+    
+    tibble::tibble(index = holdout, prediction = label.hat)
+  }) %&gt;% dplyr::arrange(index)
+  
+  algo.arguments.wm &lt;- list(
+    x = X,
+    y = Y,
+    size = c(10)
+  )
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+  
+  whole.model &lt;- do.call(RSNNS::mlp, algo.arguments.wm)
+  
+  # fix for bypass intra (or in general if there is only a single predictor)
+  if (ncol(X) == 1) {importances &lt;- c(&quot;no.var&quot; = 0)
+  } else {
+    predictor &lt;- iml::Predictor$new(
+      model = whole.model, 
+      data = as.data.frame(X), 
+      y = Y)
+    
+    imp &lt;- iml::FeatureImp$new(predictor, loss = &quot;mse&quot;)$results
+    importances &lt;- imp$importance
+    names(importances) &lt;- imp$feature
+  }
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+&lt;bytecode: 0x5614f8ad31b8&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model:</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = mlp_model,
+            k = 10, approx.frac = 0.5) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-27-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-27-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="how-to-construct-you-own-function" class="section level1">
+<h1>How to construct you own function</h1>
+<ol style="list-style-type: decimal">
+<li>To construct a view-specific function we need to clearly state the expected input and output to the function.</li>
+</ol>
+<div id="input" class="section level2">
+<h2>Input</h2>
+<p>The input will be:</p>
+<ol style="list-style-type: decimal">
+<li><code>view_data</code>: A tibble with each row corresponding to a spatial unit (e.g. Visium spot or single cell) and each column corresponding to a marker.</li>
+</ol>
+<p>Based on the assert statements in <code>run_misty</code>, one can be sure that the variance of each target is non-zero.</p>
+<p>For example the intraview from above.</p>
+<pre class="r"><code>misty.views$intraview$data %&gt;% slice_head(n=6)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ECM"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ligA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ligB"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ligC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ligD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["protE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["protF"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["prodA"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["prodB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["prodC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["prodD"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.03854680","2":"0.8339939","3":"0.01573892","4":"0.2356239","5":"1.1827223","6":"1.177839","7":"2.5472407","8":"0.3821445","9":"0.000000","10":"0.0000000","11":"0.5879969"},{"1":"0.03266024","2":"0.1187827","3":"0.01039155","4":"0.8042649","5":"0.1005138","6":"0.000000","7":"0.3860302","8":"0.0000000","9":"0.000000","10":"0.5358052","11":"0.0000000"},{"1":"0.14441839","2":"0.5245439","3":"0.01404577","4":"0.3339515","5":"0.4337909","6":"1.669298","7":"1.6137109","8":"0.4721953","9":"0.000000","10":"0.0000000","11":"0.3789962"},{"1":"0.38700715","2":"0.2689383","3":"0.03673178","4":"0.5020253","5":"0.2409168","6":"0.000000","7":"0.9125841","8":"0.0000000","9":"0.000000","10":"0.4184349","11":"0.0000000"},{"1":"0.16346509","2":"0.1953178","3":"0.11758953","4":"0.2321609","5":"0.2029005","6":"0.000000","7":"0.1623442","8":"0.0000000","9":"0.160016","10":"0.0000000","11":"0.0000000"},{"1":"0.20329497","2":"0.1777069","3":"0.02467047","4":"0.7384428","5":"0.2362814","6":"0.000000","7":"0.6030203","8":"0.0000000","9":"0.000000","10":"0.5554705","11":"0.0000000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ol start="2" style="list-style-type: decimal">
+<li><code>target</code>: String corresponding to the marker which should be modeled.</li>
+</ol>
+<p>For example “ECM”</p>
+<ol start="3" style="list-style-type: decimal">
+<li><code>seed</code>: Integer (passed down from <code>run_misty</code>)</li>
+</ol>
+<p>Default seed is 42.</p>
+</div>
+<div id="output" class="section level2">
+<h2>Output</h2>
+<p>The output must be a named list comprising of:</p>
+<ol style="list-style-type: decimal">
+<li><code>unbiased.predictions</code>: Tibble with one column called <code>index</code> for the “cell id” and another column called <code>prediction</code> for the unbiased prediction.</li>
+</ol>
+<p>These unbiased predictions for the specified target can either come from the aggregated out-of-bag (OOB) predictions of a bagged ensembl model or the aggregated predictions for holdout set for k-fold cross-validation.</p>
+<p>The unbiased predictions are needed as input for the linear fusion model, which combined the unbiased predictions from each view-specific model to assess the contribution from each view (using the coefficients).</p>
+<ol start="2" style="list-style-type: decimal">
+<li><code>importances</code> : Named Vector with the importances of the predictors as values and the names of the predictors as names (see the example below)</li>
+</ol>
+<hr />
+<p>For example let’s have a look at the result list returned by the ranger model.</p>
+<pre class="r"><code>res.list &lt;- random_forest_model(view_data = misty.views$intraview$data, 
+                         target = &quot;ECM&quot;, 
+                         seed = 42)
+str(res.list)
+List of 2
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
+  ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ prediction: num [1:4205] 0.0563 0.0952 0.1236 0.169 0.1617 ...
+ $ importances         : Named num [1:10] 27.5 26.1 43.5 16.3 248.3 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;ligA&quot; &quot;ligB&quot; &quot;ligC&quot; &quot;ligD&quot; ...</code></pre>
+<ol style="list-style-type: lower-alpha">
+<li>Top 6 entries of the <code>unbiased.predictions</code> tibble.</li>
+</ol>
+<pre class="r"><code>res.list$unbiased.predictions %&gt;% slice_head(n = 6)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["index"],"name":[1],"type":["int"],"align":["right"]},{"label":["prediction"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.05625033"},{"1":"2","2":"0.09516617"},{"1":"3","2":"0.12360709"},{"1":"4","2":"0.16900870"},{"1":"5","2":"0.16167585"},{"1":"6","2":"0.16937361"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ol start="2" style="list-style-type: lower-alpha">
+<li>Importances</li>
+</ol>
+<pre class="r"><code>res.list$importances
+     ligA      ligB      ligC      ligD     protE     protF     prodA     prodB 
+ 27.46336  26.12132  43.51203  16.32403 248.34468  71.45277  42.54984  66.75963 
+    prodC     prodD 
+ 42.15216  32.24817 </code></pre>
+</div>
+<div id="example-function" class="section level2">
+<h2>Example Function</h2>
+<p>To showcase how one can construct such a function, we will build a view-specific model based on a decision tree (implemented by <code>rpart</code>)</p>
+<p>To visualize what each step is necessary for, we will use the paraview from above and model “ECM”. So in general our input is going to look somehow like that. We have a tibble with the rows as spatial units (e.g. cells) and the columns are the markers (target or predictors).</p>
+<pre class="r"><code>seed &lt;- 42
+target &lt;- &quot;ECM&quot;
+expr &lt;- misty.views$intraview$data
+target.vector &lt;- expr %&gt;% dplyr::pull(target)
+view_data &lt;- misty.views$paraview.10$data %&gt;%
+  mutate(!!target := target.vector)
+
+view_data %&gt;% slice_head(n=6)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["ECM"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ligA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ligB"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ligC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ligD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["protE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["protF"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["prodA"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["prodB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["prodC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["prodD"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.03854680","2":"13.15935","3":"1.285712","4":"9.557256","5":"17.04973","6":"13.97745","7":"28.12211","8":"4.366114","9":"0.8159148","10":"3.870546","11":"5.637949"},{"1":"0.03266024","2":"12.93732","3":"2.314226","4":"18.517582","5":"15.10552","6":"26.59867","7":"27.74473","8":"5.238444","9":"1.6585141","10":"7.287498","11":"6.013656"},{"1":"0.14441839","2":"13.57398","3":"2.782903","4":"20.417886","5":"16.08916","6":"28.14198","7":"29.03742","8":"5.041102","9":"1.9478960","10":"8.227380","11":"5.975769"},{"1":"0.38700715","2":"14.27625","3":"3.002274","4":"20.974014","5":"16.90832","6":"31.49055","7":"30.87604","8":"5.614053","9":"2.0930029","10":"8.001041","11":"6.506692"},{"1":"0.16346509","2":"14.73801","3":"3.163228","4":"21.988465","5":"17.54009","6":"33.20876","7":"32.66920","8":"5.689368","9":"2.0762916","10":"8.614926","11":"6.644928"},{"1":"0.20329497","2":"15.73162","3":"4.316208","4":"25.595469","5":"19.70285","6":"41.80724","7":"35.88199","8":"5.734761","9":"2.8539163","10":"9.239076","11":"7.115921"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>So in the end the function should call <code>rpart</code> with this formula:</p>
+<pre class="r"><code>as.formula(paste0(target, &quot;~ .&quot;))
+ECM ~ .</code></pre>
+<pre class="r"><code>test.model &lt;- rpart::rpart(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
+                           data = view_data
+)
+summary(test.model)
+Call:
+rpart::rpart(formula = as.formula(paste0(target, &quot;~ .&quot;)), data = view_data)
+  n= 4205 
+
+          CP nsplit rel error    xerror       xstd
+1 0.01500315      0 1.0000000 1.0008528 0.03805044
+2 0.01000000      1 0.9849969 0.9902329 0.03749839
+
+Variable importance
+prodB  ligB protE  ligC prodC protF 
+   37    35     9     8     7     5 
+
+Node number 1: 4205 observations,    complexity param=0.01500315
+  mean=0.2791817, MSE=0.1514427 
+  left son=2 (2438 obs) right son=3 (1767 obs)
+  Primary splits:
+      prodB &lt; 3.818718 to the left,  improve=0.015003150, (0 missing)
+      ligB  &lt; 6.082138 to the left,  improve=0.014464940, (0 missing)
+      prodD &lt; 12.36839 to the right, improve=0.004319322, (0 missing)
+      ligD  &lt; 33.48445 to the right, improve=0.003931746, (0 missing)
+      ligA  &lt; 28.91634 to the right, improve=0.003704822, (0 missing)
+  Surrogate splits:
+      ligB  &lt; 5.705646 to the left,  agree=0.974, adj=0.938, (0 split)
+      protE &lt; 62.60869 to the left,  agree=0.677, adj=0.232, (0 split)
+      ligC  &lt; 47.92661 to the left,  agree=0.673, adj=0.221, (0 split)
+      prodC &lt; 18.17498 to the left,  agree=0.656, adj=0.181, (0 split)
+      protF &lt; 61.76141 to the left,  agree=0.636, adj=0.135, (0 split)
+
+Node number 2: 2438 observations
+  mean=0.2386013, MSE=0.1250542 
+
+Node number 3: 1767 observations
+  mean=0.3351722, MSE=0.1824449 </code></pre>
+<p>Now to get unbiased predictions we need to do cross validation and aggregate the predictions for the holdout instances.</p>
+<p>First we will create the 5 folds using <code>caret::createFolds</code></p>
+<pre class="r"><code>seed &lt;- 42
+k &lt;- 5
+folds &lt;- withr::with_seed(
+  seed,
+  caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+)
+str(folds)
+List of 5
+ $ Fold1: int [1:842] 5 12 17 32 39 50 55 58 66 70 ...
+ $ Fold2: int [1:841] 4 6 13 18 19 20 24 26 36 40 ...
+ $ Fold3: int [1:841] 2 7 9 14 23 27 42 43 57 62 ...
+ $ Fold4: int [1:841] 1 3 11 16 21 29 33 37 48 51 ...
+ $ Fold5: int [1:840] 8 10 15 22 25 28 30 31 34 35 ...</code></pre>
+<p>Next we will train a model for each fold and aggregate the prediction of the holdout instances.</p>
+<pre class="r"><code>holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+  
+  in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+  
+  train &lt;- view_data[in.fold, ]
+  test &lt;- view_data[holdout, ]
+  
+  algo.arguments &lt;- list(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
+                        data = train)
+  
+  model &lt;- do.call(rpart::rpart, algo.arguments)
+  
+  label.hat &lt;- predict(model, test)
+  
+  tibble::tibble(index = holdout, prediction = label.hat)
+}) %&gt;% dplyr::arrange(index)
+str(holdout.predictions)
+tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
+ $ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
+ $ prediction: Named num [1:4205] 0.238 0.237 0.238 0.24 0.236 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</code></pre>
+<p>As described above, apart from the unbiased predictions, we need the importances of the predictors (interpretable model!). Therefore we will train one more model on the whole dataset. And return the importances as named vector.</p>
+<pre class="r"><code>algo.arguments.wm &lt;- list(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
+                          data = view_data)
+  
+whole.model &lt;- do.call(rpart::rpart, algo.arguments.wm)
+
+importances &lt;- whole.model$variable.importance
+importances
+   prodB     ligB    protE     ligC    prodC    protF 
+9.554254 8.964886 2.216890 2.114156 1.724848 1.286877 </code></pre>
+<p>In the end we need to return everything in one list with the following names:</p>
+<pre class="r"><code>list(unbiased.predictions = holdout.predictions, 
+       importances = importances) %&gt;% str # again added str for visualization
+List of 2
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
+  ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ prediction: Named num [1:4205] 0.238 0.237 0.238 0.24 0.236 ...
+  .. ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+ $ importances         : Named num [1:6] 9.55 8.96 2.22 2.11 1.72 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;prodB&quot; &quot;ligB&quot; &quot;protE&quot; &quot;ligC&quot; ...</code></pre>
+<p>So up to this point our function would look like this.</p>
+<pre class="r"><code>reg_tree_model_1 &lt;- function(view_data, seed = 42, k = 5) {
+  
+  folds &lt;- withr::with_seed(
+  seed,
+  caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+  
+  in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+  
+  train &lt;- view_data[in.fold, ]
+  test &lt;- view_data[holdout, ]
+  
+  algo.arguments &lt;- list(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
+                        data = train)
+  
+  model &lt;- do.call(rpart::rpart, algo.arguments)
+  
+  label.hat &lt;- predict(model, test)
+  
+  tibble::tibble(index = holdout, prediction = label.hat)
+}) %&gt;% dplyr::arrange(index)
+  
+  algo.arguments.wm &lt;- list(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
+                          data = view_data)
+  
+  whole.model &lt;- do.call(rpart::rpart, algo.arguments.wm)
+  
+  importances &lt;- whole.model$variable.importance
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}</code></pre>
+<p>And it works perfectly.</p>
+<pre class="r"><code>test &lt;- reg_tree_model_1(view_data = view_data)
+str(test)
+List of 2
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
+  ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ prediction: Named num [1:4205] 0.238 0.237 0.238 0.24 0.236 ...
+  .. ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+ $ importances         : Named num [1:6] 9.55 8.96 2.22 2.11 1.72 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;prodB&quot; &quot;ligB&quot; &quot;protE&quot; &quot;ligC&quot; ...</code></pre>
+<p>Now in the final step we will add the possibility to supply ellipsis arguments to the <code>rpart</code> model.</p>
+<pre class="r"><code>reg_tree_model_2 &lt;- function(view_data, seed = 42, k = 5, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  
+  folds &lt;- withr::with_seed(
+  seed,
+  caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+  
+  in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+  
+  train &lt;- view_data[in.fold, ]
+  test &lt;- view_data[holdout, ]
+  
+  algo.arguments &lt;- list(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
+                        data = train)
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+  }
+  
+  model &lt;- do.call(rpart::rpart, algo.arguments)
+  
+  label.hat &lt;- predict(model, test)
+  
+  tibble::tibble(index = holdout, prediction = label.hat)
+}) %&gt;% dplyr::arrange(index)
+  
+  algo.arguments.wm &lt;- list(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
+                          data = view_data)
+  
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+  
+  whole.model &lt;- do.call(rpart::rpart, algo.arguments.wm)
+  
+  importances &lt;- whole.model$variable.importance
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}</code></pre>
+<p>Now check by supplying some parameters to <code>rpart.control</code>. For example changing the complexity parameter <code>cp</code> from 0.01 to 0.001. In regression setting this means that if a split does not decreae the <span class="math inline">\(R^2\)</span> by at least a factor of <code>cp</code>, the split is not attempted.</p>
+<pre class="r"><code>test2 &lt;- reg_tree_model_2(view_data = view_data, cp = 0.001)
+str(test2)
+List of 2
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
+  ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
+  ..$ prediction: Named num [1:4205] 0.154 0.16 0.154 0.209 0.594 ...
+  .. ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+ $ importances         : Named num [1:10] 73 68.2 68.1 67.4 63.4 ...
+  ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;protF&quot; &quot;ligD&quot; &quot;ligC&quot; &quot;ligA&quot; ...</code></pre>
+<p>For the sake of it we could compare the performance of both test models.</p>
+<pre class="r"><code># Model 1
+caret::defaultSummary(data = data.frame(obs = target.vector,
+                                        pred = test$unbiased.predictions$prediction))
+       RMSE    Rsquared         MAE 
+0.387809572 0.008688747 0.279142858 
+# Model 2
+caret::defaultSummary(data = data.frame(obs = target.vector,
+                                        pred = test2$unbiased.predictions$prediction))
+      RMSE   Rsquared        MAE 
+0.42890871 0.01542591 0.29069186 </code></pre>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()
+R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
+
+Matrix products: default
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+
+locale:
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
+ [5] readr_2.0.2     tidyr_1.1.4     tibble_3.1.5    ggplot2_3.3.5  
+ [9] tidyverse_1.3.1 future_1.22.1   mistyR_1.3.1    workflowr_1.6.2
+
+loaded via a namespace (and not attached):
+  [1] colorspace_2.0-2     ellipsis_0.3.2       class_7.3-19        
+  [4] rprojroot_2.0.2      fs_1.5.0             rstudioapi_0.13     
+  [7] listenv_0.8.0        furrr_0.2.3          farver_2.1.0        
+ [10] prodlim_2019.11.13   fansi_0.5.0          lubridate_1.8.0     
+ [13] ranger_0.13.1        xml2_1.3.2           codetools_0.2-18    
+ [16] splines_4.1.2        R.methodsS3_1.8.1    knitr_1.36          
+ [19] rlist_0.4.6.2        jsonlite_1.7.2       pROC_1.18.0         
+ [22] caret_6.0-90         broom_0.7.9          dbplyr_2.1.1        
+ [25] R.oo_1.24.0          compiler_4.1.2       httr_1.4.2          
+ [28] tictoc_1.0.1         backports_1.3.0      assertthat_0.2.1    
+ [31] Matrix_1.3-4         fastmap_1.1.0        cli_3.0.1           
+ [34] later_1.3.0          htmltools_0.5.2      tools_4.1.2         
+ [37] gtable_0.3.0         glue_1.4.2           reshape2_1.4.4      
+ [40] Rcpp_1.0.7           cellranger_1.1.0     jquerylib_0.1.4     
+ [43] vctrs_0.3.8          nlme_3.1-152         iterators_1.0.13    
+ [46] timeDate_3043.102    xfun_0.26            gower_0.2.2         
+ [49] globals_0.14.0       rvest_1.0.1          lifecycle_1.0.1     
+ [52] MASS_7.3-54          scales_1.1.1         ipred_0.9-12        
+ [55] hms_1.1.1            promises_1.2.0.1     parallel_4.1.2      
+ [58] RColorBrewer_1.1-2   yaml_2.2.1           sass_0.4.0          
+ [61] rpart_4.1-15         stringi_1.7.5        highr_0.9           
+ [64] distances_0.1.8      foreach_1.5.1        filelock_1.0.2      
+ [67] lava_1.6.10          rlang_0.4.12         pkgconfig_2.0.3     
+ [70] evaluate_0.14        lattice_0.20-45      recipes_0.1.17      
+ [73] labeling_0.4.2       tidyselect_1.1.1     parallelly_1.28.1   
+ [76] plyr_1.8.6           magrittr_2.0.1       R6_2.5.1            
+ [79] generics_0.1.0       DBI_1.1.1            pillar_1.6.3        
+ [82] haven_2.4.3          whisker_0.4          withr_2.4.2         
+ [85] survival_3.2-13      nnet_7.3-16          future.apply_1.8.1  
+ [88] modelr_0.1.8         crayon_1.4.1         utf8_1.2.2          
+ [91] tzdb_0.1.2           rmarkdown_2.11       grid_4.1.2          
+ [94] readxl_1.3.1         data.table_1.14.2    git2r_0.28.0        
+ [97] ModelMetrics_1.2.2.2 reprex_2.0.1         digest_0.6.28       
+[100] httpuv_1.6.3         R.utils_2.11.0       stats4_4.1.2        
+[103] munsell_0.5.0        bslib_0.3.1         </code></pre>
+</div>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("hide" === "show");
+});
+</script>
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
