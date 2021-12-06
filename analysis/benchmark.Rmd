@@ -1,8 +1,180 @@
 ---
-title: "Overview"
+title: "Benchmark"
+editor_options: 
+  chunk_output_type: inline
 ---
 
-TODO:
+Setup.
 
-- Add evaluations of the benchmarks
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_knit$set(root.dir = "~/Saez/report")
+```
+
+```{r}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+# Introduction and Data
+
+```{r}
+all.results <- readRDS("data/2021-12-06-15-42_all_results.RDS")
+```
+
+What data do we have?
+
+```{r}
+all.names <- names(all.results)
+```
+
+Different experiments:
+
+```{r}
+experiments <- str_extract(all.names, "[^/]+(?=/)") %>% unique
+experiments
+```
+
+# Comparing Algorithms
+
+Function to get clean data for a particular study.
+
+```{r}
+filter_runs <- function(all.names, all.runs, str.study) {
+  names.run <- all.names[str_detect(all.names, str.study)]
+  successful.run <- map_lgl(all.results[names.run], ~ typeof(.x) == "list")
+  all.results[names.run][successful.run]
+}
+```
+
+Function to extract the improvements (performance measures).
+
+```{r}
+get_performance <- function(filtered.run) {
+  map2_dfr(filtered.run, names(filtered.run),
+                                   function(misty.run, name) {
+    misty.run$improvements %>%
+      mutate(algorithm = str_extract(name, "(?<=/)[^/]+$")) %>%
+      mutate(study = str_extract(sample, "(?<=OUTPUT/)[^/]+"))
+  })
+}
+```
+
+## Merfish Breast Cancer (spatially variable genes)
+
+Cleaning Data.
+
+```{r}
+merfish_bc_hvg <- filter_runs(all.names, all.results, "/merfish_bc/hvg/")
+```
+
+Performance.
+
+```{r}
+performance_merfish_bc_hvg <- get_performance(merfish_bc_hvg)
+
+performance_merfish_bc_hvg %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = factor(algorithm,
+             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
+## Merfish Fetal Liver (spatially variable genes)
+
+```{r}
+merfish_liver_hvg <- filter_runs(all.names, all.results, "/merfish_liver/hvg/")
+```
+
+```{r}
+performance_merfish_liver_hvg <- get_performance(merfish_liver_hvg)
+
+performance_merfish_liver_hvg %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = factor(algorithm,
+             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
+## Merfish Preoptic (spatially variable genes)
+
+```{r}
+merfish_preoptic_hvg <- filter_runs(all.names, all.results,
+                                    "/merfish_preoptic/hvg/")
+```
+
+```{r}
+performance_merfish_preoptic_hvg <- get_performance(merfish_preoptic_hvg)
+
+performance_merfish_preoptic_hvg %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = factor(algorithm,
+             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
+# Hyperparameter Optimization
+
+```{r}
+mibi_tnbc_mars_hyper <- filter_runs(all.names, all.results,
+                                    "/mibi_tnbc/MARS_hyper/")
+```
+
+```{r}
+performance_mibi_tnbc_mars_hyper <- get_performance(mibi_tnbc_mars_hyper)
+
+performance_mibi_tnbc_mars_hyper %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = str_extract(algorithm, "(?<=MARS_hyper_).+")) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+```{r}
+performance_mibi_tnbc_mars_hyper %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = str_extract(algorithm, "(?<=MARS_hyper_).+")) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Mean Multi.R2") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
 
