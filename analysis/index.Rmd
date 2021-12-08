@@ -3,9 +3,53 @@ title: "Overview"
 site: workflowr::wflow_site
 ---
 
+This report documents what I have primarily worked on between September 2021
+and December 2021. The topic of my internship was "Implement and explore 
+different ensemble approaches for training view-specific models for MISTy 
+and meta models for late fusion of predictions".
+
 # Tutorial
 
 This Rmarkdown showcases the new implementation of MISTy, where the
-function to model
+function to model each view are passed as an argument to the `run_misty()` 
+call. 
+
+```{r eval=FALSE}
+misty.views %>% misty.views %>%
+  run_misty(model.function = bagged_mars_model, n.bags = 50, degree = 2)
+```
+
+The tutorial includes also a section on how to construct those function
+(i.e. what is the input and required output).
 
 # Benchmark
+
+This Rmarkdown contains:
+
+a) The results of comparing the performance of different ML algorithms on 
+different spatial omics datasets.
+
+b) The results of testing different hyperparameters for certain algorithms
+on different spatial omics datasets.
+
+# Frameworks
+
+This Rmarkdown describes why I choose not to use any existing ML framework in
+MISTy. In a nutshell, these frameworks are either too slow or too unflexible 
+(e.g. not able to return out-of-bag estimates).
+
+# Model API
+
+This Rmarkdown described another way of generalizing the training of 
+view-specific models, such that the call looks like this:
+
+```{r eval=FALSE}
+misty.views %>% run_misty(method = "bag", learner = "earth", 
+                          n.learners = 50, degree = 2)
+```
+
+
+# Random
+
+This Rmarkdown contains results I could not fit into the other categories
+thus far.
