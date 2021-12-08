@@ -6,7 +6,7 @@ Setup.
 
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-knitr::opts_knit$set(root.dir = "~/Saez/report")
+#knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 Loaded packages.
@@ -16,6 +16,7 @@ suppressPackageStartupMessages(library(mistyR))
 suppressPackageStartupMessages(library(future))
 suppressPackageStartupMessages(library(tidyverse))
 plan("multisession", workers=14)
+plan("multisession", workers=6)
 ```
 
 # Introduction
@@ -185,7 +186,14 @@ Below all the supplied function will be desribed in more detail.
 
 ## Random Forest
 
+ - Short description of the algorithm: A classical ensemble model consisting
+ on regression trees which are training with boostrapped samples (bagging). In
+ addition the constitutent trees are further "decorrelated" by only considering
+ a random subset of the features at each split.
+
  - Unbiased predictions are based on OOB predictions.
+ 
+ - 
 
 ```{r}
 random_forest_model
@@ -203,6 +211,8 @@ misty.views %>%
 ```
  
 ## Gradient Boosting
+
+ - Short description: 
 
  - Unbiased predictions are based on k-fold cross-validation (aggregarted 
  predictions for the holdout sets)
@@ -225,6 +235,21 @@ misty.views %>%
 ## MARS
 
  - MARS: Multivariate Adaptive Regression Splines
+
+ - Short description: Each (included) predictor is split into a pair of 
+ hinge functions which are then added to a linear regression model in the 
+ forward pass. In the backward pass model terms are deleted based on the GCV
+ (generalized cross-validation) (=prunning). However, one can also increase
+ the degree of interaction (`degree`) such that the constructed features are
+ not single hinge functions but products of 2 (or more) hinge functions.
+ 
+  - Unbiased predictions are based on k-fold cross-validation (aggregarted 
+ predictions for the holdout sets)
+ 
+  - The name `bagged_earth_model` comes from the fact that the name mars
+ is protected and thus the implementation of the algorithm is called `earth` 
+ (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert
+ Tibshirani)
  
 ```{r}
 mars_model
@@ -242,6 +267,13 @@ misty.views %>%
 ## Bagged MARS
 
  - MARS: Multivariate Adaptive Regression Splines
+ 
+ - Short description: Each (included) predictor is split into a pair of 
+ hinge functions which are then added to a linear regression model in the 
+ forward pass. In the backward pass model terms are deleted based on the GCV
+ (generalized cross-validation) (=prunning). However, one can also increase
+ the degree of interaction (`degree`) such that the constructed features are
+ not single hinge functions but products of 2 (or more) hinge functions.
 
  - Unbiased predictions are based on OOB predictions.
  
@@ -267,6 +299,9 @@ misty.views %>%
 
 ## Linear Model
 
+ - Short description: Simple multivariate linear regression. Fast and good
+ interpretability, but cannot account for non-linear interactions.
+
  - Unbiased predictions are based on k-fold cross-validation (aggregated 
  predictions for the holdout sets)
  
@@ -289,6 +324,14 @@ misty.views %>%
 ```
 
 ## Support Vector Machine
+
+ - Short description: In regression setting the support vector machine
+ can be framed as a robust regression technique that is less sensitive
+ to outliers that linear regression (with squared deviation as loss function).
+ The prediction is based on a weighted sum of the training instances that 
+ are a certain threshold ($\epsilon$) away (= support vectors) from the 
+ regression line and the loss function penalizes both the residuals and the 
+sum of squared coefficients.
 
  - Unbiased predictions are based on k-fold cross-validation (aggregarted 
  predictions for the holdout sets)
@@ -313,7 +356,10 @@ misty.views %>%
   plot_interaction_heatmap("para.10")
 ```
 
-## Neural Network
+## Multi-layer Perceptron
+
+ - Short description: A small fully connected feedforward network, trained using
+ standard backpropagation (no batches?). Default activation function is logistic.
 
  - Unbiased predictions are based on k-fold cross-validation (aggregarted 
  predictions for the holdout sets)
@@ -619,4 +665,13 @@ caret::defaultSummary(data = data.frame(obs = target.vector,
 caret::defaultSummary(data = data.frame(obs = target.vector,
                                         pred = test2$unbiased.predictions$prediction))
 ```
+
+```{r}
+unlink("results", recursive=TRUE)
+```
+
+# References
+
+1. Kuhn, M., & Johnson, K., 2018, Applied predictive modeling, Springer, 
+Chapter 7 (Nonlinear Regression Models).
 
