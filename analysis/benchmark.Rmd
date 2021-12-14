@@ -23,7 +23,7 @@ suppressPackageStartupMessages(library(tidyverse))
 What data is the benchmarking based on?
 
 ```{r}
-all.views <- readRDS("data/2021-12-14-10-57_all_views.RDS")
+all.views <- readRDS("data/2021-12-14-17-59_all_views.RDS")
 all.results <- readRDS("data/2021-12-13-18-43_all_results.RDS")
 all.names <- names(all.results)
 experiments <- str_extract(all.names, "[^/]+(?=/)") %>% unique
@@ -32,7 +32,7 @@ experiments
 
 Where do the data come from?
 
-a) `synthetic`
+## a) `synthetic`
 
 &nbsp;&nbsp;&nbsp; Simulated data that are included in the MISTy package. As explained in the [Get Started Vignette](https://saezlab.github.io/mistyR/articles/mistyR.html),this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.
 
@@ -40,145 +40,164 @@ a) `synthetic`
 
 &nbsp;&nbsp;&nbsp; Features: Spatial Proteomics, Single Cell Resolution
 
-b) `mibi_tnbc`
+## b) `mibi_tnbc`
 
-* &nbsp; Multiplexed Ion Beam Imaging (spatial proteomics) dataset from [A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging](https://dx.doi.org/10.1016/j.cell.2018.08.039) by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) [10.1016/j.cell.2018.08.039]
+* &nbsp; Multiplexed Ion Beam Imaging (spatial proteomics) dataset from [A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging](https://dx.doi.org/10.1016/j.cell.2018.08.039) by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) [@10.1016/j.cell.2018.08.039]
 
-* &nbsp;Number of Samples:
+* &nbsp; Data Availability: [https://mibi-share.ionpath.com/](https://mibi-share.ionpath.com/)
+
+* &nbsp; Features: Spatial Proteomics, Single Cell Resolution
+
+* &nbsp; Number of Samples, Markers, and spatial units per sample
 ```{r}
+# Number of Samples
 length(all.views$`/mibi_tnbc/standard_views`)
-```
-* &nbsp;Number of Markers:
-```{r}
+
+# Number of Markers
 ncol(all.views$`/mibi_tnbc/standard_views`[[1]]$intraview$data)
-```
-* &nbsp; Number of cells per sample
-```{r}
+
+# Summary for number of cells per sample
 summary(
   map_dbl(all.views$`/mibi_tnbc/standard_views`, 
           ~ nrow(.x$intraview$data))
 )
 ```
 
-c) `merfish_preoptic`
+## c) `merfish_preoptic`
 
 * &nbsp; MERFISH data from the murine hypothalamic preoptic region from [ Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region](https://dx.doi.org/10.1126/science.aau5324) by Moffitt, R. et al. (Science 362, 6416 (2018)) 
 
 * &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
 
-* &nbsp;Number of Samples:
+* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+
+* &nbsp; Number of Samples, Markers, and spatial units per sample
 ```{r}
+# Number of Samples
 c(length(all.views$`/merfish_preoptic/hvg_views`),
   length(all.views$`/merfish_preoptic/standard_views`)
 )
-```
-* &nbsp;Number of Markers:
-```{r}
+
+# Number of Markers
 ncol(all.views$`/merfish_preoptic/hvg_views`[[1]]$intraview$data)
-```
-* &nbsp; Number of cells per sample
-```{r}
+
+# Summary for number of cells per sample
 summary(
   map_dbl(all.views$`/merfish_preoptic/hvg_views`, 
           ~ nrow(.x$intraview$data))
 )
 ```
 
-d) `merfish_liver`
+## d) `merfish_liver`
 
 * &nbsp; MERFISH data from the murine fetal liver from [Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture](https://dx.doi.org/10.1038/s41421-021-00266-1) by Yanfang, L. et al. (Cell Discovery 7, 47 (2021)) 
 
 * &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
 
-* &nbsp;Number of Samples:
+* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+
+* &nbsp; Number of Samples, Markers, and spatial units per sample
 ```{r}
+# Number of Samples
 c(length(all.views$`/merfish_liver/standard280_views`),
   length(all.views$`/merfish_liver/hvg_views`)
 )
-```
 
-* &nbsp;Number of Markers:
-```{r}
+# Number of Markers
 ncol(all.views$`/merfish_liver/standard280_views`[[1]]$intraview$data)
-```
 
-* &nbsp; Number of cells per sample
-```{r}
+# Summary for number of cells per sample
 summary(
   map_dbl(all.views$`/merfish_liver/standard280_views`,
           ~ nrow(.x$intraview$data))
 )
 ```
 
-e) `merfish_bc`
+## e) `merfish_bc`
 
 * &nbsp; MERFISH data from metastatic breast cancer (unpublished)
 
 * &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
 
-* &nbsp;Number of Samples:
+* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+
+* &nbsp; Number of Samples, Markers, and spatial units per sample
 ```{r}
+# Number of Samples
 c(length(all.views$`/merfish_bc/hvg_views`),
   length(all.views$`/merfish_bc/standard_views`)
 )
-```
 
-* &nbsp;Number of Markers:
-```{r}
+# Number of Markers
 ncol(all.views$`/merfish_bc/hvg_views`[[1]]$intraview$data)
-```
 
-* &nbsp; Number of cells per sample
-```{r}
+# Summary for number of cells per sample
 summary(
   map_dbl(all.views$`/merfish_bc/hvg_views`,
           ~ nrow(.x$intraview$data))
 )
 ```
 
-f) `4iANCA`
+## f) `4iANCA`
 
 * &nbsp; 4i (iterative indirect immunofluorescence imaging) data from glomeruli
 
 * &nbsp; Features: Spatial Proteomics, Single Cell Resolution
 
-* &nbsp;Number of Samples:
+* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+
+* &nbsp; Number of Samples, Markers, and spatial units per sample
 ```{r}
-c(length(all.views$`/4iANCA/ratio_6_views`),
-  length(all.views$`/4iANCA/ratio_12_views`),
-  length(all.views$`/4iANCA/ratio_24_views`)
+# Number of Samples
+c(length(all.views$`/4iANCA/ratio_153_views`),
+  length(all.views$`/4iANCA/ratio_76_views`),
+  length(all.views$`/4iANCA/ratio_38_views`),
+  length(all.views$`/4iANCA/ratio_19_views`)
 )
-```
 
-* &nbsp;Number of Markers:
-```{r}
-ncol(all.views$`/4iANCA/ratio_12_views`[[1]]$intraview$data)
-```
+# Number of Markers
+ncol(all.views$`/4iANCA/ratio_153_views`[[1]]$intraview$data)
 
-* &nbsp; Number of cells per sample: No segmentation was performed, therefore
-the pixels were simply binned with 3 different schemes. The pixels have a 
-side length of `0.13` microns, leading to an area of `0.017` $µm^2$ and an average eukaryotic cell is between
-`10` and `100` microns in diameter, leanding to an area of `100` to `10000` $µm^2$. Therefore we choose to the middle binning
-to be 12x12 pixels corresponding to a spot with an edge length of 
-```{r}
-# Smallest Binning
+# Summary for number of cells per sample
+# Largest Binning
 summary(
-  map_dbl(all.views$`/4iANCA/ratio_6_views`,
+  map_dbl(all.views$`/4iANCA/ratio_153_views`,
           ~ nrow(.x$intraview$data))
 )
 
-# Medium Binning (spots have 20 µm diameter)
+#  Binning
 summary(
-  map_dbl(all.views$`/4iANCA/ratio_12_views`,
+  map_dbl(all.views$`/4iANCA/ratio_76_views`,
           ~ nrow(.x$intraview$data))
 )
 
 # Largest Binning
 summary(
-  map_dbl(all.views$`/4iANCA/ratio_24_views`,
+  map_dbl(all.views$`/4iANCA/ratio_38_views`,
+          ~ nrow(.x$intraview$data))
+)
+
+# Largest Binning
+summary(
+  map_dbl(all.views$`/4iANCA/ratio_19_views`,
           ~ nrow(.x$intraview$data))
 )
 ```
+
+* &nbsp; Number of cells per sample: No segmentation was performed, therefore
+the pixels were simply binned with 3 different schemes. The pixels have a 
+side length of `0.13` microns, and an average eukaryotic cell is between
+`10` and `100` microns in diameter. Therefore I choose the largest binning 
+to be `floor(20/0.13) = 153`, meaning the side length of one spatial unit (bin)
+will correspond to 153 pixels. The smaller bins are then sequentially half
+of the size (76, 38, 19). The corresponding parameter for the computation
+of the paraview was adjusted accordingly, meaning multiplied sequentially by
+two.
+
+# Scripts
+
+The scripts that were used for these analysis can be found in this
+[GitHub repository](https://github.com/schae211/report/tree/master/cluster_scripts). Theses scripts were run on a cluster managed by Slurm.
 
 # Comparing Algorithms
 
