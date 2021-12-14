@@ -550,16 +550,16 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreed83b8be0d9604a14b58ba504f3855ac91d668bc2targetblankd83b8bea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/d83b8be0d9604a14b58ba504f3855ac91d668bc2" target="_blank">d83b8be</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree7e810a54c78c0c06c2065e5dac02180c235bca9btargetblank7e810a5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/7e810a54c78c0c06c2065e5dac02180c235bca9b" target="_blank">7e810a5</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreed83b8be0d9604a14b58ba504f3855ac91d668bc2targetblankd83b8bea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree7e810a54c78c0c06c2065e5dac02180c235bca9btargetblank7e810a5a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/d83b8be0d9604a14b58ba504f3855ac91d668bc2" target="_blank">d83b8be</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/7e810a54c78c0c06c2065e5dac02180c235bca9b" target="_blank">7e810a5</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -572,6 +572,7 @@ Ignored files:
     Ignored:    data/2021-12-09-17-26_all_results.RDS
     Ignored:    data/2021-12-13-18-43_all_results.RDS
     Ignored:    data/2021-12-14-10-57_all_views.RDS
+    Ignored:    data/2021-12-14-17-59_all_views.RDS
     Ignored:    results/
 
 Untracked files:
@@ -579,11 +580,24 @@ Untracked files:
     Untracked:  analysis/introduction.Rmd
     Untracked:  analysis/references.bib
     Untracked:  analysis/science.csl
+    Untracked:  cluster_scripts/bash_scripts/four_i.sh
+    Untracked:  cluster_scripts/bash_scripts/two_args_caller.sh
+    Untracked:  cluster_scripts/benchmark/four_i.R
+    Untracked:  cluster_scripts/benchmark/synthetic.R
+    Untracked:  cluster_scripts/preprocessing/synthetic_prep.R
 
 Unstaged changes:
+    Modified:   README.md
     Modified:   analysis/_site.yml
     Modified:   analysis/index.Rmd
     Modified:   analysis/tutorial.Rmd
+    Deleted:    cluster_scripts/bash_scripts/high_four_i.sh
+    Deleted:    cluster_scripts/bash_scripts/low_four_i.sh
+    Deleted:    cluster_scripts/bash_scripts/medium_four_i.sh
+    Deleted:    cluster_scripts/benchmark/high_four_i.R
+    Deleted:    cluster_scripts/benchmark/low_four_i.R
+    Deleted:    cluster_scripts/benchmark/std_synthetic.R
+    Modified:   cluster_scripts/evalutation/gather_views.R
 
 </code></pre>
 <p>
@@ -622,6 +636,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/7e810a54c78c0c06c2065e5dac02180c235bca9b/analysis/benchmark.Rmd" target="_blank">7e810a5</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+<td>
+workflowr::wflow_publish(“analysis/benchmark.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/benchmark.html" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -773,7 +821,7 @@ suppressPackageStartupMessages(library(tidyverse))</code></pre>
 <div id="introduction-and-data" class="section level1">
 <h1>Introduction and Data</h1>
 <p>What data is the benchmarking based on?</p>
-<pre class="r"><code>all.views &lt;- readRDS(&quot;data/2021-12-14-10-57_all_views.RDS&quot;)
+<pre class="r"><code>all.views &lt;- readRDS(&quot;data/2021-12-14-17-59_all_views.RDS&quot;)
 all.results &lt;- readRDS(&quot;data/2021-12-13-18-43_all_results.RDS&quot;)
 all.names &lt;- names(all.results)
 experiments &lt;- str_extract(all.names, &quot;[^/]+(?=/)&quot;) %&gt;% unique
@@ -781,156 +829,173 @@ experiments
 [1] &quot;4iANCA&quot;           &quot;merfish_bc&quot;       &quot;merfish_liver&quot;    &quot;merfish_preoptic&quot;
 [5] &quot;mibi_tnbc&quot;        &quot;synthetic&quot;       </code></pre>
 <p>Where do the data come from?</p>
-<ol style="list-style-type: lower-alpha">
-<li><code>synthetic</code></li>
-</ol>
+<div id="a-synthetic" class="section level2">
+<h2>a) <code>synthetic</code></h2>
 <p>    Simulated data that are included in the MISTy package. As explained in the <a href="https://saezlab.github.io/mistyR/articles/mistyR.html">Get Started Vignette</a>,this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.</p>
 <p>    Features: Spatial Proteomics, Single Cell Resolution</p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li><code>mibi_tnbc</code></li>
-</ol>
+</div>
+<div id="b-mibi_tnbc" class="section level2">
+<h2>b) <code>mibi_tnbc</code></h2>
 <ul>
-<li><p>  Multiplexed Ion Beam Imaging (spatial proteomics) dataset from <a href="https://dx.doi.org/10.1016/j.cell.2018.08.039">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</a> by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) [10.1016/j.cell.2018.08.039]</p></li>
-<li><p> Number of Samples:</p></li>
+<li><p>  Multiplexed Ion Beam Imaging (spatial proteomics) dataset from <a href="https://dx.doi.org/10.1016/j.cell.2018.08.039">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</a> by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) <span class="citation">(<em>1</em>)</span></p></li>
+<li><p>  Data Availability: <a href="https://mibi-share.ionpath.com/">https://mibi-share.ionpath.com/</a></p></li>
+<li><p>  Features: Spatial Proteomics, Single Cell Resolution</p></li>
+<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
 </ul>
-<pre class="r"><code>length(all.views$`/mibi_tnbc/standard_views`)
-[1] 40</code></pre>
-<ul>
-<li> Number of Markers:</li>
-</ul>
-<pre class="r"><code>ncol(all.views$`/mibi_tnbc/standard_views`[[1]]$intraview$data)
-[1] 28</code></pre>
-<ul>
-<li>  Number of cells per sample</li>
-</ul>
-<pre class="r"><code>summary(
+<pre class="r"><code># Number of Samples
+length(all.views$`/mibi_tnbc/standard_views`)
+[1] 40
+
+# Number of Markers
+ncol(all.views$`/mibi_tnbc/standard_views`[[1]]$intraview$data)
+[1] 28
+
+# Summary for number of cells per sample
+summary(
   map_dbl(all.views$`/mibi_tnbc/standard_views`, 
           ~ nrow(.x$intraview$data))
 )
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    2046    3876    4961    4942    6080    8212 </code></pre>
-<ol start="3" style="list-style-type: lower-alpha">
-<li><code>merfish_preoptic</code></li>
-</ol>
+</div>
+<div id="c-merfish_preoptic" class="section level2">
+<h2>c) <code>merfish_preoptic</code></h2>
 <ul>
 <li><p>  MERFISH data from the murine hypothalamic preoptic region from <a href="https://dx.doi.org/10.1126/science.aau5324">Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region</a> by Moffitt, R. et al. (Science 362, 6416 (2018))</p></li>
 <li><p>  Features: Spatial Transcriptomics, Single Cell Resolution</p></li>
-<li><p> Number of Samples:</p></li>
+<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
+<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
 </ul>
-<pre class="r"><code>c(length(all.views$`/merfish_preoptic/hvg_views`),
+<pre class="r"><code># Number of Samples
+c(length(all.views$`/merfish_preoptic/hvg_views`),
   length(all.views$`/merfish_preoptic/standard_views`)
 )
-[1] 36 36</code></pre>
-<ul>
-<li> Number of Markers:</li>
-</ul>
-<pre class="r"><code>ncol(all.views$`/merfish_preoptic/hvg_views`[[1]]$intraview$data)
-[1] 108</code></pre>
-<ul>
-<li>  Number of cells per sample</li>
-</ul>
-<pre class="r"><code>summary(
+[1] 36 36
+
+# Number of Markers
+ncol(all.views$`/merfish_preoptic/hvg_views`[[1]]$intraview$data)
+[1] 108
+
+# Summary for number of cells per sample
+summary(
   map_dbl(all.views$`/merfish_preoptic/hvg_views`, 
           ~ nrow(.x$intraview$data))
 )
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   10291   21938   22642   28551   32065   73655 </code></pre>
-<ol start="4" style="list-style-type: lower-alpha">
-<li><code>merfish_liver</code></li>
-</ol>
+</div>
+<div id="d-merfish_liver" class="section level2">
+<h2>d) <code>merfish_liver</code></h2>
 <ul>
 <li><p>  MERFISH data from the murine fetal liver from <a href="https://dx.doi.org/10.1038/s41421-021-00266-1">Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture</a> by Yanfang, L. et al. (Cell Discovery 7, 47 (2021))</p></li>
 <li><p>  Features: Spatial Transcriptomics, Single Cell Resolution</p></li>
-<li><p> Number of Samples:</p></li>
+<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
+<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
 </ul>
-<pre class="r"><code>c(length(all.views$`/merfish_liver/standard280_views`),
+<pre class="r"><code># Number of Samples
+c(length(all.views$`/merfish_liver/standard280_views`),
   length(all.views$`/merfish_liver/hvg_views`)
 )
-[1] 164 316</code></pre>
-<ul>
-<li> Number of Markers:</li>
-</ul>
-<pre class="r"><code>ncol(all.views$`/merfish_liver/standard280_views`[[1]]$intraview$data)
-[1] 140</code></pre>
-<ul>
-<li>  Number of cells per sample</li>
-</ul>
-<pre class="r"><code>summary(
+[1] 164   0
+
+# Number of Markers
+ncol(all.views$`/merfish_liver/standard280_views`[[1]]$intraview$data)
+[1] 140
+
+# Summary for number of cells per sample
+summary(
   map_dbl(all.views$`/merfish_liver/standard280_views`,
           ~ nrow(.x$intraview$data))
 )
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   280.0   296.8   315.0   315.4   334.0   366.0 </code></pre>
-<ol start="5" style="list-style-type: lower-alpha">
-<li><code>merfish_bc</code></li>
-</ol>
+</div>
+<div id="e-merfish_bc" class="section level2">
+<h2>e) <code>merfish_bc</code></h2>
 <ul>
 <li><p>  MERFISH data from metastatic breast cancer (unpublished)</p></li>
 <li><p>  Features: Spatial Transcriptomics, Single Cell Resolution</p></li>
-<li><p> Number of Samples:</p></li>
+<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
+<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
 </ul>
-<pre class="r"><code>c(length(all.views$`/merfish_bc/hvg_views`),
+<pre class="r"><code># Number of Samples
+c(length(all.views$`/merfish_bc/hvg_views`),
   length(all.views$`/merfish_bc/standard_views`)
 )
-[1] 9 9</code></pre>
-<ul>
-<li> Number of Markers:</li>
-</ul>
-<pre class="r"><code>ncol(all.views$`/merfish_bc/hvg_views`[[1]]$intraview$data)
-[1] 86</code></pre>
-<ul>
-<li>  Number of cells per sample</li>
-</ul>
-<pre class="r"><code>summary(
+[1] 9 9
+
+# Number of Markers
+ncol(all.views$`/merfish_bc/hvg_views`[[1]]$intraview$data)
+[1] 86
+
+# Summary for number of cells per sample
+summary(
   map_dbl(all.views$`/merfish_bc/hvg_views`,
           ~ nrow(.x$intraview$data))
 )
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    2704    3981   11014   11787   13822   31197 </code></pre>
-<ol start="6" style="list-style-type: lower-alpha">
-<li><code>4iANCA</code></li>
-</ol>
+</div>
+<div id="f-4ianca" class="section level2">
+<h2>f) <code>4iANCA</code></h2>
 <ul>
 <li><p>  4i (iterative indirect immunofluorescence imaging) data from glomeruli</p></li>
 <li><p>  Features: Spatial Proteomics, Single Cell Resolution</p></li>
-<li><p> Number of Samples:</p></li>
+<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
+<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
 </ul>
-<pre class="r"><code>c(length(all.views$`/4iANCA/ratio_6_views`),
-  length(all.views$`/4iANCA/ratio_12_views`),
-  length(all.views$`/4iANCA/ratio_24_views`)
+<pre class="r"><code># Number of Samples
+c(length(all.views$`/4iANCA/ratio_153_views`),
+  length(all.views$`/4iANCA/ratio_76_views`),
+  length(all.views$`/4iANCA/ratio_38_views`),
+  length(all.views$`/4iANCA/ratio_19_views`)
 )
-[1] 36 36 36</code></pre>
-<ul>
-<li> Number of Markers:</li>
-</ul>
-<pre class="r"><code>ncol(all.views$`/4iANCA/ratio_12_views`[[1]]$intraview$data)
-[1] 27</code></pre>
-<ul>
-<li>  Number of cells per sample: No segmentation was performed, therefore the pixels were simply binned with 3 different schemes. The pixels have a side length of <code>0.13</code> microns, leading to an area of <code>0.017</code> <span class="math inline">\(µm^2\)</span> and an average eukaryotic cell is between <code>10</code> and <code>100</code> microns in diameter, leanding to an area of <code>100</code> to <code>10000</code> <span class="math inline">\(µm^2\)</span>. Therefore we choose to the middle binning to be 12x12 pixels corresponding to a spot with an edge length of</li>
-</ul>
-<pre class="r"><code># Smallest Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_6_views`,
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
- 104976  104976  104976  104976  104976  104976 
+[1] 36 36 36 36
 
-# Medium Binning (spots have 20 µm diameter)
+# Number of Markers
+ncol(all.views$`/4iANCA/ratio_153_views`[[1]]$intraview$data)
+[1] 27
+
+# Summary for number of cells per sample
+# Largest Binning
 summary(
-  map_dbl(all.views$`/4iANCA/ratio_12_views`,
+  map_dbl(all.views$`/4iANCA/ratio_153_views`,
           ~ nrow(.x$intraview$data))
 )
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  26244   26244   26244   26244   26244   26244 
+    169     169     169     169     169     169 
+
+#  Binning
+summary(
+  map_dbl(all.views$`/4iANCA/ratio_76_views`,
+          ~ nrow(.x$intraview$data))
+)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+    676     676     676     676     676     676 
 
 # Largest Binning
 summary(
-  map_dbl(all.views$`/4iANCA/ratio_24_views`,
+  map_dbl(all.views$`/4iANCA/ratio_38_views`,
           ~ nrow(.x$intraview$data))
 )
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   6561    6561    6561    6561    6561    6561 </code></pre>
+   2704    2704    2704    2704    2704    2704 
+
+# Largest Binning
+summary(
+  map_dbl(all.views$`/4iANCA/ratio_19_views`,
+          ~ nrow(.x$intraview$data))
+)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  10609   10609   10609   10609   10609   10609 </code></pre>
+<ul>
+<li>  Number of cells per sample: No segmentation was performed, therefore the pixels were simply binned with 3 different schemes. The pixels have a side length of <code>0.13</code> microns, and an average eukaryotic cell is between <code>10</code> and <code>100</code> microns in diameter. Therefore I choose the largest binning to be <code>floor(20/0.13) = 153</code>, meaning the side length of one spatial unit (bin) will correspond to 153 pixels. The smaller bins are then sequentially half of the size (76, 38, 19). The corresponding parameter for the computation of the paraview was adjusted accordingly, meaning multiplied sequentially by two.</li>
+</ul>
+</div>
+</div>
+<div id="scripts" class="section level1">
+<h1>Scripts</h1>
+<p>The scripts that were used for these analysis can be found in this <a href="https://github.com/schae211/report/tree/master/cluster_scripts">GitHub repository</a>. Theses scripts were run on a cluster managed by Slurm.</p>
 </div>
 <div id="comparing-algorithms" class="section level1">
 <h1>Comparing Algorithms</h1>
@@ -969,7 +1034,7 @@ performance_merfish_bc_hvg %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="merfish-fetal-liver-spatially-variable-genes" class="section level2">
 <h2>Merfish Fetal Liver (spatially variable genes)</h2>
@@ -989,7 +1054,7 @@ performance_merfish_liver_std280 %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="merfish-preoptic-spatially-variable-genes" class="section level2">
 <h2>Merfish Preoptic (spatially variable genes)</h2>
@@ -1010,7 +1075,55 @@ performance_merfish_preoptic_hvg %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
+Past versions of unnamed-chunk-15-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-15-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-15-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/487e9ef41f3e9db110529e2e87697965ec804547/docs/figure/benchmark.Rmd/unnamed-chunk-15-1.png" target="_blank">487e9ef</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="mibi-tnbc" class="section level2">
 <h2>MIBI TNBC</h2>
@@ -1031,7 +1144,7 @@ performance_mibi_tnbc_std %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We see some overfitting here with linear boosting, since it is worse than the normal linear model.</p>
 </div>
 <div id="i" class="section level2">
@@ -1053,7 +1166,7 @@ performance_iiii_std %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="hyperparameter-optimization" class="section level1">
@@ -1079,7 +1192,44 @@ performance_mibi_tnbc_rf_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-21-1">
+Past versions of unnamed-chunk-21-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-21-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="mars" class="section level2">
@@ -1103,7 +1253,44 @@ performance_mibi_tnbc_mars_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-1">
+Past versions of unnamed-chunk-23-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-23-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-23-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <pre class="r"><code>performance_mibi_tnbc_mars_hyper %&gt;%
   filter(measure == &quot;multi.R2&quot;) %&gt;%
   mutate(algorithm = str_extract(algorithm, &quot;(?&lt;=MARS_hyper_).+&quot;)) %&gt;%
@@ -1117,7 +1304,7 @@ performance_mibi_tnbc_mars_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="synthetic" class="section level3">
 <h3>Synthetic</h3>
@@ -1138,7 +1325,7 @@ performance_synthetic_mars_hyper %&gt;%
   #theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="linear-boosting" class="section level2">
@@ -1162,7 +1349,7 @@ performance_mibi_tnbc_lboost_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="tree-boosting" class="section level2">
@@ -1186,7 +1373,7 @@ performance_mibi_tnbc_tboost_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -1231,8 +1418,10 @@ case_when(x == &quot;hello&quot; ~ &quot;bar&quot;,
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
-<div id="refs">
-
+<div id="refs" class="references csl-bib-body">
+<div id="ref-10.1016/j.cell.2018.08.039" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">L. Keren, M. Bosse, D. Marquez, R. Angoshtari, S. Jain, S. Varma, S.-R. Yang, A. Kurian, D. V. Valen, R. West, S. C. Bendall, M. Angelo, <span class="nocase">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</span>. <em>Cell</em>. <strong>174</strong>, 1373–1387.e19 (2018).</div>
+</div>
 </div>
 <br>
 <p>
