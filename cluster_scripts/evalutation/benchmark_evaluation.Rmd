@@ -1,0 +1,217 @@
+---
+title: "Evaluation Benchmark"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united
+---
+
+# Setup
+
+```{r}
+knitr::opts_chunk$set(echo = TRUE, collapse=TRUE)
+knitr::opts_knit$set(root.dir = "~/Saez/cluster_scripts")
+```
+
+```{r}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+plan("multisession", workers=14)
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+# Custom function to extract the improvements
+
+```{r}
+get_improvements <- function(samples) {
+  samples %>%
+    furrr::future_map_dfr(function(sample) {
+      performance <- 
+        readr::read_table(paste0(sample, .Platform$file.sep, "performance.txt"),
+        na = c("", "NA", "NaN"), col_types = readr::cols()
+      ) %>% dplyr::distinct()
+      
+      performance %>%
+        dplyr::mutate(
+          sample = sample,
+          gain.RMSE = 100 * (.data$intra.RMSE - .data$multi.RMSE) / .data$intra.RMSE,
+          gain.R2 = .data$multi.R2 - .data$intra.R2
+        )
+    }, .progress = TRUE) %>%
+    tidyr::pivot_longer(-c(.data$sample, .data$target), names_to = "measure")
+ }
+```
+
+
+# Get the paths
+
+Extract the paths to the studies.
+
+```{r}
+studies <- list.files("/home/philipp/Saez/output", recursive = FALSE, 
+           include.dirs = TRUE, full.names = TRUE) %>%
+  str_extract("(?<=output/)[a-zA-Z_]+")
+studies <- studies[!str_detect(studies, "tmp|old")]
+```
+
+```{r}
+output.path <- "/home/philipp/Saez/output/"
+
+# for now exlcude certain models
+to_exclude <- c("MARS", "MARS2", "NN")
+to_exclude <- c()
+```
+
+```{r message=FALSE}
+all.results <- studies %>% 
+  set_names() %>%
+  map(function(study) {
+    print(study)
+    misty.dirs <- list.dirs(paste0(output.path, study), 
+                               recursive = FALSE, full.names = TRUE)
+    fun.names <- str_extract(misty.dirs, paste0("(?<=", study, "/)[a-zA-z0-9]+"))
+    if (str_detect(study, "merfish")) {to_exclude <- c("MARS", "MARS2", "NN")
+    } else {to_exclude <- c()}
+    print(to_exclude)
+    all.functions <- map2(misty.dirs[!(fun.names %in% to_exclude)],
+                          fun.names[!(fun.names %in% to_exclude)],
+                          function(misty.dir, fun.name) {
+      all.samples <- list.dirs(misty.dir)
+      all.samples <- all.samples[str_detect(all.samples, 
+                                            paste0("(?<=", fun.name, ").+"))]
+      collect_results(all.samples)
+    })
+    names(all.functions) <- fun.names[!(fun.names %in% to_exclude)]
+    all.functions
+  })
+saveRDS(all.results, file = "all.results.RDS")
+all.results <- readRDS("all.results.RDS")
+```
+
+Get all performances.
+
+```{r}
+all.performances <- map2_dfr(all.results, names(all.results),
+                           function(study, n.study) {
+  map2_dfr(study, names(study), function(result, name) {
+  result$improvements %>% mutate(algo = name, study = n.study)
+  })
+})
+```
+
+```{r fig.width=12, fig.height=10}
+all.performances %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algo = factor(algo, levels=c("RF", "BT", "MARS", "LM", "NN", "SVM"))) %>%
+  group_by(study, algo, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algo, y = target, fill = median)) +
+  facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
+```{r fig.width=12, fig.height=8}
+all.performances %>%
+  filter(measure == "multi.R2") %>%
+  filter(study != "synthetic") %>%
+  mutate(algo = factor(algo, levels=c("RF", "BT", "MARS", "LM", "NN", "SVM"))) %>%
+  group_by(study, algo, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algo, y = target, fill = median)) +
+  facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        axis.text=element_text(size=12), axis.title=element_text(size=14),
+        strip.text.x = element_text(size = 14)) +
+  labs(x = "Algorithm", fill = "Median Multi.R2", y = "Targets")
+```
+
+```{r fig.width=12, fig.height=8}
+all.performances %>%
+  filter(measure == "gain.R2") %>%
+  filter(study != "synthetic") %>%
+  mutate(algo = factor(algo, levels=c("RF", "BT", "MARS", "LM", "NN", "SVM"))) %>%
+  group_by(study, algo, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algo, y = target, fill = median)) +
+  facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        axis.text=element_text(size=12), axis.title=element_text(size=14),
+        strip.text.x = element_text(size = 14)) +
+  labs(x = "Algorithm", fill = "Median Gain.R2", y = "Targets")
+```
+
+```{r fig.width=12, fig.height=8}
+all.performances %>%
+  filter(measure == "multi.R2") %>%
+  filter(study == "merfish_preoptic") %>%
+  mutate(algo = factor(algo, levels=c("RF", "BT", "MARS", "LM", "NN", "SVM"))) %>%
+  group_by(study, algo, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algo, y = target, fill = median)) +
+  facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+        axis.text=element_text(size=12), axis.title=element_text(size=14),
+        strip.text.x = element_text(size = 14)) +
+  labs(x = "Algorithm", fill = "Median Multi.R2", y = "Targets")
+```
+
+How would I properly summarise the data?
+
+```{r}
+all.performances %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algo = factor(algo, levels=c("RF", "BT", "MARS", "LM", "NN", "SVM"))) %>%
+  group_by(study, algo, target) %>%
+  summarise(mean_multi = mean(value), median_multi = median(value), 
+            sd_multi = sd(value), .groups = "drop_last") %>%
+  summarise(mean_median = mean(median_multi), sd_median = sd(median_multi),
+            .groups = "drop_last")
+```
+
+
+```{r fig.width=12, fig.height=10}
+all.performances %>%
+  filter(measure == "gain.R2") %>%
+  mutate(algo = factor(algo, levels=c("RF", "BT", "MARS", "LM", "NN", "SVM"))) %>%
+  group_by(study, algo, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algo, y = target, fill = median)) +
+  facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", y = "Targets", fill = "Median Gain.R2")
+```
+
+
+
+
+```{r}
+all.results$merfish_preoptic$BT$improvements %>%
+  filter(measure == "gain.R2") %>%
+  group_by(target) %>%
+  summarise(mean_gain = mean(value), median_gain = median(value),
+            sd_gain = sd(value)) %>%
+  arrange(desc(median_gain))
+```
+
+# Appendix
+
+
+
+
