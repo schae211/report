@@ -2,6 +2,8 @@
 title: "Benchmark"
 editor_options: 
   chunk_output_type: inline
+bibliography: references.bib
+csl: science.csl
 ---
 
 Setup.
@@ -18,21 +20,164 @@ suppressPackageStartupMessages(library(tidyverse))
 
 # Introduction and Data
 
-```{r}
-all.results <- readRDS("data/2021-12-06-15-42_all_results.RDS")
-```
-
-What data do we have?
+What data is the benchmarking based on?
 
 ```{r}
+all.views <- readRDS("data/2021-12-14-10-57_all_views.RDS")
+all.results <- readRDS("data/2021-12-13-18-43_all_results.RDS")
 all.names <- names(all.results)
-```
-
-Different experiments:
-
-```{r}
 experiments <- str_extract(all.names, "[^/]+(?=/)") %>% unique
 experiments
+```
+
+Where do the data come from?
+
+a) `synthetic`
+
+&nbsp;&nbsp;&nbsp; Simulated data that are included in the MISTy package. As explained in the [Get Started Vignette](https://saezlab.github.io/mistyR/articles/mistyR.html),this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.
+
+
+
+&nbsp;&nbsp;&nbsp; Features: Spatial Proteomics, Single Cell Resolution
+
+b) `mibi_tnbc`
+
+* &nbsp; Multiplexed Ion Beam Imaging (spatial proteomics) dataset from [A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging](https://dx.doi.org/10.1016/j.cell.2018.08.039) by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) [10.1016/j.cell.2018.08.039]
+
+* &nbsp;Number of Samples:
+```{r}
+length(all.views$`/mibi_tnbc/standard_views`)
+```
+* &nbsp;Number of Markers:
+```{r}
+ncol(all.views$`/mibi_tnbc/standard_views`[[1]]$intraview$data)
+```
+* &nbsp; Number of cells per sample
+```{r}
+summary(
+  map_dbl(all.views$`/mibi_tnbc/standard_views`, 
+          ~ nrow(.x$intraview$data))
+)
+```
+
+c) `merfish_preoptic`
+
+* &nbsp; MERFISH data from the murine hypothalamic preoptic region from [ Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region](https://dx.doi.org/10.1126/science.aau5324) by Moffitt, R. et al. (Science 362, 6416 (2018)) 
+
+* &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
+
+* &nbsp;Number of Samples:
+```{r}
+c(length(all.views$`/merfish_preoptic/hvg_views`),
+  length(all.views$`/merfish_preoptic/standard_views`)
+)
+```
+* &nbsp;Number of Markers:
+```{r}
+ncol(all.views$`/merfish_preoptic/hvg_views`[[1]]$intraview$data)
+```
+* &nbsp; Number of cells per sample
+```{r}
+summary(
+  map_dbl(all.views$`/merfish_preoptic/hvg_views`, 
+          ~ nrow(.x$intraview$data))
+)
+```
+
+d) `merfish_liver`
+
+* &nbsp; MERFISH data from the murine fetal liver from [Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture](https://dx.doi.org/10.1038/s41421-021-00266-1) by Yanfang, L. et al. (Cell Discovery 7, 47 (2021)) 
+
+* &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
+
+* &nbsp;Number of Samples:
+```{r}
+c(length(all.views$`/merfish_liver/standard280_views`),
+  length(all.views$`/merfish_liver/hvg_views`)
+)
+```
+
+* &nbsp;Number of Markers:
+```{r}
+ncol(all.views$`/merfish_liver/standard280_views`[[1]]$intraview$data)
+```
+
+* &nbsp; Number of cells per sample
+```{r}
+summary(
+  map_dbl(all.views$`/merfish_liver/standard280_views`,
+          ~ nrow(.x$intraview$data))
+)
+```
+
+e) `merfish_bc`
+
+* &nbsp; MERFISH data from metastatic breast cancer (unpublished)
+
+* &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
+
+* &nbsp;Number of Samples:
+```{r}
+c(length(all.views$`/merfish_bc/hvg_views`),
+  length(all.views$`/merfish_bc/standard_views`)
+)
+```
+
+* &nbsp;Number of Markers:
+```{r}
+ncol(all.views$`/merfish_bc/hvg_views`[[1]]$intraview$data)
+```
+
+* &nbsp; Number of cells per sample
+```{r}
+summary(
+  map_dbl(all.views$`/merfish_bc/hvg_views`,
+          ~ nrow(.x$intraview$data))
+)
+```
+
+f) `4iANCA`
+
+* &nbsp; 4i (iterative indirect immunofluorescence imaging) data from glomeruli
+
+* &nbsp; Features: Spatial Proteomics, Single Cell Resolution
+
+* &nbsp;Number of Samples:
+```{r}
+c(length(all.views$`/4iANCA/ratio_6_views`),
+  length(all.views$`/4iANCA/ratio_12_views`),
+  length(all.views$`/4iANCA/ratio_24_views`)
+)
+```
+
+* &nbsp;Number of Markers:
+```{r}
+ncol(all.views$`/4iANCA/ratio_12_views`[[1]]$intraview$data)
+```
+
+* &nbsp; Number of cells per sample: No segmentation was performed, therefore
+the pixels were simply binned with 3 different schemes. The pixels have a 
+side length of `0.13` microns, leading to an area of `0.017` $µm^2$ and an average eukaryotic cell is between
+`10` and `100` microns in diameter, leanding to an area of `100` to `10000` $µm^2$. Therefore we choose to the middle binning
+to be 12x12 pixels corresponding to a spot with an edge length of 
+```{r}
+# Smallest Binning
+summary(
+  map_dbl(all.views$`/4iANCA/ratio_6_views`,
+          ~ nrow(.x$intraview$data))
+)
+
+# Medium Binning (spots have 20 µm diameter)
+summary(
+  map_dbl(all.views$`/4iANCA/ratio_12_views`,
+          ~ nrow(.x$intraview$data))
+)
+
+# Largest Binning
+summary(
+  map_dbl(all.views$`/4iANCA/ratio_24_views`,
+          ~ nrow(.x$intraview$data))
+)
 ```
 
 # Comparing Algorithms
@@ -91,13 +236,13 @@ performance_merfish_bc_hvg %>%
 ## Merfish Fetal Liver (spatially variable genes)
 
 ```{r}
-merfish_liver_hvg <- filter_runs(all.names, all.results, "/merfish_liver/hvg/")
+merfish_liver_std280 <- filter_runs(all.names, all.results, "/merfish_liver/std280/")
 ```
 
 ```{r}
-performance_merfish_liver_hvg <- get_performance(merfish_liver_hvg)
+performance_merfish_liver_std280 <- get_performance(merfish_liver_std280)
 
-performance_merfish_liver_hvg %>%
+performance_merfish_liver_std280 %>%
   filter(measure == "multi.R2") %>%
   mutate(algorithm = factor(algorithm,
              levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
@@ -124,6 +269,59 @@ performance_merfish_preoptic_hvg <- get_performance(merfish_preoptic_hvg)
 
 performance_merfish_preoptic_hvg %>%
   filter(measure == "multi.R2") %>%
+  mutate(algorithm = factor(algorithm, 
+                            levels=c("RF", "TBOOST", "LBOOST", "LM", "MARS", "MARS80", "MARS60", "MARS40"))) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
+## MIBI TNBC
+
+```{r}
+mibi_tnbc_std <- filter_runs(all.names, all.results,
+                                    "/mibi_tnbc/standard/")
+```
+
+```{r}
+performance_mibi_tnbc_std <- get_performance(mibi_tnbc_std)
+
+performance_mibi_tnbc_std %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = factor(algorithm,
+             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
+We see some overfitting here with linear boosting, since it is worse
+than the normal linear model.
+
+## 4I
+
+```{r}
+iiii_std <- filter_runs(all.names, all.results,
+                                    "/4iANCA/ratio_24/")
+```
+
+```{r}
+performance_iiii_std <- get_performance(iiii_std)
+
+performance_iiii_std %>%
+  filter(measure == "multi.R2") %>%
   mutate(algorithm = factor(algorithm,
              levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
   group_by(study, algorithm, target) %>%
@@ -138,6 +336,37 @@ performance_merfish_preoptic_hvg %>%
 ```
 
 # Hyperparameter Optimization
+
+## RF
+
+### MIBI TNBC
+
+```{r}
+mibi_tnbc_rf_hyper <- filter_runs(all.names, all.results,
+                                    "/mibi_tnbc/RF_hyper/")
+```
+
+```{r}
+performance_mibi_tnbc_rf_hyper <- get_performance(mibi_tnbc_rf_hyper)
+
+performance_mibi_tnbc_rf_hyper %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = str_extract(algorithm, "(?<=RF_hyper_).+")) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Multi.R2") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+## MARS
+
+### MIBI TNBC
 
 ```{r}
 mibi_tnbc_mars_hyper <- filter_runs(all.names, all.results,
@@ -177,4 +406,109 @@ performance_mibi_tnbc_mars_hyper %>%
   labs(x = "Algorithm", fill = "Mean Multi.R2") +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 ```
+
+### Synthetic
+
+```{r}
+synthetic_mars_hyper <- filter_runs(all.names, all.results,
+                                    "/synthetic/MARS_hyper/")
+```
+
+```{r}
+performance_synthetic_mars_hyper <- get_performance(synthetic_mars_hyper)
+
+performance_synthetic_mars_hyper %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = str_extract(algorithm, "(?<=MARS_hyper_).+")) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  #theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Mean Multi.R2") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+## Linear Boosting
+
+### MIBI TNBC
+
+```{r}
+mibi_tnbc_lboost_hyper <- filter_runs(all.names, all.results,
+                                    "/mibi_tnbc/LBOOST_hyper/")
+```
+
+```{r}
+performance_mibi_tnbc_lboost_hyper <- get_performance(mibi_tnbc_lboost_hyper)
+
+performance_mibi_tnbc_lboost_hyper %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = str_extract(algorithm, "(?<=LBOOST_hyper_).+")) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Mean Multi.R2") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+## Tree Boosting
+
+### MIBI TNBC
+
+```{r}
+mibi_tnbc_tboost_hyper <- filter_runs(all.names, all.results,
+                                    "/mibi_tnbc/TBOOST_hyper/")
+```
+
+```{r}
+performance_mibi_tnbc_tboost_hyper <- get_performance(mibi_tnbc_tboost_hyper)
+
+performance_mibi_tnbc_tboost_hyper %>%
+  filter(measure == "multi.R2") %>%
+  mutate(algorithm = str_extract(algorithm, "(?<=TBOOST_hyper_).+")) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Mean Multi.R2") +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+```
+
+
+
+
+# tmp
+
+```{r}
+all.results$`/merfish_preoptic/hvg/MARS`$improvements %>%
+  pull(target) %>% unique
+
+all.results$`/merfish_preoptic/hvg/RF`$improvements %>%
+  pull(target) %>% unique
+```
+
+
+```{r}
+x <- sample(c(rep("hello", 10), rep("world", 10), rep("idea", 2)))
+x
+
+case_when(x == "hello" ~ "bar",
+          x == "world" ~ "foo",
+          TRUE ~ "else")
+```
+
+# References
+
 
