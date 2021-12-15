@@ -1,0 +1,69 @@
+---
+title: "Introduction"
+site: workflowr::wflow_site
+---
+
+This report documents what I have worked on between September 2021
+and December 2021 in the [Saez-Rodriguez Group](https://saezlab.org) supervised
+by Jovan Tanevski.
+
+See the corresponding
+[GitHub repository](https://github.com/schae211/mistyR/tree/as-function).
+
+# Introduction
+
+
+
+- Spatial Omics
+
+- What is MISTy
+
+# Tutorial
+
+This Rmarkdown showcases the new implementation of MISTy, where the
+function to model each view are passed as an argument to the `run_misty()` 
+call. 
+
+```{r eval=FALSE}
+misty.views %>% misty.views %>%
+  run_misty(model.function = bagged_mars_model, n.bags = 50, degree = 2)
+```
+
+The tutorial includes also a section on how to construct those function
+(i.e. what is the input and required output).
+
+# Benchmark
+
+This Rmarkdown contains:
+
+a) The results of comparing the performance of different ML algorithms on 
+different spatial omics datasets.
+
+b) The results of testing different hyperparameters for certain algorithms
+on different spatial omics datasets.
+
+# Frameworks
+
+This Rmarkdown describes why I choose not to use any existing ML framework in
+MISTy. In a nutshell, these frameworks are either too slow or too unflexible 
+(e.g. not able to return out-of-bag estimates).
+
+# Model API
+
+This Rmarkdown describes another way of generalizing the training of 
+view-specific models, such that the call looks like this:
+
+```{r eval=FALSE}
+misty.views %>% run_misty(method = "bag", learner = "earth", 
+                          n.learners = 50, degree = 2)
+```
+
+# Conclusions
+
+This Rmarkdown discusses the results of my internship and poses open 
+questions for the MISTy and the field of spatial omics technologies. 
+
+# Random
+
+This Rmarkdown contains results I could not fit into the other categories
+thus far.
