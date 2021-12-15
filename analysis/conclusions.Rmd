@@ -1,0 +1,44 @@
+---
+title: "Conclusions"
+site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: no
+    toc_float: no
+bibliography: references.bib
+csl: science.csl
+---
+
+# Discussion & Conclusions:
+
+* Support Vector Machines (SVM) and Multi-layer Perceptron (MLP) do not seem
+to be suited for modeling views within the current framework of MISTy. They
+are not as scalable as random forest, gradient boosting models, or linear
+models. Furthermore Multi-layer Perceptrons are very sensitive to hyperparameters
+and thus would need hyperparameter optimization for each view for each marker
+which is simply not feasible. The scalability of MISTy is an important 
+feature that allows to quickly explore different parameters for computing
+views.
+
+* MARS (multivariate adaptive regression splines) are not as scalable as
+random forests, gradient boosting models, and linear models. Especially when
+the number of predictors ("markers") increases and the number of possible
+interaction terms (`degree` hyperparameter) is larger than 1, the performance 
+of MARS models drops, because in the model building process (forward pass) 
+and increasing number of combinations has to be tested. Subsampling the data
+only helps a little bit here. More importantly the number of features must
+be reduced which can be achieved for example by only considering spatially 
+variable markers (e.g. computed with SPARK-X [@10.1186/s13059-021-02404-0]).
+
+# Open Questions & Future Directions:
+
+* How can we focus the MISTy analysis on certain parts of the tissue slides? 
+(for example the tumor immune border). And could we incorporate some kind
+of comparitive MISTy were we run MISTy "automatically" in two different
+regions on the same slide and compare the results we obtained in a meaningful
+way (e.g. which interactions are present here but not there.)
+
+* 
+
+# References
+
