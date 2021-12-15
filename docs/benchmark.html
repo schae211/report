@@ -435,7 +435,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-14
+<strong>Last updated:</strong> 2021-12-15
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -550,16 +550,16 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree7e810a54c78c0c06c2065e5dac02180c235bca9btargetblank7e810a5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/7e810a54c78c0c06c2065e5dac02180c235bca9b" target="_blank">7e810a5</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef14d98f689925e2d93cad95d5c043dd103238cectargetblankf14d98fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/f14d98f689925e2d93cad95d5c043dd103238cec" target="_blank">f14d98f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree7e810a54c78c0c06c2065e5dac02180c235bca9btargetblank7e810a5a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef14d98f689925e2d93cad95d5c043dd103238cectargetblankf14d98fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/7e810a54c78c0c06c2065e5dac02180c235bca9b" target="_blank">7e810a5</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/f14d98f689925e2d93cad95d5c043dd103238cec" target="_blank">f14d98f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -573,6 +573,7 @@ Ignored files:
     Ignored:    data/2021-12-13-18-43_all_results.RDS
     Ignored:    data/2021-12-14-10-57_all_views.RDS
     Ignored:    data/2021-12-14-17-59_all_views.RDS
+    Ignored:    data/2021-12-14-23-01_all_results.RDS
     Ignored:    results/
 
 Untracked files:
@@ -585,19 +586,6 @@ Untracked files:
     Untracked:  cluster_scripts/benchmark/four_i.R
     Untracked:  cluster_scripts/benchmark/synthetic.R
     Untracked:  cluster_scripts/preprocessing/synthetic_prep.R
-
-Unstaged changes:
-    Modified:   README.md
-    Modified:   analysis/_site.yml
-    Modified:   analysis/index.Rmd
-    Modified:   analysis/tutorial.Rmd
-    Deleted:    cluster_scripts/bash_scripts/high_four_i.sh
-    Deleted:    cluster_scripts/bash_scripts/low_four_i.sh
-    Deleted:    cluster_scripts/bash_scripts/medium_four_i.sh
-    Deleted:    cluster_scripts/benchmark/high_four_i.R
-    Deleted:    cluster_scripts/benchmark/low_four_i.R
-    Deleted:    cluster_scripts/benchmark/std_synthetic.R
-    Modified:   cluster_scripts/evalutation/gather_views.R
 
 </code></pre>
 <p>
@@ -636,6 +624,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/f14d98f689925e2d93cad95d5c043dd103238cec/analysis/benchmark.Rmd" target="_blank">f14d98f</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+wflow_publish(all = TRUE, republish = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/421d5d44f065639498503f68193015533d86883b/docs/benchmark.html" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -822,7 +844,7 @@ suppressPackageStartupMessages(library(tidyverse))</code></pre>
 <h1>Introduction and Data</h1>
 <p>What data is the benchmarking based on?</p>
 <pre class="r"><code>all.views &lt;- readRDS(&quot;data/2021-12-14-17-59_all_views.RDS&quot;)
-all.results &lt;- readRDS(&quot;data/2021-12-13-18-43_all_results.RDS&quot;)
+all.results &lt;- readRDS(&quot;data/2021-12-14-23-01_all_results.RDS&quot;)
 all.names &lt;- names(all.results)
 experiments &lt;- str_extract(all.names, &quot;[^/]+(?=/)&quot;) %&gt;% unique
 experiments
@@ -832,6 +854,27 @@ experiments
 <div id="a-synthetic" class="section level2">
 <h2>a) <code>synthetic</code></h2>
 <p>    Simulated data that are included in the MISTy package. As explained in the <a href="https://saezlab.github.io/mistyR/articles/mistyR.html">Get Started Vignette</a>,this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.</p>
+<ul>
+<li>  Number of Samples, Markers, and spatial units per sample</li>
+</ul>
+<pre class="r"><code># Number of Samples
+c(length(all.views$`/synthetic/l6`),
+  length(all.views$`/synthetic/l12`),
+  length(all.views$`/synthetic/l24`)
+  )
+[1] 10 10 10
+
+# Number of Markers
+ncol(all.views$`/synthetic/l6`[[1]]$intraview$data)
+[1] 11
+
+# Summary for number of cells per sample
+summary(
+  map_dbl(all.views$`/synthetic/l6`, 
+          ~ nrow(.x$intraview$data))
+)
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   4110    4120    4148    4152    4179    4205 </code></pre>
 <p>    Features: Spatial Proteomics, Single Cell Resolution</p>
 </div>
 <div id="b-mibi_tnbc" class="section level2">
@@ -893,10 +936,9 @@ summary(
 <li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
 </ul>
 <pre class="r"><code># Number of Samples
-c(length(all.views$`/merfish_liver/standard280_views`),
-  length(all.views$`/merfish_liver/hvg_views`)
+c(length(all.views$`/merfish_liver/standard280_views`)
 )
-[1] 164   0
+[1] 164
 
 # Number of Markers
 ncol(all.views$`/merfish_liver/standard280_views`[[1]]$intraview$data)
@@ -1034,7 +1076,55 @@ performance_merfish_bc_hvg %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
+Past versions of unnamed-chunk-12-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-12-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-12-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/487e9ef41f3e9db110529e2e87697965ec804547/docs/figure/benchmark.Rmd/unnamed-chunk-12-1.png" target="_blank">487e9ef</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="merfish-fetal-liver-spatially-variable-genes" class="section level2">
 <h2>Merfish Fetal Liver (spatially variable genes)</h2>
@@ -1054,7 +1144,55 @@ performance_merfish_liver_std280 %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
+Past versions of unnamed-chunk-14-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-14-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-14-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/487e9ef41f3e9db110529e2e87697965ec804547/docs/figure/benchmark.Rmd/unnamed-chunk-14-1.png" target="_blank">487e9ef</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="merfish-preoptic-spatially-variable-genes" class="section level2">
 <h2>Merfish Preoptic (spatially variable genes)</h2>
@@ -1075,55 +1213,7 @@ performance_merfish_preoptic_hvg %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-15-1">
-Past versions of unnamed-chunk-15-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-15-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-15-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/487e9ef41f3e9db110529e2e87697965ec804547/docs/figure/benchmark.Rmd/unnamed-chunk-15-1.png" target="_blank">487e9ef</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mibi-tnbc" class="section level2">
 <h2>MIBI TNBC</h2>
@@ -1144,7 +1234,7 @@ performance_mibi_tnbc_std %&gt;%
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>We see some overfitting here with linear boosting, since it is worse than the normal linear model.</p>
 </div>
 <div id="i" class="section level2">
@@ -1153,10 +1243,13 @@ performance_mibi_tnbc_std %&gt;%
                                     &quot;/4iANCA/ratio_24/&quot;)</code></pre>
 <pre class="r"><code>performance_iiii_std &lt;- get_performance(iiii_std)
 
+l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;LM&quot;, &quot;LBOOST&quot;)
+
 performance_iiii_std %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
+  filter(measure == &quot;gain.R2&quot;) %&gt;%
+  filter(algorithm %in% l) %&gt;%
   mutate(algorithm = factor(algorithm,
-             levels=c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;LBOOST&quot;, &quot;MARS&quot;, &quot;LM&quot;, &quot;BGMARS&quot;))) %&gt;%
+         levels = l)) %&gt;%
   group_by(study, algorithm, target) %&gt;%
   summarise(mean = mean(value), median = median(value), 
             sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
@@ -1164,9 +1257,308 @@ performance_iiii_std %&gt;%
   geom_tile(aes(x = algorithm, y = target, fill = median)) +
   #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Gain.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-20-1.png" width="768" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>performance_iiii_std %&gt;%
+  filter(measure == &quot;multi.R2&quot;) %&gt;%
+  filter(algorithm %in% l) %&gt;%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %&gt;%
+  group_by(study, algorithm, target) %&gt;%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-19-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-21-1">
+Past versions of unnamed-chunk-21-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-21-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>iiii_153 &lt;- filter_runs(all.names, all.results,
+                                    &quot;/4iANCA/ratio_153/&quot;)</code></pre>
+<pre class="r"><code>performance_iiii_153 &lt;- get_performance(iiii_153)
+
+l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;LM&quot;, &quot;LBOOST&quot;)
+
+performance_iiii_153 %&gt;%
+  filter(measure == &quot;gain.R2&quot;) %&gt;%
+  filter(algorithm %in% l) %&gt;%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %&gt;%
+  group_by(study, algorithm, target) %&gt;%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Gain.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-23-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-1">
+Past versions of unnamed-chunk-23-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-23-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-23-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-23-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>performance_iiii_153 %&gt;%
+  filter(measure == &quot;multi.R2&quot;) %&gt;%
+  filter(algorithm %in% l) %&gt;%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %&gt;%
+  group_by(study, algorithm, target) %&gt;%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-1">
+Past versions of unnamed-chunk-24-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-24-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-24-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>iiii_76 &lt;- filter_runs(all.names, all.results,
+                                    &quot;/4iANCA/ratio_76/&quot;)</code></pre>
+<pre class="r"><code>performance_iiii_76 &lt;- get_performance(iiii_76)
+
+l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;LM&quot;, &quot;LBOOST&quot;)
+
+performance_iiii_76 %&gt;%
+  filter(measure == &quot;gain.R2&quot;) %&gt;%
+  filter(algorithm %in% l) %&gt;%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %&gt;%
+  group_by(study, algorithm, target) %&gt;%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Gain.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-26-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-26-1">
+Past versions of unnamed-chunk-26-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-26-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-26-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>performance_iiii_76 %&gt;%
+  filter(measure == &quot;multi.R2&quot;) %&gt;%
+  filter(algorithm %in% l) %&gt;%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %&gt;%
+  group_by(study, algorithm, target) %&gt;%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-27-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-27-1">
+Past versions of unnamed-chunk-27-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-27-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-27-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-27-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="hyperparameter-optimization" class="section level1">
@@ -1192,13 +1584,13 @@ performance_mibi_tnbc_rf_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-21-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-21-1">
-Past versions of unnamed-chunk-21-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-29-1">
+Past versions of unnamed-chunk-29-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-21-1" class="collapse">
+<div id="fig-unnamed-chunk-29-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -1217,7 +1609,18 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">ef624c3</a>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-29-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-29-1.png" target="_blank">ef624c3</a>
 </td>
 <td>
 schae211
@@ -1253,13 +1656,13 @@ performance_mibi_tnbc_mars_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-1">
-Past versions of unnamed-chunk-23-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-31-1">
+Past versions of unnamed-chunk-31-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-23-1" class="collapse">
+<div id="fig-unnamed-chunk-31-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -1278,7 +1681,18 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-23-1.png" target="_blank">ef624c3</a>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-31-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-31-1.png" target="_blank">ef624c3</a>
 </td>
 <td>
 schae211
@@ -1304,7 +1718,7 @@ schae211
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="synthetic" class="section level3">
 <h3>Synthetic</h3>
@@ -1325,7 +1739,55 @@ performance_synthetic_mars_hyper %&gt;%
   #theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-34-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-34-1">
+Past versions of unnamed-chunk-34-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-34-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-34-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-34-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="linear-boosting" class="section level2">
@@ -1349,7 +1811,55 @@ performance_mibi_tnbc_lboost_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-36-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-36-1">
+Past versions of unnamed-chunk-36-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-36-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-36-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-36-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="tree-boosting" class="section level2">
@@ -1373,7 +1883,55 @@ performance_mibi_tnbc_tboost_hyper %&gt;%
   theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
   labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-38-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-38-1">
+Past versions of unnamed-chunk-38-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-38-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-38-1.png" target="_blank">421d5d4</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-38-1.png" target="_blank">ef624c3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-14
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 </div>

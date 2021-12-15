@@ -336,7 +336,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Overview</a>
+  <a href="index.html">TOC</a>
+</li>
+<li>
+  <a href="introduction.html">Introduction</a>
 </li>
 <li>
   <a href="tutorial.html">Tutorial</a>
@@ -348,7 +351,13 @@ div.tocify {
   <a href="frameworks.html">Frameworks</a>
 </li>
 <li>
-  <a href="model_api.html">Model API</a>
+  <a href="model_api.html">Alternatives</a>
+</li>
+<li>
+  <a href="conclusions.html">Conclusions</a>
+</li>
+<li>
+  <a href="appendix.html">Appendix</a>
 </li>
 <li>
   <a href="random.html">Random</a>
@@ -407,7 +416,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-02
+<strong>Last updated:</strong> 2021-12-15
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -522,26 +531,42 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree77e38fe81ccd601e498ad01d7243ca14776428f9targetblank77e38fea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/77e38fe81ccd601e498ad01d7243ca14776428f9" target="_blank">77e38fe</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef14d98f689925e2d93cad95d5c043dd103238cectargetblankf14d98fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/f14d98f689925e2d93cad95d5c043dd103238cec" target="_blank">f14d98f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree77e38fe81ccd601e498ad01d7243ca14776428f9targetblank77e38fea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef14d98f689925e2d93cad95d5c043dd103238cectargetblankf14d98fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/77e38fe81ccd601e498ad01d7243ca14776428f9" target="_blank">77e38fe</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/f14d98f689925e2d93cad95d5c043dd103238cec" target="_blank">f14d98f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    data/2021-12-06-15-42_all_results.RDS
+    Ignored:    data/2021-12-08-14-10_all_results.RDS
+    Ignored:    data/2021-12-09-09-21_all_results.RDS
+    Ignored:    data/2021-12-09-17-26_all_results.RDS
+    Ignored:    data/2021-12-13-18-43_all_results.RDS
+    Ignored:    data/2021-12-14-10-57_all_views.RDS
+    Ignored:    data/2021-12-14-17-59_all_views.RDS
+    Ignored:    data/2021-12-14-23-01_all_results.RDS
     Ignored:    results/
 
-Unstaged changes:
-    Modified:   analysis/_site.yml
+Untracked files:
+    Untracked:  analysis/conclusions.Rmd
+    Untracked:  analysis/introduction.Rmd
+    Untracked:  analysis/references.bib
+    Untracked:  analysis/science.csl
+    Untracked:  cluster_scripts/bash_scripts/four_i.sh
+    Untracked:  cluster_scripts/bash_scripts/two_args_caller.sh
+    Untracked:  cluster_scripts/benchmark/four_i.R
+    Untracked:  cluster_scripts/benchmark/synthetic.R
+    Untracked:  cluster_scripts/preprocessing/synthetic_prep.R
 
 </code></pre>
 <p>
@@ -580,6 +605,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/067350bf869d53ad7ccb91c13d49c77e2d78860d/docs/random.html" target="_blank">067350b</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-02
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1076,7 +1118,7 @@ Aggregating
 
 Training models
 Warning in ...furrr_fn(...): Negative performance detected and replaced with 0
-for target prodB
+for target ligB
 
 Collecting improvements
 
@@ -1342,7 +1384,7 @@ timing %&gt;%
   mutate(rel.to.rf = round(as.numeric(time) / rf, 2))</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["rel.to.rf"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"MLP","2":"18.470654 secs","3":"8.50"},{"1":"BGMARS","2":"16.063433 secs","3":"7.39"},{"1":"SVM","2":"7.457223 secs","3":"3.43"},{"1":"MARS","2":"3.650335 secs","3":"1.68"},{"1":"BOOST","2":"2.377993 secs","3":"1.09"},{"1":"RF","2":"2.173562 secs","3":"1.00"},{"1":"LM","2":"0.794462 secs","3":"0.37"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["rel.to.rf"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"MLP","2":"18.295925 secs","3":"9.28"},{"1":"BGMARS","2":"15.533526 secs","3":"7.88"},{"1":"SVM","2":"7.308543 secs","3":"3.71"},{"1":"MARS","2":"4.314698 secs","3":"2.19"},{"1":"BOOST","2":"2.460559 secs","3":"1.25"},{"1":"RF","2":"1.970582 secs","3":"1.00"},{"1":"LM","2":"1.186489 secs","3":"0.60"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>

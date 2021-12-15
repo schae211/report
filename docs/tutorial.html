@@ -13,8 +13,8 @@
 
 <title>Tutorial</title>
 
-<script src="site_libs/header-attrs-2.10/header-attrs.js"></script>
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
@@ -336,7 +336,10 @@ div.tocify {
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">Overview</a>
+  <a href="index.html">TOC</a>
+</li>
+<li>
+  <a href="introduction.html">Introduction</a>
 </li>
 <li>
   <a href="tutorial.html">Tutorial</a>
@@ -348,7 +351,10 @@ div.tocify {
   <a href="frameworks.html">Frameworks</a>
 </li>
 <li>
-  <a href="model_api.html">Model API</a>
+  <a href="model_api.html">Alternatives</a>
+</li>
+<li>
+  <a href="conclusions.html">Conclusions</a>
 </li>
 <li>
   <a href="random.html">Random</a>
@@ -389,7 +395,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -398,7 +404,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -407,10 +413,10 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-08
+<strong>Last updated:</strong> 2021-12-15
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -486,38 +492,78 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
 </p>
 </div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/Saez/report
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreedda0a9a0f4858cde2d5d29231d6b728c6cbd28fetargetblankdda0a9aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/dda0a9a0f4858cde2d5d29231d6b728c6cbd28fe" target="_blank">dda0a9a</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef14d98f689925e2d93cad95d5c043dd103238cectargetblankf14d98fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/f14d98f689925e2d93cad95d5c043dd103238cec" target="_blank">f14d98f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreedda0a9a0f4858cde2d5d29231d6b728c6cbd28fetargetblankdda0a9aa" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef14d98f689925e2d93cad95d5c043dd103238cectargetblankf14d98fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/dda0a9a0f4858cde2d5d29231d6b728c6cbd28fe" target="_blank">dda0a9a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/f14d98f689925e2d93cad95d5c043dd103238cec" target="_blank">f14d98f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .Rproj.user/
+    Ignored:    data/2021-12-06-15-42_all_results.RDS
+    Ignored:    data/2021-12-08-14-10_all_results.RDS
+    Ignored:    data/2021-12-09-09-21_all_results.RDS
+    Ignored:    data/2021-12-09-17-26_all_results.RDS
+    Ignored:    data/2021-12-13-18-43_all_results.RDS
+    Ignored:    data/2021-12-14-10-57_all_views.RDS
+    Ignored:    data/2021-12-14-17-59_all_views.RDS
+    Ignored:    data/2021-12-14-23-01_all_results.RDS
+    Ignored:    results/
 
-Unstaged changes:
-    Modified:   analysis/index.Rmd
+Untracked files:
+    Untracked:  analysis/conclusions.Rmd
+    Untracked:  analysis/introduction.Rmd
+    Untracked:  analysis/references.bib
+    Untracked:  analysis/science.csl
+    Untracked:  cluster_scripts/bash_scripts/four_i.sh
+    Untracked:  cluster_scripts/bash_scripts/two_args_caller.sh
+    Untracked:  cluster_scripts/benchmark/four_i.R
+    Untracked:  cluster_scripts/benchmark/synthetic.R
+    Untracked:  cluster_scripts/preprocessing/synthetic_prep.R
 
 </code></pre>
 <p>
@@ -556,6 +602,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/f14d98f689925e2d93cad95d5c043dd103238cec/analysis/tutorial.Rmd" target="_blank">f14d98f</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+wflow_publish(all = TRUE, republish = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/267977564c55644f746212980cad6a3d51d79eb0/docs/tutorial.html" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -667,24 +747,19 @@ wflow_publish(files = “analysis/tutorial.Rmd”)
 </div>
 <p>Setup.</p>
 <pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-#knitr::opts_knit$set(root.dir = &quot;~/Saez/report&quot;)</code></pre>
+knitr::opts_knit$set(root.dir = &quot;~/Saez/report&quot;)</code></pre>
 <p>Loaded packages.</p>
 <pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
 suppressPackageStartupMessages(library(future))
-Warning: package &#39;future&#39; was built under R version 4.1.1
 suppressPackageStartupMessages(library(tidyverse))
-Warning: package &#39;tibble&#39; was built under R version 4.1.1
-Warning: package &#39;tidyr&#39; was built under R version 4.1.1
-Warning: package &#39;readr&#39; was built under R version 4.1.1
-plan(&quot;multisession&quot;, workers=14)
-plan(&quot;multisession&quot;, workers=6)</code></pre>
+plan(&quot;multisession&quot;, workers=14)</code></pre>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
-<p>In this tutorial, I will briefly explain how I envision the new MISTy workflow. Instead of only offering a pre-defined set of ML algorithms to model each view, I refactored the code such that users can supply their own function if they would like. If not, we ship MISTy with several implemented functions that can simply be plugged into the model. More details can be found below.</p>
+<p>In this tutorial, I will briefly explain how I envision the new MISTy workflow. Instead of only offering a pre-defined set of ML algorithms to model each view, I refactored the code such that users can supply their own function if they would like. If not, we ship MISTy with several implemented functions such as gradient boosting that can simply be plugged into the model. More details can be found below.</p>
 <div id="data" class="section level2">
 <h2>Data</h2>
 <p>For the sake of this tutorial we will be using the synthetic dataset supplied in the MISTy package. As explained in the <a href="https://saezlab.github.io/mistyR/articles/mistyR.html">Get Started Vignette</a>, this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.</p>
-<p>In total there are 10 tibbles, each of which contains about 4000 cells and their corresponding expresssion of the markers, position in a 100x100 grid (randomly assigned) as well as the cell type identity. (For more information see <code>help("synthetic")</code>).</p>
+<p>In total there are 10 tibbles, each of which contains about 4000 cells and their corresponding expresssion, and position in a 100x100 grid (randomly assigned) as well as the cell type identity. (For more information see <code>help("synthetic")</code>).</p>
 <pre class="r"><code>data(&quot;synthetic&quot;)</code></pre>
 </div>
 <div id="misty-views" class="section level2">
@@ -713,21 +788,38 @@ Training models</code></pre>
 Training models</code></pre>
 <p>But what is this <code>random_forest_model</code> actually?</p>
 <pre class="r"><code>random_forest_model
-function (view_data, target, seed, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, num.trees = 100, importance = &quot;impurity&quot;, 
-        mtry = NULL, verbose = FALSE, num.threads = 1, seed = seed)
-    if (!(length(ellipsis.args) == 0)) {
-        algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-    }
-    model &lt;- do.call(ranger::ranger, algo.arguments)
-    predictions &lt;- tibble::tibble(index = seq_len(nrow(view_data)), 
-        prediction = model$predictions)
-    list(unbiased.predictions = predictions, importances = model$variable.importance)
+function(view_data, target, seed, ...) {
+  ellipsis.args &lt;- list(...)
+
+  # default ranger arguments
+  algo.arguments &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    num.trees = 100,
+    importance = &quot;impurity&quot;,
+    mtry = NULL,
+    verbose = FALSE,
+    num.threads = 1,
+    seed = seed
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+  }
+
+  model &lt;- do.call(ranger::ranger, algo.arguments)
+
+  predictions &lt;- tibble::tibble(
+    index = seq_len(nrow(view_data)),
+    prediction = model$predictions
+  )
+
+  list(
+    unbiased.predictions = predictions,
+    importances = model$variable.importance
+  )
 }
-&lt;bytecode: 0x1124bfcc8&gt;
+&lt;bytecode: 0x5603b5bde2c8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <p>It is a function that takes in the data of a single view, for example the <code>paraview</code> -</p>
 <pre class="r"><code>misty.views$paraview.10$data %&gt;% slice_head(n=6)</code></pre>
@@ -781,8 +873,8 @@ list(unbiased.predictions = predictions,
 List of 2
  $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
   ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
-  ..$ prediction: num [1:4205] 0.179 0.15 0.321 0.45 0.56 ...
- $ importances         : Named num [1:10] 55 61.8 58.7 50.2 68.2 ...
+  ..$ prediction: num [1:4205] 0.141 0.115 0.266 0.673 0.494 ...
+ $ importances         : Named num [1:10] 54.1 60.9 60.3 49.9 69 ...
   ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;ligA&quot; &quot;ligB&quot; &quot;ligC&quot; &quot;ligD&quot; ...</code></pre>
 <p>(Note that <code>merge_2</code> is a function that is also exported by <code>mistyR</code>)</p>
 <p>As seen above, we can also easily supply arguments to the <code>ranger</code> RF implementation. Say we would like to increase the number of trees and use another splitrule. Let’s compare the runtime for example (should be higher with more trees).</p>
@@ -793,7 +885,7 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-8.076 sec elapsed</code></pre>
+4.731 sec elapsed</code></pre>
 <pre class="r"><code>tictoc::tic()
 misty.run &lt;- misty.views %&gt;%
   run_misty(model.function = random_forest_model, num.trees = 100, 
@@ -801,7 +893,7 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-1.522 sec elapsed</code></pre>
+1.402 sec elapsed</code></pre>
 </div>
 <div id="misty-results" class="section level2">
 <h2>MISTy results</h2>
@@ -845,6 +937,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-13-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-13-1.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -881,6 +984,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-13-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-13-2.png" target="_blank">6751419</a>
@@ -921,6 +1035,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-13-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-13-3.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -947,21 +1072,38 @@ schae211
 <li></li>
 </ul>
 <pre class="r"><code>random_forest_model
-function (view_data, target, seed, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, num.trees = 100, importance = &quot;impurity&quot;, 
-        mtry = NULL, verbose = FALSE, num.threads = 1, seed = seed)
-    if (!(length(ellipsis.args) == 0)) {
-        algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-    }
-    model &lt;- do.call(ranger::ranger, algo.arguments)
-    predictions &lt;- tibble::tibble(index = seq_len(nrow(view_data)), 
-        prediction = model$predictions)
-    list(unbiased.predictions = predictions, importances = model$variable.importance)
+function(view_data, target, seed, ...) {
+  ellipsis.args &lt;- list(...)
+
+  # default ranger arguments
+  algo.arguments &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    num.trees = 100,
+    importance = &quot;impurity&quot;,
+    mtry = NULL,
+    verbose = FALSE,
+    num.threads = 1,
+    seed = seed
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+  }
+
+  model &lt;- do.call(ranger::ranger, algo.arguments)
+
+  predictions &lt;- tibble::tibble(
+    index = seq_len(nrow(view_data)),
+    prediction = model$predictions
+  )
+
+  list(
+    unbiased.predictions = predictions,
+    importances = model$variable.importance
+  )
 }
-&lt;bytecode: 0x1124bfcc8&gt;
+&lt;bytecode: 0x5603b5bde2c8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model</li>
@@ -1008,6 +1150,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-15-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-15-1.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1044,6 +1197,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-15-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-15-2.png" target="_blank">6751419</a>
@@ -1084,6 +1248,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-15-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-15-3.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1105,54 +1280,97 @@ schae211
 <li><p>Unbiased predictions are based on k-fold cross-validation (aggregarted predictions for the holdout sets)</p></li>
 </ul>
 <pre class="r"><code>gradient_boosting_model
-function (view_data, target, seed, k = 10, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        train &lt;- view_data[in.fold, ]
-        test &lt;- view_data[holdout, ]
-        pred.train &lt;- train %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% 
-            as.matrix
-        label.train &lt;- train %&gt;% dplyr::pull(tidyselect::all_of(target))
-        algo.arguments &lt;- list(data = pred.train, label = label.train, 
-            booster = &quot;gbtree&quot;, nrounds = 10, verbose = 0, eta = 0.3, 
-            objective = &quot;reg:squarederror&quot;, max_depth = 6, nthread = 1)
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(xgboost::xgboost, algo.arguments)
-        pred.test &lt;- test %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% 
-            as.matrix
-        label.hat &lt;- predict(model, pred.test)
-        tibble::tibble(index = holdout, prediction = label.hat)
-    }) %&gt;% dplyr::arrange(index)
-    predictors &lt;- view_data %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% 
-        as.matrix
-    labels &lt;- view_data %&gt;% dplyr::pull(tidyselect::all_of(target))
-    algo.arguments.wm &lt;- list(data = predictors, label = labels, 
-        booster = &quot;gbtree&quot;, nrounds = 10, verbose = 0, eta = 0.3, 
-        objective = &quot;reg:squarederror&quot;, max_depth = 6, nthread = 1)
+function(view_data, target, seed, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;xgboost&quot;, quietly = TRUE),
+    msg = &quot;The package xgboost is required to use gradient boosting&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    train &lt;- view_data[in.fold, ]
+    test &lt;- view_data[holdout, ]
+
+    pred.train &lt;- train %&gt;%
+      dplyr::select(-tidyselect::all_of(target)) %&gt;%
+      as.matrix()
+    label.train &lt;- train %&gt;% dplyr::pull(tidyselect::all_of(target))
+
+    algo.arguments &lt;- list(
+      data = pred.train,
+      label = label.train,
+      booster = &quot;gbtree&quot;,
+      nrounds = 10,
+      verbose = 0,
+      objective = &quot;reg:squarederror&quot;,
+      nthread = 1
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(xgboost::xgboost, algo.arguments.wm)
-    importances &lt;- tryCatch({
-        importance_matrix &lt;- xgboost::xgb.importance(model = whole.model)
-        importances &lt;- unlist(importance_matrix[, &quot;Gain&quot;])
-        names(importances) &lt;- unlist(importance_matrix[, &quot;Feature&quot;])
-        importances
-    }, error = function(cond) {
-        importances &lt;- rep(0, ncol(predictors))
-        names(importances) &lt;- colnames(predictors)
-        importances
-    })
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(xgboost::xgboost, algo.arguments)
+
+    pred.test &lt;- test %&gt;%
+      dplyr::select(-tidyselect::all_of(target)) %&gt;%
+      as.matrix()
+
+    label.hat &lt;- predict(model, pred.test)
+
+    tibble::tibble(index = holdout, prediction = label.hat)
+  }) %&gt;% dplyr::arrange(index)
+
+  predictors &lt;- view_data %&gt;%
+    dplyr::select(-tidyselect::all_of(target)) %&gt;%
+    as.matrix()
+  labels &lt;- view_data %&gt;% dplyr::pull(tidyselect::all_of(target))
+
+  algo.arguments.wm &lt;- list(
+    data = predictors,
+    label = labels,
+    booster = &quot;gbtree&quot;,
+    nrounds = 10,
+    verbose = 0,
+    objective = &quot;reg:squarederror&quot;,
+    nthread = 1
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(xgboost::xgboost, algo.arguments.wm)
+
+  # if bypass intra is true, we need to catch the error
+  importances &lt;- tryCatch(
+    {
+      importance_matrix &lt;- xgboost::xgb.importance(model = whole.model)
+      importances &lt;- unlist(importance_matrix[, &quot;Gain&quot;])
+      names(importances) &lt;- unlist(importance_matrix[, &quot;Feature&quot;])
+      importances
+    },
+    error = function(cond) {
+      importances &lt;- rep(0, ncol(predictors))
+      names(importances) &lt;- colnames(predictors)
+      importances
+    }
+  )
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x111c30b70&gt;
+&lt;bytecode: 0x5603ba547cc8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -1171,12 +1389,6 @@ Collecting improvements
 Collecting contributions
 
 Collecting importances
-Warning: UNRELIABLE VALUE: Future (‘&lt;none&gt;’) unexpectedly generated random
-numbers without specifying argument &#39;seed&#39;. There is a risk that those random
-numbers are not statistically sound and the overall results might be invalid.
-To fix this, specify &#39;seed=TRUE&#39;. This ensures that proper, parallel-safe random
-numbers are produced via the L&#39;Ecuyer-CMRG method. To disable this check, use
-&#39;seed=NULL&#39;, or set option &#39;future.rng.onMisuse&#39; to &quot;ignore&quot;.
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
@@ -1203,6 +1415,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">6751419</a>
@@ -1243,6 +1466,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1281,6 +1515,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1304,40 +1549,68 @@ schae211
 <li><p>The name <code>bagged_earth_model</code> comes from the fact that the name mars is protected and thus the implementation of the algorithm is called <code>earth</code> (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert Tibshirani)</p></li>
 </ul>
 <pre class="r"><code>mars_model
-function (view_data, target, seed, k = 10, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        train &lt;- view_data[in.fold, ]
-        test &lt;- view_data[holdout, ]
-        algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = train, degree = 2)
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(earth::earth, algo.arguments)
-        label.hat &lt;- predict(model, test)
-        tibble::tibble(index = holdout, prediction = label.hat)
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, degree = 2)
+function(view_data, target, seed, approx = 1.0, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE),
+    msg = &quot;The package earth is required to use mars&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- in.fold[sample(1:length(in.fold), length(in.fold) * approx)]
+
+    train &lt;- view_data[in.fold, ]
+    test &lt;- view_data[holdout, ]
+
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = train,
+      degree = 2
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(earth::earth, algo.arguments.wm)
-    importances &lt;- earth::evimp(whole.model, trim = FALSE, sqrt. = TRUE)[, 
-        6]
-    names(importances) &lt;- stringr::str_remove(names(importances), 
-        &quot;-unused&quot;)
-    if (is.na(names(importances))) 
-        importances &lt;- c(no.var = 0)
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(earth::earth, algo.arguments)
+
+    label.hat &lt;- predict(model, test)
+
+    tibble::tibble(index = holdout, prediction = label.hat)
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    degree = 2
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(earth::earth, algo.arguments.wm)
+
+  importances &lt;- earth::evimp(whole.model, trim = FALSE, sqrt. = TRUE)[, 6]
+  names(importances) &lt;- stringr::str_remove(names(importances), &quot;-unused&quot;)
+  # fix for bypass intra
+  if (is.na(names(importances))) importances &lt;- c(&quot;no.var&quot; = 0)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x113fd5340&gt;
+&lt;bytecode: 0x5603bb9b9360&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <pre class="r"><code>misty.views %&gt;%
   run_misty(model.function = mars_model) %&gt;%
@@ -1446,6 +1719,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-19-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-19-1.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1482,6 +1766,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-19-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-19-2.png" target="_blank">6751419</a>
@@ -1522,6 +1817,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-19-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-19-3.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1545,41 +1851,73 @@ schae211
 <li><p>The name <code>bagged_earth_model</code> comes from the fact that the name mars is protected and thus the implementation of the algorithm is called <code>earth</code> (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert Tibshirani)</p></li>
 </ul>
 <pre class="r"><code>bagged_mars_model
-function (view_data, target, seed, n.bags = 50, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    bags &lt;- withr::with_seed(seed, caret::createResample(1:nrow(view_data), 
-        times = n.bags))
-    models &lt;- purrr::map(bags, function(bag) {
-        algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = view_data[bag, ], degree = 2)
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(earth::earth, algo.arguments)
-        oob &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            bag)]
-        pred &lt;- predict(model, view_data[oob, ])
-        list(model = model, prediction = tibble::tibble(index = oob, 
-            prediction = as.vector(pred)))
-    })
-    predictions &lt;- purrr::map_dfr(models, function(model) {
-        tibble::tibble(model$prediction)
-    }) %&gt;% dplyr::group_by(index) %&gt;% dplyr::summarise(prediction = mean(prediction)) %&gt;% 
-        dplyr::arrange(index)
-    assertthat::assert_that(nrow(predictions) == nrow(view_data), 
-        msg = &quot;There are too few bags to get OOB predictions for all observations.\n      Consider increasing the number of bags or using CV.&quot;)
-    importances &lt;- purrr::map_dfr(models, function(model) {
-        coefs &lt;- earth::evimp(model$model, trim = FALSE, sqrt. = TRUE)[, 
-            6]
-        names(coefs) &lt;- stringr::str_remove(names(coefs), &quot;-unused&quot;)
-        names(coefs) &lt;- ifelse(is.na(names(coefs)), &quot;no.var&quot;, 
-            names(coefs))
-        coefs
-    }) %&gt;% colMeans(na.rm = TRUE)
-    list(unbiased.predictions = predictions, importances = importances)
+function(view_data, target, seed,
+                              n.bags = 50, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE),
+    msg = &quot;The package earth is required to use mars&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  # generate the bags
+  bags &lt;- withr::with_seed(
+    seed,
+    caret::createResample(1:nrow(view_data), times = n.bags)
+  )
+
+  # build one model for each bag, return oob predictions and importances
+  models &lt;- purrr::map(bags, function(bag) {
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[bag, ],
+      degree = 2
+    )
+
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+
+    model &lt;- do.call(earth::earth, algo.arguments)
+
+    oob &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% bag)]
+
+    pred &lt;- predict(model, view_data[oob, ])
+    list(
+      model = model,
+      prediction = tibble::tibble(index = oob, prediction = as.vector(pred))
+    )
+  })
+
+  # Generate the OOB predictions, using the average for each sample
+  predictions &lt;- purrr::map_dfr(models, function(model) {
+    tibble::tibble(model$prediction)
+  }) %&gt;%
+    dplyr::group_by(index) %&gt;%
+    dplyr::summarise(prediction = mean(prediction)) %&gt;%
+    dplyr::arrange(index)
+
+  assertthat::assert_that(nrow(predictions) == nrow(view_data),
+    msg = &quot;There are too few bags to get OOB predictions for all observations.
+      Consider increasing the number of bags or using CV.&quot;
+  )
+
+  importances &lt;- purrr::map_dfr(models, function(model) {
+    coefs &lt;- earth::evimp(model$model, trim = FALSE, sqrt. = TRUE)[, 6]
+    names(coefs) &lt;- stringr::str_remove(names(coefs), &quot;-unused&quot;)
+    # fix for bypass intra
+    names(coefs) &lt;- ifelse(is.na(names(coefs)), &quot;no.var&quot;, names(coefs))
+    coefs
+  }) %&gt;% colMeans(na.rm = TRUE)
+
+
+
+  list(
+    unbiased.predictions = predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x1222fbeb0&gt;
+&lt;bytecode: 0x5603b03e43d0&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -1626,6 +1964,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-21-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-21-1.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1662,6 +2011,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-21-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-21-2.png" target="_blank">6751419</a>
@@ -1702,6 +2062,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-21-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-21-3.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1724,28 +2095,44 @@ schae211
 <li><p>In particular this model was supplied to understand more easily, how a view-specifc model based on cross-validation can be constructed</p></li>
 </ul>
 <pre class="r"><code>linear_model
-function (view_data, target, seed, k = 10, ...) 
-{
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = view_data[in.fold, ])
-        model &lt;- do.call(stats::lm, algo.arguments)
-        pred &lt;- predict.lm(model, view_data[holdout, ])
-        tibble::tibble(index = holdout, prediction = as.vector(pred))
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data)
-    whole.model &lt;- do.call(stats::lm, algo.arguments.wm)
-    importances &lt;- whole.model$coefficients[names(whole.model$coefficients) != 
-        &quot;(Intercept)&quot;]
-    importances &lt;- ifelse(is.na(importances), 0, importances)
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+function(view_data, target, seed, k = 10, ...) {
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ]
+    )
+
+    model &lt;- do.call(stats::lm, algo.arguments)
+
+    pred &lt;- predict.lm(model, view_data[holdout, ])
+
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data
+  )
+
+  whole.model &lt;- do.call(stats::lm, algo.arguments.wm)
+
+  importances &lt;- whole.model$coefficients[names(whole.model$coefficients) != &quot;(Intercept)&quot;]
+  # fix for bypass intra (replace NA with 0 for consistent behavior)
+  importances &lt;- ifelse(is.na(importances), 0, importances)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x12294b548&gt;
+&lt;bytecode: 0x5603ba73bef8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -1792,6 +2179,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-23-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-23-1.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1828,6 +2226,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-23-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-23-2.png" target="_blank">6751419</a>
@@ -1868,6 +2277,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-23-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-23-3.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -1890,41 +2310,70 @@ schae211
 <li><p>Importantly, we added an approximation argument to the implementation which basically says at what fraction of the training instances the SVM will be trained on. This drastically decreases the training time and does not really effect the performance.</p></li>
 </ul>
 <pre class="r"><code>svm_model
-function (view_data, target, seed, approx = 0.4, k = 10, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        if (approx) 
-            in.fold &lt;- in.fold[sample(1:length(in.fold), length(in.fold) * 
-                approx)]
-        algo.arguments &lt;- list(x = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = view_data[in.fold, ], kernel = &quot;vanilladot&quot;, 
-            C = 1, type = &quot;eps-svr&quot;, kpar = list())
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(kernlab::ksvm, algo.arguments)
-        pred &lt;- kernlab::predict(model, view_data[holdout, ])
-        tibble::tibble(index = holdout, prediction = as.vector(pred))
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(x = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, kernel = &quot;vanilladot&quot;, C = 1, 
-        type = &quot;eps-svr&quot;, kpar = list())
+function(view_data, target, seed, approx = 0.4, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;kernlab&quot;, quietly = TRUE),
+    msg = &quot;The package kernlab is required to use linear SVM&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- in.fold[sample(1:length(in.fold), length(in.fold) * approx)]
+
+    algo.arguments &lt;- list(
+      x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ],
+      kernel = &quot;vanilladot&quot;,
+      C = 1,
+      type = &quot;eps-svr&quot;,
+      kpar = list() # no hyperparameters for linear kernel
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(kernlab::ksvm, algo.arguments.wm)
-    importances &lt;- (t(whole.model@coef) %*% whole.model@xmatrix)[1, 
-        ]
-    if (is.null(names(importances))) 
-        importances &lt;- c(no.var = 0)
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(kernlab::ksvm, algo.arguments)
+
+    pred &lt;- kernlab::predict(model, view_data[holdout, ])
+
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    kernel = &quot;vanilladot&quot;,
+    C = 1,
+    type = &quot;eps-svr&quot;,
+    kpar = list() # no hyperparameters for linear kernel
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(kernlab::ksvm, algo.arguments.wm)
+
+  importances &lt;- (t(whole.model@coef) %*% whole.model@xmatrix)[1, ]
+  # fix for bypass intra
+  if (is.null(names(importances))) importances &lt;- c(&quot;no.var&quot; = 0)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x14832f258&gt;
+&lt;bytecode: 0x5603b7324e90&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -1971,6 +2420,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-25-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-25-1.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -2007,6 +2467,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-25-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-25-2.png" target="_blank">6751419</a>
@@ -2047,6 +2518,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-25-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-25-3.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -2066,54 +2548,91 @@ schae211
 <ul>
 <li><p>Short description: A small fully connected feedforward network, trained using standard backpropagation (no batches?). Default activation function is logistic.</p></li>
 <li><p>Unbiased predictions are based on k-fold cross-validation (aggregarted predictions for the holdout sets)</p></li>
-<li><p>Importantly, the feature importances is here calculated based on a global model agnostic method. More specifically each feature is permuated (one at a time) and then the reduction in preditive performance is used as measure for the variable importance.</p></li>
+<li><p>Importantly, the feature importances is here calculated based on a global model agnostic method. More specifically each feature is permuated (one at a time) and then the reduction in preditive performance is used as measure for the variable importance. (This is achieved using the <code>iml</code> R package).</p></li>
 </ul>
 <pre class="r"><code>mlp_model
-function (view_data, target, seed, approx = 0.6, k = 10, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    predictors &lt;- colnames(view_data)[colnames(view_data) != 
-        target]
-    X &lt;- view_data %&gt;% dplyr::select(tidyselect::all_of(predictors)) %&gt;% 
-        as.matrix()
-    Y &lt;- view_data %&gt;% dplyr::pull(target)
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        in.fold &lt;- in.fold[sample(1:length(in.fold), length(in.fold) * 
-            approx)]
-        X_train &lt;- X[in.fold, ] %&gt;% as.matrix
-        Y_train &lt;- Y[in.fold]
-        X_test &lt;- X[holdout, ] %&gt;% as.matrix
-        Y_test &lt;- Y[holdout]
-        algo.arguments &lt;- list(x = X_train, y = Y_train, size = c(10))
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(RSNNS::mlp, algo.arguments)
-        label.hat &lt;- predict(model, X_test)
-        tibble::tibble(index = holdout, prediction = label.hat)
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(x = X, y = Y, size = c(10))
+function(view_data, target, seed, approx = 0.6, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;RSNNS&quot;, quietly = TRUE),
+    msg = &quot;The package RSNNS is required to use mlp&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  predictors &lt;- colnames(view_data)[colnames(view_data) != target]
+  X &lt;- view_data %&gt;%
+    dplyr::select(tidyselect::all_of(predictors)) %&gt;%
+    as.matrix()
+  Y &lt;- view_data %&gt;% dplyr::pull(target)
+
+  # made this an imap to track the folds!
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- in.fold[sample(1:length(in.fold), length(in.fold) * approx)]
+
+    X_train &lt;- X[in.fold, ] %&gt;% as.matrix()
+    Y_train &lt;- Y[in.fold]
+
+    X_test &lt;- X[holdout, ] %&gt;% as.matrix()
+    Y_test &lt;- Y[holdout]
+
+    algo.arguments &lt;- list(
+      x = X_train,
+      y = Y_train,
+      size = c(10)
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(RSNNS::mlp, algo.arguments.wm)
-    if (ncol(X) == 1) {
-        importances &lt;- c(no.var = 0)
-    }
-    else {
-        predictor &lt;- iml::Predictor$new(model = whole.model, 
-            data = as.data.frame(X), y = Y)
-        imp &lt;- iml::FeatureImp$new(predictor, loss = &quot;mse&quot;)$results
-        importances &lt;- imp$importance
-        names(importances) &lt;- imp$feature
-    }
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(RSNNS::mlp, algo.arguments)
+
+    label.hat &lt;- predict(model, X_test)
+
+    tibble::tibble(index = holdout, prediction = label.hat)
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    x = X,
+    y = Y,
+    size = c(10)
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(RSNNS::mlp, algo.arguments.wm)
+
+  # fix for bypass intra (or in general if there is only a single predictor)
+  if (ncol(X) == 1) {
+    importances &lt;- c(&quot;no.var&quot; = 0)
+  } else {
+    predictor &lt;- iml::Predictor$new(
+      model = whole.model,
+      data = as.data.frame(X),
+      y = Y
+    )
+
+    imp &lt;- iml::FeatureImp$new(predictor, loss = &quot;mse&quot;)$results
+    importances &lt;- imp$importance
+    names(importances) &lt;- imp$feature
+  }
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x126825bc0&gt;
+&lt;bytecode: 0x5603ba119ba0&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -2127,210 +2646,6 @@ function (view_data, target, seed, approx = 0.6, k = 10, ...)
   plot_interaction_heatmap(&quot;para.10&quot;)
 
 Training models
-Warning: package ‘lubridate’ was built under R version 4.1.1
-Warning: package ‘R6’ was built under R version 4.1.1
-Warning: package ‘withr’ was built under R version 4.1.1
-Warning: package ‘iml’ was built under R version 4.1.1
-Warning: package ‘readr’ was built under R version 4.1.1
-Warning: package ‘plotrix’ was built under R version 4.1.1
-Warning: package ‘digest’ was built under R version 4.1.1
-Warning: package ‘rmarkdown’ was built under R version 4.1.1
-Warning: package ‘R.utils’ was built under R version 4.1.1
-Warning: package ‘htmltools’ was built under R version 4.1.1
-Warning: package ‘parallelly’ was built under R version 4.1.1
-Warning: package ‘rlang’ was built under R version 4.1.1
-Warning: package ‘generics’ was built under R version 4.1.1
-Warning: package ‘vroom’ was built under R version 4.1.1
-Warning: package ‘lifecycle’ was built under R version 4.1.1
-Warning: package ‘future’ was built under R version 4.1.1
-Warning: package ‘stringi’ was built under R version 4.1.1
-Warning: package ‘recipes’ was built under R version 4.1.1
-Warning: package ‘crayon’ was built under R version 4.1.1
-Warning: package ‘hms’ was built under R version 4.1.1
-Warning: package ‘pillar’ was built under R version 4.1.1
-Warning: package ‘xgboost’ was built under R version 4.1.1
-Warning: package ‘future.apply’ was built under R version 4.1.1
-Warning: package ‘glue’ was built under R version 4.1.1
-Warning: package ‘data.table’ was built under R version 4.1.1
-Warning: package ‘tzdb’ was built under R version 4.1.1
-Warning: package ‘httpuv’ was built under R version 4.1.1
-Warning: package ‘tidyr’ was built under R version 4.1.1
-Warning: package ‘xfun’ was built under R version 4.1.1
-Warning: package ‘later’ was built under R version 4.1.1
-Warning: package ‘survival’ was built under R version 4.1.1
-Warning: package ‘RSNNS’ was built under R version 4.1.1
-Warning: package ‘caret’ was built under R version 4.1.1
-Warning: package ‘ipred’ was built under R version 4.1.1
-Warning: package ‘lubridate’ was built under R version 4.1.1
-Warning: package ‘R6’ was built under R version 4.1.1
-Warning: package ‘withr’ was built under R version 4.1.1
-Warning: package ‘iml’ was built under R version 4.1.1
-Warning: package ‘readr’ was built under R version 4.1.1
-Warning: package ‘plotrix’ was built under R version 4.1.1
-Warning: package ‘digest’ was built under R version 4.1.1
-Warning: package ‘rmarkdown’ was built under R version 4.1.1
-Warning: package ‘R.utils’ was built under R version 4.1.1
-Warning: package ‘htmltools’ was built under R version 4.1.1
-Warning: package ‘parallelly’ was built under R version 4.1.1
-Warning: package ‘rlang’ was built under R version 4.1.1
-Warning: package ‘generics’ was built under R version 4.1.1
-Warning: package ‘vroom’ was built under R version 4.1.1
-Warning: package ‘lifecycle’ was built under R version 4.1.1
-Warning: package ‘stringi’ was built under R version 4.1.1
-Warning: package ‘recipes’ was built under R version 4.1.1
-Warning: package ‘crayon’ was built under R version 4.1.1
-Warning: package ‘hms’ was built under R version 4.1.1
-Warning: package ‘pillar’ was built under R version 4.1.1
-Warning: package ‘xgboost’ was built under R version 4.1.1
-Warning: package ‘future.apply’ was built under R version 4.1.1
-Warning: package ‘future’ was built under R version 4.1.1
-Warning: package ‘glue’ was built under R version 4.1.1
-Warning: package ‘data.table’ was built under R version 4.1.1
-Warning: package ‘tzdb’ was built under R version 4.1.1
-Warning: package ‘httpuv’ was built under R version 4.1.1
-Warning: package ‘xfun’ was built under R version 4.1.1
-Warning: package ‘later’ was built under R version 4.1.1
-Warning: package ‘survival’ was built under R version 4.1.1
-Warning: package ‘tibble’ was built under R version 4.1.1
-Warning: package ‘RSNNS’ was built under R version 4.1.1
-Warning: package ‘caret’ was built under R version 4.1.1
-Warning: package ‘ipred’ was built under R version 4.1.1
-Warning: package ‘lubridate’ was built under R version 4.1.1
-Warning: package ‘R6’ was built under R version 4.1.1
-Warning: package ‘withr’ was built under R version 4.1.1
-Warning: package ‘iml’ was built under R version 4.1.1
-Warning: package ‘readr’ was built under R version 4.1.1
-Warning: package ‘plotrix’ was built under R version 4.1.1
-Warning: package ‘digest’ was built under R version 4.1.1
-Warning: package ‘rmarkdown’ was built under R version 4.1.1
-Warning: package ‘R.utils’ was built under R version 4.1.1
-Warning: package ‘htmltools’ was built under R version 4.1.1
-Warning: package ‘parallelly’ was built under R version 4.1.1
-Warning: package ‘rlang’ was built under R version 4.1.1
-Warning: package ‘generics’ was built under R version 4.1.1
-Warning: package ‘vroom’ was built under R version 4.1.1
-Warning: package ‘lifecycle’ was built under R version 4.1.1
-Warning: package ‘stringi’ was built under R version 4.1.1
-Warning: package ‘recipes’ was built under R version 4.1.1
-Warning: package ‘crayon’ was built under R version 4.1.1
-Warning: package ‘hms’ was built under R version 4.1.1
-Warning: package ‘pillar’ was built under R version 4.1.1
-Warning: package ‘xgboost’ was built under R version 4.1.1
-Warning: package ‘future.apply’ was built under R version 4.1.1
-Warning: package ‘future’ was built under R version 4.1.1
-Warning: package ‘glue’ was built under R version 4.1.1
-Warning: package ‘data.table’ was built under R version 4.1.1
-Warning: package ‘tzdb’ was built under R version 4.1.1
-Warning: package ‘httpuv’ was built under R version 4.1.1
-Warning: package ‘xfun’ was built under R version 4.1.1
-Warning: package ‘later’ was built under R version 4.1.1
-Warning: package ‘survival’ was built under R version 4.1.1
-Warning: package ‘tibble’ was built under R version 4.1.1
-Warning: package ‘RSNNS’ was built under R version 4.1.1
-Warning: package ‘caret’ was built under R version 4.1.1
-Warning: package ‘ipred’ was built under R version 4.1.1
-Warning: package ‘lubridate’ was built under R version 4.1.1
-Warning: package ‘R6’ was built under R version 4.1.1
-Warning: package ‘withr’ was built under R version 4.1.1
-Warning: package ‘iml’ was built under R version 4.1.1
-Warning: package ‘readr’ was built under R version 4.1.1
-Warning: package ‘plotrix’ was built under R version 4.1.1
-Warning: package ‘digest’ was built under R version 4.1.1
-Warning: package ‘rmarkdown’ was built under R version 4.1.1
-Warning: package ‘R.utils’ was built under R version 4.1.1
-Warning: package ‘htmltools’ was built under R version 4.1.1
-Warning: package ‘parallelly’ was built under R version 4.1.1
-Warning: package ‘rlang’ was built under R version 4.1.1
-Warning: package ‘generics’ was built under R version 4.1.1
-Warning: package ‘vroom’ was built under R version 4.1.1
-Warning: package ‘lifecycle’ was built under R version 4.1.1
-Warning: package ‘stringi’ was built under R version 4.1.1
-Warning: package ‘recipes’ was built under R version 4.1.1
-Warning: package ‘crayon’ was built under R version 4.1.1
-Warning: package ‘hms’ was built under R version 4.1.1
-Warning: package ‘pillar’ was built under R version 4.1.1
-Warning: package ‘xgboost’ was built under R version 4.1.1
-Warning: package ‘future.apply’ was built under R version 4.1.1
-Warning: package ‘future’ was built under R version 4.1.1
-Warning: package ‘glue’ was built under R version 4.1.1
-Warning: package ‘data.table’ was built under R version 4.1.1
-Warning: package ‘tzdb’ was built under R version 4.1.1
-Warning: package ‘httpuv’ was built under R version 4.1.1
-Warning: package ‘xfun’ was built under R version 4.1.1
-Warning: package ‘later’ was built under R version 4.1.1
-Warning: package ‘survival’ was built under R version 4.1.1
-Warning: package ‘tibble’ was built under R version 4.1.1
-Warning: package ‘RSNNS’ was built under R version 4.1.1
-Warning: package ‘caret’ was built under R version 4.1.1
-Warning: package ‘ipred’ was built under R version 4.1.1
-Warning: package ‘lubridate’ was built under R version 4.1.1
-Warning: package ‘R6’ was built under R version 4.1.1
-Warning: package ‘withr’ was built under R version 4.1.1
-Warning: package ‘iml’ was built under R version 4.1.1
-Warning: package ‘readr’ was built under R version 4.1.1
-Warning: package ‘plotrix’ was built under R version 4.1.1
-Warning: package ‘digest’ was built under R version 4.1.1
-Warning: package ‘rmarkdown’ was built under R version 4.1.1
-Warning: package ‘R.utils’ was built under R version 4.1.1
-Warning: package ‘htmltools’ was built under R version 4.1.1
-Warning: package ‘parallelly’ was built under R version 4.1.1
-Warning: package ‘rlang’ was built under R version 4.1.1
-Warning: package ‘generics’ was built under R version 4.1.1
-Warning: package ‘vroom’ was built under R version 4.1.1
-Warning: package ‘lifecycle’ was built under R version 4.1.1
-Warning: package ‘stringi’ was built under R version 4.1.1
-Warning: package ‘recipes’ was built under R version 4.1.1
-Warning: package ‘crayon’ was built under R version 4.1.1
-Warning: package ‘hms’ was built under R version 4.1.1
-Warning: package ‘pillar’ was built under R version 4.1.1
-Warning: package ‘xgboost’ was built under R version 4.1.1
-Warning: package ‘future.apply’ was built under R version 4.1.1
-Warning: package ‘future’ was built under R version 4.1.1
-Warning: package ‘glue’ was built under R version 4.1.1
-Warning: package ‘data.table’ was built under R version 4.1.1
-Warning: package ‘tzdb’ was built under R version 4.1.1
-Warning: package ‘httpuv’ was built under R version 4.1.1
-Warning: package ‘xfun’ was built under R version 4.1.1
-Warning: package ‘later’ was built under R version 4.1.1
-Warning: package ‘survival’ was built under R version 4.1.1
-Warning: package ‘tibble’ was built under R version 4.1.1
-Warning: package ‘RSNNS’ was built under R version 4.1.1
-Warning: package ‘caret’ was built under R version 4.1.1
-Warning: package ‘ipred’ was built under R version 4.1.1
-Warning: package ‘lubridate’ was built under R version 4.1.1
-Warning: package ‘R6’ was built under R version 4.1.1
-Warning: package ‘withr’ was built under R version 4.1.1
-Warning: package ‘iml’ was built under R version 4.1.1
-Warning: package ‘readr’ was built under R version 4.1.1
-Warning: package ‘plotrix’ was built under R version 4.1.1
-Warning: package ‘digest’ was built under R version 4.1.1
-Warning: package ‘rmarkdown’ was built under R version 4.1.1
-Warning: package ‘R.utils’ was built under R version 4.1.1
-Warning: package ‘htmltools’ was built under R version 4.1.1
-Warning: package ‘parallelly’ was built under R version 4.1.1
-Warning: package ‘rlang’ was built under R version 4.1.1
-Warning: package ‘generics’ was built under R version 4.1.1
-Warning: package ‘vroom’ was built under R version 4.1.1
-Warning: package ‘lifecycle’ was built under R version 4.1.1
-Warning: package ‘stringi’ was built under R version 4.1.1
-Warning: package ‘recipes’ was built under R version 4.1.1
-Warning: package ‘crayon’ was built under R version 4.1.1
-Warning: package ‘hms’ was built under R version 4.1.1
-Warning: package ‘pillar’ was built under R version 4.1.1
-Warning: package ‘xgboost’ was built under R version 4.1.1
-Warning: package ‘future.apply’ was built under R version 4.1.1
-Warning: package ‘future’ was built under R version 4.1.1
-Warning: package ‘glue’ was built under R version 4.1.1
-Warning: package ‘data.table’ was built under R version 4.1.1
-Warning: package ‘tzdb’ was built under R version 4.1.1
-Warning: package ‘httpuv’ was built under R version 4.1.1
-Warning: package ‘xfun’ was built under R version 4.1.1
-Warning: package ‘later’ was built under R version 4.1.1
-Warning: package ‘survival’ was built under R version 4.1.1
-Warning: package ‘tibble’ was built under R version 4.1.1
-Warning: package ‘RSNNS’ was built under R version 4.1.1
-Warning: package ‘caret’ was built under R version 4.1.1
-Warning: package ‘ipred’ was built under R version 4.1.1
 
 Collecting improvements
 
@@ -2363,6 +2678,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-27-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-27-1.png" target="_blank">6751419</a>
@@ -2403,6 +2729,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-27-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-27-2.png" target="_blank">6751419</a>
 </td>
 <td>
@@ -2439,6 +2776,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-27-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-27-3.png" target="_blank">6751419</a>
@@ -2504,8 +2852,8 @@ str(res.list)
 List of 2
  $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
   ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
-  ..$ prediction: num [1:4205] 0.108 0.104 0.101 0.155 0.164 ...
- $ importances         : Named num [1:10] 26.1 25.1 46.5 38.9 237.7 ...
+  ..$ prediction: num [1:4205] 0.0563 0.0952 0.1236 0.169 0.1617 ...
+ $ importances         : Named num [1:10] 27.5 26.1 43.5 16.3 248.3 ...
   ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;ligA&quot; &quot;ligB&quot; &quot;ligC&quot; &quot;ligD&quot; ...</code></pre>
 <ol style="list-style-type: lower-alpha">
 <li>Top 6 entries of the <code>unbiased.predictions</code> tibble.</li>
@@ -2513,7 +2861,7 @@ List of 2
 <pre class="r"><code>res.list$unbiased.predictions %&gt;% slice_head(n = 6)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["index"],"name":[1],"type":["int"],"align":["right"]},{"label":["prediction"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.1081634"},{"1":"2","2":"0.1041089"},{"1":"3","2":"0.1009302"},{"1":"4","2":"0.1548211"},{"1":"5","2":"0.1638056"},{"1":"6","2":"0.1918239"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["index"],"name":[1],"type":["int"],"align":["right"]},{"label":["prediction"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"0.05625033"},{"1":"2","2":"0.09516617"},{"1":"3","2":"0.12360709"},{"1":"4","2":"0.16900870"},{"1":"5","2":"0.16167585"},{"1":"6","2":"0.16937361"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <ol start="2" style="list-style-type: lower-alpha">
@@ -2521,9 +2869,9 @@ List of 2
 </ol>
 <pre class="r"><code>res.list$importances
      ligA      ligB      ligC      ligD     protE     protF     prodA     prodB 
- 26.12334  25.08098  46.46513  38.85500 237.66579  74.08434  43.44180  61.28628 
+ 27.46336  26.12132  43.51203  16.32403 248.34468  71.45277  42.54984  66.75963 
     prodC     prodD 
- 30.84458  35.91940 </code></pre>
+ 42.15216  32.24817 </code></pre>
 </div>
 <div id="example-function" class="section level2">
 <h2>Example Function</h2>
@@ -2766,24 +3114,29 @@ caret::defaultSummary(data = data.frame(obs = target.vector,
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()
-R version 4.1.0 (2021-05-18)
-Platform: aarch64-apple-darwin20 (64-bit)
-Running under: macOS Big Sur 11.4
+R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.1-arm64/Resources/lib/libRlapack.dylib
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
-[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
- [5] readr_2.1.1     tidyr_1.1.4     tibble_3.1.6    ggplot2_3.3.5  
- [9] tidyverse_1.3.1 future_1.23.0   mistyR_1.3.1    workflowr_1.6.2
+ [5] readr_2.0.2     tidyr_1.1.4     tibble_3.1.5    ggplot2_3.3.5  
+ [9] tidyverse_1.3.1 future_1.22.1   mistyR_1.3.1    workflowr_1.6.2
 
 loaded via a namespace (and not attached):
   [1] colorspace_2.0-2     ellipsis_0.3.2       class_7.3-19        
@@ -2791,36 +3144,36 @@ loaded via a namespace (and not attached):
   [7] listenv_0.8.0        furrr_0.2.3          farver_2.1.0        
  [10] prodlim_2019.11.13   fansi_0.5.0          lubridate_1.8.0     
  [13] ranger_0.13.1        xml2_1.3.2           codetools_0.2-18    
- [16] splines_4.1.0        R.methodsS3_1.8.1    knitr_1.33          
+ [16] splines_4.1.2        R.methodsS3_1.8.1    knitr_1.36          
  [19] rlist_0.4.6.2        jsonlite_1.7.2       pROC_1.18.0         
  [22] caret_6.0-90         broom_0.7.9          dbplyr_2.1.1        
- [25] R.oo_1.24.0          compiler_4.1.0       httr_1.4.2          
- [28] tictoc_1.0.1         backports_1.2.1      assertthat_0.2.1    
- [31] Matrix_1.3-4         fastmap_1.1.0        cli_3.1.0           
- [34] later_1.3.0          htmltools_0.5.2      tools_4.1.0         
- [37] gtable_0.3.0         glue_1.5.1           reshape2_1.4.4      
+ [25] R.oo_1.24.0          compiler_4.1.2       httr_1.4.2          
+ [28] tictoc_1.0.1         backports_1.3.0      assertthat_0.2.1    
+ [31] Matrix_1.3-4         fastmap_1.1.0        cli_3.0.1           
+ [34] later_1.3.0          htmltools_0.5.2      tools_4.1.2         
+ [37] gtable_0.3.0         glue_1.4.2           reshape2_1.4.4      
  [40] Rcpp_1.0.7           cellranger_1.1.0     jquerylib_0.1.4     
  [43] vctrs_0.3.8          nlme_3.1-152         iterators_1.0.13    
- [46] timeDate_3043.102    xfun_0.25            gower_0.2.2         
+ [46] timeDate_3043.102    xfun_0.26            gower_0.2.2         
  [49] globals_0.14.0       rvest_1.0.1          lifecycle_1.0.1     
  [52] MASS_7.3-54          scales_1.1.1         ipred_0.9-12        
- [55] hms_1.1.1            promises_1.2.0.1     parallel_4.1.0      
+ [55] hms_1.1.1            promises_1.2.0.1     parallel_4.1.2      
  [58] RColorBrewer_1.1-2   yaml_2.2.1           sass_0.4.0          
- [61] rpart_4.1-15         stringi_1.7.6        highr_0.9           
+ [61] rpart_4.1-15         stringi_1.7.5        highr_0.9           
  [64] distances_0.1.8      foreach_1.5.1        filelock_1.0.2      
  [67] lava_1.6.10          rlang_0.4.12         pkgconfig_2.0.3     
- [70] evaluate_0.14        lattice_0.20-44      recipes_0.1.17      
- [73] labeling_0.4.2       tidyselect_1.1.1     parallelly_1.29.0   
+ [70] evaluate_0.14        lattice_0.20-45      recipes_0.1.17      
+ [73] labeling_0.4.2       tidyselect_1.1.1     parallelly_1.28.1   
  [76] plyr_1.8.6           magrittr_2.0.1       R6_2.5.1            
- [79] generics_0.1.1       DBI_1.1.1            pillar_1.6.4        
- [82] haven_2.4.3          whisker_0.4          withr_2.4.3         
+ [79] generics_0.1.0       DBI_1.1.1            pillar_1.6.3        
+ [82] haven_2.4.3          whisker_0.4          withr_2.4.2         
  [85] survival_3.2-13      nnet_7.3-16          future.apply_1.8.1  
- [88] modelr_0.1.8         crayon_1.4.2         utf8_1.2.2          
- [91] tzdb_0.2.0           rmarkdown_2.10       grid_4.1.0          
- [94] readxl_1.3.1         data.table_1.14.2    git2r_0.29.0        
- [97] ModelMetrics_1.2.2.2 reprex_2.0.1         digest_0.6.29       
-[100] httpuv_1.6.2         R.utils_2.11.0       stats4_4.1.0        
-[103] munsell_0.5.0        bslib_0.3.0         </code></pre>
+ [88] modelr_0.1.8         crayon_1.4.1         utf8_1.2.2          
+ [91] tzdb_0.1.2           rmarkdown_2.11       grid_4.1.2          
+ [94] readxl_1.3.1         data.table_1.14.2    git2r_0.28.0        
+ [97] ModelMetrics_1.2.2.2 reprex_2.0.1         digest_0.6.28       
+[100] httpuv_1.6.3         R.utils_2.11.0       stats4_4.1.2        
+[103] munsell_0.5.0        bslib_0.3.1         </code></pre>
 </div>
 </div>
 
