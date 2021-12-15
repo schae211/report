@@ -1,6 +1,12 @@
 ---
 title: "Introduction"
 site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: no
+    toc_float: no
+bibliography: references.bib
+csl: science.csl
 ---
 
 This report documents what I have worked on between September 2021
@@ -12,9 +18,12 @@ See the corresponding
 
 # Introduction
 
-
-
 - Spatial Omics
+
+-- Describing the 3 kind of spatial transcriptomic technologes we have
+[@Moses2021.05.11.443152]
+-- Describing the kind of proteomic technologies we have
+(describing the features of the different technolgies)
 
 - What is MISTy
 
