@@ -7,17 +7,17 @@ navbar:
     href: index.html
   - text: 1. Introduction
     href: introduction.html
-  - text: 2.1 Tutorial
+  - text: 2. Methods
     href: tutorial.html
-  - text: 2.2 Benchmark
+  - text: 3.1 Benchmark
     href: benchmark.html
-  - text: 2.3 Frameworks
+  - text: 3.2 Frameworks
     href: frameworks.html
-  - text: 2.4 Alternatives
+  - text: 3.3 Alternatives
     href: model_api.html
-  - text: 3. Conclusions
+  - text: 4. Conclusions
     href: conclusions.html
-  - text: 4. Appendix
+  - text: 5. Appendix
     href: appendix.html
   - text: License
     href: license.html

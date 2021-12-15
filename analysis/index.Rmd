@@ -1,5 +1,5 @@
 ---
-title: "Implementation and Benchmarking of Different Machine Learning Algorithms for Training View-Specific Models for MISTy"
+title: "Implementation and Benchmarking of Different Machine Learning Algorithms for Training View-Specific Models in MISTy"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -9,16 +9,16 @@ output:
 
 # Table of Contents
 
-# [&nbsp;&nbsp;&nbsp; 1. Introduction](https://schae211.github.io/report/introduction.html)
+## [&nbsp;&nbsp;&nbsp; 1. Introduction](https://schae211.github.io/report/introduction.html)
 
-# &nbsp;&nbsp;&nbsp; 2. Results
+## &nbsp;&nbsp;&nbsp; 2. Results
 
-## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1 Tutorial New MISTy API](https://schae211.github.io/report/tutorial.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1 Tutorial for new MISTy API allowing to use any model for training view-specific models](https://schae211.github.io/report/tutorial.html)
 
-## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.2 Benchmarking Different Algorithms for Modeling Views](https://schae211.github.io/report/benchmark.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.2 Benchmarking different algorithms for modeling views in different datasets](https://schae211.github.io/report/benchmark.html)
 
-## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.3 Exploring Different ML Frameworks in R](https://schae211.github.io/report/frameworks.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.3 Exploring Different Machine Learning Frameworks in R](https://schae211.github.io/report/frameworks.html)
 
-## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.4 Alternative to New MISTy API](https://schae211.github.io/report/model_api.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.4 Alternative implementation of new algorithms ofr trainign view-specific models](https://schae211.github.io/report/model_api.html)
 
-# [&nbsp;&nbsp;&nbsp; 3. Discussion](https://schae211.github.io/report/conclusions.html)
+## [&nbsp;&nbsp;&nbsp; 3. Discussion](https://schae211.github.io/report/conclusions.html)

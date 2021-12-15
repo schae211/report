@@ -18,6 +18,10 @@ See the corresponding
 
 # Introduction
 
+In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq[10.1016/j.cell.2015.05.002] in 2015, the number of studies based on single-cell omics has exploded, primarily due to the  commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, to use this technology a single-cell suspension must be used, meaning tissues must for example be dissociated before sequencing. Consequently, we loose information about the spatial context, which is crucial for cellular function. Different mechanisms are employed by cells to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Apart from hormonal signaling, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, infering cell-cell-communcation (CCC) using single-cell expression data based on dissociated tissues is difficult. 
+
+Conversely, taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data, which only became available in the last years. Early approaches to investigate the expression of single cells were limited to a few markers, but 
+
 - Spatial Omics
 
 -- Describing the 3 kind of spatial transcriptomic technologes we have
@@ -25,7 +29,11 @@ See the corresponding
 -- Describing the kind of proteomic technologies we have
 (describing the features of the different technolgies)
 
+- Mention SVCA for example (as another method). (I could orient the
+introduction somewhat on the MISTy paper)
+
 - What is MISTy
+[@Tanevski2020.05.08.084145]
 
 # Tutorial
 
