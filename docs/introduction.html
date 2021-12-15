@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
@@ -74,6 +71,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -239,69 +258,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-
-</style>
-
-
 
 </head>
 
@@ -309,16 +265,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -342,22 +288,22 @@ div.tocify {
   <a href="introduction.html">1. Introduction</a>
 </li>
 <li>
-  <a href="tutorial.html">2.1 Tutorial</a>
+  <a href="tutorial.html">2. Methods</a>
 </li>
 <li>
-  <a href="benchmark.html">2.2 Benchmark</a>
+  <a href="benchmark.html">3.1 Benchmark</a>
 </li>
 <li>
-  <a href="frameworks.html">2.3 Frameworks</a>
+  <a href="frameworks.html">3.2 Frameworks</a>
 </li>
 <li>
-  <a href="model_api.html">2.4 Alternatives</a>
+  <a href="model_api.html">3.3 Alternatives</a>
 </li>
 <li>
-  <a href="conclusions.html">3. Conclusions</a>
+  <a href="conclusions.html">4. Conclusions</a>
 </li>
 <li>
-  <a href="appendix.html">4. Appendix</a>
+  <a href="appendix.html">5. Appendix</a>
 </li>
 <li>
   <a href="license.html">License</a>
@@ -504,16 +450,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreee11220706b944e0a6e2f52fa7f198731c5ef237btargetblanke112207a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/e11220706b944e0a6e2f52fa7f198731c5ef237b" target="_blank">e112207</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreee11220706b944e0a6e2f52fa7f198731c5ef237btargetblanke112207a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/e11220706b944e0a6e2f52fa7f198731c5ef237b" target="_blank">e112207</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -528,18 +474,7 @@ Ignored files:
     Ignored:    data/2021-12-14-10-57_all_views.RDS
     Ignored:    data/2021-12-14-17-59_all_views.RDS
     Ignored:    data/2021-12-14-23-01_all_results.RDS
-
-Untracked files:
-    Untracked:  LICENSE.md
-    Untracked:  analysis/appendix.Rmd
-    Untracked:  analysis/conclusions.Rmd
-    Untracked:  analysis/references.bib
-    Untracked:  analysis/science.csl
-    Untracked:  cluster_scripts/bash_scripts/four_i.sh
-    Untracked:  cluster_scripts/bash_scripts/two_args_caller.sh
-    Untracked:  cluster_scripts/benchmark/four_i.R
-    Untracked:  cluster_scripts/benchmark/synthetic.R
-    Untracked:  cluster_scripts/preprocessing/synthetic_prep.R
+    Ignored:    results/
 
 </code></pre>
 <p>
@@ -583,6 +518,57 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/schae211/report/blob/eb7b59d4c30a956379c497e2051bae1422291954/analysis/introduction.Rmd" target="_blank">eb7b59d</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+wflow_publish(all = TRUE, republish = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/b5b2de7a9fc8463be559d515e2cc10ff94dd631e/analysis/introduction.Rmd" target="_blank">b5b2de7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+added license and new cluster files
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/f60ac7ce61c41369d4d11e42b6ed80c2406dd63d/docs/introduction.html" target="_blank">f60ac7c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/schae211/report/blob/e11220706b944e0a6e2f52fa7f198731c5ef237b/analysis/introduction.Rmd" target="_blank">e112207</a>
 </td>
 <td>
@@ -606,9 +592,15 @@ wflow_publish(“analysis/introduction.Rmd”)
 <p>See the corresponding <a href="https://github.com/schae211/mistyR/tree/as-function">GitHub repository</a>.</p>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
+<p>In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq[10.1016/j.cell.2015.05.002] in 2015, the number of studies based on single-cell omics has exploded, primarily due to the commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, to use this technology a single-cell suspension must be used, meaning tissues must for example be dissociated before sequencing. Consequently, we loose information about the spatial context, which is crucial for cellular function. Different mechanisms are employed by cells to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Apart from hormonal signaling, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, infering cell-cell-communcation (CCC) using single-cell expression data based on dissociated tissues is difficult.</p>
+<p>Conversely, taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data, which only became available in the last years. Early approaches to investigate the expression of single cells were limited to a few markers, but</p>
 <ul>
-<li><p>Spatial Omics</p></li>
-<li><p>What is MISTy</p></li>
+<li>Spatial Omics</li>
+</ul>
+<p>– Describing the 3 kind of spatial transcriptomic technologes we have <span class="citation">(<em>1</em>)</span> – Describing the kind of proteomic technologies we have (describing the features of the different technolgies)</p>
+<ul>
+<li><p>Mention SVCA for example (as another method). (I could orient the introduction somewhat on the MISTy paper)</p></li>
+<li><p>What is MISTy <span class="citation">(<em>2</em>)</span></p></li>
 </ul>
 </div>
 <div id="tutorial" class="section level1">
@@ -643,6 +635,14 @@ wflow_publish(“analysis/introduction.Rmd”)
 <div id="random" class="section level1">
 <h1>Random</h1>
 <p>This Rmarkdown contains results I could not fit into the other categories thus far.</p>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-Moses2021.05.11.443152" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">L. Moses, L. Pachter, Museum of spatial transcriptomics. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2021.05.11.443152">10.1101/2021.05.11.443152</a>.</div>
+</div>
+<div id="ref-Tanevski2020.05.08.084145" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">J. Tanevski, R. O. R. Flores, A. Gabor, D. Schapiro, J. Saez-Rodriguez, Explainable multi-view framework for dissecting intercellular signaling from highly multiplexed spatial data. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2020.05.08.084145">10.1101/2020.05.08.084145</a>.</div>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -703,8 +703,6 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
-</div>
-</div>
 
 </div>
 
@@ -742,35 +740,6 @@ $(document).ready(function () {
 });
 </script>
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2,h3",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = true;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

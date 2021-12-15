@@ -342,22 +342,22 @@ div.tocify {
   <a href="introduction.html">1. Introduction</a>
 </li>
 <li>
-  <a href="tutorial.html">2.1 Tutorial</a>
+  <a href="tutorial.html">2. Methods</a>
 </li>
 <li>
-  <a href="benchmark.html">2.2 Benchmark</a>
+  <a href="benchmark.html">3.1 Benchmark</a>
 </li>
 <li>
-  <a href="frameworks.html">2.3 Frameworks</a>
+  <a href="frameworks.html">3.2 Frameworks</a>
 </li>
 <li>
-  <a href="model_api.html">2.4 Alternatives</a>
+  <a href="model_api.html">3.3 Alternatives</a>
 </li>
 <li>
-  <a href="conclusions.html">3. Conclusions</a>
+  <a href="conclusions.html">4. Conclusions</a>
 </li>
 <li>
-  <a href="appendix.html">4. Appendix</a>
+  <a href="appendix.html">5. Appendix</a>
 </li>
 <li>
   <a href="license.html">License</a>
@@ -528,16 +528,16 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef032329d5e4c60d6a7de2866da60713b5a76cadetargetblankf032329a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/f032329d5e4c60d6a7de2866da60713b5a76cade" target="_blank">f032329</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef032329d5e4c60d6a7de2866da60713b5a76cadetargetblankf032329a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/f032329d5e4c60d6a7de2866da60713b5a76cade" target="_blank">f032329</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -554,18 +554,8 @@ Ignored files:
     Ignored:    data/2021-12-14-23-01_all_results.RDS
     Ignored:    results/
 
-Untracked files:
-    Untracked:  LICENSE.md
-    Untracked:  analysis/appendix.Rmd
-    Untracked:  analysis/conclusions.Rmd
-    Untracked:  analysis/introduction.Rmd
-    Untracked:  analysis/references.bib
-    Untracked:  analysis/science.csl
-    Untracked:  cluster_scripts/bash_scripts/four_i.sh
-    Untracked:  cluster_scripts/bash_scripts/two_args_caller.sh
-    Untracked:  cluster_scripts/benchmark/four_i.R
-    Untracked:  cluster_scripts/benchmark/synthetic.R
-    Untracked:  cluster_scripts/preprocessing/synthetic_prep.R
+Unstaged changes:
+    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -604,6 +594,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/frameworks.html" target="_blank">f72d59c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -775,7 +782,7 @@ results &lt;- targets %&gt;%
                                        allowParallel = FALSE))
   })
 tictoc::toc()
-6.834 sec elapsed</code></pre>
+6.865 sec elapsed</code></pre>
 </div>
 <div id="tidymodels" class="section level3">
 <h3>Tidymodels</h3>
@@ -810,7 +817,7 @@ results &lt;- red.targets %&gt;%
       )
   })
 tictoc::toc()
-63.12 sec elapsed</code></pre>
+63.84 sec elapsed</code></pre>
 </div>
 <div id="own-function" class="section level3">
 <h3>Own function</h3>
@@ -856,7 +863,7 @@ res &lt;- names(expr) %&gt;%
   purrr::set_names() %&gt;%
   purrr::map(~ lm_bag(expr, .x, n.bags))
 tictoc::toc()
-4.128 sec elapsed</code></pre>
+4.114 sec elapsed</code></pre>
 </div>
 </div>
 <div id="random-forest" class="section level2">
@@ -876,7 +883,7 @@ test &lt;- purrr::map(targets, function(target) {
       data=expr)
 })
 tictoc::toc()
-5.463 sec elapsed</code></pre>
+5.538 sec elapsed</code></pre>
 </div>
 <div id="ranger" class="section level3">
 <h3>ranger</h3>
@@ -893,7 +900,7 @@ test &lt;- purrr::map(targets, function(target) {
   )
 })
 tictoc::toc()
-3.535 sec elapsed</code></pre>
+3.549 sec elapsed</code></pre>
 </div>
 </div>
 </div>
@@ -938,7 +945,7 @@ test &lt;- purrr::map(targets, function(target) {
 })
 Error in data.frame(mtry = NULL, importance = &quot;impurity&quot;, min.node.size = NULL, : arguments imply differing number of rows: 0, 1
 tictoc::toc()
-0.02 sec elapsed</code></pre>
+0.021 sec elapsed</code></pre>
 <p>Simply because I cannot put <code>NULL</code> values in a data.frame which I would need to do to specify the normal default arguments in the <code>ranger</code> model for <code>mtry</code> and <code>min.node.size</code>.</p>
 <pre class="r"><code>tibble::tibble(mtry = NULL,
           importance = &quot;impurity&quot;,
