@@ -347,6 +347,18 @@ than the normal linear model.
 ## 4I
 
 ```{r}
+# tmp
+fouri_anca <- all.results[str_starts(all.names, 
+                                     "/4iANCA")]
+filtered_fouri_anca <- fouri_anca[str_ends(names(fouri_anca), 
+                                           "BGMARS|SVM|MLP", 
+                                           negate = TRUE)]
+saveRDS(filtered_fouri_anca, "../4iANCA_results.RDS")
+str_extract(names(filtered_fouri_anca), "ratio_[0-9]+") %>% unique
+```
+
+
+```{r}
 iiii_std <- filter_runs(all.names, all.results,
                                     "/4iANCA/ratio_24/")
 ```

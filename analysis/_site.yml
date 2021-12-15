@@ -5,20 +5,20 @@ navbar:
   left:
   - text: TOC
     href: index.html
-  - text: Introduction
+  - text: 1. Introduction
     href: introduction.html
-  - text: Tutorial
+  - text: 2.1 Tutorial
     href: tutorial.html
-  - text: Benchmark
+  - text: 2.2 Benchmark
     href: benchmark.html
-  - text: Frameworks
+  - text: 2.3 Frameworks
     href: frameworks.html
-  - text: Alternatives
+  - text: 2.4 Alternatives
     href: model_api.html
-  - text: Conclusions
+  - text: 3. Conclusions
     href: conclusions.html
-  - text: Random
-    href: random.html
+  - text: 4. Appendix
+    href: appendix.html
   - text: License
     href: license.html
   right:
