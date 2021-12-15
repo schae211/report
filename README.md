@@ -1,6 +1,8 @@
 
-# Report: Implementation of new API for training view-specific models for MISTy
+# Implementation and Benchmarking of Different Machine Learning Algorithms for Training View-Specific Models for MISTy
 
-Written using [workflowr](https://github.com/jdblischak/workflowr).
+The report was written using [workflowr](https://github.com/jdblischak/workflowr).
 
-The corresponding website is hosted on GitHub: [https://schae211.github.io/report/](https://schae211.github.io/report/)
+See the corresponding website
+[https://schae211.github.io/report/](https://schae211.github.io/report/) hosted
+on GitHub.

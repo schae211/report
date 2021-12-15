@@ -3,16 +3,20 @@ output_dir: ../docs
 navbar:
   title: Report
   left:
-  - text: Overview
+  - text: TOC
     href: index.html
+  - text: Introduction
+    href: introduction.html
   - text: Tutorial
     href: tutorial.html
   - text: Benchmark
     href: benchmark.html
   - text: Frameworks
     href: frameworks.html
-  - text: Model API
+  - text: Alternatives
     href: model_api.html
+  - text: Conclusions
+    href: conclusions.html
   - text: Random
     href: random.html
   - text: License

@@ -24,7 +24,7 @@ What data is the benchmarking based on?
 
 ```{r}
 all.views <- readRDS("data/2021-12-14-17-59_all_views.RDS")
-all.results <- readRDS("data/2021-12-13-18-43_all_results.RDS")
+all.results <- readRDS("data/2021-12-14-23-01_all_results.RDS")
 all.names <- names(all.results)
 experiments <- str_extract(all.names, "[^/]+(?=/)") %>% unique
 experiments
@@ -36,7 +36,23 @@ Where do the data come from?
 
 &nbsp;&nbsp;&nbsp; Simulated data that are included in the MISTy package. As explained in the [Get Started Vignette](https://saezlab.github.io/mistyR/articles/mistyR.html),this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.
 
+* &nbsp; Number of Samples, Markers, and spatial units per sample
+```{r}
+# Number of Samples
+c(length(all.views$`/synthetic/l6`),
+  length(all.views$`/synthetic/l12`),
+  length(all.views$`/synthetic/l24`)
+  )
 
+# Number of Markers
+ncol(all.views$`/synthetic/l6`[[1]]$intraview$data)
+
+# Summary for number of cells per sample
+summary(
+  map_dbl(all.views$`/synthetic/l6`, 
+          ~ nrow(.x$intraview$data))
+)
+```
 
 &nbsp;&nbsp;&nbsp; Features: Spatial Proteomics, Single Cell Resolution
 
@@ -99,8 +115,7 @@ summary(
 * &nbsp; Number of Samples, Markers, and spatial units per sample
 ```{r}
 # Number of Samples
-c(length(all.views$`/merfish_liver/standard280_views`),
-  length(all.views$`/merfish_liver/hvg_views`)
+c(length(all.views$`/merfish_liver/standard280_views`)
 )
 
 # Number of Markers
@@ -336,13 +351,16 @@ iiii_std <- filter_runs(all.names, all.results,
                                     "/4iANCA/ratio_24/")
 ```
 
-```{r}
+```{r fig.height=6, fig.width=8}
 performance_iiii_std <- get_performance(iiii_std)
 
+l = c("RF", "TBOOST", "MARS100", "LM", "LBOOST")
+
 performance_iiii_std %>%
-  filter(measure == "multi.R2") %>%
+  filter(measure == "gain.R2") %>%
+  filter(algorithm %in% l) %>%
   mutate(algorithm = factor(algorithm,
-             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
+         levels = l)) %>%
   group_by(study, algorithm, target) %>%
   summarise(mean = mean(value), median = median(value), 
             sd = sd(value), .groups = "drop_last") %>%
@@ -350,9 +368,107 @@ performance_iiii_std %>%
   geom_tile(aes(x = algorithm, y = target, fill = median)) +
   #facet_wrap(~ study, scales="free", nrow=1) +
   scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
+  labs(x = "Algorithm", fill = "Median Gain.R2")
+```
+
+```{r fig.height=6, fig.width=8}
+performance_iiii_std %>%
+  filter(measure == "multi.R2") %>%
+  filter(algorithm %in% l) %>%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
   labs(x = "Algorithm", fill = "Median Multi.R2")
 ```
+
+```{r}
+iiii_153 <- filter_runs(all.names, all.results,
+                                    "/4iANCA/ratio_153/")
+```
+
+```{r fig.height=6, fig.width=8}
+performance_iiii_153 <- get_performance(iiii_153)
+
+l = c("RF", "TBOOST", "MARS100", "LM", "LBOOST")
+
+performance_iiii_153 %>%
+  filter(measure == "gain.R2") %>%
+  filter(algorithm %in% l) %>%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = "Algorithm", fill = "Median Gain.R2")
+```
+
+```{r}
+performance_iiii_153 %>%
+  filter(measure == "multi.R2") %>%
+  filter(algorithm %in% l) %>%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
+```{r}
+iiii_76 <- filter_runs(all.names, all.results,
+                                    "/4iANCA/ratio_76/")
+```
+
+```{r fig.height=6, fig.width=8}
+performance_iiii_76 <- get_performance(iiii_76)
+
+l = c("RF", "TBOOST", "MARS100", "LM", "LBOOST")
+
+performance_iiii_76 %>%
+  filter(measure == "gain.R2") %>%
+  filter(algorithm %in% l) %>%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = "Algorithm", fill = "Median Gain.R2")
+```
+
+```{r}
+performance_iiii_76 %>%
+  filter(measure == "multi.R2") %>%
+  filter(algorithm %in% l) %>%
+  mutate(algorithm = factor(algorithm,
+         levels = l)) %>%
+  group_by(study, algorithm, target) %>%
+  summarise(mean = mean(value), median = median(value), 
+            sd = sd(value), .groups = "drop_last") %>%
+  ggplot() +
+  geom_tile(aes(x = algorithm, y = target, fill = median)) +
+  #facet_wrap(~ study, scales="free", nrow=1) +
+  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+  labs(x = "Algorithm", fill = "Median Multi.R2")
+```
+
 
 # Hyperparameter Optimization
 

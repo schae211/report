@@ -1,10 +1,7 @@
 
 ##### TODO #####
-# Check that the results are properly extracted
-# Check why certain runs failed (just because of the cluster?)
 
 ##### Packages #####
-library(mistyR)
 library(future)
 library(tidyverse)
 plan("multisession", workers=24)
@@ -20,10 +17,14 @@ output.object <- paste0(d, "_all_views.RDS")
 experiments <- list.dirs(input.path, recursive = FALSE) 
 
 views <- map(experiments, function(experiment) {
-  list.files(experiment, full.names = TRUE)
+  list.files(experiment, full.names = TRUE, include.dirs = FALSE
+             )
 }) %>% unlist
 
 names(views) <- map_chr(views, ~ str_extract(.x, "(?<=/net/data.isilon/ag-saez/bq_pschaefer/MISTY_VIEWS/)[^\\.]+"))
+
+# Remove views containing ignore
+views <- views[str_detect(views, "ignore", negate = TRUE)]
 
 read.views <- map(views, function(view) {
   readRDS(view)

@@ -6,7 +6,7 @@ Setup.
 
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
+knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 Loaded packages.
@@ -16,7 +16,6 @@ suppressPackageStartupMessages(library(mistyR))
 suppressPackageStartupMessages(library(future))
 suppressPackageStartupMessages(library(tidyverse))
 plan("multisession", workers=14)
-plan("multisession", workers=6)
 ```
 
 # Introduction
@@ -25,7 +24,8 @@ In this tutorial, I will briefly explain how I envision the new MISTy workflow.
 Instead of only offering a pre-defined set of ML algorithms to model each 
 view, I refactored the code such that users can supply their own function
 if they would like. If not, we ship MISTy with several implemented functions
-that can simply be plugged into the model. More details can be found below.
+such as gradient boosting that can simply be plugged into the model. 
+More details can be found below.
 
 ## Data
 
@@ -37,7 +37,7 @@ models the production, diffusion, degradation and interactions of 11
 molecular species in 4 different cell types. 
 
 In total there are 10 tibbles, each of which contains about 4000 cells and 
-their corresponding expresssion of the markers, position in a 100x100 grid
+their corresponding expresssion, and position in a 100x100 grid
 (randomly assigned) as well as the cell type identity. (For more information
 see `help("synthetic")`).
 
@@ -367,7 +367,7 @@ misty.views %>%
  - Importantly, the feature importances is here calculated based on a global 
  model agnostic method. More specifically each feature is permuated (one at a time)
  and then the reduction in preditive performance is used as measure for the
- variable importance.
+ variable importance. (This is achieved using the `iml` R package).
 
 ```{r}
 mlp_model

@@ -1,55 +1,24 @@
 ---
-title: "Overview"
+title: "Implementation and Benchmarking of Different Machine Learning Algorithms for Training View-Specific Models for MISTy"
 site: workflowr::wflow_site
+output:
+  workflowr::wflow_html:
+    toc: no
+    toc_float: no
 ---
 
-This report documents what I have primarily worked on between September 2021
-and December 2021. The topic of my internship was "Implement and explore 
-different ensemble approaches for training view-specific models for MISTy 
-and meta models for late fusion of predictions".
+# Table of Contents
 
-# Tutorial
+# [&nbsp;&nbsp;&nbsp; 1. Introduction](https://schae211.github.io/report/introduction.html)
 
-This Rmarkdown showcases the new implementation of MISTy, where the
-function to model each view are passed as an argument to the `run_misty()` 
-call. 
+# &nbsp;&nbsp;&nbsp; 2. Results
 
-```{r eval=FALSE}
-misty.views %>% misty.views %>%
-  run_misty(model.function = bagged_mars_model, n.bags = 50, degree = 2)
-```
+## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1 Tutorial New MISTy API](https://schae211.github.io/report/tutorial.html)
 
-The tutorial includes also a section on how to construct those function
-(i.e. what is the input and required output).
+## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.2 Benchmarking Different Algorithms for Modeling Views](https://schae211.github.io/report/benchmark.html)
 
-# Benchmark
+## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.3 Exploring Different ML Frameworks in R](https://schae211.github.io/report/frameworks.html)
 
-This Rmarkdown contains:
+## [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.4 Alternative to New MISTy API](https://schae211.github.io/report/model_api.html)
 
-a) The results of comparing the performance of different ML algorithms on 
-different spatial omics datasets.
-
-b) The results of testing different hyperparameters for certain algorithms
-on different spatial omics datasets.
-
-# Frameworks
-
-This Rmarkdown describes why I choose not to use any existing ML framework in
-MISTy. In a nutshell, these frameworks are either too slow or too unflexible 
-(e.g. not able to return out-of-bag estimates).
-
-# Model API
-
-This Rmarkdown described another way of generalizing the training of 
-view-specific models, such that the call looks like this:
-
-```{r eval=FALSE}
-misty.views %>% run_misty(method = "bag", learner = "earth", 
-                          n.learners = 50, degree = 2)
-```
-
-
-# Random
-
-This Rmarkdown contains results I could not fit into the other categories
-thus far.
+# [&nbsp;&nbsp;&nbsp; 3. Discussion](https://schae211.github.io/report/conclusions.html)
