@@ -1,5 +1,5 @@
 ---
-title: "Introduction"
+title: 1. Introduction
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -9,78 +9,71 @@ bibliography: references.bib
 csl: science.csl
 ---
 
-This report documents what I have worked on between September 2021
-and December 2021 in the [Saez-Rodriguez Group](https://saezlab.org) supervised
-by Jovan Tanevski.
+<style>
+body {
+text-align: justify;
+margin: 300px}
+</style>
 
-See the corresponding
-[GitHub repository](https://github.com/schae211/mistyR/tree/as-function).
+In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq[@10.1016/j.cell.2015.05.002] in 2015, the number of studies based on single-cell omics has exploded, primarily due to the  commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, to use this technology a single-cell suspension must be used, meaning tissues must for example be dissociated before sequencing. Consequently, we loose information about the spatial context, which is crucial for cellular function. Different mechanisms are employed by cells to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Apart from hormonal signaling, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, infering cell-cell-communcation (CCC) using single-cell expression data based on dissociated tissues is difficult. 
 
-# Introduction
+Conversely, taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data. Early approaches to investigate the expression of single cells were limited to a few markers, but in the last years there has been a rise of spatially resolved
+transcriptomic and proteomic approaches, which I will briefly describe based on these comprehensive recent reviews [@Moses2021.05.11.443152].
 
-In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq[10.1016/j.cell.2015.05.002] in 2015, the number of studies based on single-cell omics has exploded, primarily due to the  commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, to use this technology a single-cell suspension must be used, meaning tissues must for example be dissociated before sequencing. Consequently, we loose information about the spatial context, which is crucial for cellular function. Different mechanisms are employed by cells to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Apart from hormonal signaling, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, infering cell-cell-communcation (CCC) using single-cell expression data based on dissociated tissues is difficult. 
+# 1.1 Spatial Transcriptomics
 
-Conversely, taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data, which only became available in the last years. Early approaches to investigate the expression of single cells were limited to a few markers, but 
+Modern spatial transcriptomic approaches can be broadly classified into four categories, namely microdissection, single-molecule fluorescent in-situ hybridization (smFISH), in-situ sequencing (ISS), and spatial barcoding in conjunction with next-generation sequencing (NGS). Microdissection refers to a couple of methods for isolating small regions of interest which can subsequently be analyzed (for example by NGS). Advantages are the flexibility with respect to the size of the isolated spots (e.g. down to the size of nuclei) and downstream analysis, and the compatibility with FFPE tissues. However, this comes at the cost of being laborious due to sequential handling of the isolated spots. Thus, the throughput, meaning how many cells/spots can be processed in a given time, is much higher for the other methods mentioned above. In particular spatial barcoding with NGS offers a high throughput due to its commercialization by 10X Genomics ("Visium") and standard downstream pipelines of NGS data (demultiplexing, alignment, etc.). 
 
-- Spatial Omics
+Visium is based on slides containing spots coated with capture sequences comprising a sequencing handle, barcode, UMI, and poly-T. The tissue is added on top of the slide and permeabilized, such that the polyadenylated transcripts bind to the capture sequences. Being based on NGS, these methods cover the whole transcriptome, which comes at the expense of a low resolution (corresponding to the size of the spots). 
 
--- Describing the 3 kind of spatial transcriptomic technologes we have
-[@Moses2021.05.11.443152]
--- Describing the kind of proteomic technologies we have
-(describing the features of the different technolgies)
+Both smFISH and ISS have single-cell (or even subcellular) resolution. Two commong methods for smFISH are seqFISH [@10.1016/j.neuron.2016.10.001] and MERFISH [@10.1073/pnas.1612826113]. They are both based on multiple rounds of hybridization. seqFISH uses unique sequences of colors in each hybridization round to identify transcripts (i.e. in each round a transcript is labeled with multiple probes containing the same fluorophore). MERFISH uses transcript specific encoding probes which can be bound by fluorescently labeled readout probes which always have the some color. By construction, a readout probe binds or does not bind a given transcript in a given hybridization round, creating a binary code of the same length as the number of hybridzation rounds. So each transcript is encoded by a unique binary code. By choosing a Hamming distance larger than one, this approach helps to reduce detection errors. Usually both methods cover around 300 different transcripts, but can be scaled up to cover many more genes (usually at the cost of including fewer cells). 
 
-- Mention SVCA for example (as another method). (I could orient the
-introduction somewhat on the MISTy paper)
+The last category of spatial transcriptomic technologies discussed here comprises ISS, which can be divided into sequencing by ligation (SBL) and sequencing by synthesis (SBS). Most ISS technolgies, such as the Cartana platform (10X Genomics) are based on SBL. The specificity of DNA ligation is exploited by padlock probes which can only be ligated if they perfectly bind to reverse transcribed RNAs. Upon ligation the padlock probes are amplified by rolling-circle amplification (RCA) and detected by fluorescence labeling. [@10.1016/j.cell.2020.06.038] Due to RCA signal amplification the imaging can be
+done at lower magnifications compared to smFISH methods allowing for larger tissue sections to be imaged.
 
-- What is MISTy
+## 1.2 Spatial Proteomics
+
+Apart from spatial transcriptomics, the field of spatial proteomics is also rapidly expanding. Two examples for spatial proteomic technologies are imaging mass cytometry (IMC) [@10.1038/nmeth.2869] and multiplexed ion beam imaging (MIBI) [@10.1038/nm.3488]. Conventional technologies to visualize proteins in tissue sections such as immunohistochemistry (IHC) are based on antibodies conjugated with fluorophores or reporter enzymes, which makes mulitplexing difficult due to spectral overlap. For IHC several rounds of staining, imaging and photobleaching are needed for multiplexing, whereas IMC and MIBI solve this issue by using antibodies conjugated with heavy-metal isotopes which can be detected via mass cytometry imaging. Both technologies can image up to 40 different proteins. MIBI uses an oxygen duoplasmatron ion beam to ionize the heavy-metal labels, whereas IMC uses an UV laser to abalte the tissue which is subsequently atomized and ionized. According to Baharlou H. et al [@10.3389/fimmu.2019.02657], the main differences between the technologies is that size of the MIBI ion beam and thus the spatial resolution is tuneable between 1,000 and 260 nm, wherase the IMC laser is fixed at 1,000 nm. However, IMC has faster acquisition times compared to MIBI.
+
+## What can we learn from spatial data
+
+- Mention SVCA for example (as another method). 
+[@10.1016/j.celrep.2019.08.077]
+
+- Include the theis model
+[@Fischer2021.07.11.451750]
+
+(I could orient the introduction somewhat on the MISTy paper)
+
+- What is MISTy?
 [@Tanevski2020.05.08.084145]
 
-# Tutorial
+<img src="https://www.dropbox.com/s/5wyh520i1wl62ul/graphical_abstract.png?raw=1" align="center" width="500">
 
-This Rmarkdown showcases the new implementation of MISTy, where the
-function to model each view are passed as an argument to the `run_misty()` 
-call. 
+## This Work
 
-```{r eval=FALSE}
-misty.views %>% misty.views %>%
-  run_misty(model.function = bagged_mars_model, n.bags = 50, degree = 2)
-```
-
-The tutorial includes also a section on how to construct those function
-(i.e. what is the input and required output).
-
-# Benchmark
-
-This Rmarkdown contains:
-
-a) The results of comparing the performance of different ML algorithms on 
-different spatial omics datasets.
-
-b) The results of testing different hyperparameters for certain algorithms
-on different spatial omics datasets.
-
-# Frameworks
-
-This Rmarkdown describes why I choose not to use any existing ML framework in
-MISTy. In a nutshell, these frameworks are either too slow or too unflexible 
-(e.g. not able to return out-of-bag estimates).
-
-# Model API
-
-This Rmarkdown describes another way of generalizing the training of 
-view-specific models, such that the call looks like this:
+In the [Methods](https://schae211.github.io/report/tutorial.html) section I will describe the flexible implementation of different machine learning algorithms for training view-specific models in MISTy. Based on the new underlaying framework, the function to model each view is now passed as an argument to the `run_misty()` call. The default model is still random forest, but now users can either plug in another provided model function such as gradient boosting or define their own function such as non-negative least-squares.
 
 ```{r eval=FALSE}
-misty.views %>% run_misty(method = "bag", learner = "earth", 
-                          n.learners = 50, degree = 2)
+misty.views %>%
+  run_misty(model.function = gradient_boosting_model, 
+            booster = "gbtree")
 ```
 
-# Conclusions
+In the results section, I will first show [benchmarking](https://schae211.github.io/report/benchmark.html) results, where I compare the performance of different algorithms on different spatial omics datasets. Furthermore, I explore the impact of different hyperparameters on the model performance for the algorithms.
 
-This Rmarkdown discusses the results of my internship and poses open 
-questions for the MISTy and the field of spatial omics technologies. 
+In the [frameworks](https://schae211.github.io/report/frameworks.html) section I briefly describe we could not use one of the major machine learning frameworks in R, namely `caret`, `tidymodels`, and `mlr3` as backend in MISTy models. These frameworks are either not flexible enough, or their performance is bad.
 
-# Random
+Also, I will describe an [alternative](https://schae211.github.io/report/model_api.html) implementation of a new MISTy framework that allows users to select more ML models than only random forests, but not to use functions defined by themselves. Running MISTy with an ensemble of 50 MARS models (interaction term 2) trained with bootstrap samples would looks like this.
 
-This Rmarkdown contains results I could not fit into the other categories
-thus far.
+```{r eval=FALSE}
+misty.views %>% 
+  run_misty(method = "bag", learner = "earth", 
+            n.learners = 50, degree = 2)
+```
+
+In the end, I will [discuss](https://schae211.github.io/report/model_api.html) the results of my work and pose remaining open questions for the development of MISTy and the field of spatial omics technologies.
+
+# References
+
+
