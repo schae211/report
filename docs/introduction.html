@@ -11,7 +11,7 @@
 
 
 
-<title>Introduction</title>
+<title>1. Introduction</title>
 
 <script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -334,7 +334,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Introduction</h1>
+<h1 class="title toc-ignore">1. Introduction</h1>
 
 </div>
 
@@ -359,7 +359,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-15
+<strong>Last updated:</strong> 2021-12-16
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -450,16 +450,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreed104aae3e8ff93387a0e1c2ebdc74f9265fdc1cetargetblankd104aaea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/d104aae3e8ff93387a0e1c2ebdc74f9265fdc1ce" target="_blank">d104aae</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreed104aae3e8ff93387a0e1c2ebdc74f9265fdc1cetargetblankd104aaea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/d104aae3e8ff93387a0e1c2ebdc74f9265fdc1ce" target="_blank">d104aae</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -475,6 +475,13 @@ Ignored files:
     Ignored:    data/2021-12-14-17-59_all_views.RDS
     Ignored:    data/2021-12-14-23-01_all_results.RDS
     Ignored:    results/
+
+Untracked files:
+    Untracked:  analysis/images/
+
+Unstaged changes:
+    Modified:   analysis/references.bib
+    Modified:   cluster_scripts/benchmark/four_i.R
 
 </code></pre>
 <p>
@@ -513,6 +520,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/d104aae3e8ff93387a0e1c2ebdc74f9265fdc1ce/analysis/introduction.Rmd" target="_blank">d104aae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-16
+</td>
+<td>
+wflow_publish(“analysis/introduction.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/1710d804182e867e8d3dc0d236fbf2f976201c9e/docs/introduction.html" target="_blank">1710d80</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -588,59 +629,85 @@ wflow_publish(“analysis/introduction.Rmd”)
 </div>
 </div>
 </div>
-<p>This report documents what I have worked on between September 2021 and December 2021 in the <a href="https://saezlab.org">Saez-Rodriguez Group</a> supervised by Jovan Tanevski.</p>
-<p>See the corresponding <a href="https://github.com/schae211/mistyR/tree/as-function">GitHub repository</a>.</p>
-<div id="introduction" class="section level1">
-<h1>Introduction</h1>
-<p>In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq[10.1016/j.cell.2015.05.002] in 2015, the number of studies based on single-cell omics has exploded, primarily due to the commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, to use this technology a single-cell suspension must be used, meaning tissues must for example be dissociated before sequencing. Consequently, we loose information about the spatial context, which is crucial for cellular function. Different mechanisms are employed by cells to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Apart from hormonal signaling, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, infering cell-cell-communcation (CCC) using single-cell expression data based on dissociated tissues is difficult.</p>
-<p>Conversely, taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data, which only became available in the last years. Early approaches to investigate the expression of single cells were limited to a few markers, but</p>
+<style>
+body {
+text-align: justify;
+margin: 300px}
+</style>
+<p>In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq<span class="citation">(<em>1</em>)</span> in 2015, the number of studies based on single-cell omics has exploded, primarily due to the commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, to use this technology a single-cell suspension must be used, meaning tissues must for example be dissociated before sequencing. Consequently, we loose information about the spatial context, which is crucial for cellular function. Different mechanisms are employed by cells to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Apart from hormonal signaling, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, infering cell-cell-communcation (CCC) using single-cell expression data based on dissociated tissues is difficult.</p>
+<p>Conversely, taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data. Early approaches to investigate the expression of single cells were limited to a few markers, but in the last years there has been a rise of spatially resolved transcriptomic and proteomic approaches, which I will briefly describe based on these comprehensive recent reviews <span class="citation">(<em>2</em>)</span>.</p>
+<div id="spatial-transcriptomics" class="section level1">
+<h1>1.1 Spatial Transcriptomics</h1>
+<p>Modern spatial transcriptomic approaches can be broadly classified into four categories, namely microdissection, single-molecule fluorescent in-situ hybridization (smFISH), in-situ sequencing (ISS), and spatial barcoding in conjunction with next-generation sequencing (NGS). Microdissection refers to a couple of methods for isolating small regions of interest which can subsequently be analyzed (for example by NGS). Advantages are the flexibility with respect to the size of the isolated spots (e.g. down to the size of nuclei) and downstream analysis, and the compatibility with FFPE tissues. However, this comes at the cost of being laborious due to sequential handling of the isolated spots. Thus, the throughput, meaning how many cells/spots can be processed in a given time, is much higher for the other methods mentioned above. In particular spatial barcoding with NGS offers a high throughput due to its commercialization by 10X Genomics (“Visium”) and standard downstream pipelines of NGS data (demultiplexing, alignment, etc.).</p>
+<p>Visium is based on slides containing spots coated with capture sequences comprising a sequencing handle, barcode, UMI, and poly-T. The tissue is added on top of the slide and permeabilized, such that the polyadenylated transcripts bind to the capture sequences. Being based on NGS, these methods cover the whole transcriptome, which comes at the expense of a low resolution (corresponding to the size of the spots).</p>
+<p>Both smFISH and ISS have single-cell (or even subcellular) resolution. Two commong methods for smFISH are seqFISH <span class="citation">(<em>3</em>)</span> and MERFISH <span class="citation">(<em>4</em>)</span>. They are both based on multiple rounds of hybridization. seqFISH uses unique sequences of colors in each hybridization round to identify transcripts (i.e. in each round a transcript is labeled with multiple probes containing the same fluorophore). MERFISH uses transcript specific encoding probes which can be bound by fluorescently labeled readout probes which always have the some color. By construction, a readout probe binds or does not bind a given transcript in a given hybridization round, creating a binary code of the same length as the number of hybridzation rounds. So each transcript is encoded by a unique binary code. By choosing a Hamming distance larger than one, this approach helps to reduce detection errors. Usually both methods cover around 300 different transcripts, but can be scaled up to cover many more genes (usually at the cost of including fewer cells).</p>
+<p>The last category of spatial transcriptomic technologies discussed here comprises ISS, which can be divided into sequencing by ligation (SBL) and sequencing by synthesis (SBS). Most ISS technolgies, such as the Cartana platform (10X Genomics) are based on SBL. The specificity of DNA ligation is exploited by padlock probes which can only be ligated if they perfectly bind to reverse transcribed RNAs. Upon ligation the padlock probes are amplified by rolling-circle amplification (RCA) and detected by fluorescence labeling. <span class="citation">(<em>5</em>)</span> Due to RCA signal amplification the imaging can be done at lower magnifications compared to smFISH methods allowing for larger tissue sections to be imaged.</p>
+<div id="spatial-proteomics" class="section level2">
+<h2>1.2 Spatial Proteomics</h2>
+<p>Apart from spatial transcriptomics, the field of spatial proteomics is also rapidly expanding. Two examples for spatial proteomic technologies are imaging mass cytometry (IMC) <span class="citation">(<em>6</em>)</span> and multiplexed ion beam imaging (MIBI) <span class="citation">(<em>7</em>)</span>. Conventional technologies to visualize proteins in tissue sections such as immunohistochemistry (IHC) are based on antibodies conjugated with fluorophores or reporter enzymes, which makes mulitplexing difficult due to spectral overlap. For IHC several rounds of staining, imaging and photobleaching are needed for multiplexing, whereas IMC and MIBI solve this issue by using antibodies conjugated with heavy-metal isotopes which can be detected via mass cytometry imaging. Both technologies can image up to 40 different proteins. MIBI uses an oxygen duoplasmatron ion beam to ionize the heavy-metal labels, whereas IMC uses an UV laser to abalte the tissue which is subsequently atomized and ionized. According to Baharlou H. et al <span class="citation">(<em>8</em>)</span>, the main differences between the technologies is that size of the MIBI ion beam and thus the spatial resolution is tuneable between 1,000 and 260 nm, wherase the IMC laser is fixed at 1,000 nm. However, IMC has faster acquisition times compared to MIBI.</p>
+</div>
+<div id="what-can-we-learn-from-spatial-data" class="section level2">
+<h2>What can we learn from spatial data</h2>
 <ul>
-<li>Spatial Omics</li>
+<li><p>Mention SVCA for example (as another method). <span class="citation">(<em>9</em>)</span></p></li>
+<li><p>Include the theis model <span class="citation">(<em>10</em>)</span></p></li>
 </ul>
-<p>– Describing the 3 kind of spatial transcriptomic technologes we have <span class="citation">(<em>1</em>)</span> – Describing the kind of proteomic technologies we have (describing the features of the different technolgies)</p>
+<p>(I could orient the introduction somewhat on the MISTy paper)</p>
 <ul>
-<li><p>Mention SVCA for example (as another method). (I could orient the introduction somewhat on the MISTy paper)</p></li>
-<li><p>What is MISTy <span class="citation">(<em>2</em>)</span></p></li>
+<li>What is MISTy? <span class="citation">(<em>11</em>)</span></li>
 </ul>
+<p><img src="https://www.dropbox.com/s/5wyh520i1wl62ul/graphical_abstract.png?raw=1" align="center" width="500"></p>
 </div>
-<div id="tutorial" class="section level1">
-<h1>Tutorial</h1>
-<p>This Rmarkdown showcases the new implementation of MISTy, where the function to model each view are passed as an argument to the <code>run_misty()</code> call.</p>
-<pre class="r"><code>misty.views %&gt;% misty.views %&gt;%
-  run_misty(model.function = bagged_mars_model, n.bags = 50, degree = 2)</code></pre>
-<p>The tutorial includes also a section on how to construct those function (i.e. what is the input and required output).</p>
+<div id="this-work" class="section level2">
+<h2>This Work</h2>
+<p>In the <a href="https://schae211.github.io/report/tutorial.html">Methods</a> section I will describe the flexible implementation of different machine learning algorithms for training view-specific models in MISTy. Based on the new underlaying framework, the function to model each view is now passed as an argument to the <code>run_misty()</code> call. The default model is still random forest, but now users can either plug in another provided model function such as gradient boosting or define their own function such as non-negative least-squares.</p>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = gradient_boosting_model, 
+            booster = &quot;gbtree&quot;)</code></pre>
+<p>In the results section, I will first show <a href="https://schae211.github.io/report/benchmark.html">benchmarking</a> results, where I compare the performance of different algorithms on different spatial omics datasets. Furthermore, I explore the impact of different hyperparameters on the model performance for the algorithms.</p>
+<p>In the <a href="https://schae211.github.io/report/frameworks.html">frameworks</a> section I briefly describe we could not use one of the major machine learning frameworks in R, namely <code>caret</code>, <code>tidymodels</code>, and <code>mlr3</code> as backend in MISTy models. These frameworks are either not flexible enough, or their performance is bad.</p>
+<p>Also, I will describe an <a href="https://schae211.github.io/report/model_api.html">alternative</a> implementation of a new MISTy framework that allows users to select more ML models than only random forests, but not to use functions defined by themselves. Running MISTy with an ensemble of 50 MARS models (interaction term 2) trained with bootstrap samples would looks like this.</p>
+<pre class="r"><code>misty.views %&gt;% 
+  run_misty(method = &quot;bag&quot;, learner = &quot;earth&quot;, 
+            n.learners = 50, degree = 2)</code></pre>
+<p>In the end, I will <a href="https://schae211.github.io/report/model_api.html">discuss</a> the results of my work and pose remaining open questions for the development of MISTy and the field of spatial omics technologies.</p>
 </div>
-<div id="benchmark" class="section level1">
-<h1>Benchmark</h1>
-<p>This Rmarkdown contains:</p>
-<ol style="list-style-type: lower-alpha">
-<li><p>The results of comparing the performance of different ML algorithms on different spatial omics datasets.</p></li>
-<li><p>The results of testing different hyperparameters for certain algorithms on different spatial omics datasets.</p></li>
-</ol>
 </div>
-<div id="frameworks" class="section level1">
-<h1>Frameworks</h1>
-<p>This Rmarkdown describes why I choose not to use any existing ML framework in MISTy. In a nutshell, these frameworks are either too slow or too unflexible (e.g. not able to return out-of-bag estimates).</p>
-</div>
-<div id="model-api" class="section level1">
-<h1>Model API</h1>
-<p>This Rmarkdown describes another way of generalizing the training of view-specific models, such that the call looks like this:</p>
-<pre class="r"><code>misty.views %&gt;% run_misty(method = &quot;bag&quot;, learner = &quot;earth&quot;, 
-                          n.learners = 50, degree = 2)</code></pre>
-</div>
-<div id="conclusions" class="section level1">
-<h1>Conclusions</h1>
-<p>This Rmarkdown discusses the results of my internship and poses open questions for the MISTy and the field of spatial omics technologies.</p>
-</div>
-<div id="random" class="section level1">
-<h1>Random</h1>
-<p>This Rmarkdown contains results I could not fit into the other categories thus far.</p>
+<div id="references" class="section level1">
+<h1>References</h1>
 <div id="refs" class="references csl-bib-body">
+<div id="ref-10.1016/j.cell.2015.05.002" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">E. Z. Macosko, A. Basu, R. Satija, J. Nemesh, K. Shekhar, M. Goldman, I. Tirosh, A. R. Bialas, N. Kamitaki, E. M. Martersteck, J. J. Trombetta, D. A. Weitz, J. R. Sanes, A. K. Shalek, A. Regev, S. A. McCarroll, <span class="nocase">Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets</span>. <em>Cell</em>. <strong>161</strong>, 1202–1214 (2015).</div>
+</div>
 <div id="ref-Moses2021.05.11.443152" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">L. Moses, L. Pachter, Museum of spatial transcriptomics. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2021.05.11.443152">10.1101/2021.05.11.443152</a>.</div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">L. Moses, L. Pachter, Museum of spatial transcriptomics. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2021.05.11.443152">10.1101/2021.05.11.443152</a>.</div>
+</div>
+<div id="ref-10.1016/j.neuron.2016.10.001" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">S. Shah, E. Lubeck, W. Zhou, L. Cai, <span class="nocase">In Situ Transcription Profiling of Single Cells Reveals Spatial Organization of Cells in the Mouse Hippocampus</span>. <em>Neuron</em>. <strong>92</strong>, 342–357 (2016).</div>
+</div>
+<div id="ref-10.1073/pnas.1612826113" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">J. R. Moffitt, J. Hao, G. Wang, K. H. Chen, H. P. Babcock, X. Zhuang, <span class="nocase">High-throughput single-cell gene-expression profiling with multiplexed error-robust fluorescence in situ hybridization</span>. <em>Proceedings of the National Academy of Sciences</em>. <strong>113</strong>, 11046–11051 (2016).</div>
+</div>
+<div id="ref-10.1016/j.cell.2020.06.038" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">W.-T. Chen, A. Lu, K. Craessaerts, B. Pavie, C. S. Frigerio, N. Corthout, X. Qian, J. Laláková, M. Kühnemund, I. Voytyuk, L. Wolfs, R. Mancuso, E. Salta, S. Balusu, A. Snellinx, S. Munck, A. Jurek, J. F. Navarro, T. C. Saido, I. Huitinga, J. Lundeberg, M. Fiers, B. D. Strooper, <span class="nocase">Spatial Transcriptomics and In Situ Sequencing to Study Alzheimer’s Disease</span>. <em>Cell</em>. <strong>182</strong>, 976–991.e19 (2020).</div>
+</div>
+<div id="ref-10.1038/nmeth.2869" class="csl-entry">
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">C. Giesen, H. A. O. Wang, D. Schapiro, N. Zivanovic, A. Jacobs, B. Hattendorf, P. J. Schüffler, D. Grolimund, J. M. Buhmann, S. Brandt, Z. Varga, P. J. Wild, D. Günther, B. Bodenmiller, <span class="nocase">Highly multiplexed imaging of tumor tissues with subcellular resolution by mass cytometry</span>. <em>Nature Methods</em>. <strong>11</strong>, 417–422 (2014).</div>
+</div>
+<div id="ref-10.1038/nm.3488" class="csl-entry">
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">M. Angelo, S. C. Bendall, R. Finck, M. B. Hale, C. Hitzman, A. D. Borowsky, R. M. Levenson, J. B. Lowe, S. D. Liu, S. Zhao, Y. Natkunam, G. P. Nolan, <span class="nocase">Multiplexed ion beam imaging of human breast tumors</span>. <em>Nature Medicine</em>. <strong>20</strong>, 436–442 (2014).</div>
+</div>
+<div id="ref-10.3389/fimmu.2019.02657" class="csl-entry">
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">H. Baharlou, N. P. Canete, A. L. Cunningham, A. N. Harman, E. Patrick, <span class="nocase">Mass Cytometry Imaging for the Study of Human Diseases—Applications and Data Analysis Strategies</span>. <em>Frontiers in Immunology</em>. <strong>10</strong>, 2657 (2019).</div>
+</div>
+<div id="ref-10.1016/j.celrep.2019.08.077" class="csl-entry">
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">D. Arnol, D. Schapiro, B. Bodenmiller, J. Saez-Rodriguez, O. Stegle, <span class="nocase">Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis</span>. <em>Cell Reports</em>. <strong>29</strong>, 202–211.e6 (2019).</div>
+</div>
+<div id="ref-Fischer2021.07.11.451750" class="csl-entry">
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">D. S. Fischer, A. C. Schaar, F. J. Theis, Learning cell communication from spatial graphs of cells. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2021.07.11.451750">10.1101/2021.07.11.451750</a>.</div>
 </div>
 <div id="ref-Tanevski2020.05.08.084145" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">J. Tanevski, R. O. R. Flores, A. Gabor, D. Schapiro, J. Saez-Rodriguez, Explainable multi-view framework for dissecting intercellular signaling from highly multiplexed spatial data. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2020.05.08.084145">10.1101/2020.05.08.084145</a>.</div>
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">J. Tanevski, R. O. R. Flores, A. Gabor, D. Schapiro, J. Saez-Rodriguez, Explainable multi-view framework for dissecting intercellular signaling from highly multiplexed spatial data. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2020.05.08.084145">10.1101/2020.05.08.084145</a>.</div>
 </div>
 </div>
 <br>
