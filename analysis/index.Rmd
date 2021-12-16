@@ -7,6 +7,13 @@ output:
     toc_float: no
 ---
 
+This report documents what I have worked on between September 2021
+and December 2021 in the [Saez-Rodriguez Group](https://saezlab.org) supervised
+by Jovan Tanevski.
+
+See the corresponding
+[GitHub repository](https://github.com/schae211/mistyR/tree/as-function).
+
 # Table of Contents
 
 ## [&nbsp;&nbsp;&nbsp; 1. Introduction](https://schae211.github.io/report/introduction.html)
