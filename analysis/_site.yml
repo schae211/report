@@ -9,12 +9,14 @@ navbar:
     href: introduction.html
   - text: 2. Methods
     href: tutorial.html
-  - text: 3.1 Benchmark
-    href: benchmark.html
-  - text: 3.2 Frameworks
-    href: frameworks.html
-  - text: 3.3 Alternatives
-    href: model_api.html
+  - text: 3. Results
+    menu:
+      - text: 3.1 Benchmark
+        href: benchmark.html
+      - text: 3.2 Frameworks
+        href: frameworks.html
+      - text: 3.3 Alternatives
+        href: model_api.html
   - text: 4. Conclusions
     href: conclusions.html
   - text: 5. Appendix

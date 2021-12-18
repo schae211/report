@@ -607,6 +607,7 @@ Function to extract the importances (interaction measures).
 get_importance_dt <- function(filtered.run) {
   # https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
   # could potentially be faster with these large datasets
+  # impressive benchmark: https://h2oai.github.io/db-benchmark/
   map2_dfr(filtered.run, names(filtered.run), function(misty.run, name) {
     out <- misty.run$importances    
     out <- data.table::as.data.table(out)
@@ -694,43 +695,62 @@ split_keys <- function(misty.importances) {
 }
 ```
 
-Function to compute the cosine similarity for a given view.
+Function to compute the cosine similarity.
 
 ```{r}
-cosine_similarity <- function(keys, splits, sel.view, relative="RF") {
-  # 1. get the tibbles corresponding to the selected view
-  keys %>%
-    mutate(id = row_number()) %>%
-    filter(view == sel.view) %>%
-    pull(id, name = sample) %>%
-    # 2. map over each sample (tibble) and bind the results as rows
-    map_dfr(function(tbl.id) {
-      
-      tbl <- splits[[tbl.id]]
-      
-      # 3. get the random forest importance vector as reference
-      rf <- tbl %>% filter(algorithm == relative) %>% 
-        select(-c(sample, view, algorithm)) %>%
-        unlist()
-      
-      # 4. get the importance vectors for the other algorithms by mapping over rows
-      cosine.sims <- slide_dfr(tbl, function(row) {
-        vec <- row %>% select(-c(sample, view, algorithm)) %>%
+cosine_similarity <- function(keys, splits, relative="RF") {
+  
+  # 1. map over each view
+  map_dfr(unique(keys$view), function(sel.view) {
+      # 2. get the tibbles corresponding to the selected view
+    keys %>%
+      mutate(id = row_number()) %>%
+      filter(view == sel.view) %>%
+      pull(id, name = sample) %>%
+      # 3. map over each sample (tibble) and bind the results as rows
+      map_dfr(function(tbl.id) {
+        
+        tbl <- splits[[tbl.id]]
+        
+        # 4. get the random forest importance vector as reference
+        rf <- tbl %>% filter(algorithm == relative) %>% 
+          select(-c(sample, view, algorithm)) %>%
           unlist()
         
-        # 5. for each importance vector compute the cosine similarity
-        cosine.sim <- (rf %*% vec * 1/(rf %*% rf)**0.5 * 1/(vec %*% vec)**0.5) %>%
-          as.double()
-        
-        tibble(algorithm = row %>% pull(algorithm), cosine = cosine.sim, 
-               sample = row %>% pull(sample))
-      })
+        # 5. get the importance vectors for the other algorithms by mapping over rows
+        cosine.sims <- slide_dfr(tbl, function(row) {
+          vec <- row %>% select(-c(sample, view, algorithm)) %>%
+            unlist()
+          
+          # 6. for each importance vector compute the cosine similarity
+          cosine.sim <- (rf %*% vec * 1/(rf %*% rf)**0.5 * 1/(vec %*% vec)**0.5) %>%
+            as.double()
+          
+          tibble(algorithm = row %>% pull(algorithm), cosine = cosine.sim, 
+                 sample = row %>% pull(sample), view = sel.view)
+        })
+      }) %>%
+      # 7. Group by algorithm and get the mean of the cosine similarity for each sample
+      group_by(algorithm, view) %>%
+      summarise(mean = mean(cosine), sd = sd(cosine), .groups="drop")
     }) %>%
-    # 6. Group by algorithm and get the mean of the cosine similarity for each sample
-    group_by(algorithm) %>%
-    summarise(mean = mean(cosine), sd = sd(cosine))
+      arrange(algorithm)
 }
 ```
+
+```{r}
+plot_cosine_similarity <- function(cosine_similarity) {
+  cosine_similarity %>%
+    mutate(low = mean-sd, high = mean+sd) %>%
+    mutate(algorithm = factor(algorithm, levels=l)) %>%
+    ggplot() +
+    geom_point(aes(x = algorithm, y = mean)) +
+    geom_errorbar(aes(x = algorithm, ymin = low, ymax = high)) +
+    facet_wrap(~ view) +
+    theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5))
+}
+```
+
 
 ## `synthetic`
 
@@ -744,40 +764,31 @@ filter_runs(all.results, "synthetic", "l6") %>%
 
 ### Cosine Similarity
 
-Split the importances according to view and sample.
+Split the importances according to view and sample and get the corresponding keys.
 
 ```{r}
 splits <- filter_runs(all.results, "synthetic", "l6") %>%
   get_importance() %>%
   split_importances()
 
-length(splits)
-```
-
-Get the keys.
-
-```{r}
 keys <- filter_runs(all.results, "synthetic", "l6") %>%
   get_importance() %>%
   split_keys()
-
-keys
 ```
 
-#### Intraview
-
-Now let's look at the cosine similarities for the intraview for each sample 
-(and summarize using the mean and the standard deviation).
+Now let's look at the cosine similarities.
 
 ```{r}
-cosine_similarity(keys, splits, "intra")
+cosine_similarity(keys, splits)
 ```
 
-#### Paraview
+And plot them.
 
 ```{r}
-cosine_similarity(keys, splits, "para.6")
+cosine_similarity(keys, splits) %>%
+  plot_cosine_similarity()
 ```
+
 
 ## `mibi_tnbc`
 
@@ -786,6 +797,8 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
   check_algs()
 ```
+
+### Cosine Similarity
 
 ```{r}
 splits <- filter_runs(all.results, "mibi_tnbc", "standard") %>%
@@ -797,23 +810,11 @@ keys <- filter_runs(all.results, "mibi_tnbc", "standard") %>%
   split_keys()
 ```
 
-#### Intraview
-
 ```{r}
-cosine_similarity(keys, splits, "intra")
+cosine_similarity(keys, splits) %>%
+  plot_cosine_similarity()
 ```
 
-#### Juxtaview
-
-```{r}
-cosine_similarity(keys, splits, "juxta.40")
-```
-
-#### Paraview
-
-```{r}
-cosine_similarity(keys, splits, "para.120")
-```
 
 ## `merfish_preoptic`
 
@@ -840,7 +841,8 @@ keys <- filter_runs(all.results, "merfish_bc", "hvg") %>%
 #### Intraview
 
 ```{r}
-cosine_similarity(keys, splits, "intra")
+cosine_similarity(keys, splits) %>%
+  plot_cosine_similarity()
 ```
 
 ## `4iANCA`

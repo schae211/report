@@ -1,6 +1,6 @@
 
 ##### Verbosity ##### 
-print("Merfish TNBC Analysis HVG")
+print("Merfish BC Analysis HVG")
 
 ##### Command line args ##### 
 cmd.arg = as.numeric(commandArgs(trailingOnly = TRUE))[1]

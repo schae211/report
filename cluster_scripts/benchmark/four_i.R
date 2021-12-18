@@ -22,6 +22,8 @@ if (cmd.arg1 == 1) {
   output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/4iANCA/ratio_38/"
 } else if (cmd.arg1 == 4) {
   output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/4iANCA/ratio_19/"
+} else if (cmd.arg1 == 5) {
+  output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/4iANCA/ratio_9/"
 }
 
 ifelse(!dir.exists(output.path), dir.create(output.path), FALSE)
@@ -43,6 +45,8 @@ if (cmd.arg1 == 1) {
   input.views <- "ratio_38_views.RDS"
 } else if (cmd.arg1 == 4) {
   input.views <- "ratio_19_views.RDS"
+} else if (cmd.arg1 == 5) {
+  input.views <- "ratio_9_views.RDS"
 }
 
 misty.views.smp <- readRDS(paste0(input.path, input.views))

@@ -1,6 +1,6 @@
 
 ##### Verbosity ##### 
-print("merfish tnbc prep")
+print("merfish bc prep")
 
 ##### Packages ##### 
 library(mistyR)
