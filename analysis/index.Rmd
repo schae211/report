@@ -18,14 +18,18 @@ See the corresponding
 
 ## [&nbsp;&nbsp;&nbsp; 1. Introduction](https://schae211.github.io/report/introduction.html)
 
-## &nbsp;&nbsp;&nbsp; 2. Results
+## &nbsp;&nbsp;&nbsp; 2. Methods
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1 Tutorial for new MISTy API allowing to use any model for training view-specific models](https://schae211.github.io/report/tutorial.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1 New MISTy API allowing to use any model for training view-specific models](https://schae211.github.io/report/tutorial.html)
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.2 Benchmarking different algorithms for modeling views in different datasets](https://schae211.github.io/report/benchmark.html)
+## &nbsp;&nbsp;&nbsp; 3. Results
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.3 Exploring Different Machine Learning Frameworks in R](https://schae211.github.io/report/frameworks.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1 Benchmarking different algorithms for modeling views in different datasets](https://schae211.github.io/report/benchmark.html)
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.4 Alternative implementation of new algorithms ofr trainign view-specific models](https://schae211.github.io/report/model_api.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2 Exploring Different Machine Learning Frameworks in R](https://schae211.github.io/report/frameworks.html)
 
-## [&nbsp;&nbsp;&nbsp; 3. Discussion](https://schae211.github.io/report/conclusions.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3 Alternative implementation of new algorithms ofr trainign view-specific models](https://schae211.github.io/report/model_api.html)
+
+## [&nbsp;&nbsp;&nbsp; 4. Discussion](https://schae211.github.io/report/conclusions.html)
+
+## [&nbsp;&nbsp;&nbsp; 5. Appendix](https://schae211.github.io/report/appendix.html)
