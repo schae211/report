@@ -366,14 +366,23 @@ div.tocify {
 <li>
   <a href="tutorial.html">2. Methods</a>
 </li>
-<li>
-  <a href="benchmark.html">3.1 Benchmark</a>
-</li>
-<li>
-  <a href="frameworks.html">3.2 Frameworks</a>
-</li>
-<li>
-  <a href="model_api.html">3.3 Alternatives</a>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    3. Results
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="benchmark.html">3.1 Benchmark</a>
+    </li>
+    <li>
+      <a href="frameworks.html">3.2 Frameworks</a>
+    </li>
+    <li>
+      <a href="model_api.html">3.3 Alternatives</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="conclusions.html">4. Conclusions</a>
@@ -435,7 +444,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-15
+<strong>Last updated:</strong> 2021-12-18
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -550,16 +559,16 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree45f967b42c1b18f6b88eca4b0d05149da5254556targetblank45f967ba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/45f967b42c1b18f6b88eca4b0d05149da5254556" target="_blank">45f967b</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeeb7b59d4c30a956379c497e2051bae1422291954targetblankeb7b59da" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree45f967b42c1b18f6b88eca4b0d05149da5254556targetblank45f967ba" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/eb7b59d4c30a956379c497e2051bae1422291954" target="_blank">eb7b59d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/45f967b42c1b18f6b88eca4b0d05149da5254556" target="_blank">45f967b</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -574,10 +583,24 @@ Ignored files:
     Ignored:    data/2021-12-14-10-57_all_views.RDS
     Ignored:    data/2021-12-14-17-59_all_views.RDS
     Ignored:    data/2021-12-14-23-01_all_results.RDS
+    Ignored:    data/2021-12-17-07-58_all_results.RDS
+    Ignored:    data/2021-12-17-07-59_all_views.RDS
     Ignored:    results/
 
+Untracked files:
+    Untracked:  analysis/images/
+    Untracked:  code/4i_analysis.R
+
 Unstaged changes:
+    Modified:   analysis/conclusions.Rmd
+    Modified:   analysis/index.Rmd
     Modified:   analysis/introduction.Rmd
+    Modified:   analysis/references.bib
+    Modified:   cluster_scripts/benchmark/four_i.R
+    Modified:   cluster_scripts/benchmark/hvg_merfish_bc.R
+    Deleted:    cluster_scripts/benchmark/medium_four_i.R
+    Modified:   cluster_scripts/preprocessing/merfish_bc_prep.R
+    Deleted:    cluster_scripts/preprocessing/merfish_liverniche_prep.R
 
 </code></pre>
 <p>
@@ -616,6 +639,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/45f967b42c1b18f6b88eca4b0d05149da5254556/analysis/benchmark.Rmd" target="_blank">45f967b</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+<td>
+wflow_publish(“analysis/benchmark.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/1710d804182e867e8d3dc0d236fbf2f976201c9e/docs/benchmark.html" target="_blank">1710d80</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -879,216 +936,216 @@ wflow_publish(files = “analysis/benchmark.Rmd”)
 </div>
 </div>
 <p>Setup.</p>
-<pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-knitr::opts_knit$set(root.dir = &quot;~/Saez/report&quot;)</code></pre>
 <pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
-suppressPackageStartupMessages(library(tidyverse))</code></pre>
-<div id="introduction-and-data" class="section level1">
-<h1>Introduction and Data</h1>
-<p>What data is the benchmarking based on?</p>
-<pre class="r"><code>all.views &lt;- readRDS(&quot;data/2021-12-14-17-59_all_views.RDS&quot;)
-all.results &lt;- readRDS(&quot;data/2021-12-14-23-01_all_results.RDS&quot;)
-all.names &lt;- names(all.results)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(slider))</code></pre>
+<div id="introduction-and-data" class="section level1 tabset">
+<h1 class="tabset">Introduction and Data</h1>
+<p>Loading the data.</p>
+<pre><code>[1] &quot;Loading results from: data/2021-12-17-07-58_all_results.RDS&quot;</code></pre>
+<pre><code>[1] &quot;Loading views from: data/2021-12-17-07-59_all_views.RDS&quot;</code></pre>
+<p>What data / experiments is the benchmarking based on?</p>
+<pre class="r"><code>all.names &lt;- names(all.results)
 experiments &lt;- str_extract(all.names, &quot;[^/]+(?=/)&quot;) %&gt;% unique
-experiments
-[1] &quot;4iANCA&quot;           &quot;merfish_bc&quot;       &quot;merfish_liver&quot;    &quot;merfish_preoptic&quot;
+experiments</code></pre>
+<pre><code>[1] &quot;4iANCA&quot;           &quot;merfish_bc&quot;       &quot;merfish_liver&quot;    &quot;merfish_preoptic&quot;
 [5] &quot;mibi_tnbc&quot;        &quot;synthetic&quot;       </code></pre>
-<p>Where do the data come from?</p>
-<div id="a-synthetic" class="section level2">
-<h2>a) <code>synthetic</code></h2>
-<p>    Simulated data that are included in the MISTy package. As explained in the <a href="https://saezlab.github.io/mistyR/articles/mistyR.html">Get Started Vignette</a>,this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.</p>
+<div id="synthetic" class="section level2">
+<h2><code>synthetic</code></h2>
 <ul>
-<li>  Number of Samples, Markers, and spatial units per sample</li>
+<li><p>Simulated data that are included in the MISTy package. As explained in the <a href="https://saezlab.github.io/mistyR/articles/mistyR.html">Get Started Vignette</a>,this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.</p></li>
+<li><p>Data Availability: <code>mistyR</code> package <code>data("synthetic")</code></p></li>
+<li><p>Features: Simulated Data</p></li>
+<li><p>Number of samples:</p></li>
 </ul>
-<pre class="r"><code># Number of Samples
-c(length(all.views$`/synthetic/l6`),
-  length(all.views$`/synthetic/l12`),
-  length(all.views$`/synthetic/l24`)
-  )
-[1] 10 10 10
-
-# Number of Markers
-ncol(all.views$`/synthetic/l6`[[1]]$intraview$data)
-[1] 11
-
-# Summary for number of cells per sample
-summary(
-  map_dbl(all.views$`/synthetic/l6`, 
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+<pre><code>[1] 10</code></pre>
+<ul>
+<li>Number of markers in each sample:</li>
+</ul>
+<pre><code>[1] 11</code></pre>
+<ul>
+<li><p>Different views that were computed:</p>
+<ul>
+<li><p><code>/synthetic/l6</code>: paraview computed with <code>l=6</code></p></li>
+<li><p><code>/synthetic/l12</code>: paraview computed with <code>l=12</code></p></li>
+<li><p><code>/synthetic/l24</code>: paraview computed with <code>l=24</code></p></li>
+</ul></li>
+</ul>
+<pre><code>[1] &quot;/synthetic/l12&quot; &quot;/synthetic/l24&quot; &quot;/synthetic/l6&quot; </code></pre>
+<ul>
+<li>Number of spatial units (e.g. cells) per sample:</li>
+</ul>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    4110    4120    4148    4152    4179    4205 </code></pre>
-<p>    Features: Spatial Proteomics, Single Cell Resolution</p>
+<hr />
 </div>
-<div id="b-mibi_tnbc" class="section level2">
-<h2>b) <code>mibi_tnbc</code></h2>
+<div id="mibi_tnbc" class="section level2">
+<h2><code>mibi_tnbc</code></h2>
 <ul>
-<li><p>  Multiplexed Ion Beam Imaging (spatial proteomics) dataset from <a href="https://dx.doi.org/10.1016/j.cell.2018.08.039">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</a> by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) <span class="citation">(<em>1</em>)</span></p></li>
-<li><p>  Data Availability: <a href="https://mibi-share.ionpath.com/">https://mibi-share.ionpath.com/</a></p></li>
-<li><p>  Features: Spatial Proteomics, Single Cell Resolution</p></li>
-<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
+<li><p>Multiplexed Ion Beam Imaging (spatial proteomics) dataset from <a href="https://dx.doi.org/10.1016/j.cell.2018.08.039">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</a> by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) <span class="citation">(<em>1</em>)</span></p></li>
+<li><p>Data Availability: <a href="https://mibi-share.ionpath.com/" class="uri">https://mibi-share.ionpath.com/</a></p></li>
+<li><p>Features: Spatial Proteomics, Single Cell Resolution, Segmentation</p></li>
+<li><p>Number of samples:</p></li>
 </ul>
-<pre class="r"><code># Number of Samples
-length(all.views$`/mibi_tnbc/standard_views`)
-[1] 40
-
-# Number of Markers
-ncol(all.views$`/mibi_tnbc/standard_views`[[1]]$intraview$data)
-[1] 28
-
-# Summary for number of cells per sample
-summary(
-  map_dbl(all.views$`/mibi_tnbc/standard_views`, 
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+<pre><code>[1] 40</code></pre>
+<ul>
+<li>Number of markers in each sample:</li>
+</ul>
+<pre><code>[1] 28</code></pre>
+<ul>
+<li><p>Different views that were computed:</p>
+<ul>
+<li><code>standard_views</code>: markers with zero variance were removed from each sample, juxtaview was computed with <code>neighbor.thr = 40</code>, and paraview was computed with <code>l = 120, zoi = 40</code>.</li>
+</ul></li>
+</ul>
+<pre><code>[1] &quot;/mibi_tnbc/standard_views&quot;</code></pre>
+<ul>
+<li>Number of spatial units (e.g. cells) per sample:</li>
+</ul>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    2046    3876    4961    4942    6080    8212 </code></pre>
+<hr />
 </div>
-<div id="c-merfish_preoptic" class="section level2">
-<h2>c) <code>merfish_preoptic</code></h2>
+<div id="merfish_preoptic" class="section level2">
+<h2><code>merfish_preoptic</code></h2>
 <ul>
-<li><p>  MERFISH data from the murine hypothalamic preoptic region from <a href="https://dx.doi.org/10.1126/science.aau5324">Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region</a> by Moffitt, R. et al. (Science 362, 6416 (2018))</p></li>
-<li><p>  Features: Spatial Transcriptomics, Single Cell Resolution</p></li>
-<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
-<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
+<li><p>MERFISH data from the murine hypothalamic preoptic region from <a href="https://dx.doi.org/10.1126/science.aau5324">Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region</a> by Moffitt, R. et al. (Science 362, 6416 (2018))</p></li>
+<li><p>Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
+<li><p>Features: Spatial Transcriptomics, Single Cell Resolution, Segmentation</p></li>
+<li><p>Number of samples:</p></li>
 </ul>
-<pre class="r"><code># Number of Samples
-c(length(all.views$`/merfish_preoptic/hvg_views`),
-  length(all.views$`/merfish_preoptic/standard_views`)
-)
-[1] 36 36
-
-# Number of Markers
-ncol(all.views$`/merfish_preoptic/hvg_views`[[1]]$intraview$data)
-[1] 108
-
-# Summary for number of cells per sample
-summary(
-  map_dbl(all.views$`/merfish_preoptic/hvg_views`, 
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+<pre><code>[1] 36</code></pre>
+<ul>
+<li>Number of markers in each sample (depending on the view, see explanation below):</li>
+</ul>
+<pre><code>[1] 108 155</code></pre>
+<ul>
+<li><p>Different views that were computed:</p>
+<ul>
+<li><p><code>standard_views</code>: markers with zero variance were removed from each sample, the juxtaview was computed with <code>neighbor.thr = 30</code>, and the paraview with <code>l = 120, zoi = 30</code>.</p></li>
+<li><p><code>hvg_views</code>: markers with zero variance were removed from each sample, the 108 most spatially variable genes (computed with <em>SPARK-X</em> <span class="citation">(<em>2</em>)</span>) were selected, the juxtaview was computed with <code>neighbor.thr = 30</code>, and the paraview with <code>l = 120, zoi = 30</code>.</p></li>
+</ul></li>
+</ul>
+<pre><code>[1] &quot;/merfish_preoptic/hvg_views&quot;      &quot;/merfish_preoptic/standard_views&quot;</code></pre>
+<ul>
+<li>Number of spatial units (e.g. cells) per sample:</li>
+</ul>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   10291   21938   22642   28551   32065   73655 </code></pre>
+<hr />
 </div>
-<div id="d-merfish_liver" class="section level2">
-<h2>d) <code>merfish_liver</code></h2>
+<div id="merfish_liver" class="section level2">
+<h2><code>merfish_liver</code></h2>
 <ul>
-<li><p>  MERFISH data from the murine fetal liver from <a href="https://dx.doi.org/10.1038/s41421-021-00266-1">Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture</a> by Yanfang, L. et al. (Cell Discovery 7, 47 (2021))</p></li>
-<li><p>  Features: Spatial Transcriptomics, Single Cell Resolution</p></li>
-<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
-<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
+<li><p>MERFISH data from the murine fetal liver from <a href="https://dx.doi.org/10.1038/s41421-021-00266-1">Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture</a> by Yanfang, L. et al. (Cell Discovery 7, 47 (2021))</p></li>
+<li><p>Data Availability: <a href="https://campuspress.yale.edu/wanglab/HSCMERFISH/">SIYUAN WANG LAB</a></p></li>
+<li><p>Features: Spatial Transcriptomics, Single Cell Resolution, Segmentation</p></li>
+<li><p>Number of samples:</p></li>
 </ul>
-<pre class="r"><code># Number of Samples
-c(length(all.views$`/merfish_liver/standard280_views`)
-)
-[1] 164
-
-# Number of Markers
-ncol(all.views$`/merfish_liver/standard280_views`[[1]]$intraview$data)
-[1] 140
-
-# Summary for number of cells per sample
-summary(
-  map_dbl(all.views$`/merfish_liver/standard280_views`,
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+<pre><code>[1] 164</code></pre>
+<ul>
+<li>Number of markers in each sample:</li>
+</ul>
+<pre><code>[1] 140</code></pre>
+<ul>
+<li><p>Different views that were computed:</p>
+<ul>
+<li><code>standard280_views</code>: markers with zero variance were removed from each sample, samples with fewer than 280 cells were removed, the juxtaview was computed with <code>neighbor.thr = 100</code>, and the paraview with <code>l = 180, zoi = 100</code>.</li>
+</ul></li>
+</ul>
+<pre><code>[1] &quot;/merfish_liver/standard280_views&quot;</code></pre>
+<ul>
+<li>Number of spatial units (e.g. cells) per sample:</li>
+</ul>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
   280.0   296.8   315.0   315.4   334.0   366.0 </code></pre>
+<hr />
 </div>
-<div id="e-merfish_bc" class="section level2">
-<h2>e) <code>merfish_bc</code></h2>
+<div id="merfish_bc" class="section level2">
+<h2><code>merfish_bc</code></h2>
 <ul>
-<li><p>  MERFISH data from metastatic breast cancer (unpublished)</p></li>
-<li><p>  Features: Spatial Transcriptomics, Single Cell Resolution</p></li>
-<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
-<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
+<li><p>MERFISH data from metastatic breast cancer (unpublished)</p></li>
+<li><p>Data Availability: -</p></li>
+<li><p>Features: Spatial Transcriptomics, Single Cell Resolution, Segmentation</p></li>
+<li><p>Number of samples:</p></li>
 </ul>
-<pre class="r"><code># Number of Samples
-c(length(all.views$`/merfish_bc/hvg_views`),
-  length(all.views$`/merfish_bc/standard_views`)
-)
-[1] 9 9
-
-# Number of Markers
-ncol(all.views$`/merfish_bc/hvg_views`[[1]]$intraview$data)
-[1] 86
-
-# Summary for number of cells per sample
-summary(
-  map_dbl(all.views$`/merfish_bc/hvg_views`,
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+<pre><code>[1] 9</code></pre>
+<ul>
+<li>Number of markers in each sample (depending on the view, see explanation below):</li>
+</ul>
+<pre><code>[1]  86 291</code></pre>
+<ul>
+<li><p>Different views that were computed:</p>
+<ul>
+<li><p><code>standard_views</code>: markers with zero variance were removed from each sample, the juxtaview was computed with <code>neighbor.thr = 15</code>, and the paraview with <code>l = 100, zoi = 15</code>.</p></li>
+<li><p><code>hvg_views</code>: markers with zero variance were removed from each sample, the 86 most spatially variable genes (computed with <em>SPARK-X</em> <span class="citation">(<em>2</em>)</span>) were selected, the juxtaview was computed with <code>neighbor.thr = 15</code>, and the paraview with <code>l = 100, zoi = 15</code>.</p></li>
+</ul></li>
+</ul>
+<pre><code>[1] &quot;/merfish_bc/hvg_views&quot;      &quot;/merfish_bc/standard_views&quot;</code></pre>
+<ul>
+<li>Number of spatial units (e.g. cells) per sample:</li>
+</ul>
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    2704    3981   11014   11787   13822   31197 </code></pre>
+<hr />
 </div>
-<div id="f-4ianca" class="section level2">
-<h2>f) <code>4iANCA</code></h2>
+<div id="ianca" class="section level2">
+<h2><code>4iANCA</code></h2>
 <ul>
-<li><p>  4i (iterative indirect immunofluorescence imaging) data from glomeruli</p></li>
-<li><p>  Features: Spatial Proteomics, Single Cell Resolution</p></li>
-<li><p>  Data Availability: <a href="http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php">Spatial DB</a></p></li>
-<li><p>  Number of Samples, Markers, and spatial units per sample</p></li>
+<li><p>Iiterative Indirect Immunofluorescence Imaging (4i) data from glomeruli (unpublished)</p></li>
+<li><p>Data Availability: -</p></li>
+<li><p>Features: Spatial Proteomics, Single Cell Resolution, No Segmentation</p></li>
+<li><p>Number of samples:</p></li>
 </ul>
-<pre class="r"><code># Number of Samples
-c(length(all.views$`/4iANCA/ratio_153_views`),
-  length(all.views$`/4iANCA/ratio_76_views`),
-  length(all.views$`/4iANCA/ratio_38_views`),
-  length(all.views$`/4iANCA/ratio_19_views`)
-)
-[1] 36 36 36 36
-
-# Number of Markers
-ncol(all.views$`/4iANCA/ratio_153_views`[[1]]$intraview$data)
-[1] 27
-
-# Summary for number of cells per sample
-# Largest Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_153_views`,
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    169     169     169     169     169     169 
-
-#  Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_76_views`,
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    676     676     676     676     676     676 
-
-# Largest Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_38_views`,
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-   2704    2704    2704    2704    2704    2704 
-
-# Largest Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_19_views`,
-          ~ nrow(.x$intraview$data))
-)
-   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-  10609   10609   10609   10609   10609   10609 </code></pre>
+<pre><code>[1] 36</code></pre>
 <ul>
-<li>  Number of cells per sample: No segmentation was performed, therefore the pixels were simply binned with 3 different schemes. The pixels have a side length of <code>0.13</code> microns, and an average eukaryotic cell is between <code>10</code> and <code>100</code> microns in diameter. Therefore I choose the largest binning to be <code>floor(20/0.13) = 153</code>, meaning the side length of one spatial unit (bin) will correspond to 153 pixels. The smaller bins are then sequentially half of the size (76, 38, 19). The corresponding parameter for the computation of the paraview was adjusted accordingly, meaning multiplied sequentially by two.</li>
+<li>Number of markers in each sample:</li>
 </ul>
+<pre><code>[1] 27</code></pre>
+<ul>
+<li><p>Different views that were computed:</p>
+<ul>
+<li><p>/4iANCA/ratio_153_views</p></li>
+<li><p>/4iANCA/ratio_76_views</p></li>
+<li><p>/4iANCA/ratio_38_views</p></li>
+<li><p>/4iANCA/ratio_19_views</p></li>
+<li><p>/4iANCA/ratio_9_views</p></li>
+</ul></li>
+</ul>
+<pre><code>[1] &quot;/4iANCA/ratio_153_views&quot; &quot;/4iANCA/ratio_19_views&quot; 
+[3] &quot;/4iANCA/ratio_38_views&quot;  &quot;/4iANCA/ratio_76_views&quot; 
+[5] &quot;/4iANCA/ratio_9_views&quot;  </code></pre>
+<ul>
+<li><p>Number of spatial units (e.g. cells) per sample, depending on the computed view:</p>
+<ul>
+<li>Number of cells per sample: No segmentation was performed, therefore the pixels were simply binned with 5 different schemes. The pixels have a side length of <span class="math inline">\(0.13\)</span> microns, and an average eukaryotic cell is between <span class="math inline">\(10\)</span> and <span class="math inline">\(100 \micro m\)</span> in diameter. Therefore I choose the largest binning to be <code>floor(20/0.13) = 153</code>, meaning the side length of one spatial unit (bin) will correspond to 153 pixels. The smaller bins are then sequentially half of the size (76, 38, 19, 9). The corresponding parameter for the computation of the paraview was adjusted accordingly, meaning if the l parameter <span class="math inline">\(l_{153}\)</span> was used for computation of the paraview for the 153 binning, <span class="math inline">\(2 \times l_{153}\)</span> was used for the 76 binning.</li>
+</ul></li>
+</ul>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["experiment"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean_n"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"/4iANCA/ratio_153_views","2":"169"},{"1":"/4iANCA/ratio_76_views","2":"676"},{"1":"/4iANCA/ratio_38_views","2":"2704"},{"1":"/4iANCA/ratio_19_views","2":"10609"},{"1":"/4iANCA/ratio_9_views","2":"46656"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<hr />
 </div>
 </div>
 <div id="scripts" class="section level1">
 <h1>Scripts</h1>
-<p>The scripts that were used for these analysis can be found in this <a href="https://github.com/schae211/report/tree/master/cluster_scripts">GitHub repository</a>. Theses scripts were run on a cluster managed by Slurm.</p>
+<p>The scripts that were used for all analysis can be found in this <a href="https://github.com/schae211/report/tree/master/cluster_scripts">GitHub repository</a>. The computations were performed on a cluster managed by Slurm.</p>
+<hr />
 </div>
-<div id="comparing-algorithms" class="section level1">
-<h1>Comparing Algorithms</h1>
+<div id="comparing-performances" class="section level1 tabset">
+<h1 class="tabset">Comparing Performances</h1>
 <p>Function to get clean data for a particular study.</p>
-<pre class="r"><code>filter_runs &lt;- function(all.names, all.runs, str.study) {
-  names.run &lt;- all.names[str_detect(all.names, str.study)]
-  successful.run &lt;- map_lgl(all.results[names.run], ~ typeof(.x) == &quot;list&quot;)
-  all.results[names.run][successful.run]
+<pre class="r"><code># helper function to get all misty runs for a particular study
+filter_runs &lt;- function(all.runs, str.study, views) {
+  str.view &lt;- paste(views, collapse=&quot;|&quot;)
+  all.names &lt;- names(all.runs)
+  names.study &lt;- all.names[str_detect(all.names, str.study)]
+  names.view &lt;- names.study[str_detect(names.study, str.view)]
+  sucessful.runs &lt;- map_lgl(all.results[names.view], ~ typeof(.x) == &quot;list&quot;)
+  all.results[names.view][sucessful.runs]
 }</code></pre>
 <p>Function to extract the improvements (performance measures).</p>
 <pre class="r"><code>get_performance &lt;- function(filtered.run) {
@@ -1096,1005 +1153,114 @@ summary(
                                    function(misty.run, name) {
     misty.run$improvements %&gt;%
       mutate(algorithm = str_extract(name, &quot;(?&lt;=/)[^/]+$&quot;)) %&gt;%
-      mutate(study = str_extract(sample, &quot;(?&lt;=OUTPUT/)[^/]+&quot;))
+      mutate(study = str_extract(sample, &quot;(?&lt;=OUTPUT/)[^/]+&quot;)) %&gt;%
+      mutate(view = str_extract(sample, paste0(&quot;(?&lt;=OUTPUT/&quot;, study, &quot;/)[^/]+&quot;)))
   })
 }</code></pre>
-<div id="merfish-breast-cancer-spatially-variable-genes" class="section level2">
-<h2>Merfish Breast Cancer (spatially variable genes)</h2>
-<p>Cleaning Data.</p>
-<pre class="r"><code>merfish_bc_hvg &lt;- filter_runs(all.names, all.results, &quot;/merfish_bc/hvg/&quot;)</code></pre>
-<p>Performance.</p>
-<pre class="r"><code>performance_merfish_bc_hvg &lt;- get_performance(merfish_bc_hvg)
-
-performance_merfish_bc_hvg %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = factor(algorithm,
-             levels=c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;LBOOST&quot;, &quot;MARS&quot;, &quot;LM&quot;, &quot;BGMARS&quot;))) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-12-1">
-Past versions of unnamed-chunk-12-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-12-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-12-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-12-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/487e9ef41f3e9db110529e2e87697965ec804547/docs/figure/benchmark.Rmd/unnamed-chunk-12-1.png" target="_blank">487e9ef</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-06
-</td>
-</tr>
-</tbody>
-</table>
+<pre class="r"><code>check_runs &lt;- function(misty.performances, ordering = NULL) {
+  
+    levs &lt;- function() {
+    if (is.null(ordering)) {
+      out &lt;- misty.performances %&gt;% 
+        filter(!(algorithm %in% exclude)) %&gt;%
+        pull(algorithm) %&gt;%
+        unique()
+    } else {
+      out &lt;- ordering
+    }
+    out
+  }
+  
+  misty.performances %&gt;%
+    select(algorithm, sample, view) %&gt;%
+    distinct() %&gt;%
+    mutate(algorithm = factor(algorithm, levels = levs())) %&gt;%
+    group_by(view, algorithm) %&gt;%
+    summarise(sample_number = n(), .groups=&quot;drop&quot;) %&gt;%
+    pivot_wider(names_from = &quot;view&quot;, values_from = &quot;sample_number&quot;)
+}</code></pre>
+<pre class="r"><code>plot_performance &lt;- function(misty.performances, str.measure, 
+                             str.summary = &quot;mean&quot;, targets = FALSE,
+                             exclude = c(), wrap.views = FALSE,
+                             ncol = 2, ordering = NULL) {
+  
+  str.summary = match.arg(str.summary, c(&quot;mean&quot;, &quot;median&quot;))
+  
+  fill = ifelse(str.summary == &quot;mean&quot;, &quot;mean&quot;, &quot;median&quot;)
+  
+  theme_custom &lt;- function() {
+    if (targets) {
+      out &lt;- theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5))
+    } else {
+      out &lt;- theme(axis.text.y = element_blank(), axis.ticks.y=element_blank(),
+                   axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5))
+    }
+    out
+  }
+  
+  wrap &lt;- function() {
+    if (wrap.views) {
+      out &lt;- facet_wrap(~ view, ncol = ncol)
+    } else {
+      out &lt;- NULL
+    }
+    out
+  }
+  
+  levs &lt;- function() {
+    if (is.null(ordering)) {
+      out &lt;- misty.performances %&gt;% 
+        filter(!(algorithm %in% exclude)) %&gt;%
+        pull(algorithm) %&gt;%
+        unique()
+    } else {
+      out &lt;- ordering
+    }
+    out
+  }
+  
+  plot &lt;- misty.performances %&gt;%
+    filter(measure == str.measure) %&gt;%
+    filter(!(algorithm %in% exclude)) %&gt;%
+    mutate(algorithm = factor(algorithm, levels=levs())) %&gt;%
+    group_by(view, algorithm, target) %&gt;%
+    summarise(mean = mean(value), median = median(value), 
+              sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
+    ggplot() +
+    geom_tile(aes(x = algorithm, y = target, 
+                  # use .data[[var]] to access data variables with strings
+                  fill = .data[[fill]] )) +
+    scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+    labs(x = &quot;Algorithm&quot;, fill = paste0(str.summary, &quot; : &quot;, str.measure)) +
+    theme_custom() +
+    wrap()
+  
+  print(plot)
+}</code></pre>
+<pre class="r"><code># ordering of factors
+l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;MARS&quot;, &quot;MARS80&quot;, &quot;MARS60&quot;, &quot;MARS40&quot;,
+      &quot;BGMARS&quot;, &quot;LBOOST&quot;, &quot;LM&quot;, &quot;SVM&quot;, &quot;MLP&quot;)</code></pre>
+<div id="synthetic-1" class="section level2">
+<h2><code>synthetic</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, c(&quot;l6&quot;, &quot;l12&quot;, &quot;l24&quot;)) %&gt;%
+  get_performance() %&gt;%
+  check_runs(ordering = l)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["l12"],"name":[2],"type":["int"],"align":["right"]},{"label":["l24"],"name":[3],"type":["int"],"align":["right"]},{"label":["l6"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"10","3":"10","4":"10"},{"1":"TBOOST","2":"10","3":"10","4":"10"},{"1":"MARS","2":"10","3":"10","4":"10"},{"1":"BGMARS","2":"10","3":"10","4":"10"},{"1":"LBOOST","2":"10","3":"10","4":"10"},{"1":"LM","2":"10","3":"10","4":"10"},{"1":"SVM","2":"10","3":"10","4":"10"},{"1":"MLP","2":"10","3":"10","4":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-</div>
-</div>
-<div id="merfish-fetal-liver-spatially-variable-genes" class="section level2">
-<h2>Merfish Fetal Liver (spatially variable genes)</h2>
-<pre class="r"><code>merfish_liver_std280 &lt;- filter_runs(all.names, all.results, &quot;/merfish_liver/std280/&quot;)</code></pre>
-<pre class="r"><code>performance_merfish_liver_std280 &lt;- get_performance(merfish_liver_std280)
-
-performance_merfish_liver_std280 %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = factor(algorithm,
-             levels=c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;LBOOST&quot;, &quot;MARS&quot;, &quot;LM&quot;, &quot;BGMARS&quot;))) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
-Past versions of unnamed-chunk-14-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-14-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-14-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-14-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/487e9ef41f3e9db110529e2e87697965ec804547/docs/figure/benchmark.Rmd/unnamed-chunk-14-1.png" target="_blank">487e9ef</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="merfish-preoptic-spatially-variable-genes" class="section level2">
-<h2>Merfish Preoptic (spatially variable genes)</h2>
-<pre class="r"><code>merfish_preoptic_hvg &lt;- filter_runs(all.names, all.results,
-                                    &quot;/merfish_preoptic/hvg/&quot;)</code></pre>
-<pre class="r"><code>performance_merfish_preoptic_hvg &lt;- get_performance(merfish_preoptic_hvg)
-
-performance_merfish_preoptic_hvg %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = factor(algorithm, 
-                            levels=c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;LBOOST&quot;, &quot;LM&quot;, &quot;MARS&quot;, &quot;MARS80&quot;, &quot;MARS60&quot;, &quot;MARS40&quot;))) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
-Past versions of unnamed-chunk-16-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-16-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-16-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="mibi-tnbc" class="section level2">
-<h2>MIBI TNBC</h2>
-<pre class="r"><code>mibi_tnbc_std &lt;- filter_runs(all.names, all.results,
-                                    &quot;/mibi_tnbc/standard/&quot;)</code></pre>
-<pre class="r"><code>performance_mibi_tnbc_std &lt;- get_performance(mibi_tnbc_std)
-
-performance_mibi_tnbc_std %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = factor(algorithm,
-             levels=c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;LBOOST&quot;, &quot;MARS&quot;, &quot;LM&quot;, &quot;BGMARS&quot;))) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-1">
-Past versions of unnamed-chunk-18-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-18-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-18-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>We see some overfitting here with linear boosting, since it is worse than the normal linear model.</p>
-</div>
-<div id="i" class="section level2">
-<h2>4I</h2>
-<pre class="r"><code># tmp
-fouri_anca &lt;- all.results[str_starts(all.names, 
-                                     &quot;/4iANCA&quot;)]
-filtered_fouri_anca &lt;- fouri_anca[str_ends(names(fouri_anca), 
-                                           &quot;BGMARS|SVM|MLP&quot;, 
-                                           negate = TRUE)]
-saveRDS(filtered_fouri_anca, &quot;../4iANCA_results.RDS&quot;)
-str_extract(names(filtered_fouri_anca), &quot;ratio_[0-9]+&quot;) %&gt;% unique
-[1] &quot;ratio_12&quot;  &quot;ratio_153&quot; &quot;ratio_19&quot;  &quot;ratio_24&quot;  &quot;ratio_38&quot;  &quot;ratio_6&quot;  
-[7] &quot;ratio_76&quot; </code></pre>
-<pre class="r"><code>iiii_std &lt;- filter_runs(all.names, all.results,
-                                    &quot;/4iANCA/ratio_24/&quot;)</code></pre>
-<pre class="r"><code>performance_iiii_std &lt;- get_performance(iiii_std)
-
-l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;LM&quot;, &quot;LBOOST&quot;)
-
-performance_iiii_std %&gt;%
-  filter(measure == &quot;gain.R2&quot;) %&gt;%
-  filter(algorithm %in% l) %&gt;%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Gain.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-21-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-21-1">
-Past versions of unnamed-chunk-21-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-21-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-21-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>performance_iiii_std %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  filter(algorithm %in% l) %&gt;%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-22-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-1">
-Past versions of unnamed-chunk-22-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-22-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-22-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>iiii_153 &lt;- filter_runs(all.names, all.results,
-                                    &quot;/4iANCA/ratio_153/&quot;)</code></pre>
-<pre class="r"><code>performance_iiii_153 &lt;- get_performance(iiii_153)
-
-l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;LM&quot;, &quot;LBOOST&quot;)
-
-performance_iiii_153 %&gt;%
-  filter(measure == &quot;gain.R2&quot;) %&gt;%
-  filter(algorithm %in% l) %&gt;%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Gain.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-24-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-1">
-Past versions of unnamed-chunk-24-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-24-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-24-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-24-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-24-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>performance_iiii_153 %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  filter(algorithm %in% l) %&gt;%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-25-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-25-1">
-Past versions of unnamed-chunk-25-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-25-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-25-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-25-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-25-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>iiii_76 &lt;- filter_runs(all.names, all.results,
-                                    &quot;/4iANCA/ratio_76/&quot;)</code></pre>
-<pre class="r"><code>performance_iiii_76 &lt;- get_performance(iiii_76)
-
-l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;LM&quot;, &quot;LBOOST&quot;)
-
-performance_iiii_76 %&gt;%
-  filter(measure == &quot;gain.R2&quot;) %&gt;%
-  filter(algorithm %in% l) %&gt;%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Gain.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-27-1.png" width="768" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-27-1">
-Past versions of unnamed-chunk-27-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-27-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-27-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-27-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-27-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-27-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>performance_iiii_76 %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  filter(algorithm %in% l) %&gt;%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-28-1">
-Past versions of unnamed-chunk-28-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-28-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-28-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-28-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-28-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div id="hyperparameter-optimization" class="section level1">
-<h1>Hyperparameter Optimization</h1>
-<div id="rf" class="section level2">
-<h2>RF</h2>
-<div id="mibi-tnbc-1" class="section level3">
-<h3>MIBI TNBC</h3>
-<pre class="r"><code>mibi_tnbc_rf_hyper &lt;- filter_runs(all.names, all.results,
-                                    &quot;/mibi_tnbc/RF_hyper/&quot;)</code></pre>
-<pre class="r"><code>performance_mibi_tnbc_rf_hyper &lt;- get_performance(mibi_tnbc_rf_hyper)
-
-performance_mibi_tnbc_rf_hyper %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = str_extract(algorithm, &quot;(?&lt;=RF_hyper_).+&quot;)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-30-1">
-Past versions of unnamed-chunk-30-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-30-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-30-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-30-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-30-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div id="mars" class="section level2">
-<h2>MARS</h2>
-<div id="mibi-tnbc-2" class="section level3">
-<h3>MIBI TNBC</h3>
-<pre class="r"><code>mibi_tnbc_mars_hyper &lt;- filter_runs(all.names, all.results,
-                                    &quot;/mibi_tnbc/MARS_hyper/&quot;)</code></pre>
-<pre class="r"><code>performance_mibi_tnbc_mars_hyper &lt;- get_performance(mibi_tnbc_mars_hyper)
-
-performance_mibi_tnbc_mars_hyper %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = str_extract(algorithm, &quot;(?&lt;=MARS_hyper_).+&quot;)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Median Multi.R2&quot;) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-32-1">
-Past versions of unnamed-chunk-32-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-32-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-32-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-32-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<pre class="r"><code>performance_mibi_tnbc_mars_hyper %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = str_extract(algorithm, &quot;(?&lt;=MARS_hyper_).+&quot;)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-33-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-33-1">
-Past versions of unnamed-chunk-33-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-33-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-33-1.png" target="_blank">f72d59c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-33-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-33-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="synthetic" class="section level3">
-<h3>Synthetic</h3>
-<pre class="r"><code>synthetic_mars_hyper &lt;- filter_runs(all.names, all.results,
-                                    &quot;/synthetic/MARS_hyper/&quot;)</code></pre>
-<pre class="r"><code>performance_synthetic_mars_hyper &lt;- get_performance(synthetic_mars_hyper)
-
-performance_synthetic_mars_hyper %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = str_extract(algorithm, &quot;(?&lt;=MARS_hyper_).+&quot;)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  #theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, c(&quot;l6&quot;, &quot;l12&quot;, &quot;l24&quot;)) %&gt;%
+  get_performance() %&gt;%
+  mutate(view = factor(view, levels = c(&quot;l6&quot;, &quot;l12&quot;, &quot;l24&quot;))) %T&gt;%
+  plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = TRUE, wrap.views = TRUE, ncol=3,
+                   ordering = l) %T&gt;%
+  plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = TRUE, wrap.views = TRUE, ncol=3,
+                   ordering = l) %&gt;%
+  invisible()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-35-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-35-1">
 Past versions of unnamed-chunk-35-1.png
@@ -2132,30 +1298,26 @@ schae211
 </table>
 </div>
 </div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-35-2.png" width="768" style="display: block; margin: auto;" /></p>
 </div>
+<div id="mibi_tnbc-1" class="section level2">
+<h2><code>mibi_tnbc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_performance() %&gt;%
+  check_runs(ordering = l)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["standard"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"40"},{"1":"TBOOST","2":"40"},{"1":"MARS","2":"40"},{"1":"BGMARS","2":"40"},{"1":"LBOOST","2":"40"},{"1":"LM","2":"40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="linear-boosting" class="section level2">
-<h2>Linear Boosting</h2>
-<div id="mibi-tnbc-3" class="section level3">
-<h3>MIBI TNBC</h3>
-<pre class="r"><code>mibi_tnbc_lboost_hyper &lt;- filter_runs(all.names, all.results,
-                                    &quot;/mibi_tnbc/LBOOST_hyper/&quot;)</code></pre>
-<pre class="r"><code>performance_mibi_tnbc_lboost_hyper &lt;- get_performance(mibi_tnbc_lboost_hyper)
-
-performance_mibi_tnbc_lboost_hyper %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = str_extract(algorithm, &quot;(?&lt;=LBOOST_hyper_).+&quot;)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-37-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_performance() %T&gt;%
+  plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = TRUE, ordering = l) %T&gt;%
+  plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = TRUE, ordering = l) %&gt;%
+  invisible()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-37-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-37-1">
 Past versions of unnamed-chunk-37-1.png
@@ -2193,30 +1355,30 @@ schae211
 </table>
 </div>
 </div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-37-2.png" width="768" style="display: block; margin: auto;" /></p>
+<hr />
 </div>
+<div id="merfish_preoptic-1" class="section level2">
+<h2><code>merfish_preoptic</code></h2>
+<p>We see that MARS (with the current configuration) is not scalable enough to handle such large datasets with 100 markers and up to 70,000 spatial units.</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_performance() %&gt;%
+  check_runs(ordering = l)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"36"},{"1":"TBOOST","2":"36"},{"1":"MARS","2":"1"},{"1":"MARS80","2":"1"},{"1":"MARS60","2":"1"},{"1":"MARS40","2":"1"},{"1":"LBOOST","2":"36"},{"1":"LM","2":"36"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="tree-boosting" class="section level2">
-<h2>Tree Boosting</h2>
-<div id="mibi-tnbc-4" class="section level3">
-<h3>MIBI TNBC</h3>
-<pre class="r"><code>mibi_tnbc_tboost_hyper &lt;- filter_runs(all.names, all.results,
-                                    &quot;/mibi_tnbc/TBOOST_hyper/&quot;)</code></pre>
-<pre class="r"><code>performance_mibi_tnbc_tboost_hyper &lt;- get_performance(mibi_tnbc_tboost_hyper)
-
-performance_mibi_tnbc_tboost_hyper %&gt;%
-  filter(measure == &quot;multi.R2&quot;) %&gt;%
-  mutate(algorithm = str_extract(algorithm, &quot;(?&lt;=TBOOST_hyper_).+&quot;)) %&gt;%
-  group_by(study, algorithm, target) %&gt;%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = &quot;drop_last&quot;) %&gt;%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales=&quot;free&quot;, nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = &quot;Algorithm&quot;, fill = &quot;Mean Multi.R2&quot;) +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-39-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_performance() %T&gt;%
+  plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = FALSE, ordering = l,
+                   exclude = c(&quot;MARS&quot;, &quot;MARS40&quot;, &quot;MARS60&quot;, &quot;MARS80&quot;)) %T&gt;%
+  plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = FALSE, ordering = l,
+                   exclude = c(&quot;MARS&quot;, &quot;MARS40&quot;, &quot;MARS60&quot;, &quot;MARS80&quot;)) %&gt;%
+  invisible()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-39-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-39-1">
 Past versions of unnamed-chunk-39-1.png
@@ -2254,53 +1416,365 @@ schae211
 </table>
 </div>
 </div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-39-2.png" width="768" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="merfish_liver-1" class="section level2">
+<h2><code>merfish_liver</code></h2>
+<p>For some reason everything but bagged MARS, MARS, and gradient boosted trees failed.</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
+  get_performance() %&gt;%
+  check_runs(ordering = l)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["std280"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"TBOOST","2":"149"},{"1":"MARS","2":"164"},{"1":"BGMARS","2":"111"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
+  get_performance() %T&gt;%
+  plot_performance(str.measure = &quot;mulit.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = FALSE, ordering = l) %T&gt;%
+  plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = FALSE, ordering = l) %&gt;%
+  invisible()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-41-1.png" width="768" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-41-2.png" width="768" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="merfish_bc-1" class="section level2">
+<h2><code>merfish_bc</code></h2>
+<p>Since the bagged MARS algorithm could only finish the computation for a single sample I must exclude the result. One should also keep in mind that the MARS algorithm was not able to finish (2 samples are missing).</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_performance() %&gt;%
+  check_runs(ordering = l)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"9"},{"1":"TBOOST","2":"9"},{"1":"MARS","2":"7"},{"1":"BGMARS","2":"1"},{"1":"LBOOST","2":"9"},{"1":"LM","2":"9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_performance() %T&gt;%
+  plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = FALSE, exclude = c(&quot;BGMARS&quot;),
+                   ordering = l) %T&gt;%
+  plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
+                   targets = FALSE, exclude = c(&quot;BGMARS&quot;),
+                   ordering = l) %&gt;%
+  invisible()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-43-1.png" width="768" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-43-2.png" width="768" style="display: block; margin: auto;" /></p>
+<hr />
+</div>
+<div id="ianca-1" class="section level2">
+<h2><code>4iANCA</code></h2>
+<p>The computation for the smallest binning (<code>ratio_9</code>) could not be finished.</p>
+<p>Also why do we only have 10 samples instead of 36 samples for ratio 153?</p>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, c(&quot;ratio_153&quot;, &quot;ratio_76&quot;, 
+                                     &quot;ratio_38&quot;, &quot;ratio_19&quot;, &quot;ratio_9&quot;)) %&gt;%
+  get_performance() %&gt;%
+  check_runs(ordering = l)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["ratio_153"],"name":[2],"type":["int"],"align":["right"]},{"label":["ratio_19"],"name":[3],"type":["int"],"align":["right"]},{"label":["ratio_38"],"name":[4],"type":["int"],"align":["right"]},{"label":["ratio_76"],"name":[5],"type":["int"],"align":["right"]},{"label":["ratio_9"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"10","3":"36","4":"36","5":"36","6":"36"},{"1":"TBOOST","2":"10","3":"36","4":"36","5":"36","6":"36"},{"1":"MARS100","2":"10","3":"36","4":"36","5":"36","6":"5"},{"1":"MARS80","2":"10","3":"36","4":"36","5":"36","6":"5"},{"1":"MARS60","2":"10","3":"36","4":"36","5":"36","6":"8"},{"1":"BGMARS","2":"10","3":"10","4":"36","5":"36","6":"1"},{"1":"LBOOST","2":"10","3":"36","4":"36","5":"36","6":"36"},{"1":"LM","2":"10","3":"36","4":"36","5":"36","6":"36"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>views &lt;- c(&quot;ratio_153&quot;, &quot;ratio_76&quot;, &quot;ratio_38&quot;, &quot;ratio_19&quot;, &quot;ratio_9&quot;)
+filter_runs(all.results, &quot;4iANCA&quot;, views) %&gt;%
+  get_performance() %&gt;%
+  mutate(view = factor(view, levels=views)) %T&gt;%
+  plot_performance(str.measure = &quot;multi.R2&quot;, wrap.views = TRUE, ncol=3,
+                   ordering = l) %&gt;%
+  plot_performance(str.measure = &quot;gain.R2&quot;, wrap.views = TRUE, ncol=3,
+                   ordering = l)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-45-1.png" width="960" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-45-2.png" width="960" style="display: block; margin: auto;" /></p>
+<hr />
 </div>
 </div>
+<div id="comparing-importances" class="section level1 tabset">
+<h1 class="tabset">Comparing Importances</h1>
+<p>Function to extract the importances (interaction measures).</p>
+<pre class="r"><code>get_importance &lt;- function(filtered.run) {
+  map2_dfr(filtered.run, names(filtered.run), function(misty.run, name) {
+                                     
+    # using str_extract_all drastically improves the performance
+    # warning: indices of algorithm, study, and view.comp hardcoded
+    all.info &lt;- str_extract_all(misty.run$importances$sample, &quot;(?&lt;=/)[^/]+&quot;)
+                                     
+    misty.run$importances %&gt;%
+      mutate(algorithm = map_chr(all.info, ~ .x[length(.x)-1])) %&gt;%
+      mutate(study = map_chr(all.info, ~ .x[length(.x)-3])) %&gt;%
+      mutate(view.comp = map_chr(all.info, ~ .x[length(.x)-2]))
+  })
+}</code></pre>
+<p>Function to check whether all importances are present for each algorithm</p>
+<pre class="r"><code>check_algs &lt;- function(misty.performances) {
+  misty.performances %&gt;%
+    unite(relation, Predictor, Target, sep=&quot;_&quot;) %&gt;%
+    select(-c(study, view.comp)) %&gt;%
+    drop_na() %&gt;%
+    pivot_wider(names_from=relation, values_from=Importance) %&gt;%
+    mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+    pivot_longer(cols = !c(sample, view, algorithm)) %&gt;%
+    mutate(check.NA = is.na(value)) %&gt;%
+    group_by(algorithm) %&gt;%
+    summarise(n.NAs = sum(check.NA), n = n())
+}</code></pre>
+<p>Function to split the importances according to view and sample.</p>
+<pre class="r"><code>split_importances &lt;- function(misty.importances) {
+  misty.importances %&gt;%
+    unite(relation, Predictor, Target, sep=&quot;_&quot;) %&gt;%
+    select(-c(study, view.comp)) %&gt;%
+    drop %&gt;%
+    pivot_wider(names_from=relation, values_from=Importance) %&gt;%
+    # !!! all NAs replaced with 0 !!!
+    replace(is.na(.), 0) %&gt;%
+    mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+    group_by(sample, view) %&gt;%
+    group_split()
+}</code></pre>
+<p>Function to get the keys for splitting the importances according to view and sample.</p>
+<pre class="r"><code>split_keys &lt;- function(misty.importances) {
+  misty.importances %&gt;%
+    unite(relation, Predictor, Target, sep=&quot;_&quot;) %&gt;%
+    select(-c(study, view.comp)) %&gt;%
+    drop_na() %&gt;%
+    pivot_wider(names_from=relation, values_from=Importance) %&gt;%
+    mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+    group_by(sample, view) %&gt;%
+    group_keys()
+}</code></pre>
+<p>Function to compute the cosine similarity for a given view.</p>
+<pre class="r"><code>cosine_similarity &lt;- function(keys, splits, sel.view, relative=&quot;RF&quot;) {
+  # 1. get the tibbles corresponding to the selected view
+  keys %&gt;%
+    mutate(id = row_number()) %&gt;%
+    filter(view == sel.view) %&gt;%
+    pull(id, name = sample) %&gt;%
+    # 2. map over each sample (tibble) and bind the results as rows
+    map_dfr(function(tbl.id) {
+      
+      tbl &lt;- splits[[tbl.id]]
+      
+      # 3. get the random forest importance vector as reference
+      rf &lt;- tbl %&gt;% filter(algorithm == relative) %&gt;% 
+        select(-c(sample, view, algorithm)) %&gt;%
+        unlist()
+      
+      # 4. get the importance vectors for the other algorithms by mapping over rows
+      cosine.sims &lt;- slide_dfr(tbl, function(row) {
+        vec &lt;- row %&gt;% select(-c(sample, view, algorithm)) %&gt;%
+          unlist()
+        
+        # 5. for each importance vector compute the cosine similarity
+        cosine.sim &lt;- (rf %*% vec * 1/(rf %*% rf)**0.5 * 1/(vec %*% vec)**0.5) %&gt;%
+          as.double()
+        
+        tibble(algorithm = row %&gt;% pull(algorithm), cosine = cosine.sim, 
+               sample = row %&gt;% pull(sample))
+      })
+    }) %&gt;%
+    # 6. Group by algorithm and get the mean of the cosine similarity for each sample
+    group_by(algorithm) %&gt;%
+    summarise(mean = mean(cosine), sd = sd(cosine))
+}</code></pre>
+<div id="synthetic-2" class="section level2">
+<h2><code>synthetic</code></h2>
+<p>For the boosting functions several importances are not returned?</p>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"2200"},{"1":"LBOOST","2":"174","3":"2200"},{"1":"LM","2":"0","3":"2200"},{"1":"MARS","2":"0","3":"2200"},{"1":"MLP","2":"0","3":"2200"},{"1":"RF","2":"0","3":"2200"},{"1":"SVM","2":"0","3":"2200"},{"1":"TBOOST","2":"174","3":"2200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-<div id="tmp" class="section level1">
-<h1>tmp</h1>
-<pre class="r"><code>all.results$`/merfish_preoptic/hvg/MARS`$improvements %&gt;%
-  pull(target) %&gt;% unique
-[1] &quot;Sema3c&quot; &quot;Trh&quot;    &quot;Sox6&quot;  
+<div id="cosine-similarity" class="section level3">
+<h3>Cosine Similarity</h3>
+<p>Split the importances according to view and sample.</p>
+<pre class="r"><code>splits &lt;- filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  split_importances()
 
-all.results$`/merfish_preoptic/hvg/RF`$improvements %&gt;%
-  pull(target) %&gt;% unique
-  [1] &quot;Adcyap1&quot;   &quot;Gpr165&quot;    &quot;Dgkk&quot;      &quot;Gda&quot;       &quot;Cckar&quot;     &quot;Calcr&quot;    
-  [7] &quot;Sp9&quot;       &quot;Fst&quot;       &quot;Arhgap36&quot;  &quot;Tac1&quot;      &quot;Col25a1&quot;   &quot;Pcdh11x&quot;  
- [13] &quot;Tmem108&quot;   &quot;Mlc1&quot;      &quot;Lmod1&quot;     &quot;Slc17a6&quot;   &quot;Opalin&quot;    &quot;Npas1&quot;    
- [19] &quot;Pou3f2&quot;    &quot;Sema3c&quot;    &quot;Ebf3&quot;      &quot;Greb1&quot;     &quot;Cckbr&quot;     &quot;Gabra1&quot;   
- [25] &quot;Baiap2&quot;    &quot;Gem&quot;       &quot;Aldh1l1&quot;   &quot;Tac2&quot;      &quot;Cartpt&quot;    &quot;Cpne5&quot;    
- [31] &quot;Prlr&quot;      &quot;Synpr&quot;     &quot;Sema4d&quot;    &quot;Slc18a2&quot;   &quot;Ndrg1&quot;     &quot;Penk&quot;     
- [37] &quot;Trh&quot;       &quot;Oprd1&quot;     &quot;Lpar1&quot;     &quot;Npy1r&quot;     &quot;Gabrg1&quot;    &quot;Sln&quot;      
- [43] &quot;Htr2c&quot;     &quot;Amigo2&quot;    &quot;Bdnf&quot;      &quot;Rgs2&quot;      &quot;Ermn&quot;      &quot;Ccnd2&quot;    
- [49] &quot;Pgr&quot;       &quot;Serpinb1b&quot; &quot;Creb3l1&quot;   &quot;Syt2&quot;      &quot;Gjc3&quot;      &quot;Cbln1&quot;    
- [55] &quot;Tacr1&quot;     &quot;Trhr&quot;      &quot;Oprk1&quot;     &quot;Necab1&quot;    &quot;Npy2r&quot;     &quot;Man1a&quot;    
- [61] &quot;Gad1&quot;      &quot;Igf2r&quot;     &quot;Rnd3&quot;      &quot;Oprl1&quot;     &quot;Esr1&quot;      &quot;Sox4&quot;     
- [67] &quot;Syt4&quot;      &quot;Ano3&quot;      &quot;Glra3&quot;     &quot;Cspg5&quot;     &quot;Cd24a&quot;     &quot;Serpine1&quot; 
- [73] &quot;Cbln2&quot;     &quot;Nnat&quot;      &quot;Bmp7&quot;      &quot;Ttyh2&quot;     &quot;Plin3&quot;     &quot;Mbp&quot;      
- [79] &quot;Tacr3&quot;     &quot;Ntng1&quot;     &quot;Pak3&quot;      &quot;Gal&quot;       &quot;Irs4&quot;      &quot;Scg2&quot;     
- [85] &quot;Sytl4&quot;     &quot;Cyp19a1&quot;   &quot;Gnrh1&quot;     &quot;Etv1&quot;      &quot;Aqp4&quot;      &quot;Cck&quot;      
- [91] &quot;Sox6&quot;      &quot;Nos1&quot;      &quot;Brs3&quot;      &quot;Ucn3&quot;      &quot;Chat&quot;      &quot;Pnoc&quot;     
- [97] &quot;Sgk1&quot;      &quot;Nts&quot;       &quot;Mc4r&quot;      &quot;Tiparp&quot;    &quot;Isl1&quot;      &quot;Scgn&quot;     
-[103] &quot;Ar&quot;        &quot;Fezf1&quot;     &quot;Coch&quot;      &quot;Sox8&quot;      &quot;Vgf&quot;       &quot;Onecut2&quot;  </code></pre>
-<pre class="r"><code>x &lt;- sample(c(rep(&quot;hello&quot;, 10), rep(&quot;world&quot;, 10), rep(&quot;idea&quot;, 2)))
-x
- [1] &quot;hello&quot; &quot;world&quot; &quot;hello&quot; &quot;hello&quot; &quot;hello&quot; &quot;world&quot; &quot;world&quot; &quot;world&quot; &quot;world&quot;
-[10] &quot;hello&quot; &quot;idea&quot;  &quot;world&quot; &quot;world&quot; &quot;hello&quot; &quot;hello&quot; &quot;world&quot; &quot;world&quot; &quot;hello&quot;
-[19] &quot;hello&quot; &quot;hello&quot; &quot;world&quot; &quot;idea&quot; 
+length(splits)</code></pre>
+<pre><code>[1] 20</code></pre>
+<p>Get the keys.</p>
+<pre class="r"><code>keys &lt;- filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  split_keys()
 
-case_when(x == &quot;hello&quot; ~ &quot;bar&quot;,
-          x == &quot;world&quot; ~ &quot;foo&quot;,
-          TRUE ~ &quot;else&quot;)
- [1] &quot;bar&quot;  &quot;foo&quot;  &quot;bar&quot;  &quot;bar&quot;  &quot;bar&quot;  &quot;foo&quot;  &quot;foo&quot;  &quot;foo&quot;  &quot;foo&quot;  &quot;bar&quot; 
-[11] &quot;else&quot; &quot;foo&quot;  &quot;foo&quot;  &quot;bar&quot;  &quot;bar&quot;  &quot;foo&quot;  &quot;foo&quot;  &quot;bar&quot;  &quot;bar&quot;  &quot;bar&quot; 
-[21] &quot;foo&quot;  &quot;else&quot;</code></pre>
+keys</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["sample"],"name":[1],"type":["chr"],"align":["left"]},{"label":["view"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"synthetic1","2":"intra"},{"1":"synthetic1","2":"para.6"},{"1":"synthetic10","2":"intra"},{"1":"synthetic10","2":"para.6"},{"1":"synthetic2","2":"intra"},{"1":"synthetic2","2":"para.6"},{"1":"synthetic3","2":"intra"},{"1":"synthetic3","2":"para.6"},{"1":"synthetic4","2":"intra"},{"1":"synthetic4","2":"para.6"},{"1":"synthetic5","2":"intra"},{"1":"synthetic5","2":"para.6"},{"1":"synthetic6","2":"intra"},{"1":"synthetic6","2":"para.6"},{"1":"synthetic7","2":"intra"},{"1":"synthetic7","2":"para.6"},{"1":"synthetic8","2":"intra"},{"1":"synthetic8","2":"para.6"},{"1":"synthetic9","2":"intra"},{"1":"synthetic9","2":"para.6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="intraview" class="section level4">
+<h4>Intraview</h4>
+<p>Now let’s look at the cosine similarities for the intraview for each sample (and summarize using the mean and the standard deviation).</p>
+<pre class="r"><code>cosine_similarity(keys, splits, &quot;intra&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0.8014017","3":"1.929998e-02"},{"1":"LBOOST","2":"0.7657657","3":"1.948244e-02"},{"1":"LM","2":"0.5930847","3":"1.852187e-02"},{"1":"MARS","2":"0.7702868","3":"1.825054e-02"},{"1":"MLP","2":"0.6421707","3":"2.485127e-02"},{"1":"RF","2":"1.0000000","3":"1.812987e-16"},{"1":"SVM","2":"0.7021634","3":"1.714482e-02"},{"1":"TBOOST","2":"0.7657657","3":"1.948244e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="paraview" class="section level4">
+<h4>Paraview</h4>
+<pre class="r"><code>cosine_similarity(keys, splits, &quot;para.6&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0.7044534","3":"2.432416e-02"},{"1":"LBOOST","2":"0.8947381","3":"2.047228e-02"},{"1":"LM","2":"-0.0195024","3":"3.894001e-02"},{"1":"MARS","2":"0.5844787","3":"3.504435e-02"},{"1":"MLP","2":"0.4142093","3":"5.353722e-02"},{"1":"RF","2":"1.0000000","3":"1.812987e-16"},{"1":"SVM","2":"0.1933188","3":"3.506235e-02"},{"1":"TBOOST","2":"0.8947381","3":"2.047228e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+</div>
+<div id="mibi_tnbc-2" class="section level2">
+<h2><code>mibi_tnbc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"34170","3":"151200"},{"1":"LBOOST","2":"34170","3":"151200"},{"1":"LM","2":"34170","3":"151200"},{"1":"MARS","2":"34170","3":"151200"},{"1":"RF","2":"34170","3":"151200"},{"1":"TBOOST","2":"47018","3":"151200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>splits &lt;- filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_importance() %&gt;%
+  split_importances()
+
+keys &lt;- filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_importance() %&gt;%
+  split_keys()</code></pre>
+<div id="intraview-1" class="section level4">
+<h4>Intraview</h4>
+<pre class="r"><code>cosine_similarity(keys, splits, &quot;intra&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0.8317273","3":"2.230531e-02"},{"1":"LBOOST","2":"NaN","3":"NA"},{"1":"LM","2":"0.5374535","3":"4.532624e-02"},{"1":"MARS","2":"0.7273468","3":"2.000848e-02"},{"1":"RF","2":"1.0000000","3":"1.497984e-16"},{"1":"TBOOST","2":"0.7654156","3":"3.662068e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="juxtaview" class="section level4">
+<h4>Juxtaview</h4>
+<pre class="r"><code>cosine_similarity(keys, splits, &quot;juxta.40&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0.6568351","3":"3.883568e-02"},{"1":"LBOOST","2":"NaN","3":"NA"},{"1":"LM","2":"0.3445002","3":"6.667787e-02"},{"1":"MARS","2":"0.5139468","3":"5.542526e-02"},{"1":"RF","2":"1.0000000","3":"1.218784e-16"},{"1":"TBOOST","2":"0.6239991","3":"4.346680e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="paraview-1" class="section level4">
+<h4>Paraview</h4>
+<pre class="r"><code>cosine_similarity(keys, splits, &quot;para.120&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0.6016797","3":"4.478674e-02"},{"1":"LBOOST","2":"NaN","3":"NA"},{"1":"LM","2":"0.1305946","3":"4.106996e-02"},{"1":"MARS","2":"0.3913006","3":"3.961044e-02"},{"1":"RF","2":"1.0000000","3":"1.570092e-16"},{"1":"TBOOST","2":"0.5810569","3":"4.823938e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="merfish_preoptic-2" class="section level2">
+<h2><code>merfish_preoptic</code></h2>
+</div>
+<div id="merfish_liver-2" class="section level2">
+<h2><code>merfish_liver</code></h2>
+</div>
+<div id="merfish_bc-2" class="section level2">
+<h2><code>merfish_bc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"21930"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"0","3":"197370"},{"1":"MARS","2":"21420","3":"153510"},{"1":"RF","2":"0","3":"197370"},{"1":"TBOOST","2":"13692","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>splits &lt;- filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  split_importances()
+
+keys &lt;- filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  split_keys()</code></pre>
+<div id="intraview-2" class="section level4">
+<h4>Intraview</h4>
+<pre class="r"><code>cosine_similarity(keys, splits, &quot;intra&quot;)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0.7192430","3":"NA"},{"1":"LBOOST","2":"NaN","3":"NA"},{"1":"LM","2":"0.4846089","3":"4.069517e-02"},{"1":"MARS","2":"0.5147869","3":"2.146118e-01"},{"1":"RF","2":"1.0000000","3":"1.922963e-16"},{"1":"TBOOST","2":"0.6886036","3":"2.866857e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+</div>
+<div id="ianca-2" class="section level2">
+<h2><code>4iANCA</code></h2>
+</div>
+</div>
+<div id="comparing-runtimes" class="section level1">
+<h1>Comparing Runtimes</h1>
+</div>
+<div id="hyperparameter-optimization" class="section level1 tabset">
+<h1 class="tabset">Hyperparameter Optimization</h1>
+<div id="rf" class="section level2">
+<h2>RF</h2>
+<div id="mibi_tnbc-3" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;RF_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="mars" class="section level2">
+<h2>MARS</h2>
+<div id="mibi_tnbc-4" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;MARS_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="synthetic-3" class="section level3">
+<h3><code>synthetic</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;MARS_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="linear-boosting" class="section level2">
+<h2>Linear Boosting</h2>
+<div id="mibi_tnbc-5" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;LBOOST_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;LBOOST_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-68-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="tree-boosting" class="section level2">
+<h2>Tree Boosting</h2>
+<div id="mibi_tnbc-6" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;TBOOST_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;TBOOST_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-10.1016/j.cell.2018.08.039" class="csl-entry">
 <div class="csl-left-margin">1. </div><div class="csl-right-inline">L. Keren, M. Bosse, D. Marquez, R. Angoshtari, S. Jain, S. Varma, S.-R. Yang, A. Kurian, D. V. Valen, R. West, S. C. Bendall, M. Angelo, <span class="nocase">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</span>. <em>Cell</em>. <strong>174</strong>, 1373–1387.e19 (2018).</div>
+</div>
+<div id="ref-10.1186/s13059-021-02404-0" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">J. Zhu, S. Sun, X. Zhou, <span class="nocase">SPARK-X: non-parametric modeling enables scalable and robust detection of spatial expression patterns for large spatial transcriptomic studies</span>. <em>Genome Biology</em>. <strong>22</strong>, 184 (2021).</div>
 </div>
 </div>
 <br>
@@ -2310,8 +1784,8 @@ case_when(x == &quot;hello&quot; ~ &quot;bar&quot;,
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
-<pre class="r"><code>sessionInfo()
-R version 4.1.2 (2021-11-01)
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.1.2 (2021-11-01)
 Platform: x86_64-pc-linux-gnu (64-bit)
 Running under: Ubuntu 20.04.3 LTS
 
@@ -2331,9 +1805,10 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
- [5] readr_2.0.2     tidyr_1.1.4     tibble_3.1.5    ggplot2_3.3.5  
- [9] tidyverse_1.3.1 mistyR_1.3.1    workflowr_1.6.2
+ [1] slider_0.2.2    magrittr_2.0.1  forcats_0.5.1   stringr_1.4.0  
+ [5] dplyr_1.0.7     purrr_0.3.4     readr_2.0.2     tidyr_1.1.4    
+ [9] tibble_3.1.5    ggplot2_3.3.5   tidyverse_1.3.1 mistyR_1.3.1   
+[13] workflowr_1.6.2
 
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.7        lubridate_1.8.0   assertthat_0.2.1  rprojroot_2.0.2  
@@ -2346,8 +1821,8 @@ loaded via a namespace (and not attached):
 [29] htmltools_0.5.2   tidyselect_1.1.1  viridisLite_0.4.0 fansi_0.5.0      
 [33] crayon_1.4.1      tzdb_0.1.2        dbplyr_2.1.1      withr_2.4.2      
 [37] later_1.3.0       grid_4.1.2        jsonlite_1.7.2    gtable_0.3.0     
-[41] lifecycle_1.0.1   DBI_1.1.1         git2r_0.28.0      magrittr_2.0.1   
-[45] scales_1.1.1      cli_3.0.1         stringi_1.7.5     farver_2.1.0     
+[41] lifecycle_1.0.1   DBI_1.1.1         git2r_0.28.0      scales_1.1.1     
+[45] warp_0.2.0        cli_3.0.1         stringi_1.7.5     farver_2.1.0     
 [49] fs_1.5.0          promises_1.2.0.1  xml2_1.3.2        bslib_0.3.1      
 [53] ellipsis_0.3.2    generics_0.1.0    vctrs_0.3.8       tools_4.1.2      
 [57] glue_1.4.2        hms_1.1.1         fastmap_1.1.0     yaml_2.2.1       
@@ -2407,7 +1882,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeCodeFolding("show" === "show");
+  window.initializeCodeFolding("hide" === "show");
 });
 </script>
 
@@ -2424,7 +1899,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
