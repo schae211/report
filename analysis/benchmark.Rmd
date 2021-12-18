@@ -1,5 +1,11 @@
 ---
 title: "Benchmark"
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    toc_depth: 2
+    code_folding: hide
 editor_options: 
   chunk_output_type: inline
 bibliography: references.bib
@@ -8,221 +14,339 @@ csl: science.csl
 
 Setup.
 
-```{r setup}
-knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
 knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
 suppressPackageStartupMessages(library(mistyR))
 suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(magrittr))
+suppressPackageStartupMessages(library(slider))
 ```
 
-# Introduction and Data
+# Introduction and Data {.tabset}
 
-What data is the benchmarking based on?
+Loading the data.
+
+```{r echo=FALSE}
+all.files <-  list.files("data", full.names = TRUE)
+res.files <- all.files[str_ends(all.files, "results.RDS")]
+view.files <- all.files[str_ends(all.files, "views.RDS")]
+
+# Getting the latest results and views
+latest.result <- str_extract(res.files, "[0-9-]+") %>% 
+  as.POSIXct() %>% 
+  which.max()
+latest.views <- str_extract(view.files, "[0-9-]+") %>% 
+  as.POSIXct() %>% 
+  which.max()
+
+print(paste("Loading results from:", res.files[latest.result]))
+all.results <- readRDS(res.files[latest.result])
+
+print(paste("Loading views from:", view.files[latest.views]))
+all.views <-readRDS(view.files[latest.views])
+```
+
+What data / experiments is the benchmarking based on?
 
 ```{r}
-all.views <- readRDS("data/2021-12-14-17-59_all_views.RDS")
-all.results <- readRDS("data/2021-12-14-23-01_all_results.RDS")
 all.names <- names(all.results)
 experiments <- str_extract(all.names, "[^/]+(?=/)") %>% unique
 experiments
 ```
 
-Where do the data come from?
 
-## a) `synthetic`
+```{r echo=FALSE}
+# removing irrelevant data
+views_to_remove <- c("/4iANCA/ratio_6_views", "/4iANCA/ratio_12_views",
+                     "/4iANCA/ratio_24_views")
+all.views <- all.views[(!names(all.views) %in% views_to_remove)]
+```
 
-&nbsp;&nbsp;&nbsp; Simulated data that are included in the MISTy package. As explained in the [Get Started Vignette](https://saezlab.github.io/mistyR/articles/mistyR.html),this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.
+## `synthetic`
 
-* &nbsp; Number of Samples, Markers, and spatial units per sample
-```{r}
-# Number of Samples
-c(length(all.views$`/synthetic/l6`),
-  length(all.views$`/synthetic/l12`),
-  length(all.views$`/synthetic/l24`)
-  )
+-   Simulated data that are included in the MISTy package. As explained in the [Get Started Vignette](https://saezlab.github.io/mistyR/articles/mistyR.html),this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.
 
-# Number of Markers
+-   Data Availability: `mistyR` package `data("synthetic")`
+
+-   Features: Simulated Data
+
+-   Number of samples:
+
+```{r echo=FALSE}
+length(all.views$`/synthetic/l6`)
+```
+
+-   Number of markers in each sample:
+
+```{r echo=FALSE}
 ncol(all.views$`/synthetic/l6`[[1]]$intraview$data)
+```
 
-# Summary for number of cells per sample
+-   Different views that were computed:
+
+    +   `/synthetic/l6`: paraview computed with `l=6`
+
+    +   `/synthetic/l12`: paraview computed with `l=12`
+
+    +   `/synthetic/l24`: paraview computed with `l=24`
+
+```{r echo=FALSE}
+names(all.views)[str_starts(names(all.views), "/synthetic")]
+```
+
+-   Number of spatial units (e.g. cells) per sample:
+
+```{r echo=FALSE}
 summary(
   map_dbl(all.views$`/synthetic/l6`, 
           ~ nrow(.x$intraview$data))
 )
 ```
 
-&nbsp;&nbsp;&nbsp; Features: Spatial Proteomics, Single Cell Resolution
+------------------------------------------------------------------------
 
-## b) `mibi_tnbc`
+## `mibi_tnbc`
 
-* &nbsp; Multiplexed Ion Beam Imaging (spatial proteomics) dataset from [A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging](https://dx.doi.org/10.1016/j.cell.2018.08.039) by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) [@10.1016/j.cell.2018.08.039]
+-   Multiplexed Ion Beam Imaging (spatial proteomics) dataset from [A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging](https://dx.doi.org/10.1016/j.cell.2018.08.039) by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) [@10.1016/j.cell.2018.08.039]
 
-* &nbsp; Data Availability: [https://mibi-share.ionpath.com/](https://mibi-share.ionpath.com/)
+-   Data Availability: <https://mibi-share.ionpath.com/>
 
-* &nbsp; Features: Spatial Proteomics, Single Cell Resolution
+-   Features: Spatial Proteomics, Single Cell Resolution, Segmentation
 
-* &nbsp; Number of Samples, Markers, and spatial units per sample
-```{r}
-# Number of Samples
+-   Number of samples:
+
+```{r echo=FALSE}
 length(all.views$`/mibi_tnbc/standard_views`)
+```
 
-# Number of Markers
+-   Number of markers in each sample:
+
+```{r echo=FALSE}
 ncol(all.views$`/mibi_tnbc/standard_views`[[1]]$intraview$data)
+```
 
-# Summary for number of cells per sample
+-   Different views that were computed:
+
+    -   `standard_views`: markers with zero variance were removed from each sample, juxtaview was computed with `neighbor.thr = 40`, and paraview was computed with `l = 120, zoi = 40`.
+
+```{r echo=FALSE}
+names(all.views)[str_starts(names(all.views), "/mibi_tnbc")]
+```
+
+-   Number of spatial units (e.g. cells) per sample:
+
+```{r echo=FALSE}
 summary(
   map_dbl(all.views$`/mibi_tnbc/standard_views`, 
           ~ nrow(.x$intraview$data))
 )
 ```
 
-## c) `merfish_preoptic`
+------------------------------------------------------------------------
 
-* &nbsp; MERFISH data from the murine hypothalamic preoptic region from [ Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region](https://dx.doi.org/10.1126/science.aau5324) by Moffitt, R. et al. (Science 362, 6416 (2018)) 
+## `merfish_preoptic`
 
-* &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
+-  MERFISH data from the murine hypothalamic preoptic region from [Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region](https://dx.doi.org/10.1126/science.aau5324) by Moffitt, R. et al. (Science 362, 6416 (2018))
 
-* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+-   Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
 
-* &nbsp; Number of Samples, Markers, and spatial units per sample
-```{r}
-# Number of Samples
-c(length(all.views$`/merfish_preoptic/hvg_views`),
-  length(all.views$`/merfish_preoptic/standard_views`)
-)
+-   Features: Spatial Transcriptomics, Single Cell Resolution, Segmentation
 
-# Number of Markers
-ncol(all.views$`/merfish_preoptic/hvg_views`[[1]]$intraview$data)
+-   Number of samples:
 
-# Summary for number of cells per sample
+```{r echo=FALSE}
+length(all.views$`/merfish_preoptic/hvg_views`)
+```
+
+-   Number of markers in each sample (depending on the view, see explanation below):
+
+```{r echo=FALSE}
+c(ncol(all.views$`/merfish_preoptic/hvg_views`[[1]]$intraview$data),
+  ncol(all.views$`/merfish_preoptic/standard_views`[[1]]$intraview$data))
+```
+
+-   Different views that were computed:
+
+    +   `standard_views`: markers with zero variance were removed from each sample, the juxtaview was computed with `neighbor.thr = 30`, and the paraview with `l = 120, zoi = 30`.
+
+    +   `hvg_views`: markers with zero variance were removed from each sample, the 108 most spatially variable genes (computed with *SPARK-X* [@10.1186/s13059-021-02404-0]) were selected, the juxtaview was computed with `neighbor.thr = 30`, and the paraview with `l = 120, zoi = 30`.
+
+```{r echo=FALSE}
+names(all.views)[str_starts(names(all.views), "/merfish_preoptic")]
+```
+
+-   Number of spatial units (e.g. cells) per sample:
+
+```{r echo=FALSE}
 summary(
   map_dbl(all.views$`/merfish_preoptic/hvg_views`, 
           ~ nrow(.x$intraview$data))
 )
 ```
 
-## d) `merfish_liver`
+------------------------------------------------------------------------
 
-* &nbsp; MERFISH data from the murine fetal liver from [Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture](https://dx.doi.org/10.1038/s41421-021-00266-1) by Yanfang, L. et al. (Cell Discovery 7, 47 (2021)) 
+## `merfish_liver`
 
-* &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
+-   MERFISH data from the murine fetal liver from [Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture](https://dx.doi.org/10.1038/s41421-021-00266-1) by Yanfang, L. et al. (Cell Discovery 7, 47 (2021))
 
-* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+-   Data Availability: [SIYUAN WANG LAB](https://campuspress.yale.edu/wanglab/HSCMERFISH/)
 
-* &nbsp; Number of Samples, Markers, and spatial units per sample
-```{r}
-# Number of Samples
-c(length(all.views$`/merfish_liver/standard280_views`)
-)
+-   Features: Spatial Transcriptomics, Single Cell Resolution, Segmentation
 
-# Number of Markers
+-   Number of samples:
+
+```{r echo=FALSE}
+length(all.views$`/merfish_liver/standard280_views`)
+```
+
+-   Number of markers in each sample:
+
+```{r echo=FALSE}
 ncol(all.views$`/merfish_liver/standard280_views`[[1]]$intraview$data)
+```
 
-# Summary for number of cells per sample
+-   Different views that were computed:
+
+    +   `standard280_views`: markers with zero variance were removed from each sample, samples with fewer than 280 cells were removed, the juxtaview was computed with `neighbor.thr = 100`, and the paraview with `l = 180, zoi = 100`.
+
+```{r echo=FALSE}
+names(all.views)[str_starts(names(all.views), "/merfish_liver")]
+```
+
+-   Number of spatial units (e.g. cells) per sample:
+
+```{r echo=FALSE}
 summary(
   map_dbl(all.views$`/merfish_liver/standard280_views`,
           ~ nrow(.x$intraview$data))
 )
 ```
 
-## e) `merfish_bc`
+------------------------------------------------------------------------
 
-* &nbsp; MERFISH data from metastatic breast cancer (unpublished)
+## `merfish_bc`
 
-* &nbsp; Features: Spatial Transcriptomics, Single Cell Resolution
+-   MERFISH data from metastatic breast cancer (unpublished)
 
-* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+-   Data Availability: -
 
-* &nbsp; Number of Samples, Markers, and spatial units per sample
-```{r}
-# Number of Samples
-c(length(all.views$`/merfish_bc/hvg_views`),
-  length(all.views$`/merfish_bc/standard_views`)
-)
+-   Features: Spatial Transcriptomics, Single Cell Resolution, Segmentation
 
-# Number of Markers
-ncol(all.views$`/merfish_bc/hvg_views`[[1]]$intraview$data)
+-   Number of samples:
 
-# Summary for number of cells per sample
+```{r echo=FALSE}
+length(all.views$`/merfish_bc/hvg_views`)
+```
+
+-   Number of markers in each sample (depending on the view, see explanation below):
+
+```{r echo=FALSE}
+c(ncol(all.views$`/merfish_bc/hvg_views`[[1]]$intraview$data),
+  ncol(all.views$`/merfish_bc/standard_views`[[1]]$intraview$data))
+```
+
+-   Different views that were computed:
+
+    +   `standard_views`: markers with zero variance were removed from each sample, the juxtaview was computed with `neighbor.thr = 15`, and the paraview with `l = 100, zoi = 15`.
+
+    +   `hvg_views`: markers with zero variance were removed from each sample, the 86 most spatially variable genes (computed with *SPARK-X* [@10.1186/s13059-021-02404-0]) were selected, the juxtaview was computed with `neighbor.thr = 15`, and the paraview with `l = 100, zoi = 15`.
+
+```{r echo=FALSE}
+names(all.views)[str_starts(names(all.views), "/merfish_bc")]
+```
+
+-   Number of spatial units (e.g. cells) per sample:
+
+```{r echo=FALSE}
 summary(
   map_dbl(all.views$`/merfish_bc/hvg_views`,
           ~ nrow(.x$intraview$data))
 )
 ```
 
-## f) `4iANCA`
+------------------------------------------------------------------------
 
-* &nbsp; 4i (iterative indirect immunofluorescence imaging) data from glomeruli
+## `4iANCA`
 
-* &nbsp; Features: Spatial Proteomics, Single Cell Resolution
+-   Iiterative Indirect Immunofluorescence Imaging (4i) data from glomeruli (unpublished)
 
-* &nbsp; Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
+-   Data Availability: -
 
-* &nbsp; Number of Samples, Markers, and spatial units per sample
-```{r}
-# Number of Samples
-c(length(all.views$`/4iANCA/ratio_153_views`),
-  length(all.views$`/4iANCA/ratio_76_views`),
-  length(all.views$`/4iANCA/ratio_38_views`),
-  length(all.views$`/4iANCA/ratio_19_views`)
-)
+-   Features: Spatial Proteomics, Single Cell Resolution, No Segmentation
 
-# Number of Markers
-ncol(all.views$`/4iANCA/ratio_153_views`[[1]]$intraview$data)
+-   Number of samples:
 
-# Summary for number of cells per sample
-# Largest Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_153_views`,
-          ~ nrow(.x$intraview$data))
-)
-
-#  Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_76_views`,
-          ~ nrow(.x$intraview$data))
-)
-
-# Largest Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_38_views`,
-          ~ nrow(.x$intraview$data))
-)
-
-# Largest Binning
-summary(
-  map_dbl(all.views$`/4iANCA/ratio_19_views`,
-          ~ nrow(.x$intraview$data))
-)
+```{r echo=FALSE}
+length(all.views$`/4iANCA/ratio_153_views`)
 ```
 
-* &nbsp; Number of cells per sample: No segmentation was performed, therefore
-the pixels were simply binned with 3 different schemes. The pixels have a 
-side length of `0.13` microns, and an average eukaryotic cell is between
-`10` and `100` microns in diameter. Therefore I choose the largest binning 
-to be `floor(20/0.13) = 153`, meaning the side length of one spatial unit (bin)
-will correspond to 153 pixels. The smaller bins are then sequentially half
-of the size (76, 38, 19). The corresponding parameter for the computation
-of the paraview was adjusted accordingly, meaning multiplied sequentially by
-two.
+-   Number of markers in each sample:
+
+```{r echo=FALSE}
+ncol(all.views$`/4iANCA/ratio_153_views`[[1]]$intraview$data)
+```
+
+-   Different views that were computed:
+
+    +   /4iANCA/ratio_153_views
+
+    +   /4iANCA/ratio_76_views
+
+    +   /4iANCA/ratio_38_views
+
+    +   /4iANCA/ratio_19_views
+
+    +   /4iANCA/ratio_9\_views
+
+```{r echo=FALSE}
+names(all.views)[str_starts(names(all.views), "/4iANCA")]
+```
+
+-   Number of spatial units (e.g. cells) per sample, depending on the computed view:
+
+    -   Number of cells per sample: No segmentation was performed, therefore the pixels were simply binned with 5 different schemes. The pixels have a side length of $0.13$ microns, and an average eukaryotic cell is between $10$ and $100 \micro m$ in diameter. Therefore I choose the largest binning to be `floor(20/0.13) = 153`, meaning the side length of one spatial unit (bin) will correspond to 153 pixels. The smaller bins are then sequentially half of the size (76, 38, 19, 9). The corresponding parameter for the computation of the paraview was adjusted accordingly, meaning if the l parameter $l_{153}$ was used for computation of the paraview for the 153 binning, $2 \times l_{153}$ was used for the 76 binning.
+
+```{r echo=FALSE}
+map2_dfr(all.views[str_starts(names(all.views), "/4iANCA")], 
+        names(all.views)[str_starts(names(all.views), "/4iANCA")],
+        function(view, n) {
+    map_dfr(view, ~ nrow(.x$intraview$data)) %>%
+    mutate(experiment = n)
+}) %>%
+  pivot_longer(cols = !c(experiment), 
+               names_to = "sample", 
+               values_to = "n") %>%
+  group_by(experiment) %>%
+  summarise(mean_n = mean(n)) %>%
+  arrange(mean_n)
+```
+
+------------------------------------------------------------------------
 
 # Scripts
 
-The scripts that were used for these analysis can be found in this
-[GitHub repository](https://github.com/schae211/report/tree/master/cluster_scripts). Theses scripts were run on a cluster managed by Slurm.
+The scripts that were used for all analysis can be found in this [GitHub repository](https://github.com/schae211/report/tree/master/cluster_scripts). The computations were performed on a cluster managed by Slurm.
 
-# Comparing Algorithms
+------------------------------------------------------------------------
+
+# Comparing Performances {.tabset}
 
 Function to get clean data for a particular study.
 
 ```{r}
-filter_runs <- function(all.names, all.runs, str.study) {
-  names.run <- all.names[str_detect(all.names, str.study)]
-  successful.run <- map_lgl(all.results[names.run], ~ typeof(.x) == "list")
-  all.results[names.run][successful.run]
+# helper function to get all misty runs for a particular study
+filter_runs <- function(all.runs, str.study, views) {
+  str.view <- paste(views, collapse="|")
+  all.names <- names(all.runs)
+  names.study <- all.names[str_detect(all.names, str.study)]
+  names.view <- names.study[str_detect(names.study, str.view)]
+  sucessful.runs <- map_lgl(all.results[names.view], ~ typeof(.x) == "list")
+  all.results[names.view][sucessful.runs]
 }
 ```
 
@@ -234,428 +358,548 @@ get_performance <- function(filtered.run) {
                                    function(misty.run, name) {
     misty.run$improvements %>%
       mutate(algorithm = str_extract(name, "(?<=/)[^/]+$")) %>%
-      mutate(study = str_extract(sample, "(?<=OUTPUT/)[^/]+"))
+      mutate(study = str_extract(sample, "(?<=OUTPUT/)[^/]+")) %>%
+      mutate(view = str_extract(sample, paste0("(?<=OUTPUT/", study, "/)[^/]+")))
   })
 }
 ```
 
-## Merfish Breast Cancer (spatially variable genes)
-
-Cleaning Data.
-
 ```{r}
-merfish_bc_hvg <- filter_runs(all.names, all.results, "/merfish_bc/hvg/")
-```
-
-Performance.
-
-```{r}
-performance_merfish_bc_hvg <- get_performance(merfish_bc_hvg)
-
-performance_merfish_bc_hvg %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = factor(algorithm,
-             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Median Multi.R2")
-```
-
-## Merfish Fetal Liver (spatially variable genes)
-
-```{r}
-merfish_liver_std280 <- filter_runs(all.names, all.results, "/merfish_liver/std280/")
+check_runs <- function(misty.performances, ordering = NULL) {
+  
+    levs <- function() {
+    if (is.null(ordering)) {
+      out <- misty.performances %>% 
+        filter(!(algorithm %in% exclude)) %>%
+        pull(algorithm) %>%
+        unique()
+    } else {
+      out <- ordering
+    }
+    out
+  }
+  
+  misty.performances %>%
+    select(algorithm, sample, view) %>%
+    distinct() %>%
+    mutate(algorithm = factor(algorithm, levels = levs())) %>%
+    group_by(view, algorithm) %>%
+    summarise(sample_number = n(), .groups="drop") %>%
+    pivot_wider(names_from = "view", values_from = "sample_number")
+}
 ```
 
 ```{r}
-performance_merfish_liver_std280 <- get_performance(merfish_liver_std280)
-
-performance_merfish_liver_std280 %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = factor(algorithm,
-             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Median Multi.R2")
-```
-
-## Merfish Preoptic (spatially variable genes)
-
-```{r}
-merfish_preoptic_hvg <- filter_runs(all.names, all.results,
-                                    "/merfish_preoptic/hvg/")
-```
-
-```{r}
-performance_merfish_preoptic_hvg <- get_performance(merfish_preoptic_hvg)
-
-performance_merfish_preoptic_hvg %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = factor(algorithm, 
-                            levels=c("RF", "TBOOST", "LBOOST", "LM", "MARS", "MARS80", "MARS60", "MARS40"))) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Median Multi.R2")
-```
-
-## MIBI TNBC
-
-```{r}
-mibi_tnbc_std <- filter_runs(all.names, all.results,
-                                    "/mibi_tnbc/standard/")
-```
-
-```{r}
-performance_mibi_tnbc_std <- get_performance(mibi_tnbc_std)
-
-performance_mibi_tnbc_std %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = factor(algorithm,
-             levels=c("RF", "TBOOST", "LBOOST", "MARS", "LM", "BGMARS"))) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Median Multi.R2")
-```
-
-We see some overfitting here with linear boosting, since it is worse
-than the normal linear model.
-
-## 4I
-
-```{r}
-# tmp
-fouri_anca <- all.results[str_starts(all.names, 
-                                     "/4iANCA")]
-filtered_fouri_anca <- fouri_anca[str_ends(names(fouri_anca), 
-                                           "BGMARS|SVM|MLP", 
-                                           negate = TRUE)]
-saveRDS(filtered_fouri_anca, "../4iANCA_results.RDS")
-str_extract(names(filtered_fouri_anca), "ratio_[0-9]+") %>% unique
-```
-
-
-```{r}
-iiii_std <- filter_runs(all.names, all.results,
-                                    "/4iANCA/ratio_24/")
-```
-
-```{r fig.height=6, fig.width=8}
-performance_iiii_std <- get_performance(iiii_std)
-
-l = c("RF", "TBOOST", "MARS100", "LM", "LBOOST")
-
-performance_iiii_std %>%
-  filter(measure == "gain.R2") %>%
-  filter(algorithm %in% l) %>%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = "Algorithm", fill = "Median Gain.R2")
-```
-
-```{r fig.height=6, fig.width=8}
-performance_iiii_std %>%
-  filter(measure == "multi.R2") %>%
-  filter(algorithm %in% l) %>%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = "Algorithm", fill = "Median Multi.R2")
+plot_performance <- function(misty.performances, str.measure, 
+                             str.summary = "mean", targets = FALSE,
+                             exclude = c(), wrap.views = FALSE,
+                             ncol = 2, ordering = NULL) {
+  
+  str.summary = match.arg(str.summary, c("mean", "median"))
+  
+  fill = ifelse(str.summary == "mean", "mean", "median")
+  
+  theme_custom <- function() {
+    if (targets) {
+      out <- theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5))
+    } else {
+      out <- theme(axis.text.y = element_blank(), axis.ticks.y=element_blank(),
+                   axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5))
+    }
+    out
+  }
+  
+  wrap <- function() {
+    if (wrap.views) {
+      out <- facet_wrap(~ view, ncol = ncol)
+    } else {
+      out <- NULL
+    }
+    out
+  }
+  
+  levs <- function() {
+    if (is.null(ordering)) {
+      out <- misty.performances %>% 
+        filter(!(algorithm %in% exclude)) %>%
+        pull(algorithm) %>%
+        unique()
+    } else {
+      out <- ordering
+    }
+    out
+  }
+  
+  plot <- misty.performances %>%
+    filter(measure == str.measure) %>%
+    filter(!(algorithm %in% exclude)) %>%
+    mutate(algorithm = factor(algorithm, levels=levs())) %>%
+    group_by(view, algorithm, target) %>%
+    summarise(mean = mean(value), median = median(value), 
+              sd = sd(value), .groups = "drop_last") %>%
+    ggplot() +
+    geom_tile(aes(x = algorithm, y = target, 
+                  # use .data[[var]] to access data variables with strings
+                  fill = .data[[fill]] )) +
+    scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
+    labs(x = "Algorithm", fill = paste0(str.summary, " : ", str.measure)) +
+    theme_custom() +
+    wrap()
+  
+  print(plot)
+}
 ```
 
 ```{r}
-iiii_153 <- filter_runs(all.names, all.results,
-                                    "/4iANCA/ratio_153/")
+# ordering of factors
+l = c("RF", "TBOOST", "MARS100", "MARS", "MARS80", "MARS60", "MARS40",
+      "BGMARS", "LBOOST", "LM", "SVM", "MLP")
 ```
 
-```{r fig.height=6, fig.width=8}
-performance_iiii_153 <- get_performance(iiii_153)
 
-l = c("RF", "TBOOST", "MARS100", "LM", "LBOOST")
+## `synthetic`
 
-performance_iiii_153 %>%
-  filter(measure == "gain.R2") %>%
-  filter(algorithm %in% l) %>%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = "Algorithm", fill = "Median Gain.R2")
+```{r}
+filter_runs(all.results, "synthetic", c("l6", "l12", "l24")) %>%
+  get_performance() %>%
+  check_runs(ordering = l)
+```
+
+
+```{r fig.width=8, fig.height=4}
+filter_runs(all.results, "synthetic", c("l6", "l12", "l24")) %>%
+  get_performance() %>%
+  mutate(view = factor(view, levels = c("l6", "l12", "l24"))) %T>%
+  plot_performance(str.measure = "multi.R2", str.summary = "mean",
+                   targets = TRUE, wrap.views = TRUE, ncol=3,
+                   ordering = l) %T>%
+  plot_performance(str.measure = "gain.R2", str.summary = "mean",
+                   targets = TRUE, wrap.views = TRUE, ncol=3,
+                   ordering = l) %>%
+  invisible()
+```
+
+## `mibi_tnbc`
+
+```{r}
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_performance() %>%
+  check_runs(ordering = l)
+```
+
+```{r fig.width=8}
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_performance() %T>%
+  plot_performance(str.measure = "multi.R2", str.summary = "mean",
+                   targets = TRUE, ordering = l) %T>%
+  plot_performance(str.measure = "gain.R2", str.summary = "mean",
+                   targets = TRUE, ordering = l) %>%
+  invisible()
+```
+
+---
+
+## `merfish_preoptic`
+
+We see that MARS (with the current configuration) is not scalable enough to
+handle such large datasets with 100 markers and up to 70,000 spatial units.
+
+```{r}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_performance() %>%
+  check_runs(ordering = l)
+```
+
+```{r fig.width=8}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_performance() %T>%
+  plot_performance(str.measure = "multi.R2", str.summary = "mean",
+                   targets = FALSE, ordering = l,
+                   exclude = c("MARS", "MARS40", "MARS60", "MARS80")) %T>%
+  plot_performance(str.measure = "gain.R2", str.summary = "mean",
+                   targets = FALSE, ordering = l,
+                   exclude = c("MARS", "MARS40", "MARS60", "MARS80")) %>%
+  invisible()
+```
+
+---
+
+## `merfish_liver`
+
+For some reason everything but bagged MARS, MARS, and gradient boosted trees 
+failed.
+
+```{r}
+filter_runs(all.results, "merfish_liver", "std280") %>%
+  get_performance() %>%
+  check_runs(ordering = l)
+```
+
+```{r fig.width=8}
+filter_runs(all.results, "merfish_liver", "std280") %>%
+  get_performance() %T>%
+  plot_performance(str.measure = "mulit.R2", str.summary = "mean",
+                   targets = FALSE, ordering = l) %T>%
+  plot_performance(str.measure = "gain.R2", str.summary = "mean",
+                   targets = FALSE, ordering = l) %>%
+  invisible()
+```
+
+---
+
+## `merfish_bc`
+
+Since the bagged MARS algorithm could only finish the computation for a single
+sample I must exclude the result. One should also keep in mind that the 
+MARS algorithm was not able to finish (2 samples are missing).
+
+```{r}
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_performance() %>%
+  check_runs(ordering = l)
+```
+
+```{r fig.width=8}
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_performance() %T>%
+  plot_performance(str.measure = "multi.R2", str.summary = "mean",
+                   targets = FALSE, exclude = c("BGMARS"),
+                   ordering = l) %T>%
+  plot_performance(str.measure = "gain.R2", str.summary = "mean",
+                   targets = FALSE, exclude = c("BGMARS"),
+                   ordering = l) %>%
+  invisible()
+```
+
+---
+
+## `4iANCA`
+
+The computation for the smallest binning (`ratio_9`) could not be finished.
+
+Also why do we only have 10 samples instead of 36 samples for ratio 153?
+
+```{r}
+filter_runs(all.results, "4iANCA", c("ratio_153", "ratio_76", 
+                                     "ratio_38", "ratio_19", "ratio_9")) %>%
+  get_performance() %>%
+  check_runs(ordering = l)
+```
+
+```{r fig.width=10, fig.height=6}
+views <- c("ratio_153", "ratio_76", "ratio_38", "ratio_19", "ratio_9")
+filter_runs(all.results, "4iANCA", views) %>%
+  get_performance() %>%
+  mutate(view = factor(view, levels=views)) %T>%
+  plot_performance(str.measure = "multi.R2", wrap.views = TRUE, ncol=3,
+                   ordering = l) %>%
+  plot_performance(str.measure = "gain.R2", wrap.views = TRUE, ncol=3,
+                   ordering = l)
+```
+
+---
+
+# Comparing Importances {.tabset}
+
+Function to extract the importances (interaction measures).
+
+```{r eval=FALSE, include=FALSE}
+get_importance_dt <- function(filtered.run) {
+  # https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
+  # could potentially be faster with these large datasets
+  map2_dfr(filtered.run, names(filtered.run), function(misty.run, name) {
+    out <- misty.run$importances    
+    out <- data.table::as.data.table(out)
+    out[, algorithm := str_extract(name, "(?<=/)[^/]+$")]
+    out[, study := str_extract(sample, "(?<=OUTPUT/)[^/]+")]
+    out[, view.comp := str_extract(sample, paste0("(?<=OUTPUT/", 
+                                                    study, "/)[^/]+"))]
+  })
+}
+
+get_importance_old <- function(filtered.run) {
+  map2_dfr(filtered.run, names(filtered.run), function(misty.run, name) {
+    misty.run$importances %>%
+      mutate(algorithm = str_extract(name, "(?<=/)[^/]+$")) %>%
+      mutate(study = str_extract(sample, "(?<=OUTPUT/)[^/]+")) %>%
+      mutate(view.comp = str_extract(sample, paste0("(?<=OUTPUT/", 
+                                                    study, "/)[^/]+")))
+  })
+}
 ```
 
 ```{r}
-performance_iiii_153 %>%
-  filter(measure == "multi.R2") %>%
-  filter(algorithm %in% l) %>%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = "Algorithm", fill = "Median Multi.R2")
+get_importance <- function(filtered.run) {
+  map2_dfr(filtered.run, names(filtered.run), function(misty.run, name) {
+                                     
+    # using str_extract_all drastically improves the performance
+    # warning: indices of algorithm, study, and view.comp hardcoded
+    all.info <- str_extract_all(misty.run$importances$sample, "(?<=/)[^/]+")
+                                     
+    misty.run$importances %>%
+      mutate(algorithm = map_chr(all.info, ~ .x[length(.x)-1])) %>%
+      mutate(study = map_chr(all.info, ~ .x[length(.x)-3])) %>%
+      mutate(view.comp = map_chr(all.info, ~ .x[length(.x)-2]))
+  })
+}
+```
+
+
+Function to check whether all importances are present for each algorithm
+
+```{r}
+check_algs <- function(misty.performances) {
+  misty.performances %>%
+    unite(relation, Predictor, Target, sep="_") %>%
+    select(-c(study, view.comp)) %>%
+    drop_na() %>%
+    pivot_wider(names_from=relation, values_from=Importance) %>%
+    mutate(sample = str_extract(sample, "[^/]+$")) %>%
+    pivot_longer(cols = !c(sample, view, algorithm)) %>%
+    mutate(check.NA = is.na(value)) %>%
+    group_by(algorithm) %>%
+    summarise(n.NAs = sum(check.NA), n = n())
+}
+```
+
+Function to split the importances according to view and sample.
+
+```{r}
+split_importances <- function(misty.importances) {
+  misty.importances %>%
+    unite(relation, Predictor, Target, sep="_") %>%
+    select(-c(study, view.comp)) %>%
+    drop %>%
+    pivot_wider(names_from=relation, values_from=Importance) %>%
+    # !!! all NAs replaced with 0 !!!
+    replace(is.na(.), 0) %>%
+    mutate(sample = str_extract(sample, "[^/]+$")) %>%
+    group_by(sample, view) %>%
+    group_split()
+}
+```
+
+Function to get the keys for splitting the importances according to view and sample.
+
+```{r}
+split_keys <- function(misty.importances) {
+  misty.importances %>%
+    unite(relation, Predictor, Target, sep="_") %>%
+    select(-c(study, view.comp)) %>%
+    drop_na() %>%
+    pivot_wider(names_from=relation, values_from=Importance) %>%
+    mutate(sample = str_extract(sample, "[^/]+$")) %>%
+    group_by(sample, view) %>%
+    group_keys()
+}
+```
+
+Function to compute the cosine similarity for a given view.
+
+```{r}
+cosine_similarity <- function(keys, splits, sel.view, relative="RF") {
+  # 1. get the tibbles corresponding to the selected view
+  keys %>%
+    mutate(id = row_number()) %>%
+    filter(view == sel.view) %>%
+    pull(id, name = sample) %>%
+    # 2. map over each sample (tibble) and bind the results as rows
+    map_dfr(function(tbl.id) {
+      
+      tbl <- splits[[tbl.id]]
+      
+      # 3. get the random forest importance vector as reference
+      rf <- tbl %>% filter(algorithm == relative) %>% 
+        select(-c(sample, view, algorithm)) %>%
+        unlist()
+      
+      # 4. get the importance vectors for the other algorithms by mapping over rows
+      cosine.sims <- slide_dfr(tbl, function(row) {
+        vec <- row %>% select(-c(sample, view, algorithm)) %>%
+          unlist()
+        
+        # 5. for each importance vector compute the cosine similarity
+        cosine.sim <- (rf %*% vec * 1/(rf %*% rf)**0.5 * 1/(vec %*% vec)**0.5) %>%
+          as.double()
+        
+        tibble(algorithm = row %>% pull(algorithm), cosine = cosine.sim, 
+               sample = row %>% pull(sample))
+      })
+    }) %>%
+    # 6. Group by algorithm and get the mean of the cosine similarity for each sample
+    group_by(algorithm) %>%
+    summarise(mean = mean(cosine), sd = sd(cosine))
+}
+```
+
+## `synthetic`
+
+For the boosting functions several importances are not returned?
+
+```{r}
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  check_algs()
+```
+
+### Cosine Similarity
+
+Split the importances according to view and sample.
+
+```{r}
+splits <- filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  split_importances()
+
+length(splits)
+```
+
+Get the keys.
+
+```{r}
+keys <- filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  split_keys()
+
+keys
+```
+
+#### Intraview
+
+Now let's look at the cosine similarities for the intraview for each sample 
+(and summarize using the mean and the standard deviation).
+
+```{r}
+cosine_similarity(keys, splits, "intra")
+```
+
+#### Paraview
+
+```{r}
+cosine_similarity(keys, splits, "para.6")
+```
+
+## `mibi_tnbc`
+
+```{r}
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_importance() %>%
+  check_algs()
 ```
 
 ```{r}
-iiii_76 <- filter_runs(all.names, all.results,
-                                    "/4iANCA/ratio_76/")
+splits <- filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_importance() %>%
+  split_importances()
+
+keys <- filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_importance() %>%
+  split_keys()
 ```
 
-```{r fig.height=6, fig.width=8}
-performance_iiii_76 <- get_performance(iiii_76)
+#### Intraview
 
-l = c("RF", "TBOOST", "MARS100", "LM", "LBOOST")
+```{r}
+cosine_similarity(keys, splits, "intra")
+```
 
-performance_iiii_76 %>%
-  filter(measure == "gain.R2") %>%
-  filter(algorithm %in% l) %>%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = "Algorithm", fill = "Median Gain.R2")
+#### Juxtaview
+
+```{r}
+cosine_similarity(keys, splits, "juxta.40")
+```
+
+#### Paraview
+
+```{r}
+cosine_similarity(keys, splits, "para.120")
+```
+
+## `merfish_preoptic`
+
+## `merfish_liver`
+
+## `merfish_bc`
+
+```{r}
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %>%
+  check_algs()
 ```
 
 ```{r}
-performance_iiii_76 %>%
-  filter(measure == "multi.R2") %>%
-  filter(algorithm %in% l) %>%
-  mutate(algorithm = factor(algorithm,
-         levels = l)) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  labs(x = "Algorithm", fill = "Median Multi.R2")
+splits <- filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %>%
+  split_importances()
+
+keys <- filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %>%
+  split_keys()
 ```
 
+#### Intraview
 
-# Hyperparameter Optimization
+```{r}
+cosine_similarity(keys, splits, "intra")
+```
+
+## `4iANCA`
+
+# Comparing Runtimes
+
+# Hyperparameter Optimization {.tabset}
 
 ## RF
 
-### MIBI TNBC
+### `mibi_tnbc`
 
 ```{r}
-mibi_tnbc_rf_hyper <- filter_runs(all.names, all.results,
-                                    "/mibi_tnbc/RF_hyper/")
-```
-
-```{r}
-performance_mibi_tnbc_rf_hyper <- get_performance(mibi_tnbc_rf_hyper)
-
-performance_mibi_tnbc_rf_hyper %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = str_extract(algorithm, "(?<=RF_hyper_).+")) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Median Multi.R2") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "RF_hyper_")) %>%
+  plot_performance(str.measure="multi.R2")
 ```
 
 ## MARS
 
-### MIBI TNBC
+### `mibi_tnbc`
 
 ```{r}
-mibi_tnbc_mars_hyper <- filter_runs(all.names, all.results,
-                                    "/mibi_tnbc/MARS_hyper/")
+filter_runs(all.results, "mibi_tnbc", "MARS_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
+  plot_performance(str.measure="multi.R2")
 ```
 
-```{r}
-performance_mibi_tnbc_mars_hyper <- get_performance(mibi_tnbc_mars_hyper)
-
-performance_mibi_tnbc_mars_hyper %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = str_extract(algorithm, "(?<=MARS_hyper_).+")) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = median)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Median Multi.R2") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-```
+### `synthetic`
 
 ```{r}
-performance_mibi_tnbc_mars_hyper %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = str_extract(algorithm, "(?<=MARS_hyper_).+")) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Mean Multi.R2") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-```
-
-### Synthetic
-
-```{r}
-synthetic_mars_hyper <- filter_runs(all.names, all.results,
-                                    "/synthetic/MARS_hyper/")
-```
-
-```{r}
-performance_synthetic_mars_hyper <- get_performance(synthetic_mars_hyper)
-
-performance_synthetic_mars_hyper %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = str_extract(algorithm, "(?<=MARS_hyper_).+")) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  #theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Mean Multi.R2") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+filter_runs(all.results, "synthetic", "MARS_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
+  plot_performance(str.measure="multi.R2")
 ```
 
 ## Linear Boosting
 
-### MIBI TNBC
+### `mibi_tnbc`
 
 ```{r}
-mibi_tnbc_lboost_hyper <- filter_runs(all.names, all.results,
-                                    "/mibi_tnbc/LBOOST_hyper/")
-```
-
-```{r}
-performance_mibi_tnbc_lboost_hyper <- get_performance(mibi_tnbc_lboost_hyper)
-
-performance_mibi_tnbc_lboost_hyper %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = str_extract(algorithm, "(?<=LBOOST_hyper_).+")) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Mean Multi.R2") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  plot_performance(str.measure="multi.R2")
 ```
 
 ## Tree Boosting
 
-### MIBI TNBC
+### `mibi_tnbc`
 
 ```{r}
-mibi_tnbc_tboost_hyper <- filter_runs(all.names, all.results,
-                                    "/mibi_tnbc/TBOOST_hyper/")
-```
-
-```{r}
-performance_mibi_tnbc_tboost_hyper <- get_performance(mibi_tnbc_tboost_hyper)
-
-performance_mibi_tnbc_tboost_hyper %>%
-  filter(measure == "multi.R2") %>%
-  mutate(algorithm = str_extract(algorithm, "(?<=TBOOST_hyper_).+")) %>%
-  group_by(study, algorithm, target) %>%
-  summarise(mean = mean(value), median = median(value), 
-            sd = sd(value), .groups = "drop_last") %>%
-  ggplot() +
-  geom_tile(aes(x = algorithm, y = target, fill = mean)) +
-  #facet_wrap(~ study, scales="free", nrow=1) +
-  scale_fill_viridis_c(values = c(0, 0.1, 0.2, 0.4, 0.7, 1)) +
-  theme(axis.text.y = element_blank(), axis.ticks.y = element_blank()) +
-  labs(x = "Algorithm", fill = "Mean Multi.R2") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
-```
-
-
-
-
-# tmp
-
-```{r}
-all.results$`/merfish_preoptic/hvg/MARS`$improvements %>%
-  pull(target) %>% unique
-
-all.results$`/merfish_preoptic/hvg/RF`$improvements %>%
-  pull(target) %>% unique
-```
-
-
-```{r}
-x <- sample(c(rep("hello", 10), rep("world", 10), rep("idea", 2)))
-x
-
-case_when(x == "hello" ~ "bar",
-          x == "world" ~ "foo",
-          TRUE ~ "else")
+filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "TBOOST_hyper_")) %>%
+  plot_performance(str.measure="multi.R2")
 ```
 
 # References
-
-
