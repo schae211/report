@@ -7,6 +7,7 @@ output:
     toc_float: no
 bibliography: references.bib
 csl: science.csl
+link-citations: yes
 ---
 
 <style>
@@ -15,10 +16,9 @@ text-align: justify;
 margin: 300px}
 </style>
 
-In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq[@10.1016/j.cell.2015.05.002] in 2015, the number of studies based on single-cell omics has exploded, primarily due to the  commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, to use this technology a single-cell suspension must be used, meaning tissues must for example be dissociated before sequencing. Consequently, we loose information about the spatial context, which is crucial for cellular function. Different mechanisms are employed by cells to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Apart from hormonal signaling, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, infering cell-cell-communcation (CCC) using single-cell expression data based on dissociated tissues is difficult. 
+In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq[@10.1016/j.cell.2015.05.002] in 2015, the number of studies based on single-cell omics has exploded, primarily due to the  commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, this technology requires a single-cell suspension, meaning tissues must be dissociated. Consequently, we loose information about the spatial context of cells, which is crucial for their function. Cells use different mechanisms to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Thereby, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, inferring cell-cell communcation (CCC) or the interaction of different markers using single-cell expression data based on dissociated tissues is difficult. 
 
-Conversely, taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data. Early approaches to investigate the expression of single cells were limited to a few markers, but in the last years there has been a rise of spatially resolved
-transcriptomic and proteomic approaches, which I will briefly describe based on these comprehensive recent reviews [@Moses2021.05.11.443152].
+Taking the spatial context into consideration should help to infer interactions. This requires multiplexed spatially resolved data and adequate analysis frameworks. Imaging single molecules in single cells has been a long-standing interest in biology, but early approaches were limited to a few markers. Only in the last years, there has been a surge of spatially resolved transcriptomic and proteomic approaches, which I will briefly describe below based on these reviews [@Moses2021.05.11.443152; @10.3389/fimmu.2019.02657]. (should I briefly describe MISTy here?)
 
 # 1.1 Spatial Transcriptomics
 
@@ -28,29 +28,54 @@ Visium is based on slides containing spots coated with capture sequences compris
 
 Both smFISH and ISS have single-cell (or even subcellular) resolution. Two commong methods for smFISH are seqFISH [@10.1016/j.neuron.2016.10.001] and MERFISH [@10.1073/pnas.1612826113]. They are both based on multiple rounds of hybridization. seqFISH uses unique sequences of colors in each hybridization round to identify transcripts (i.e. in each round a transcript is labeled with multiple probes containing the same fluorophore). MERFISH uses transcript specific encoding probes which can be bound by fluorescently labeled readout probes which always have the some color. By construction, a readout probe binds or does not bind a given transcript in a given hybridization round, creating a binary code of the same length as the number of hybridzation rounds. So each transcript is encoded by a unique binary code. By choosing a Hamming distance larger than one, this approach helps to reduce detection errors. Usually both methods cover around 300 different transcripts, but can be scaled up to cover many more genes (usually at the cost of including fewer cells). 
 
-The last category of spatial transcriptomic technologies discussed here comprises ISS, which can be divided into sequencing by ligation (SBL) and sequencing by synthesis (SBS). Most ISS technolgies, such as the Cartana platform (10X Genomics) are based on SBL. The specificity of DNA ligation is exploited by padlock probes which can only be ligated if they perfectly bind to reverse transcribed RNAs. Upon ligation the padlock probes are amplified by rolling-circle amplification (RCA) and detected by fluorescence labeling. [@10.1016/j.cell.2020.06.038] Due to RCA signal amplification the imaging can be
-done at lower magnifications compared to smFISH methods allowing for larger tissue sections to be imaged.
+The last category of spatial transcriptomic technologies discussed here comprises ISS, which can be divided into sequencing by ligation (SBL) and sequencing by synthesis (SBS). Most ISS technolgies, such as the Cartana platform (10X Genomics) are based on SBL. The specificity of DNA ligation is exploited by padlock probes which can only be ligated if they perfectly bind to reverse transcribed RNAs. Upon ligation the padlock probes are amplified by rolling-circle amplification (RCA) and detected by fluorescence labeling. [@10.1016/j.cell.2020.06.038] Due to RCA signal amplification the imaging can be done at lower magnifications compared to smFISH methods allowing for larger tissue sections to be imaged.
 
 ## 1.2 Spatial Proteomics
 
-Apart from spatial transcriptomics, the field of spatial proteomics is also rapidly expanding. Two examples for spatial proteomic technologies are imaging mass cytometry (IMC) [@10.1038/nmeth.2869] and multiplexed ion beam imaging (MIBI) [@10.1038/nm.3488]. Conventional technologies to visualize proteins in tissue sections such as immunohistochemistry (IHC) are based on antibodies conjugated with fluorophores or reporter enzymes, which makes mulitplexing difficult due to spectral overlap. For IHC several rounds of staining, imaging and photobleaching are needed for multiplexing, whereas IMC and MIBI solve this issue by using antibodies conjugated with heavy-metal isotopes which can be detected via mass cytometry imaging. Both technologies can image up to 40 different proteins. MIBI uses an oxygen duoplasmatron ion beam to ionize the heavy-metal labels, whereas IMC uses an UV laser to abalte the tissue which is subsequently atomized and ionized. According to Baharlou H. et al [@10.3389/fimmu.2019.02657], the main differences between the technologies is that size of the MIBI ion beam and thus the spatial resolution is tuneable between 1,000 and 260 nm, wherase the IMC laser is fixed at 1,000 nm. However, IMC has faster acquisition times compared to MIBI.
+Apart from spatial transcriptomics, the field of spatial proteomics is also rapidly expanding. Two examples for spatial proteomic technologies are imaging mass cytometry (IMC) [@10.1038/nmeth.2869] and multiplexed ion beam imaging (MIBI) [@10.1038/nm.3488]. Conventional technologies to visualize proteins in tissue sections such as immunohistochemistry (IHC) are based on antibodies conjugated with fluorophores or reporter enzymes, which makes mulitplexing difficult due to spectral overlap. For IHC several rounds of staining, imaging and photobleaching are needed for multiplexing, whereas IMC and MIBI solve this issue by using antibodies conjugated with heavy-metal isotopes which can be detected via mass cytometry imaging. Both technologies can image up to 40 different proteins. MIBI uses an oxygen duoplasmatron ion beam to ionize the heavy-metal labels, whereas IMC uses an UV laser to abalte the tissue which is subsequently atomized and ionized. According to Baharlou H. et al [@10.3389/fimmu.2019.02657], the main differences between the technologies is that the size of the MIBI ion beam and thus the spatial resolution is tunable between 1,000 and 260 nm, whereas the IMC laser is fixed at 1,000 nm. However, IMC has faster acquisition times compared to MIBI.
 
-## What can we learn from spatial data
+## 1.3 Data Analysis
 
-- Mention SVCA for example (as another method). 
-[@10.1016/j.celrep.2019.08.077]
+No matter which of the above technologies is used, a table containing either the markers for each spatial unit (spot or single cells) or the coordinates of markers (high resolution but no segmentation) is obtained after preprocessing. Following normalilzation, standard scRNA-seq tools are often used to explore the data. However, as more spatially resolved datasets are being published, new tools are developed to exploit richer information. For example the detection of spatially variable genes (e.g. SPARK-X [@10.1186/s13059-021-02404-0], SpatialDE [@10.1038/nmeth.4636]), the detection of co-expression patterns/gene programs (e.g. ), and the detection of cellular niches (e.g. ). 
+
+Upon identification of interesting patterns in spatially resolved omics data one might as the question what drives the emergence or stabilizes these patterns? Is the spatial structure driven by self-organization, juxtacrine/ paracrine signaling, or broad gradients of morphogens? Several tools have been published which tackle related questions. Spatial Variance Component Analysis (SVCA) [@10.1016/j.celrep.2019.08.077] for example decomposed the variance of a given marker into an intrinsic, intercellular, and environmental component. However, these spatial contexts are fixed and no information about which other markers can explain the expression of a given marker are learned. 
+
+The Multiview Intercellular SpaTial modeling framework (MISTy) [@Tanevski2020.05.08.084145] on the other hand is much more flexible, allowing users to define the spatial context however they want. Additionally MISTy is build around an explainable machine learning algorithm faciliatating interpretability of the results. More specifically 
+
+Show case here the primary figure we get from MISTy
+
+Use my presentation here :)
+
+More importantly, one can ask questions, such as how diseases and tissue disorganization are associated. 
 
 - Include the theis model
 [@Fischer2021.07.11.451750]
 
-(I could orient the introduction somewhat on the MISTy paper)
+- MISTy is an explainable machine learning framework to probe intra- and 
+intercellular marker interactions. 
 
-- What is MISTy?
-[@Tanevski2020.05.08.084145]
+- Assuming we have different markers (proteins, transcripts, etc.).
+
+**1. Question**: Can we predict the expression of marker X using the information about the 
+expression of other markers within the same cell (juxtaview)
+
+**2. Question**: Does our prediction improve if we take the expression of the
+other markers in the spatial context into consideration?
+
+- Thereby we can define spatial context flexibly, meaning only the direct 
+neighbors (juxtaview) or the broader tissue (paraview), (or actually any
+other view you could think of).
+
+**3. Question**: What kind of spatial context is important to improve our prediction?
+
+**4. Question**: Which other markers are helpful to predict the expression of marker X?
+
+- If another marker Y is important to predict the expression of markers, there is some sort of relationship between the markers
+(which has neither to be causal nor linear!).
 
 <img src="https://www.dropbox.com/s/5wyh520i1wl62ul/graphical_abstract.png?raw=1" align="center" width="500">
 
-## This Work
+## 1.4 This Work
 
 In the [Methods](https://schae211.github.io/report/tutorial.html) section I will describe the flexible implementation of different machine learning algorithms for training view-specific models in MISTy. Based on the new underlaying framework, the function to model each view is now passed as an argument to the `run_misty()` call. The default model is still random forest, but now users can either plug in another provided model function such as gradient boosting or define their own function such as non-negative least-squares.
 
