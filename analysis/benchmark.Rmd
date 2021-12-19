@@ -47,15 +47,14 @@ print(paste("Loading results from:", res.files[latest.result]))
 all.results <- readRDS(res.files[latest.result])
 
 print(paste("Loading views from:", view.files[latest.views]))
-all.views <-readRDS(view.files[latest.views])
+all.views <- readRDS(view.files[latest.views])
+rm(all.files, res.files, view.files)
 ```
 
 What data / experiments is the benchmarking based on?
 
 ```{r}
-all.names <- names(all.results)
-experiments <- str_extract(all.names, "[^/]+(?=/)") %>% unique
-experiments
+str_extract(names(all.results), "[^/]+(?=/)") %>% unique
 ```
 
 
@@ -293,15 +292,15 @@ ncol(all.views$`/4iANCA/ratio_153_views`[[1]]$intraview$data)
 
 -   Different views that were computed:
 
-    +   /4iANCA/ratio_153_views
+    + `/4iANCA/ratio_153_views`
 
-    +   /4iANCA/ratio_76_views
+    + `/4iANCA/ratio_76_views`
 
-    +   /4iANCA/ratio_38_views
+    + `/4iANCA/ratio_38_views`
 
-    +   /4iANCA/ratio_19_views
+    + `/4iANCA/ratio_19_views`
 
-    +   /4iANCA/ratio_9\_views
+    + `/4iANCA/ratio_9\_views`
 
 ```{r echo=FALSE}
 names(all.views)[str_starts(names(all.views), "/4iANCA")]
@@ -451,9 +450,9 @@ plot_performance <- function(misty.performances, str.measure,
 ```
 
 ```{r}
-# ordering of factors
-l = c("RF", "TBOOST", "MARS100", "MARS", "MARS80", "MARS60", "MARS40",
-      "BGMARS", "LBOOST", "LM", "SVM", "MLP")
+# default ordering of the algorithms
+def.ord <-  c("RF", "TBOOST", "MARS100", "MARS", "MARS80", "MARS60", "MARS40",
+              "BGMARS", "LBOOST", "LM", "SVM", "MLP")
 ```
 
 
@@ -462,7 +461,7 @@ l = c("RF", "TBOOST", "MARS100", "MARS", "MARS80", "MARS60", "MARS40",
 ```{r}
 filter_runs(all.results, "synthetic", c("l6", "l12", "l24")) %>%
   get_performance() %>%
-  check_runs(ordering = l)
+  check_runs(ordering = def.ord)
 ```
 
 
@@ -472,10 +471,10 @@ filter_runs(all.results, "synthetic", c("l6", "l12", "l24")) %>%
   mutate(view = factor(view, levels = c("l6", "l12", "l24"))) %T>%
   plot_performance(str.measure = "multi.R2", str.summary = "mean",
                    targets = TRUE, wrap.views = TRUE, ncol=3,
-                   ordering = l) %T>%
+                   ordering = def.ord) %T>%
   plot_performance(str.measure = "gain.R2", str.summary = "mean",
                    targets = TRUE, wrap.views = TRUE, ncol=3,
-                   ordering = l) %>%
+                   ordering = def.ord) %>%
   invisible()
 ```
 
@@ -484,16 +483,16 @@ filter_runs(all.results, "synthetic", c("l6", "l12", "l24")) %>%
 ```{r}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_performance() %>%
-  check_runs(ordering = l)
+  check_runs(ordering = def.ord)
 ```
 
 ```{r fig.width=8}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_performance() %T>%
   plot_performance(str.measure = "multi.R2", str.summary = "mean",
-                   targets = TRUE, ordering = l) %T>%
+                   targets = TRUE, ordering = def.ord) %T>%
   plot_performance(str.measure = "gain.R2", str.summary = "mean",
-                   targets = TRUE, ordering = l) %>%
+                   targets = TRUE, ordering = def.ord) %>%
   invisible()
 ```
 
@@ -507,17 +506,17 @@ handle such large datasets with 100 markers and up to 70,000 spatial units.
 ```{r}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_performance() %>%
-  check_runs(ordering = l)
+  check_runs(ordering = def.ord)
 ```
 
 ```{r fig.width=8}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_performance() %T>%
   plot_performance(str.measure = "multi.R2", str.summary = "mean",
-                   targets = FALSE, ordering = l,
+                   targets = FALSE, ordering = def.ord,
                    exclude = c("MARS", "MARS40", "MARS60", "MARS80")) %T>%
   plot_performance(str.measure = "gain.R2", str.summary = "mean",
-                   targets = FALSE, ordering = l,
+                   targets = FALSE, ordering = def.ord,
                    exclude = c("MARS", "MARS40", "MARS60", "MARS80")) %>%
   invisible()
 ```
@@ -532,16 +531,16 @@ failed.
 ```{r}
 filter_runs(all.results, "merfish_liver", "std280") %>%
   get_performance() %>%
-  check_runs(ordering = l)
+  check_runs(ordering = def.ord)
 ```
 
 ```{r fig.width=8}
 filter_runs(all.results, "merfish_liver", "std280") %>%
   get_performance() %T>%
   plot_performance(str.measure = "mulit.R2", str.summary = "mean",
-                   targets = FALSE, ordering = l) %T>%
+                   targets = FALSE, ordering = def.ord) %T>%
   plot_performance(str.measure = "gain.R2", str.summary = "mean",
-                   targets = FALSE, ordering = l) %>%
+                   targets = FALSE, ordering = def.ord) %>%
   invisible()
 ```
 
@@ -556,7 +555,7 @@ MARS algorithm was not able to finish (2 samples are missing).
 ```{r}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_performance() %>%
-  check_runs(ordering = l)
+  check_runs(ordering = def.ord)
 ```
 
 ```{r fig.width=8}
@@ -564,10 +563,10 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_performance() %T>%
   plot_performance(str.measure = "multi.R2", str.summary = "mean",
                    targets = FALSE, exclude = c("BGMARS"),
-                   ordering = l) %T>%
+                   ordering = def.ord) %T>%
   plot_performance(str.measure = "gain.R2", str.summary = "mean",
                    targets = FALSE, exclude = c("BGMARS"),
-                   ordering = l) %>%
+                   ordering = def.ord) %>%
   invisible()
 ```
 
@@ -583,18 +582,19 @@ Also why do we only have 10 samples instead of 36 samples for ratio 153?
 filter_runs(all.results, "4iANCA", c("ratio_153", "ratio_76", 
                                      "ratio_38", "ratio_19", "ratio_9")) %>%
   get_performance() %>%
-  check_runs(ordering = l)
+  check_runs(ordering = def.ord)
 ```
 
 ```{r fig.width=10, fig.height=6}
-views <- c("ratio_153", "ratio_76", "ratio_38", "ratio_19", "ratio_9")
-filter_runs(all.results, "4iANCA", views) %>%
+filter_runs(all.results, "4iANCA", c("ratio_153", "ratio_76", "ratio_38",
+                                     "ratio_19", "ratio_9")) %>%
   get_performance() %>%
-  mutate(view = factor(view, levels=views)) %T>%
+  mutate(view = factor(view, levels=c("ratio_153", "ratio_76", "ratio_38",
+                                     "ratio_19", "ratio_9"))) %T>%
   plot_performance(str.measure = "multi.R2", wrap.views = TRUE, ncol=3,
-                   ordering = l) %>%
+                   ordering = def.ord) %>%
   plot_performance(str.measure = "gain.R2", wrap.views = TRUE, ncol=3,
-                   ordering = l)
+                   ordering = def.ord)
 ```
 
 ---
@@ -602,32 +602,6 @@ filter_runs(all.results, "4iANCA", views) %>%
 # Comparing Importances {.tabset}
 
 Function to extract the importances (interaction measures).
-
-```{r eval=FALSE, include=FALSE}
-get_importance_dt <- function(filtered.run) {
-  # https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
-  # could potentially be faster with these large datasets
-  # impressive benchmark: https://h2oai.github.io/db-benchmark/
-  map2_dfr(filtered.run, names(filtered.run), function(misty.run, name) {
-    out <- misty.run$importances    
-    out <- data.table::as.data.table(out)
-    out[, algorithm := str_extract(name, "(?<=/)[^/]+$")]
-    out[, study := str_extract(sample, "(?<=OUTPUT/)[^/]+")]
-    out[, view.comp := str_extract(sample, paste0("(?<=OUTPUT/", 
-                                                    study, "/)[^/]+"))]
-  })
-}
-
-get_importance_old <- function(filtered.run) {
-  map2_dfr(filtered.run, names(filtered.run), function(misty.run, name) {
-    misty.run$importances %>%
-      mutate(algorithm = str_extract(name, "(?<=/)[^/]+$")) %>%
-      mutate(study = str_extract(sample, "(?<=OUTPUT/)[^/]+")) %>%
-      mutate(view.comp = str_extract(sample, paste0("(?<=OUTPUT/", 
-                                                    study, "/)[^/]+")))
-  })
-}
-```
 
 ```{r}
 get_importance <- function(filtered.run) {
@@ -641,10 +615,10 @@ get_importance <- function(filtered.run) {
       mutate(algorithm = map_chr(all.info, ~ .x[length(.x)-1])) %>%
       mutate(study = map_chr(all.info, ~ .x[length(.x)-3])) %>%
       mutate(view.comp = map_chr(all.info, ~ .x[length(.x)-2]))
-  })
+  }) %>%
+    mutate(sample = str_extract(sample, "[^/]+$"))
 }
 ```
-
 
 Function to check whether all importances are present for each algorithm
 
@@ -663,77 +637,129 @@ check_algs <- function(misty.performances) {
 }
 ```
 
-Function to split the importances according to view and sample.
+Function to get splits according to view and sample from misty importances.
 
 ```{r}
 split_importances <- function(misty.importances) {
-  misty.importances %>%
+  tidy.df <- misty.importances %>%
     unite(relation, Predictor, Target, sep="_") %>%
-    select(-c(study, view.comp)) %>%
-    drop %>%
-    pivot_wider(names_from=relation, values_from=Importance) %>%
-    # !!! all NAs replaced with 0 !!!
-    replace(is.na(.), 0) %>%
-    mutate(sample = str_extract(sample, "[^/]+$")) %>%
-    group_by(sample, view) %>%
-    group_split()
-}
-```
-
-Function to get the keys for splitting the importances according to view and sample.
-
-```{r}
-split_keys <- function(misty.importances) {
-  misty.importances %>%
-    unite(relation, Predictor, Target, sep="_") %>%
-    select(-c(study, view.comp)) %>%
     drop_na() %>%
-    pivot_wider(names_from=relation, values_from=Importance) %>%
     mutate(sample = str_extract(sample, "[^/]+$")) %>%
-    group_by(sample, view) %>%
-    group_keys()
+    pivot_wider(names_from = algorithm, values_from = Importance) %>%
+    replace(is.na(.), 0) %>%
+    group_by(view, sample)
+  
+  list(splits = group_split(tidy.df), keys = group_keys(tidy.df))
 }
 ```
 
-Function to compute the cosine similarity.
+Function to compute the cosine similarity given a tibble of vectors, where
+each column represents a vector. Indices are harcoded.
 
 ```{r}
-cosine_similarity <- function(keys, splits, relative="RF") {
+cosine_similarity <- function(imp.tbl, relative = "RF") {
+  comp <- imp.tbl %>% pull(relative)
+  map_dbl(imp.tbl[-c(1:5)], function(vec) {
+    cosine.sim <- (comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5)
+  })
+}
+```
+
+Function to compute the jaccard index given a tibble of vectors, where
+each column represents a vector. Indices are harcoded.
+
+```{r}
+jaccard_index <- function(imp.tbl, relative = "RF", cutoff = 0.5) {
+  comp <- imp.tbl %>% filter(.data[[relative]] > cutoff) %>% pull(relation)
+  algs <- names(imp.tbl)[-c(1:5)] %>% setNames(names(imp.tbl)[-c(1:5)])
+  
+  map_dbl(algs, function(alg) {
+    vec <- imp.tbl %>% filter(.data[[alg]] > cutoff) %>% pull(relation)
+    length(intersect(comp, vec)) / length(union(comp, vec))
+  })
+}
+```
+
+Wrapper function
+
+```{r}
+wrap_function <- function(misty.importances, f, ...) {
+  
+  ellipsis.args <- list(...)
+  # Split the importance tibble corresponding to views and samples
+  # since we want to compare the algorithm for the same sample and view
+  split.list <- split_importances(misty.importances)
   
   # 1. map over each view
-  map_dfr(unique(keys$view), function(sel.view) {
-      # 2. get the tibbles corresponding to the selected view
-    keys %>%
+  map_dfr(unique(split.list$keys$view), function(sel.view) {
+    
+    # 2. Map over each sample corresponding to this view
+    split.list$keys %>%
       mutate(id = row_number()) %>%
       filter(view == sel.view) %>%
       pull(id, name = sample) %>%
-      # 3. map over each sample (tibble) and bind the results as rows
       map_dfr(function(tbl.id) {
         
-        tbl <- splits[[tbl.id]]
+        # 3. Compute cosine similarity (and add corresponding view and sample)
         
-        # 4. get the random forest importance vector as reference
-        rf <- tbl %>% filter(algorithm == relative) %>% 
-          select(-c(sample, view, algorithm)) %>%
-          unlist()
-        
-        # 5. get the importance vectors for the other algorithms by mapping over rows
-        cosine.sims <- slide_dfr(tbl, function(row) {
-          vec <- row %>% select(-c(sample, view, algorithm)) %>%
-            unlist()
+        args <- rlist::list.merge(list(imp.tbl = split.list$splits[[tbl.id]]), 
+                                  ellipsis.args)
+        c(do.call(f, args), "id" = tbl.id)
           
-          # 6. for each importance vector compute the cosine similarity
-          cosine.sim <- (rf %*% vec * 1/(rf %*% rf)**0.5 * 1/(vec %*% vec)**0.5) %>%
-            as.double()
-          
-          tibble(algorithm = row %>% pull(algorithm), cosine = cosine.sim, 
-                 sample = row %>% pull(sample), view = sel.view)
-        })
-      }) %>%
-      # 7. Group by algorithm and get the mean of the cosine similarity for each sample
+      }) %>% mutate(view = sel.view,
+                    sample = split.list$keys$sample[as.integer(id)]) 
+  }) %>%
+    pivot_longer(-c(id, view, sample), 
+                 names_to = "algorithm", values_to = "cosine") %>%
+    
+      # 4. Group by algorithm 
+      # and get the mean of the cosine similarity for each sample
       group_by(algorithm, view) %>%
-      summarise(mean = mean(cosine), sd = sd(cosine), .groups="drop")
-    }) %>%
+      summarise(mean = mean(cosine), sd = sd(cosine), .groups="drop") %>%
+      arrange(algorithm)
+}
+```
+
+```{r}
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  wrap_function(jaccard_index, relative="RF", cutoff=0.5)
+```
+
+
+Function to compute the cosine similarity for each algorithm 
+for all views and samples.
+
+```{r}
+cosine_similarity_wrapper <- function(misty.importances, relative = "RF") {
+  
+  # Split the importance tibble corresponding to views and samples
+  # since we want to compare the algorithm for the same sample and view
+  split.list <- split_importances(misty.importances)
+  
+  # 1. map over each view
+  map_dfr(unique(split.list$keys$view), function(sel.view) {
+    
+    # 2. Map over each sample corresponding to this view
+    split.list$keys %>%
+      mutate(id = row_number()) %>%
+      filter(view == sel.view) %>%
+      pull(id, name = sample) %>%
+      map_dfr(function(tbl.id) {
+        
+        # 3. Compute cosine similarity (and add corresponding view and sample)
+        c(cosine_similarity(split.list$splits[[tbl.id]], relative), "id" = tbl.id)
+          
+      }) %>% mutate(view = sel.view,
+                    sample = split.list$keys$sample[as.integer(id)]) 
+  }) %>%
+    pivot_longer(-c(id, view, sample), 
+                 names_to = "algorithm", values_to = "cosine") %>%
+    
+      # 4. Group by algorithm 
+      # and get the mean of the cosine similarity for each sample
+      group_by(algorithm, view) %>%
+      summarise(mean = mean(cosine), sd = sd(cosine), .groups="drop") %>%
       arrange(algorithm)
 }
 ```
@@ -742,15 +768,63 @@ cosine_similarity <- function(keys, splits, relative="RF") {
 plot_cosine_similarity <- function(cosine_similarity) {
   cosine_similarity %>%
     mutate(low = mean-sd, high = mean+sd) %>%
-    mutate(algorithm = factor(algorithm, levels=l)) %>%
+    mutate(algorithm = factor(algorithm, levels = def.ord)) %>%
     ggplot() +
     geom_point(aes(x = algorithm, y = mean)) +
     geom_errorbar(aes(x = algorithm, ymin = low, ymax = high)) +
     facet_wrap(~ view) +
-    theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5))
+    theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
+    lims(y = c(0, 1))
 }
 ```
 
+```{r}
+jaccard_index_wrapper <- function(misty.importances, relative = "RF", cutoff = 0.5) {
+  
+  # Split the importance tibble corresponding to views and samples
+  # since we want to compare the algorithm for the same sample and view
+  split.list <- split_importances(misty.importances)
+  
+  # 1. map over each view
+  map_dfr(unique(split.list$keys$view), function(sel.view) {
+    
+    # 2. Map over each sample corresponding to this view
+    split.list$keys %>%
+      mutate(id = row_number()) %>%
+      filter(view == sel.view) %>%
+      pull(id, name = sample) %>%
+      map_dfr(function(tbl.id) {
+        
+        # 3. Compute jaccard index (and add corresponding view and sample)
+        c(jaccard_index(split.list$splits[[tbl.id]], relative, cutoff), "id" = tbl.id)
+          
+      }) %>% mutate(view = sel.view,
+                    sample = split.list$keys$sample[as.integer(id)]) 
+  }) %>%
+    pivot_longer(-c(id, view, sample), 
+                 names_to = "algorithm", values_to = "jaccard") %>%
+    
+      # 4. Group by algorithm 
+      # and get the mean of the cosine similarity for each sample
+      group_by(algorithm, view) %>%
+      summarise(mean = mean(jaccard), sd = sd(jaccard), .groups="drop") %>%
+      arrange(algorithm)
+}
+```
+
+```{r}
+plot_jaccard <- function(jaccard) {
+  jaccard %>%
+    mutate(low = mean-sd, high = mean+sd) %>%
+    mutate(algorithm = factor(algorithm, levels = def.ord)) %>%
+    ggplot() +
+    geom_point(aes(x = algorithm, y = mean)) +
+    geom_errorbar(aes(x = algorithm, ymin = low, ymax = high)) +
+    facet_wrap(~ view) +
+    theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
+    lims(y = c(0, 1))
+}
+```
 
 ## `synthetic`
 
@@ -764,29 +838,81 @@ filter_runs(all.results, "synthetic", "l6") %>%
 
 ### Cosine Similarity
 
-Split the importances according to view and sample and get the corresponding keys.
-
-```{r}
-splits <- filter_runs(all.results, "synthetic", "l6") %>%
-  get_importance() %>%
-  split_importances()
-
-keys <- filter_runs(all.results, "synthetic", "l6") %>%
-  get_importance() %>%
-  split_keys()
-```
-
 Now let's look at the cosine similarities.
 
 ```{r}
-cosine_similarity(keys, splits)
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  cosine_similarity_wrapper()
 ```
 
 And plot them.
 
 ```{r}
-cosine_similarity(keys, splits) %>%
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  cosine_similarity_wrapper() %>%
   plot_cosine_similarity()
+```
+
+### Jaccard Index after Binarization
+
+```{r}
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  jaccard_index_wrapper(cutoff = 0) %>%
+  plot_jaccard()
+```
+
+### Pearson Correlation
+
+```{r}
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  unite(relation, Predictor, Target) %>%
+  drop_na() %>%
+  pivot_wider(names_from = relation, values_from = Importance) %>%
+  filter(view == "intra") %>%
+  select(-c(study, view.comp)) %>%
+  mutate(sample = str_extract(sample, "[^/]+$")) %>%
+  group_by(algorithm) %>%
+  summarise(across(4:112, mean)) %>%
+  replace(is.na(.), 0) %>%
+  pivot_longer(cols = !algorithm) %>%
+  pivot_wider(names_from = algorithm, values_from = value) %>%
+  select(-name) %>%
+  cor() %>% 
+  corrplot::corrplot(method="color", col.lim = c(0,1), 
+      col = colorRampPalette(c("#414487FF", "#414487FF", "#414487FF",
+                               "#414487FF", "#22A884FF", "#7AD151FF",
+                               "#FDE725FF"))(100),
+      tl.col = "black")
+```
+
+
+```{r fig.width=6, fig.height=6}
+tidy.df <- filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  unite(relation, Predictor, Target) %>%
+  drop_na() %>%
+  pivot_wider(names_from = relation, values_from = Importance) %>%
+  filter(view == "intra") %>%
+  select(-c(study, view.comp)) %>%
+  mutate(sample = str_extract(sample, "[^/]+$")) %>%
+  group_by(algorithm) %>%
+  summarise(across(4:112, mean)) %>%
+  replace(is.na(.), 0) %>%
+  pivot_longer(cols = !algorithm) %>%
+  pivot_wider(names_from = algorithm, values_from = value) %>%
+  rename(importance = name) %>%
+  pivot_longer(cols = !c(importance, RF)) %>%
+  mutate(name = factor(name))
+
+ggplot() +
+  geom_point(aes(x = tidy.df$RF, y = tidy.df$value, col = tidy.df$name)) +
+  geom_line(aes(x = tidy.df$RF, y = tidy.df$RF), col = "blue") +
+  coord_fixed() +
+  scale_color_brewer(palette="Dark2")
 ```
 
 
@@ -801,22 +927,36 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 ### Cosine Similarity
 
 ```{r}
-splits <- filter_runs(all.results, "mibi_tnbc", "standard") %>%
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
-  split_importances()
-
-keys <- filter_runs(all.results, "mibi_tnbc", "standard") %>%
-  get_importance() %>%
-  split_keys()
-```
-
-```{r}
-cosine_similarity(keys, splits) %>%
+  cosine_similarity_wrapper() %>%
   plot_cosine_similarity()
 ```
 
 
 ## `merfish_preoptic`
+
+### Cosine Similarity
+
+```{r}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_importance() %>%
+  check_algs()
+```
+
+```{r}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_importance() %>%
+  cosine_similarity_wrapper() %>%
+  plot_cosine_similarity()
+```
+
+```{r}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_importance() %>%
+  jaccard_index_wrapper() %>%
+  plot_jaccard()
+```
 
 ## `merfish_liver`
 
@@ -828,24 +968,45 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
   check_algs()
 ```
 
-```{r}
-splits <- filter_runs(all.results, "merfish_bc", "hvg") %>%
-  get_importance() %>%
-  split_importances()
-
-keys <- filter_runs(all.results, "merfish_bc", "hvg") %>%
-  get_importance() %>%
-  split_keys()
-```
-
-#### Intraview
+### Cosine Similarity
 
 ```{r}
-cosine_similarity(keys, splits) %>%
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %>%
+  cosine_similarity_wrapper() %>%
   plot_cosine_similarity()
 ```
 
+```{r}
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %>%
+  jaccard_index_wrapper() %>%
+  plot_jaccard()
+```
+
 ## `4iANCA`
+
+```{r}
+filter_runs(all.results, "4iANCA", "ratio_153") %>%
+  get_importance() %>%
+  check_algs()
+```
+
+### Cosine Similarity
+
+```{r}
+filter_runs(all.results, "4iANCA", "ratio_153") %>%
+  get_importance() %>%
+  cosine_similarity_wrapper() %>%
+  plot_cosine_similarity()
+```
+
+```{r}
+filter_runs(all.results, "4iANCA", "ratio_153") %>%
+  get_importance() %>%
+  jaccard_index_wrapper() %>%
+  plot_jaccard()
+```
 
 # Comparing Runtimes
 
