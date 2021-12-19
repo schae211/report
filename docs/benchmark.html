@@ -444,7 +444,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-18
+<strong>Last updated:</strong> 2021-12-19
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -559,22 +559,23 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeabb88bb220a0839e3f77381ec9ceabaff514905ftargetblankabb88bba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/abb88bb220a0839e3f77381ec9ceabaff514905f" target="_blank">abb88bb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreec5d14b74afd9918f2317205e6772357ec81d4544targetblankc5d14b7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/c5d14b74afd9918f2317205e6772357ec81d4544" target="_blank">c5d14b7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeabb88bb220a0839e3f77381ec9ceabaff514905ftargetblankabb88bba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreec5d14b74afd9918f2317205e6772357ec81d4544targetblankc5d14b7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/abb88bb220a0839e3f77381ec9ceabaff514905f" target="_blank">abb88bb</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/c5d14b74afd9918f2317205e6772357ec81d4544" target="_blank">c5d14b7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    analysis/figure/
     Ignored:    data/2021-12-06-15-42_all_results.RDS
     Ignored:    data/2021-12-08-14-10_all_results.RDS
     Ignored:    data/2021-12-09-09-21_all_results.RDS
@@ -585,11 +586,11 @@ Ignored files:
     Ignored:    data/2021-12-14-23-01_all_results.RDS
     Ignored:    data/2021-12-17-07-58_all_results.RDS
     Ignored:    data/2021-12-17-07-59_all_views.RDS
-    Ignored:    results/
 
 Untracked files:
-    Untracked:  analysis/images/
+    Untracked:  analysis/CopyOfbenchmark.Rmd
     Untracked:  code/4i_analysis.R
+    Untracked:  code/helper_functions.R
 
 </code></pre>
 <p>
@@ -628,6 +629,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/c5d14b74afd9918f2317205e6772357ec81d4544/analysis/benchmark.Rmd" target="_blank">c5d14b7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-19
+</td>
+<td>
+workflowr::wflow_publish(“analysis/benchmark.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/e9c007647ea473f2118b7e74517932deb1b93556/docs/benchmark.html" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -969,9 +1004,7 @@ suppressPackageStartupMessages(library(slider))</code></pre>
 <pre><code>[1] &quot;Loading results from: data/2021-12-17-07-58_all_results.RDS&quot;</code></pre>
 <pre><code>[1] &quot;Loading views from: data/2021-12-17-07-59_all_views.RDS&quot;</code></pre>
 <p>What data / experiments is the benchmarking based on?</p>
-<pre class="r"><code>all.names &lt;- names(all.results)
-experiments &lt;- str_extract(all.names, &quot;[^/]+(?=/)&quot;) %&gt;% unique
-experiments</code></pre>
+<pre class="r"><code>str_extract(names(all.results), &quot;[^/]+(?=/)&quot;) %&gt;% unique</code></pre>
 <pre><code>[1] &quot;4iANCA&quot;           &quot;merfish_bc&quot;       &quot;merfish_liver&quot;    &quot;merfish_preoptic&quot;
 [5] &quot;mibi_tnbc&quot;        &quot;synthetic&quot;       </code></pre>
 <div id="synthetic" class="section level2">
@@ -1129,11 +1162,11 @@ experiments</code></pre>
 <ul>
 <li><p>Different views that were computed:</p>
 <ul>
-<li><p>/4iANCA/ratio_153_views</p></li>
-<li><p>/4iANCA/ratio_76_views</p></li>
-<li><p>/4iANCA/ratio_38_views</p></li>
-<li><p>/4iANCA/ratio_19_views</p></li>
-<li><p>/4iANCA/ratio_9_views</p></li>
+<li><p><code>/4iANCA/ratio_153_views</code></p></li>
+<li><p><code>/4iANCA/ratio_76_views</code></p></li>
+<li><p><code>/4iANCA/ratio_38_views</code></p></li>
+<li><p><code>/4iANCA/ratio_19_views</code></p></li>
+<li><p><code>/4iANCA/ratio_9\_views</code></p></li>
 </ul></li>
 </ul>
 <pre><code>[1] &quot;/4iANCA/ratio_153_views&quot; &quot;/4iANCA/ratio_19_views&quot; 
@@ -1260,14 +1293,14 @@ filter_runs &lt;- function(all.runs, str.study, views) {
   
   print(plot)
 }</code></pre>
-<pre class="r"><code># ordering of factors
-l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;MARS&quot;, &quot;MARS80&quot;, &quot;MARS60&quot;, &quot;MARS40&quot;,
-      &quot;BGMARS&quot;, &quot;LBOOST&quot;, &quot;LM&quot;, &quot;SVM&quot;, &quot;MLP&quot;)</code></pre>
+<pre class="r"><code># default ordering of the algorithms
+def.ord &lt;-  c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;MARS&quot;, &quot;MARS80&quot;, &quot;MARS60&quot;, &quot;MARS40&quot;,
+              &quot;BGMARS&quot;, &quot;LBOOST&quot;, &quot;LM&quot;, &quot;SVM&quot;, &quot;MLP&quot;)</code></pre>
 <div id="synthetic-1" class="section level2">
 <h2><code>synthetic</code></h2>
 <pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, c(&quot;l6&quot;, &quot;l12&quot;, &quot;l24&quot;)) %&gt;%
   get_performance() %&gt;%
-  check_runs(ordering = l)</code></pre>
+  check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["l12"],"name":[2],"type":["int"],"align":["right"]},{"label":["l24"],"name":[3],"type":["int"],"align":["right"]},{"label":["l6"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"10","3":"10","4":"10"},{"1":"TBOOST","2":"10","3":"10","4":"10"},{"1":"MARS","2":"10","3":"10","4":"10"},{"1":"BGMARS","2":"10","3":"10","4":"10"},{"1":"LBOOST","2":"10","3":"10","4":"10"},{"1":"LM","2":"10","3":"10","4":"10"},{"1":"SVM","2":"10","3":"10","4":"10"},{"1":"MLP","2":"10","3":"10","4":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1278,10 +1311,10 @@ l = c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;MARS&quot;,
   mutate(view = factor(view, levels = c(&quot;l6&quot;, &quot;l12&quot;, &quot;l24&quot;))) %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
                    targets = TRUE, wrap.views = TRUE, ncol=3,
-                   ordering = l) %T&gt;%
+                   ordering = def.ord) %T&gt;%
   plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
                    targets = TRUE, wrap.views = TRUE, ncol=3,
-                   ordering = l) %&gt;%
+                   ordering = def.ord) %&gt;%
   invisible()</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-35-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
@@ -1375,7 +1408,7 @@ schae211
 <h2><code>mibi_tnbc</code></h2>
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_performance() %&gt;%
-  check_runs(ordering = l)</code></pre>
+  check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["standard"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"40"},{"1":"TBOOST","2":"40"},{"1":"MARS","2":"40"},{"1":"BGMARS","2":"40"},{"1":"LBOOST","2":"40"},{"1":"LM","2":"40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1384,9 +1417,9 @@ schae211
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
-                   targets = TRUE, ordering = l) %T&gt;%
+                   targets = TRUE, ordering = def.ord) %T&gt;%
   plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
-                   targets = TRUE, ordering = l) %&gt;%
+                   targets = TRUE, ordering = def.ord) %&gt;%
   invisible()</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-37-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
@@ -1482,7 +1515,7 @@ schae211
 <p>We see that MARS (with the current configuration) is not scalable enough to handle such large datasets with 100 markers and up to 70,000 spatial units.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_performance() %&gt;%
-  check_runs(ordering = l)</code></pre>
+  check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"36"},{"1":"TBOOST","2":"36"},{"1":"MARS","2":"1"},{"1":"MARS80","2":"1"},{"1":"MARS60","2":"1"},{"1":"MARS40","2":"1"},{"1":"LBOOST","2":"36"},{"1":"LM","2":"36"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1491,10 +1524,10 @@ schae211
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
-                   targets = FALSE, ordering = l,
+                   targets = FALSE, ordering = def.ord,
                    exclude = c(&quot;MARS&quot;, &quot;MARS40&quot;, &quot;MARS60&quot;, &quot;MARS80&quot;)) %T&gt;%
   plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
-                   targets = FALSE, ordering = l,
+                   targets = FALSE, ordering = def.ord,
                    exclude = c(&quot;MARS&quot;, &quot;MARS40&quot;, &quot;MARS60&quot;, &quot;MARS80&quot;)) %&gt;%
   invisible()</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-39-1.png" width="768" style="display: block; margin: auto;" /></p>
@@ -1591,7 +1624,7 @@ schae211
 <p>For some reason everything but bagged MARS, MARS, and gradient boosted trees failed.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
   get_performance() %&gt;%
-  check_runs(ordering = l)</code></pre>
+  check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["std280"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"TBOOST","2":"149"},{"1":"MARS","2":"164"},{"1":"BGMARS","2":"111"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1600,9 +1633,9 @@ schae211
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;mulit.R2&quot;, str.summary = &quot;mean&quot;,
-                   targets = FALSE, ordering = l) %T&gt;%
+                   targets = FALSE, ordering = def.ord) %T&gt;%
   plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
-                   targets = FALSE, ordering = l) %&gt;%
+                   targets = FALSE, ordering = def.ord) %&gt;%
   invisible()</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-41-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
@@ -1687,7 +1720,7 @@ schae211
 <p>Since the bagged MARS algorithm could only finish the computation for a single sample I must exclude the result. One should also keep in mind that the MARS algorithm was not able to finish (2 samples are missing).</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
   get_performance() %&gt;%
-  check_runs(ordering = l)</code></pre>
+  check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"9"},{"1":"TBOOST","2":"9"},{"1":"MARS","2":"7"},{"1":"BGMARS","2":"1"},{"1":"LBOOST","2":"9"},{"1":"LM","2":"9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1697,10 +1730,10 @@ schae211
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
                    targets = FALSE, exclude = c(&quot;BGMARS&quot;),
-                   ordering = l) %T&gt;%
+                   ordering = def.ord) %T&gt;%
   plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
                    targets = FALSE, exclude = c(&quot;BGMARS&quot;),
-                   ordering = l) %&gt;%
+                   ordering = def.ord) %&gt;%
   invisible()</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-43-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
@@ -1787,20 +1820,21 @@ schae211
 <pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, c(&quot;ratio_153&quot;, &quot;ratio_76&quot;, 
                                      &quot;ratio_38&quot;, &quot;ratio_19&quot;, &quot;ratio_9&quot;)) %&gt;%
   get_performance() %&gt;%
-  check_runs(ordering = l)</code></pre>
+  check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["ratio_153"],"name":[2],"type":["int"],"align":["right"]},{"label":["ratio_19"],"name":[3],"type":["int"],"align":["right"]},{"label":["ratio_38"],"name":[4],"type":["int"],"align":["right"]},{"label":["ratio_76"],"name":[5],"type":["int"],"align":["right"]},{"label":["ratio_9"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"10","3":"36","4":"36","5":"36","6":"36"},{"1":"TBOOST","2":"10","3":"36","4":"36","5":"36","6":"36"},{"1":"MARS100","2":"10","3":"36","4":"36","5":"36","6":"5"},{"1":"MARS80","2":"10","3":"36","4":"36","5":"36","6":"5"},{"1":"MARS60","2":"10","3":"36","4":"36","5":"36","6":"8"},{"1":"BGMARS","2":"10","3":"10","4":"36","5":"36","6":"1"},{"1":"LBOOST","2":"10","3":"36","4":"36","5":"36","6":"36"},{"1":"LM","2":"10","3":"36","4":"36","5":"36","6":"36"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<pre class="r"><code>views &lt;- c(&quot;ratio_153&quot;, &quot;ratio_76&quot;, &quot;ratio_38&quot;, &quot;ratio_19&quot;, &quot;ratio_9&quot;)
-filter_runs(all.results, &quot;4iANCA&quot;, views) %&gt;%
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, c(&quot;ratio_153&quot;, &quot;ratio_76&quot;, &quot;ratio_38&quot;,
+                                     &quot;ratio_19&quot;, &quot;ratio_9&quot;)) %&gt;%
   get_performance() %&gt;%
-  mutate(view = factor(view, levels=views)) %T&gt;%
+  mutate(view = factor(view, levels=c(&quot;ratio_153&quot;, &quot;ratio_76&quot;, &quot;ratio_38&quot;,
+                                     &quot;ratio_19&quot;, &quot;ratio_9&quot;))) %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, wrap.views = TRUE, ncol=3,
-                   ordering = l) %&gt;%
+                   ordering = def.ord) %&gt;%
   plot_performance(str.measure = &quot;gain.R2&quot;, wrap.views = TRUE, ncol=3,
-                   ordering = l)</code></pre>
+                   ordering = def.ord)</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-45-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-45-1">
@@ -1894,7 +1928,8 @@ schae211
       mutate(algorithm = map_chr(all.info, ~ .x[length(.x)-1])) %&gt;%
       mutate(study = map_chr(all.info, ~ .x[length(.x)-3])) %&gt;%
       mutate(view.comp = map_chr(all.info, ~ .x[length(.x)-2]))
-  })
+  }) %&gt;%
+    mutate(sample = str_extract(sample, &quot;[^/]+$&quot;))
 }</code></pre>
 <p>Function to check whether all importances are present for each algorithm</p>
 <pre class="r"><code>check_algs &lt;- function(misty.performances) {
@@ -1909,78 +1944,163 @@ schae211
     group_by(algorithm) %&gt;%
     summarise(n.NAs = sum(check.NA), n = n())
 }</code></pre>
-<p>Function to split the importances according to view and sample.</p>
+<p>Function to get splits according to view and sample from misty importances.</p>
 <pre class="r"><code>split_importances &lt;- function(misty.importances) {
-  misty.importances %&gt;%
+  tidy.df &lt;- misty.importances %&gt;%
     unite(relation, Predictor, Target, sep=&quot;_&quot;) %&gt;%
-    select(-c(study, view.comp)) %&gt;%
-    drop %&gt;%
-    pivot_wider(names_from=relation, values_from=Importance) %&gt;%
-    # !!! all NAs replaced with 0 !!!
-    replace(is.na(.), 0) %&gt;%
-    mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
-    group_by(sample, view) %&gt;%
-    group_split()
-}</code></pre>
-<p>Function to get the keys for splitting the importances according to view and sample.</p>
-<pre class="r"><code>split_keys &lt;- function(misty.importances) {
-  misty.importances %&gt;%
-    unite(relation, Predictor, Target, sep=&quot;_&quot;) %&gt;%
-    select(-c(study, view.comp)) %&gt;%
     drop_na() %&gt;%
-    pivot_wider(names_from=relation, values_from=Importance) %&gt;%
     mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
-    group_by(sample, view) %&gt;%
-    group_keys()
+    pivot_wider(names_from = algorithm, values_from = Importance) %&gt;%
+    replace(is.na(.), 0) %&gt;%
+    group_by(view, sample)
+  
+  list(splits = group_split(tidy.df), keys = group_keys(tidy.df))
 }</code></pre>
-<p>Function to compute the cosine similarity.</p>
-<pre class="r"><code>cosine_similarity &lt;- function(keys, splits, relative=&quot;RF&quot;) {
+<p>Function to compute the cosine similarity given a tibble of vectors, where each column represents a vector. Indices are harcoded.</p>
+<pre class="r"><code>cosine_similarity &lt;- function(imp.tbl, relative = &quot;RF&quot;) {
+  comp &lt;- imp.tbl %&gt;% pull(relative)
+  map_dbl(imp.tbl[-c(1:5)], function(vec) {
+    cosine.sim &lt;- (comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5)
+  })
+}</code></pre>
+<p>Function to compute the jaccard index given a tibble of vectors, where each column represents a vector. Indices are harcoded.</p>
+<pre class="r"><code>jaccard_index &lt;- function(imp.tbl, relative = &quot;RF&quot;, cutoff = 0.5) {
+  comp &lt;- imp.tbl %&gt;% filter(.data[[relative]] &gt; cutoff) %&gt;% pull(relation)
+  algs &lt;- names(imp.tbl)[-c(1:5)] %&gt;% setNames(names(imp.tbl)[-c(1:5)])
+  
+  map_dbl(algs, function(alg) {
+    vec &lt;- imp.tbl %&gt;% filter(.data[[alg]] &gt; cutoff) %&gt;% pull(relation)
+    length(intersect(comp, vec)) / length(union(comp, vec))
+  })
+}</code></pre>
+<p>Wrapper function</p>
+<pre class="r"><code>wrap_function &lt;- function(misty.importances, f, ...) {
+  
+  ellipsis.args &lt;- list(...)
+  # Split the importance tibble corresponding to views and samples
+  # since we want to compare the algorithm for the same sample and view
+  split.list &lt;- split_importances(misty.importances)
   
   # 1. map over each view
-  map_dfr(unique(keys$view), function(sel.view) {
-      # 2. get the tibbles corresponding to the selected view
-    keys %&gt;%
+  map_dfr(unique(split.list$keys$view), function(sel.view) {
+    
+    # 2. Map over each sample corresponding to this view
+    split.list$keys %&gt;%
       mutate(id = row_number()) %&gt;%
       filter(view == sel.view) %&gt;%
       pull(id, name = sample) %&gt;%
-      # 3. map over each sample (tibble) and bind the results as rows
       map_dfr(function(tbl.id) {
         
-        tbl &lt;- splits[[tbl.id]]
+        # 3. Compute cosine similarity (and add corresponding view and sample)
         
-        # 4. get the random forest importance vector as reference
-        rf &lt;- tbl %&gt;% filter(algorithm == relative) %&gt;% 
-          select(-c(sample, view, algorithm)) %&gt;%
-          unlist()
-        
-        # 5. get the importance vectors for the other algorithms by mapping over rows
-        cosine.sims &lt;- slide_dfr(tbl, function(row) {
-          vec &lt;- row %&gt;% select(-c(sample, view, algorithm)) %&gt;%
-            unlist()
+        args &lt;- rlist::list.merge(list(imp.tbl = split.list$splits[[tbl.id]]), 
+                                  ellipsis.args)
+        c(do.call(f, args), &quot;id&quot; = tbl.id)
           
-          # 6. for each importance vector compute the cosine similarity
-          cosine.sim &lt;- (rf %*% vec * 1/(rf %*% rf)**0.5 * 1/(vec %*% vec)**0.5) %&gt;%
-            as.double()
-          
-          tibble(algorithm = row %&gt;% pull(algorithm), cosine = cosine.sim, 
-                 sample = row %&gt;% pull(sample), view = sel.view)
-        })
-      }) %&gt;%
-      # 7. Group by algorithm and get the mean of the cosine similarity for each sample
+      }) %&gt;% mutate(view = sel.view,
+                    sample = split.list$keys$sample[as.integer(id)]) 
+  }) %&gt;%
+    pivot_longer(-c(id, view, sample), 
+                 names_to = &quot;algorithm&quot;, values_to = &quot;cosine&quot;) %&gt;%
+    
+      # 4. Group by algorithm 
+      # and get the mean of the cosine similarity for each sample
       group_by(algorithm, view) %&gt;%
-      summarise(mean = mean(cosine), sd = sd(cosine), .groups=&quot;drop&quot;)
-    }) %&gt;%
+      summarise(mean = mean(cosine), sd = sd(cosine), .groups=&quot;drop&quot;) %&gt;%
+      arrange(algorithm)
+}</code></pre>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(jaccard_index, relative=&quot;RF&quot;, cutoff=0.5)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["view"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"intra","3":"0.4902472","4":"0.03138638"},{"1":"BGMARS","2":"para.6","3":"0.5476374","4":"0.04819035"},{"1":"LBOOST","2":"intra","3":"0.4594526","4":"0.02395888"},{"1":"LBOOST","2":"para.6","3":"0.7003634","4":"0.06983127"},{"1":"LM","2":"intra","3":"0.4757976","4":"0.05840807"},{"1":"LM","2":"para.6","3":"0.2286882","4":"0.03718948"},{"1":"MARS","2":"intra","3":"0.4783723","4":"0.03037054"},{"1":"MARS","2":"para.6","3":"0.4836687","4":"0.02722361"},{"1":"MLP","2":"intra","3":"0.3584492","4":"0.03756861"},{"1":"MLP","2":"para.6","3":"0.3001101","4":"0.05669428"},{"1":"RF","2":"intra","3":"1.0000000","4":"0.00000000"},{"1":"RF","2":"para.6","3":"1.0000000","4":"0.00000000"},{"1":"SVM","2":"intra","3":"0.5211930","4":"0.05526075"},{"1":"SVM","2":"para.6","3":"0.2737682","4":"0.02839222"},{"1":"TBOOST","2":"intra","3":"0.4594526","4":"0.02395888"},{"1":"TBOOST","2":"para.6","3":"0.7003634","4":"0.06983127"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Function to compute the cosine similarity for each algorithm for all views and samples.</p>
+<pre class="r"><code>cosine_similarity_wrapper &lt;- function(misty.importances, relative = &quot;RF&quot;) {
+  
+  # Split the importance tibble corresponding to views and samples
+  # since we want to compare the algorithm for the same sample and view
+  split.list &lt;- split_importances(misty.importances)
+  
+  # 1. map over each view
+  map_dfr(unique(split.list$keys$view), function(sel.view) {
+    
+    # 2. Map over each sample corresponding to this view
+    split.list$keys %&gt;%
+      mutate(id = row_number()) %&gt;%
+      filter(view == sel.view) %&gt;%
+      pull(id, name = sample) %&gt;%
+      map_dfr(function(tbl.id) {
+        
+        # 3. Compute cosine similarity (and add corresponding view and sample)
+        c(cosine_similarity(split.list$splits[[tbl.id]], relative), &quot;id&quot; = tbl.id)
+          
+      }) %&gt;% mutate(view = sel.view,
+                    sample = split.list$keys$sample[as.integer(id)]) 
+  }) %&gt;%
+    pivot_longer(-c(id, view, sample), 
+                 names_to = &quot;algorithm&quot;, values_to = &quot;cosine&quot;) %&gt;%
+    
+      # 4. Group by algorithm 
+      # and get the mean of the cosine similarity for each sample
+      group_by(algorithm, view) %&gt;%
+      summarise(mean = mean(cosine), sd = sd(cosine), .groups=&quot;drop&quot;) %&gt;%
       arrange(algorithm)
 }</code></pre>
 <pre class="r"><code>plot_cosine_similarity &lt;- function(cosine_similarity) {
   cosine_similarity %&gt;%
     mutate(low = mean-sd, high = mean+sd) %&gt;%
-    mutate(algorithm = factor(algorithm, levels=l)) %&gt;%
+    mutate(algorithm = factor(algorithm, levels = def.ord)) %&gt;%
     ggplot() +
     geom_point(aes(x = algorithm, y = mean)) +
     geom_errorbar(aes(x = algorithm, ymin = low, ymax = high)) +
     facet_wrap(~ view) +
-    theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5))
+    theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
+    lims(y = c(0, 1))
+}</code></pre>
+<pre class="r"><code>jaccard_index_wrapper &lt;- function(misty.importances, relative = &quot;RF&quot;, cutoff = 0.5) {
+  
+  # Split the importance tibble corresponding to views and samples
+  # since we want to compare the algorithm for the same sample and view
+  split.list &lt;- split_importances(misty.importances)
+  
+  # 1. map over each view
+  map_dfr(unique(split.list$keys$view), function(sel.view) {
+    
+    # 2. Map over each sample corresponding to this view
+    split.list$keys %&gt;%
+      mutate(id = row_number()) %&gt;%
+      filter(view == sel.view) %&gt;%
+      pull(id, name = sample) %&gt;%
+      map_dfr(function(tbl.id) {
+        
+        # 3. Compute jaccard index (and add corresponding view and sample)
+        c(jaccard_index(split.list$splits[[tbl.id]], relative, cutoff), &quot;id&quot; = tbl.id)
+          
+      }) %&gt;% mutate(view = sel.view,
+                    sample = split.list$keys$sample[as.integer(id)]) 
+  }) %&gt;%
+    pivot_longer(-c(id, view, sample), 
+                 names_to = &quot;algorithm&quot;, values_to = &quot;jaccard&quot;) %&gt;%
+    
+      # 4. Group by algorithm 
+      # and get the mean of the cosine similarity for each sample
+      group_by(algorithm, view) %&gt;%
+      summarise(mean = mean(jaccard), sd = sd(jaccard), .groups=&quot;drop&quot;) %&gt;%
+      arrange(algorithm)
+}</code></pre>
+<pre class="r"><code>plot_jaccard &lt;- function(jaccard) {
+  jaccard %&gt;%
+    mutate(low = mean-sd, high = mean+sd) %&gt;%
+    mutate(algorithm = factor(algorithm, levels = def.ord)) %&gt;%
+    ggplot() +
+    geom_point(aes(x = algorithm, y = mean)) +
+    geom_errorbar(aes(x = algorithm, ymin = low, ymax = high)) +
+    facet_wrap(~ view) +
+    theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
+    lims(y = c(0, 1))
 }</code></pre>
 <div id="synthetic-2" class="section level2">
 <h2><code>synthetic</code></h2>
@@ -1995,126 +2115,28 @@ schae211
 </div>
 <div id="cosine-similarity" class="section level3">
 <h3>Cosine Similarity</h3>
-<p>Split the importances according to view and sample and get the corresponding keys.</p>
-<pre class="r"><code>splits &lt;- filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
-  get_importance() %&gt;%
-  split_importances()
-
-keys &lt;- filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
-  get_importance() %&gt;%
-  split_keys()</code></pre>
 <p>Now let’s look at the cosine similarities.</p>
-<pre class="r"><code>cosine_similarity(keys, splits)</code></pre>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_similarity_wrapper()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["view"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"intra","3":"0.8014017","4":"1.929998e-02"},{"1":"BGMARS","2":"para.6","3":"0.7044534","4":"2.432416e-02"},{"1":"LBOOST","2":"intra","3":"0.7657657","4":"1.948244e-02"},{"1":"LBOOST","2":"para.6","3":"0.8947381","4":"2.047228e-02"},{"1":"LM","2":"intra","3":"0.5930847","4":"1.852187e-02"},{"1":"LM","2":"para.6","3":"-0.0195024","4":"3.894001e-02"},{"1":"MARS","2":"intra","3":"0.7702868","4":"1.825054e-02"},{"1":"MARS","2":"para.6","3":"0.5844787","4":"3.504435e-02"},{"1":"MLP","2":"intra","3":"0.6421707","4":"2.485127e-02"},{"1":"MLP","2":"para.6","3":"0.4142093","4":"5.353722e-02"},{"1":"RF","2":"intra","3":"1.0000000","4":"1.812987e-16"},{"1":"RF","2":"para.6","3":"1.0000000","4":"1.812987e-16"},{"1":"SVM","2":"intra","3":"0.7021634","4":"1.714482e-02"},{"1":"SVM","2":"para.6","3":"0.1933188","4":"3.506235e-02"},{"1":"TBOOST","2":"intra","3":"0.7657657","4":"1.948244e-02"},{"1":"TBOOST","2":"para.6","3":"0.8947381","4":"2.047228e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>And plot them.</p>
-<pre class="r"><code>cosine_similarity(keys, splits) %&gt;%
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_similarity_wrapper() %&gt;%
   plot_cosine_similarity()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-56-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="mibi_tnbc-2" class="section level2">
-<h2><code>mibi_tnbc</code></h2>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
-  get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"34170","3":"151200"},{"1":"LBOOST","2":"34170","3":"151200"},{"1":"LM","2":"34170","3":"151200"},{"1":"MARS","2":"34170","3":"151200"},{"1":"RF","2":"34170","3":"151200"},{"1":"TBOOST","2":"47018","3":"151200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<div id="cosine-similarity-1" class="section level3">
-<h3>Cosine Similarity</h3>
-<pre class="r"><code>splits &lt;- filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
-  get_importance() %&gt;%
-  split_importances()
-
-keys &lt;- filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
-  get_importance() %&gt;%
-  split_keys()</code></pre>
-<pre class="r"><code>cosine_similarity(keys, splits) %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-59-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="merfish_preoptic-2" class="section level2">
-<h2><code>merfish_preoptic</code></h2>
-</div>
-<div id="merfish_liver-2" class="section level2">
-<h2><code>merfish_liver</code></h2>
-</div>
-<div id="merfish_bc-2" class="section level2">
-<h2><code>merfish_bc</code></h2>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
-  get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"21930"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"0","3":"197370"},{"1":"MARS","2":"21420","3":"153510"},{"1":"RF","2":"0","3":"197370"},{"1":"TBOOST","2":"13692","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<pre class="r"><code>splits &lt;- filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
-  get_importance() %&gt;%
-  split_importances()
-
-keys &lt;- filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
-  get_importance() %&gt;%
-  split_keys()</code></pre>
-<div id="intraview" class="section level4">
-<h4>Intraview</h4>
-<pre class="r"><code>cosine_similarity(keys, splits) %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-62-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="ianca-2" class="section level2">
-<h2><code>4iANCA</code></h2>
-</div>
-</div>
-<div id="comparing-runtimes" class="section level1">
-<h1>Comparing Runtimes</h1>
-</div>
-<div id="hyperparameter-optimization" class="section level1 tabset">
-<h1 class="tabset">Hyperparameter Optimization</h1>
-<div id="rf" class="section level2">
-<h2>RF</h2>
-<div id="mibi_tnbc-3" class="section level3">
-<h3><code>mibi_tnbc</code></h3>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;RF_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
-  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-63-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-</div>
-<div id="mars" class="section level2">
-<h2>MARS</h2>
-<div id="mibi_tnbc-4" class="section level3">
-<h3><code>mibi_tnbc</code></h3>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;MARS_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
-  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-64-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="synthetic-3" class="section level3">
-<h3><code>synthetic</code></h3>
-<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;MARS_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
-  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-65-1">
-Past versions of unnamed-chunk-65-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-59-1">
+Past versions of unnamed-chunk-59-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-65-1" class="collapse">
+<div id="fig-unnamed-chunk-59-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -2133,7 +2155,99 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">3a864d2</a>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-59-1.png" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="jaccard-index-after-binarization" class="section level3">
+<h3>Jaccard Index after Binarization</h3>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  jaccard_index_wrapper(cutoff = 0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="pearson-correlation" class="section level3">
+<h3>Pearson Correlation</h3>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  unite(relation, Predictor, Target) %&gt;%
+  drop_na() %&gt;%
+  pivot_wider(names_from = relation, values_from = Importance) %&gt;%
+  filter(view == &quot;intra&quot;) %&gt;%
+  select(-c(study, view.comp)) %&gt;%
+  mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+  group_by(algorithm) %&gt;%
+  summarise(across(4:112, mean)) %&gt;%
+  replace(is.na(.), 0) %&gt;%
+  pivot_longer(cols = !algorithm) %&gt;%
+  pivot_wider(names_from = algorithm, values_from = value) %&gt;%
+  select(-name) %&gt;%
+  cor() %&gt;% 
+  corrplot::corrplot(method=&quot;color&quot;, col.lim = c(0,1), 
+      col = colorRampPalette(c(&quot;#414487FF&quot;, &quot;#414487FF&quot;, &quot;#414487FF&quot;,
+                               &quot;#414487FF&quot;, &quot;#22A884FF&quot;, &quot;#7AD151FF&quot;,
+                               &quot;#FDE725FF&quot;))(100),
+      tl.col = &quot;black&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-61-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>tidy.df &lt;- filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  unite(relation, Predictor, Target) %&gt;%
+  drop_na() %&gt;%
+  pivot_wider(names_from = relation, values_from = Importance) %&gt;%
+  filter(view == &quot;intra&quot;) %&gt;%
+  select(-c(study, view.comp)) %&gt;%
+  mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+  group_by(algorithm) %&gt;%
+  summarise(across(4:112, mean)) %&gt;%
+  replace(is.na(.), 0) %&gt;%
+  pivot_longer(cols = !algorithm) %&gt;%
+  pivot_wider(names_from = algorithm, values_from = value) %&gt;%
+  rename(importance = name) %&gt;%
+  pivot_longer(cols = !c(importance, RF)) %&gt;%
+  mutate(name = factor(name))
+
+ggplot() +
+  geom_point(aes(x = tidy.df$RF, y = tidy.df$value, col = tidy.df$name)) +
+  geom_line(aes(x = tidy.df$RF, y = tidy.df$RF), col = &quot;blue&quot;) +
+  coord_fixed() +
+  scale_color_brewer(palette=&quot;Dark2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-62-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-62-1">
+Past versions of unnamed-chunk-62-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-62-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">e9c0076</a>
 </td>
 <td>
 schae211
@@ -2148,14 +2262,80 @@ schae211
 </div>
 </div>
 </div>
-<div id="linear-boosting" class="section level2">
-<h2>Linear Boosting</h2>
-<div id="mibi_tnbc-5" class="section level3">
-<h3><code>mibi_tnbc</code></h3>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;LBOOST_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;LBOOST_hyper_&quot;)) %&gt;%
-  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<div id="mibi_tnbc-2" class="section level2">
+<h2><code>mibi_tnbc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"34170","3":"151200"},{"1":"LBOOST","2":"34170","3":"151200"},{"1":"LM","2":"34170","3":"151200"},{"1":"MARS","2":"34170","3":"151200"},{"1":"RF","2":"34170","3":"151200"},{"1":"TBOOST","2":"47018","3":"151200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="cosine-similarity-1" class="section level3">
+<h3>Cosine Similarity</h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_similarity_wrapper() %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-64-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-64-1">
+Past versions of unnamed-chunk-64-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-64-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-64-1.png" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div id="merfish_preoptic-2" class="section level2">
+<h2><code>merfish_preoptic</code></h2>
+<div id="cosine-similarity-2" class="section level3">
+<h3>Cosine Similarity</h3>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"LBOOST","2":"0","3":"1248048"},{"1":"LM","2":"0","3":"1248048"},{"1":"MARS","2":"33705","3":"34668"},{"1":"MARS40","2":"28569","3":"34668"},{"1":"MARS60","2":"32742","3":"34668"},{"1":"MARS80","2":"33705","3":"34668"},{"1":"RF","2":"0","3":"1248048"},{"1":"TBOOST","2":"142643","3":"1248048"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_similarity_wrapper() %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 15 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-66-1">
@@ -2181,6 +2361,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-66-1.png" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-66-1.png" target="_blank">3a864d2</a>
 </td>
 <td>
@@ -2194,16 +2385,10 @@ schae211
 </table>
 </div>
 </div>
-</div>
-</div>
-<div id="tree-boosting" class="section level2">
-<h2>Tree Boosting</h2>
-<div id="mibi_tnbc-6" class="section level3">
-<h3><code>mibi_tnbc</code></h3>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;TBOOST_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;TBOOST_hyper_&quot;)) %&gt;%
-  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  jaccard_index_wrapper() %&gt;%
+  plot_jaccard()</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-67-1">
@@ -2229,6 +2414,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">3a864d2</a>
 </td>
 <td>
@@ -2242,6 +2438,165 @@ schae211
 </table>
 </div>
 </div>
+</div>
+</div>
+<div id="merfish_liver-2" class="section level2">
+<h2><code>merfish_liver</code></h2>
+</div>
+<div id="merfish_bc-2" class="section level2">
+<h2><code>merfish_bc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"21930"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"0","3":"197370"},{"1":"MARS","2":"21420","3":"153510"},{"1":"RF","2":"0","3":"197370"},{"1":"TBOOST","2":"13692","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="cosine-similarity-3" class="section level3">
+<h3>Cosine Similarity</h3>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_similarity_wrapper() %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-69-1">
+Past versions of unnamed-chunk-69-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-69-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-69-1.png" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-69-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  jaccard_index_wrapper() %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-70-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="ianca-2" class="section level2">
+<h2><code>4iANCA</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_153&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"14040"},{"1":"LBOOST","2":"1592","3":"14040"},{"1":"LM","2":"0","3":"14040"},{"1":"MARS100","2":"0","3":"14040"},{"1":"MARS60","2":"0","3":"14040"},{"1":"MARS80","2":"0","3":"14040"},{"1":"RF","2":"0","3":"14040"},{"1":"TBOOST","2":"1592","3":"14040"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div id="cosine-similarity-4" class="section level3">
+<h3>Cosine Similarity</h3>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_153&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_similarity_wrapper() %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_153&quot;) %&gt;%
+  get_importance() %&gt;%
+  jaccard_index_wrapper() %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-73-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+</div>
+<div id="comparing-runtimes" class="section level1">
+<h1>Comparing Runtimes</h1>
+</div>
+<div id="hyperparameter-optimization" class="section level1 tabset">
+<h1 class="tabset">Hyperparameter Optimization</h1>
+<div id="rf" class="section level2">
+<h2>RF</h2>
+<div id="mibi_tnbc-3" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;RF_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-74-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="mars" class="section level2">
+<h2>MARS</h2>
+<div id="mibi_tnbc-4" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;MARS_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-75-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="synthetic-3" class="section level3">
+<h3><code>synthetic</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;MARS_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="linear-boosting" class="section level2">
+<h2>Linear Boosting</h2>
+<div id="mibi_tnbc-5" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;LBOOST_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;LBOOST_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-77-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="tree-boosting" class="section level2">
+<h2>Tree Boosting</h2>
+<div id="mibi_tnbc-6" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;TBOOST_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;TBOOST_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-78-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 </div>
@@ -2285,27 +2640,28 @@ attached base packages:
 other attached packages:
  [1] slider_0.2.2    magrittr_2.0.1  forcats_0.5.1   stringr_1.4.0  
  [5] dplyr_1.0.7     purrr_0.3.4     readr_2.0.2     tidyr_1.1.4    
- [9] tibble_3.1.5    ggplot2_3.3.5   tidyverse_1.3.1 mistyR_1.3.1   
+ [9] tibble_3.1.5    ggplot2_3.3.5   tidyverse_1.3.1 mistyR_1.3.2   
 [13] workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7        lubridate_1.8.0   assertthat_0.2.1  rprojroot_2.0.2  
- [5] digest_0.6.28     utf8_1.2.2        R6_2.5.1          cellranger_1.1.0 
- [9] backports_1.3.0   reprex_2.0.1      evaluate_0.14     httr_1.4.2       
-[13] highr_0.9         pillar_1.6.3      rlang_0.4.12      readxl_1.3.1     
-[17] rstudioapi_0.13   whisker_0.4       jquerylib_0.1.4   rmarkdown_2.11   
-[21] labeling_0.4.2    munsell_0.5.0     broom_0.7.9       compiler_4.1.2   
-[25] httpuv_1.6.3      modelr_0.1.8      xfun_0.26         pkgconfig_2.0.3  
-[29] htmltools_0.5.2   tidyselect_1.1.1  viridisLite_0.4.0 fansi_0.5.0      
-[33] crayon_1.4.1      tzdb_0.1.2        dbplyr_2.1.1      withr_2.4.2      
-[37] later_1.3.0       grid_4.1.2        jsonlite_1.7.2    gtable_0.3.0     
-[41] lifecycle_1.0.1   DBI_1.1.1         git2r_0.28.0      scales_1.1.1     
-[45] warp_0.2.0        cli_3.0.1         stringi_1.7.5     farver_2.1.0     
-[49] fs_1.5.0          promises_1.2.0.1  xml2_1.3.2        bslib_0.3.1      
-[53] ellipsis_0.3.2    generics_0.1.0    vctrs_0.3.8       tools_4.1.2      
-[57] glue_1.4.2        hms_1.1.1         fastmap_1.1.0     yaml_2.2.1       
-[61] colorspace_2.0-2  rvest_1.0.1       knitr_1.36        haven_2.4.3      
-[65] sass_0.4.0       </code></pre>
+ [1] Rcpp_1.0.7         lubridate_1.8.0    assertthat_0.2.1   rprojroot_2.0.2   
+ [5] digest_0.6.28      utf8_1.2.2         R6_2.5.1           cellranger_1.1.0  
+ [9] backports_1.3.0    reprex_2.0.1       evaluate_0.14      httr_1.4.2        
+[13] highr_0.9          pillar_1.6.3       rlang_0.4.12       readxl_1.3.1      
+[17] data.table_1.14.2  rstudioapi_0.13    whisker_0.4        jquerylib_0.1.4   
+[21] rmarkdown_2.11     labeling_0.4.2     munsell_0.5.0      broom_0.7.9       
+[25] compiler_4.1.2     httpuv_1.6.3       modelr_0.1.8       xfun_0.26         
+[29] pkgconfig_2.0.3    htmltools_0.5.2    tidyselect_1.1.1   viridisLite_0.4.0 
+[33] fansi_0.5.0        crayon_1.4.1       tzdb_0.1.2         dbplyr_2.1.1      
+[37] withr_2.4.2        later_1.3.0        grid_4.1.2         jsonlite_1.7.2    
+[41] gtable_0.3.0       lifecycle_1.0.1    DBI_1.1.1          git2r_0.28.0      
+[45] scales_1.1.1       rlist_0.4.6.2      warp_0.2.0         cli_3.0.1         
+[49] stringi_1.7.5      farver_2.1.0       fs_1.5.0           promises_1.2.0.1  
+[53] xml2_1.3.2         bslib_0.3.1        ellipsis_0.3.2     generics_0.1.0    
+[57] vctrs_0.3.8        RColorBrewer_1.1-2 tools_4.1.2        glue_1.4.2        
+[61] hms_1.1.1          fastmap_1.1.0      yaml_2.2.1         colorspace_2.0-2  
+[65] corrplot_0.90      rvest_1.0.1        knitr_1.36         haven_2.4.3       
+[69] sass_0.4.0        </code></pre>
 </div>
 </div>
 
