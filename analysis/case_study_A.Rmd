@@ -1,0 +1,508 @@
+---
+title: "Case Study A"
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_knit$set(root.dir = "~/Saez/report")
+```
+
+# Introduction
+
+This document is supposed to show how the new implementation can be useful in 
+the case of a neighborhood composition analysis.
+
+Loaded packages.
+
+```{r}
+library(mistyR, warn.conflicts = FALSE)
+library(tidyverse, warn.conflicts = FALSE)
+library(future, warn.conflicts = FALSE)
+plan("multisession", workers=12)
+```
+
+Loading data generated in MIBI_Analysis.Rmd
+
+```{r}
+raw.data <- readRDS("data/mibi_tnbc_meta.RDS")
+raw.data %>% slice_head(n=6)
+```
+
+```{r}
+samples <- unique(raw.data$SampleID)
+samples
+```
+
+
+Adding a column in Group specifying the immuneGroup
+
+```{r}
+meta.data <- raw.data %>%
+  select(SampleID, cellSize, Group, immuneGroup, row, col) %>%
+  mutate(Group = case_when(
+    immuneGroup == "Non-Immune?" ~ Group,
+    immuneGroup != "Non-Immune?" ~ immuneGroup,
+    TRUE ~ "NA"
+  ), immuneGroup = NULL)
+meta.data %>% slice_head(n=6)
+```
+
+Visualizing the frequency of the cell types.
+
+```{r}
+meta.data %>% 
+  count(Group) %>%
+  ggplot() +
+  geom_bar(aes(x=n, y=Group), stat="identity")
+```
+
+Prepare the data by one hot encoding the cell types. (removing from each
+sample cell types whose total number in the sample in below the `cutoff`)
+
+```{r}
+lvls <- meta.data$Group %>% unique
+cutoff <- 10
+
+expr.smp <- map(samples, function(smp) {
+  raw.expr <- meta.data %>%
+    filter(SampleID == smp) %>%
+    select(Group) %>%
+    mutate(Group = factor(Group, levels = lvls)) %>%
+    data.table::as.data.table() %>%
+    mltools::one_hot() %>%
+    as_tibble() %>%
+    select(which(colSums(.) >= cutoff)) %>%
+    rename_all(~ str_remove(.x, "Group_")) %>%
+    rename_all(make.names)
+}) %>% setNames(samples)
+expr.smp$`1` %>% slice_head(n=6)
+```
+
+Get the positions per sample.
+
+```{r}
+positions.smp <- map(samples, function(smp) {
+  meta.data %>%
+    filter(SampleID == smp) %>%
+    select(row, col)
+}) %>% setNames(samples)
+positions.smp$`1` %>% slice_head(n=6)
+```
+
+In how many samples is a given cell types retained?
+
+```{r}
+map(expr.smp, ~ colnames(.x)) %>%
+  unlist %>%
+  tibble() %>%
+  rename("celltypes" = ".") %>%
+  count(celltypes)
+```
+
+Check equivalently in how many cell types are retained in each sample?
+
+```{r fig.height=6}
+map2_dfr(expr.smp, names(expr.smp), ~ list("value" = ncol(.x), 
+                                           "sample" = .y)) %>%
+  ggplot() +
+  geom_bar(aes(x = value, y = reorder(sample, value)), stat="identity")
+```
+
+Maybe one should remove sample 24.
+
+```{r}
+to_remove <- c(24)
+#to_remove <- c(5:41) # tmp for testing
+expr.smp <- expr.smp[!(names(expr.smp) %in% to_remove)]
+positions.smp <- positions.smp[!(names(positions.smp) %in% to_remove)]
+```
+
+
+Computing the MISTy Views, based on the 50 nearest neighbors (constant weight).
+(using quietly to capute the message and warnings).
+
+```{r}
+generate_misty_views <- function(expr.list, position.list) {
+    map2(expr.list, position.list, function(expr, pos) {
+    expr %>%
+    create_initial_view() %>%
+    add_paraview(positions = pos, l = 50, zoi = 0, family = "constant")
+  })
+}
+safe_generate_misty_views <- quietly(generate_misty_views)
+```
+
+```{r}
+misty.views.run <- safe_generate_misty_views(expr.smp, positions.smp)
+misty.views.smp <- misty.views.run$result
+```
+
+<details> 
+<summary>Click to see warnings</summary>
+```{r}
+misty.views.run$warnings
+```
+</details>
+
+Running MISTy with the base case.
+
+```{r}
+run_misty_wrapper <- function(misty.views.smp) {
+  results.paths <- 
+  imap(misty.views.smp, function(misty.views, i) {
+  
+  misty.views %>%
+    run_misty(results.folder = paste0("output/case_study_A/RF", i), 
+              bypass.intra = TRUE,
+              cv.folds = 10,
+              model.function = random_forest_model)
+  })
+  collect_results(results.paths)
+}
+safe_run_misty <- quietly(run_misty_wrapper)
+```
+
+```{r}
+misty.run.rf <- safe_run_misty(misty.views.smp)
+misty.results.rf <- misty.run.rf$result
+```
+
+<details> 
+<summary>Click to see warnings</summary>
+```{r}
+misty.run.rf$warnings
+```
+</details>
+
+So essentially I get nothing here, and I think this is due to Ridge regression,
+but I am not sure yet.
+
+```{r}
+misty.results.rf %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.50")
+```
+
+## Regression Boosted Trees
+
+```{r}
+run_misty_wrapper <- function(misty.views.smp) {
+  results.paths <- 
+  imap(misty.views.smp, function(misty.views, i) {
+  
+  misty.views %>%
+    run_misty(results.folder = paste0("output/case_study_A/TBOOST", i), 
+              bypass.intra = TRUE,
+              cv.folds = 10,
+               model.function = gradient_boosting_model, booster = "gbtree")
+  })
+  collect_results(results.paths)
+}
+safe_run_misty <- quietly(run_misty_wrapper)
+```
+
+```{r}
+misty.run.tboost <- safe_run_misty(misty.views.smp)
+misty.results.tboost <- misty.run.tboost$result
+```
+
+<details> 
+<summary>Click to see warnings</summary>
+```{r}
+misty.run.tboost$warnings
+```
+</details>
+
+```{r}
+misty.results.tboost %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.50")
+```
+
+## Non-negative Least Squares
+
+```{r}
+nnls_model <- function(view_data, target, seed, k = 10, ...) {
+  
+  folds <- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  if (ncol(view_data) <= 3) {
+    holdout.predictions <- tibble(index = seq(1, nrow(view_data)),
+                                  prediction = view_data %>%
+                                    dplyr::pull(tidyselect::all_of(target)) %>%
+                                    mean)
+    importances <- rep(0, ncol(view_data)-1)
+    names(importances) <- colnames(view_data)[colnames(view_data) != target]
+  } else {
+      holdout.predictions <- purrr::map_dfr(folds, function(holdout) {
+    
+      in.fold <- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in%
+                                                 holdout)]
+      
+      train <- view_data[in.fold, ]
+      test <- view_data[holdout, ]
+      
+      pred.train <- train %>% dplyr::select(-tidyselect::all_of(target)) %>%
+        as.matrix
+      label.train <- train %>% dplyr::pull(tidyselect::all_of(target))
+      
+      # start changing things here:
+      algo.arguments <- list(
+        x = pred.train,
+        y = label.train,
+        alpha = 1,
+        lambda = 0,
+        lower.limits = 0,
+        family = "gaussian"
+      )
+      
+      model <- do.call(glmnet::glmnet, algo.arguments)
+      
+      pred.test <- test %>% dplyr::select(-tidyselect::all_of(target)) %>% 
+        as.matrix
+      
+      pred <- predict(model, pred.test)
+      
+      tibble::tibble(index = holdout, prediction = as.vector(pred))
+    }) %>% dplyr::arrange(index)
+  
+    predictors <- view_data %>% 
+      dplyr::select(-tidyselect::all_of(target)) %>% as.matrix
+    labels <- view_data %>% dplyr::pull(tidyselect::all_of(target))
+    
+       # start changing things here:
+      algo.arguments.wm <- list(
+        x = predictors,
+        y = labels,
+        alpha = 1,
+        lambda = 0,
+        lower.limits = 0,
+        family = "gaussian"
+      )
+    
+    whole.model <- do.call(glmnet::glmnet, algo.arguments.wm)
+    
+    whole.model$beta
+    
+    importances <- whole.model$beta[,1]
+    # fix for bypass intra (replace NA with 0 for consistent behavior)
+    importances <- ifelse(is.na(importances), 0, importances)
+  }
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+```
+
+```{r}
+run_misty_wrapper <- function(misty.views.smp) {
+  results.paths <- 
+  imap(misty.views.smp, function(misty.views, i) {
+  
+  misty.views %>%
+    run_misty(results.folder = paste0("output/case_study_A/NNLS", i), 
+              bypass.intra = TRUE,
+              cv.folds = 10,
+               model.function = nnls_model)
+  })
+  collect_results(results.paths)
+}
+safe_run_misty <- quietly(run_misty_wrapper)
+```
+
+```{r}
+misty.run.nnls <- safe_run_misty(misty.views.smp)
+misty.results.nnls <- misty.run.nnls$result
+```
+
+<details> 
+<summary>Click to see warnings</summary>
+```{r}
+misty.run.nnls$warnings
+```
+</details>
+
+```{r}
+misty.results.nnls %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.50")
+```
+
+## Classification Random Forest
+
+```{r}
+random_forest_class <- function(view_data, target, seed, ...) {
+  
+  ellipsis.args <- list(...)
+
+  # If we have no predictors simply return the mean of the target
+  if (ncol(view_data) <= 2) {
+    predictions <- tibble(index = seq(1, nrow(view_data)),
+                          prediction = view_data %>%
+                            dplyr::pull(tidyselect::all_of(target)) %>%
+                                    mean)
+    importances <- rep(0, ncol(view_data)-1)
+    names(importances) <- colnames(view_data)[colnames(view_data) != target]
+  } else {
+  
+    target.vector <- view_data %>% dplyr::pull(target) %>% as.factor
+  
+    transformed_view_data <- view_data %>%
+      mutate(!!target := target.vector)
+    
+    # default ranger arguments
+    algo.arguments <- list(
+      formula = stats::as.formula(paste0(target, " ~ .")),
+      data = transformed_view_data,
+      num.trees = 100,
+      importance = "impurity",
+      mtry = NULL,
+      verbose = FALSE,
+      num.threads = 1,
+      seed = seed
+    )
+  
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments <- merge_two(algo.arguments, ellipsis.args)
+    }
+  
+    model <- do.call(ranger::ranger, algo.arguments)
+  
+    predictions <- tibble::tibble(
+      index = seq_len(nrow(view_data)),
+      prediction = as.numeric(levels(model$predictions))[model$predictions]
+    )
+    importances = model$variable.importance
+  }
+  list(
+    unbiased.predictions = predictions,
+    importances = importances
+  )
+}
+```
+
+```{r}
+run_misty_wrapper <- function(misty.views.smp) {
+  results.paths <- 
+  imap(misty.views.smp, function(misty.views, i) {
+  
+  misty.views %>%
+    run_misty(results.folder = paste0("output/case_study_A/RFCLASS", i), 
+              bypass.intra = TRUE,
+              cv.folds = 10,
+               model.function = random_forest_class)
+  })
+  collect_results(results.paths)
+}
+safe_run_misty <- quietly(run_misty_wrapper)
+```
+
+```{r}
+misty.run.rfc <- safe_run_misty(misty.views.smp)
+misty.results.nnls <- misty.run.rfc$result
+```
+
+<details> 
+<summary>Click to see warnings</summary>
+```{r}
+misty.run.rfc$warnings
+```
+</details>
+
+```{r}
+misty.results.nnls %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.50")
+```
+
+# Appendix
+
+```{r eval=FALSE, include=FALSE}
+map_lgl(samples[!(samples %in% to_remove)], function(smp) {
+  #print(paste0("output/case_study_A/RFCLASS", smp, "/performance.txt"))
+  read.table(paste0("output/case_study_A/RFCLASS", smp, "/performance.txt"))
+  TRUE
+})
+
+map_lgl(samples[!(samples %in% to_remove)], function(smp) {
+  #print(paste0("output/case_study_A/RFCLASS", smp, "/coefficients.txt"))
+  read.table(paste0("output/case_study_A/RFCLASS", smp, "/coefficients.txt"))
+  TRUE
+})
+```
+
+
+```{r eval=FALSE, include=FALSE}
+views <- misty.views.smp$`1`
+target <- "B"
+target.vector <- expr %>% dplyr::pull(target)
+model.function <- nnls_model
+model.name <- "nnls"
+cv.folds <- 10
+bypass.intra <- TRUE
+seed <- 42
+cached <- FALSE
+ellipsis.args <- list()
+ellipsis.args.text <- ""
+view <- views$intraview
+transformed.view.data <-
+            tibble::tibble(!!target := target.vector, ".novar" := 0)
+view_data <- transformed.view.data
+```
+
+```{r eval=FALSE, include=FALSE}
+bypass.intra <- TRUE
+model.function <- random_forest_model
+cached <- FALSE
+views <- misty.views.smp$`1`
+results.folder <- "results"
+seed <- 42
+target.subset <- NULL
+append <- FALSE
+ellipsis.args <- list()
+model.name <- "rf"
+cv.folds <- 10
+target <- "CD8.T"
+target <- "Keratin.positive.tumor"
+```
+
+```{r eval=FALSE, include=FALSE}
+misty.views <- misty.views.smp$`1`
+expr <- misty.views$intraview$data
+target = "Neutrophils"
+target.vector <- expr %>% dplyr::pull(target)
+transformed.view.data1 <-
+            tibble::tibble(!!target := target.vector, ".novar" := 0)
+
+transformed.view.data2 <- misty.views$paraview.50$data %>%
+  mutate(!!target := target.vector)
+
+view_data <- transformed.view.data2
+```
+
+```{r eval=FALSE, include=FALSE}
+views <- misty.views
+target <- "Neutrophils"
+model.function <- random_forest_class
+model.name <- "rf_class"
+cv.folds <- 10
+bypass.intra <- TRUE
+seed <- 42
+cached <- FALSE
+view <- views$intraview
+ellipsis.args.text <- ""
+colnames(view$data)
+target <- "Keratin.positive.tumor"
+```
+
+
+
+
+

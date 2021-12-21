@@ -1,9 +1,9 @@
 ---
-title: "Case Study A"
+title: "Case Study B"
 ---
 
 ```{r setup}
-knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
 knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
@@ -18,7 +18,7 @@ Loaded packages.
 library(mistyR, warn.conflicts = FALSE)
 library(tidyverse, warn.conflicts = FALSE)
 library(future, warn.conflicts = FALSE)
-plan("multisession", workers=14)
+plan("multisession", workers=12)
 ```
 
 ```{r}
@@ -87,12 +87,32 @@ misty.views.smp <- map2(expr.smp, pos.smp, function(expr, coord) {
 Run classic model.
 
 ```{r}
-rf.result.files <- map2_chr(misty.views.smp, names(misty.views.smp), 
-                               function(misty.view, smp) {
-  run_misty(misty.view, results.folder = paste0("output/case_study_B/RF", smp))
-})
-rf.results <- collect_results(rf.result.files)
+run_misty_wrapper <- function(misty.views.smp) {
+  results.paths <- 
+  imap(misty.views.smp, function(misty.views, i) {
+  
+  misty.views %>%
+    run_misty(results.folder = paste0("output/case_study_B/RF", i), 
+              bypass.intra = TRUE,
+              cv.folds = 10,
+              model.function = random_forest_model)
+  })
+  collect_results(results.paths)
+}
+safe_run_misty <- quietly(run_misty_wrapper)
 ```
+
+```{r}
+misty.run.rf <- safe_run_misty(misty.views.smp)
+rf.results <- misty.run.rf$result
+```
+
+<details> 
+<summary>Click to see warnings</summary>
+```{r}
+misty.run.rf$warnings
+```
+</details>
 
 Look at the results.
 
@@ -190,14 +210,33 @@ nnls_model <- function(view_data, target, seed, k = 10, ...) {
 
 Run nnls model.
 
-```{r message=FALSE, warning=FALSE}
-nnls.result.files <- map2_chr(misty.views.smp, names(misty.views.smp), 
-                               function(misty.view, smp) {
-  run_misty(misty.view, results.folder = paste0("output/case_study_B/NNLS", smp),
-            model.function = nnls_model)
-})
-nnls.results <- collect_results(nnls.result.files)
+```{r}
+run_misty_wrapper <- function(misty.views.smp) {
+  results.paths <- 
+  imap(misty.views.smp, function(misty.views, i) {
+  
+  misty.views %>%
+    run_misty(results.folder = paste0("output/case_study_B/NNLS", i), 
+              bypass.intra = TRUE,
+              cv.folds = 10,
+              model.function = nnls_model)
+  })
+  collect_results(results.paths)
+}
+safe_run_misty <- quietly(run_misty_wrapper)
 ```
+
+```{r}
+misty.run.nnls <- safe_run_misty(misty.views.smp)
+nnls.results <- misty.run.rf$result
+```
+
+<details> 
+<summary>Click to see warnings</summary>
+```{r}
+misty.run.rf$warnings
+```
+</details>
 
 ```{r}
 nnls.results %>%
