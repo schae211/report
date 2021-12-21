@@ -85,6 +85,101 @@ misty.views %>%
             booster = "gbtree")
 ```
 
+<details> <summary>Click here for MISTy flowchart</summary> 
+```{r echo=FALSE}
+DiagrammeR::grViz('digraph{
+
+      # setting the global strucutre (top to low)
+      graph[rankdir = TL]
+  
+      # setting the default node layout
+      node[shape = rectangle, style = filled]
+  
+      subgraph cluster_1 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = PaleTurquoise
+        label = "Input: Spatial Omics"
+        node[fillcolor = White, margin = 0.2]
+          EXP[label = "expression"]
+          POS[label = "positions"]
+      }
+      
+      subgraph cluster_3 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = PaleTurquoise
+        label = "Generating Views"
+        node[fillcolor = White, margin = 0.2]
+        CIV[label = "create_initial_view()"]
+        AJV[label = "add_juxtaview()"]
+        APV[label = "add_paraview()"]
+      }
+      
+      subgraph cluster_4 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = PaleTurquoise
+        label = "MISTy Views"
+        node[fillcolor = White, margin = 0.2]
+        IV[label = "intraview"]
+        JV[label = "juxtaview"]
+        PV[label = "paraview"]
+        V[label = "misty views"]
+      }
+      
+      subgraph cluster_5 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = PaleTurquoise
+        label = "MISTy Parameters"
+        node[fillcolor = White, margin = 0.2]
+        RES[label = "results.folder"]
+        MF[label = "model.function", fillcolor = "Gold"]
+        TS[label = "target.subset"]
+        CV[label = "cv.folds"]
+        BI[label = "bypass.intra"]
+        DOTS[label = "..."]
+      }
+      
+      subgraph cluster_6 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = PaleTurquoise
+        label = "Output: MISTy Results"
+        node[fillcolor = White, margin = 0.2]
+          PER[label = "performance"]
+          CON[label = "contribution"]
+          IMP[label = "importances"]
+      }
+      
+      subgraph cluster_8 {
+        graph[shape = rectangle]
+        style = rounded
+        bgcolor = PaleTurquoise
+        label = "Running MISTy"
+        node[fillcolor = White, margin = 0.2]
+        RM[label = "run_misty()"]
+        CR[label = "collect_results()"]
+      }
+      
+      edge[color = black, arrowhead = vee, arrowsize = 0.8]
+      EXP -> CIV
+      POS -> {APV, AJV}
+      CIV -> {APV, AJV}
+      CIV -> IV
+      APV -> PV
+      AJV -> JV
+      {IV, PV, JV} -> V
+      {V, RES, MF, TS, CV, BI, DOTS} -> RM
+      RM -> CR
+      CR -> {PER, CON, IMP}
+      
+}')
+```
+</details>
+
+
 In the results section, I will first show [benchmarking](https://schae211.github.io/report/benchmark.html) results, where I compare the performance of different algorithms on different spatial omics datasets. Furthermore, I explore the impact of different hyperparameters on the model performance for the algorithms.
 
 In the [frameworks](https://schae211.github.io/report/frameworks.html) section I briefly describe we could not use one of the major machine learning frameworks in R, namely `caret`, `tidymodels`, and `mlr3` as backend in MISTy models. These frameworks are either not flexible enough, or their performance is bad.

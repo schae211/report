@@ -1,6 +1,10 @@
 
+##### Start ##### 
+
+print("--------------------------------------------------")
+
 ##### Verbosity ##### 
-print("Four I Analysis, High Resolution")
+print("Four I Analysis")
 
 ##### Command line args ##### 
 # argument specifiying the input
@@ -31,7 +35,7 @@ ifelse(!dir.exists(output.path), dir.create(output.path), FALSE)
 ##### Packages ##### 
 library(mistyR)
 library(future)
-plan("multisession", workers = 24)
+plan("multisession")
 library(tidyverse)
 
 ##### Input ##### 

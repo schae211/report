@@ -44,7 +44,7 @@ prediction, we only need to have a look at the performance estimation
 approx.results.svm <- map(seq(0.1, 1, l = 10), function(frac) {
   print(frac)
   misty.views %>%
-  run_misty(model.function = svm_model, approx = TRUE, approx.frac = frac) %>%
+  run_misty(model.function = svm_model, approx = frac) %>%
   collect_results()
 })
 ```
@@ -55,23 +55,34 @@ make sense.
 ```{r fig.height=6, fig.width=12}
 svm.improvements <- map2_dfr(approx.results.svm, 
                              seq(0.1, 1, l = 10), function(misty.results, frac) {
-  misty.results$improvements %>% mutate(approx.frac = frac)
+  misty.results$improvements %>% mutate(approx = frac)
 })
 svm.improvements %>%
-  mutate(approx.frac = factor(approx.frac, levels = seq(0.1, 1, l = 10))) %>%
+  mutate(approx = factor(approx, levels = seq(0.1, 1, l = 10))) %>%
   filter(measure == "multi.R2") %>%
   ggplot() +
-  geom_point(aes(x = approx.frac, y = value)) +
+  geom_point(aes(x = approx, y = value)) +
   facet_wrap(~ target, scales="free")
 ```
 
 ### NN
 
 ```{r}
-approc.results.nn <- map(seq(0.1, 1, l = 10), function(frac) {
+#tmp
+approx <- 0.6
+target <- "ECM"
+k <- 10
+view_data <- misty.views$intraview$data
+seed <- 42
+ellipsis.args <- list()
+```
+
+
+```{r}
+approx.results.nn <- map(seq(0.1, 1, l = 10), function(frac) {
   print(frac)
   misty.views %>%
-  run_misty(model.function = mlp_model, approx = TRUE, approx.frac = frac) %>%
+  run_misty(model.function = mlp_model, approx = frac) %>%
   collect_results()
 })
 ```
@@ -80,15 +91,15 @@ I guess based on those results a default approximation fraction of **0.6** would
 make sense.
 
 ```{r fig.height=6, fig.width=12}
-nn.improvements <- map2_dfr(approc.results.nn, 
+nn.improvements <- map2_dfr(approx.results.nn, 
                              seq(0.1, 1, l = 10), function(misty.results, frac) {
-  misty.results$improvements %>% mutate(approx.frac = frac)
+  misty.results$improvements %>% mutate(approx = frac)
 })
 nn.improvements %>%
-  mutate(approx.frac = factor(approx.frac, levels = seq(0.1, 1, l = 10))) %>%
+  mutate(approx = factor(approx, levels = seq(0.1, 1, l = 10))) %>%
   filter(measure == "multi.R2") %>%
   ggplot() +
-  geom_point(aes(x = approx.frac, y = value)) +
+  geom_point(aes(x = approx, y = value)) +
   facet_wrap(~ target, scales="free")
 ```
 
@@ -100,7 +111,7 @@ sizes = list("5" = c(5), "10" = c(10), "2x10" = c(10, 10), "3x10" = c(10, 10, 10
 overfit.nn.results <- map(sizes, function(s) {
   print(s)
   misty.views %>%
-  run_misty(model.function = mlp_model, approx = TRUE, approx.frac = 0.6,
+  run_misty(model.function = mlp_model, approx = 0.6,
             size = s) %>%
   collect_results()
 })
@@ -155,55 +166,6 @@ mars.test.perf %>%
   ggplot() +
   geom_point(aes(x = target, y = value, col = parameters))
 ```
-
-## Run Times
-
-```{r}
-functions <- c("RF" = random_forest_model, "BOOST" = gradient_boosting_model, 
-               "MARS" = mars_model, "BGMARS" = bagged_mars_model,
-               "LM" = linear_model, "SVM" = svm_model,
-               "MLP" = mlp_model)
-```
-
-```{r}
-timing <- map2_dfr(functions, names(functions), function(fun, fun.name) {
-  start <- Sys.time()
-  misty.views %>% run_misty(model.function = fun, results.folder = "results")
-  end <- Sys.time()
-  tibble::tibble(model.function = fun.name, time = (end - start))
-})
-rf <- timing %>% filter(model.function == "RF") %>% pull(time) %>% as.numeric
-timing %>%
-  arrange(desc(time)) %>% 
-  mutate(rel.to.rf = round(as.numeric(time) / rf, 2))
-```
-
-```{r eval=FALSE, include=FALSE}
-misty.views.smp <- map(synthetic, function(smp) {
-  expr <- smp %>% select(-c(row, col, type))
-  pos <- smp %>% select(c(row, col))
-  misty.views <- create_initial_view(expr) %>%
-    add_paraview(positions = pos, l = 10)
-})
-
-timing <- map2_dfr(functions, names(functions), function(fun, fun.name) {
-  start <- Sys.time()
-  misty.results.string <- map_chr(misty.views.smp, function(ms) {
-    ms %>% run_misty(model.function = fun, results.folder = "results")
-  })
-  end <- Sys.time()
-  tibble::tibble(model.function = fun.name, time = (end - start))
-})
-rf <- timing %>% filter(model.function == "RF") %>% pull(time) %>% as.numeric
-timing %>%
-  arrange(desc(time)) %>% 
-  mutate(rel.to.rf = round(as.numeric(time) / rf, 2))
-```
-
-```{r echo=FALSE}
-unlink("results", recursive = TRUE)
-```
-
 
 ## Hyperparameters
 

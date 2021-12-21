@@ -17,6 +17,10 @@ navbar:
         href: frameworks.html
       - text: 3.3 Alternatives
         href: model_api.html
+      - text: 3.4 Case Study A
+        href: case_study_A.html
+      - text: 3.5 Case Study B
+        href: case_study_B.html
   - text: 4. Conclusions
     href: conclusions.html
   - text: 5. Appendix

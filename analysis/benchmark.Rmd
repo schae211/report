@@ -335,7 +335,7 @@ The scripts that were used for all analysis can be found in this [GitHub reposit
 
 # Comparing Performances {.tabset}
 
-Function to get clean data for a particular study.
+Define a function to get clean data for a particular study.
 
 ```{r}
 # helper function to get all misty runs for a particular study
@@ -349,7 +349,8 @@ filter_runs <- function(all.runs, str.study, views) {
 }
 ```
 
-Function to extract the improvements (performance measures).
+Define a function to extract the improvements (performance measures) from
+a list of misty results.
 
 ```{r}
 get_performance <- function(filtered.run) {
@@ -362,6 +363,9 @@ get_performance <- function(filtered.run) {
   })
 }
 ```
+
+Define a function to check whether something is missing in misty performance
+files.
 
 ```{r}
 check_runs <- function(misty.performances, ordering = NULL) {
@@ -387,6 +391,9 @@ check_runs <- function(misty.performances, ordering = NULL) {
     pivot_wider(names_from = "view", values_from = "sample_number")
 }
 ```
+
+Define a function to plot misty performances for all targets and for all 
+considered algorithms (and for all views that were included).
 
 ```{r}
 plot_performance <- function(misty.performances, str.measure, 
@@ -599,9 +606,19 @@ filter_runs(all.results, "4iANCA", c("ratio_153", "ratio_76", "ratio_38",
 
 ---
 
+# Performance Figure
+
+Plot the performances of the different algorithms for all studies in one figure
+using only one view from each study.
+
+```{r}
+
+```
+
+
 # Comparing Importances {.tabset}
 
-Function to extract the importances (interaction measures).
+Define function to extract the importances (interaction measures).
 
 ```{r}
 get_importance <- function(filtered.run) {
@@ -620,7 +637,7 @@ get_importance <- function(filtered.run) {
 }
 ```
 
-Function to check whether all importances are present for each algorithm
+Define function to check whether all importances are present for each algorithm
 
 ```{r}
 check_algs <- function(misty.performances) {
@@ -637,7 +654,7 @@ check_algs <- function(misty.performances) {
 }
 ```
 
-Function to get splits according to view and sample from misty importances.
+Define function to get splits according to view and sample from misty importances.
 
 ```{r}
 split_importances <- function(misty.importances) {
@@ -653,7 +670,7 @@ split_importances <- function(misty.importances) {
 }
 ```
 
-Function to compute the cosine similarity given a tibble of vectors, where
+Define function to compute the cosine similarity given a tibble of vectors, where
 each column represents a vector. Indices are harcoded.
 
 ```{r}
@@ -665,7 +682,7 @@ cosine_similarity <- function(imp.tbl, relative = "RF") {
 }
 ```
 
-Function to compute the jaccard index given a tibble of vectors, where
+Define function to compute the jaccard index given a tibble of vectors, where
 each column represents a vector. Indices are harcoded.
 
 ```{r}
@@ -680,7 +697,11 @@ jaccard_index <- function(imp.tbl, relative = "RF", cutoff = 0.5) {
 }
 ```
 
-Wrapper function
+Define wrapper function to compute comparitive statistics (e.g. cosine similarity,
+jaccard index), given a misty importances tibble.
+
+First, the tibble containing the importances is split according to views and
+samples. Second, for each sub tibble the 
 
 ```{r}
 wrap_function <- function(misty.importances, f, ...) {
@@ -1009,6 +1030,39 @@ filter_runs(all.results, "4iANCA", "ratio_153") %>%
 ```
 
 # Comparing Runtimes
+
+Small timing benchmark based on the whole `synthetic` dataset, using the view
+composition: intraview and paraview with `l = 12` and executing the code
+with 12 workers.
+
+```{r message=FALSE, warning=FALSE}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+plan("multisession", workers=12)
+
+c("RF" = random_forest_model, "TBOOST" = gradient_boosting_model, 
+  "MARS" = mars_model, "BGMARS" = bagged_mars_model,
+  "LM" = linear_model, "SVM" = svm_model, "MLP" = mlp_model) %>%
+  imap_dfr(function(fun, fun.name) {
+    start <- Sys.time()
+    misty.results.path <- 
+      imap_chr(all.views$`/synthetic/l12`, function(misty.views, name) {
+        misty.views %>%
+          run_misty(model.function = fun, results.folder = paste0("results/", name))
+    })
+    end <- Sys.time()
+    unlink("results", recursive = TRUE)
+    tibble::tibble(model.function = fun.name, time = (end - start))
+  }) %>%
+  cbind("relative_to_RF" = as.double(.$time) / 
+          as.double(rep(.$time[.$model.function=="RF"], length(.$model.function)))) %>%
+  arrange(time)
+```
+
+As expected the linear model is by far the fastest model. Random forest
+and gradient boosting with trees are equally fast and perform much better than
+the multi-layer perceptron, bagged mars models, and the support vector machine.
+
 
 # Hyperparameter Optimization {.tabset}
 

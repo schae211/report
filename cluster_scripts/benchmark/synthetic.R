@@ -1,12 +1,19 @@
 
+##### Start ##### 
+
+print("--------------------------------------------------")
+
+##### Verbosity ##### 
+print("Standard Synthetic Analysis")
+
 #####  Packages ##### 
 library(mistyR)
 library(future)
-plan("multisession", workers = 16)
+plan("multisession")
 library(tidyverse)
 
 ##### Command line args ##### 
-# argument specifiying the input
+# argument specifying the input
 cmd.arg1 = as.numeric(commandArgs(trailingOnly = TRUE))[1]
 print(cmd.arg1)
 

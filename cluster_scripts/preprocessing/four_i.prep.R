@@ -3,7 +3,7 @@
 print("4I Prep (Jovan's Script)")
 
 ##### Command line args ##### 
-cmd.arg = as.numeric(commandArgs(trailingOnly = TRUE))[1]
+cmd.arg1 = as.numeric(commandArgs(trailingOnly = TRUE))[1]
 
 #####  Packages ##### 
 library(mistyR)
@@ -26,19 +26,19 @@ raw_ratio <- floor(average_eukaryotic_cell_microns / side_pixel_microns)
 raw_l <- 3
 # ratio <- raw_ratio
 
-if (cmd.arg == 1) {
+if (cmd.arg1 == 1) {
   ratio <- raw_ratio
   l <- raw_l
-} else if (cmd.arg == 2) {
+} else if (cmd.arg1 == 2) {
   ratio <- floor(raw_ratio / 2**1)
   l <- raw_l * 2
-} else if (cmd.arg == 3) {
+} else if (cmd.arg1 == 3) {
   ratio <- floor(raw_ratio / 2**2)
   l <- raw_l * 4
-} else if (cmd.arg == 4) {
+} else if (cmd.arg1 == 4) {
   ratio <- floor(raw_ratio / 2**3)
   l <- raw_l * 8
-} else if (cmd.arg == 5) {
+} else if (cmd.arg1 == 5) {
   ratio <- floor(raw_ratio / 2**4)
   l <- raw_l * 8
 }

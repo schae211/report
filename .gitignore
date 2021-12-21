@@ -11,4 +11,6 @@ analysis/*_cache
 analysis/site_libs
 analysis/results
 results
-*.RDS
+output/*
+data/*all_results.RDS
+data/*all_views.RDS
