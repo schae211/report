@@ -1074,8 +1074,23 @@ the multi-layer perceptron, bagged mars models, and the support vector machine.
 filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "RF_hyper_")) %>%
+  select(algorithm) %>% 
+  distinct() %>%
+  mutate(name = algorithm) %>%
+  separate(algorithm, 
+           c("n.tree", "min.node.size", "max.depth", "splitrule"), "_") %>%
+  select(name, everything())
+```
+
+
+```{r}
+filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "RF_hyper_")) %>%
   plot_performance(str.measure="multi.R2")
 ```
+
+We can clearly see that `max.depths = 1` reduces the performance significantly.
 
 ## MARS
 
@@ -1085,8 +1100,23 @@ filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>%
 filter_runs(all.results, "mibi_tnbc", "MARS_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
+  select(algorithm) %>% 
+  distinct() %>%
+  mutate(name = algorithm) %>%
+  separate(algorithm, 
+           c("penalty", "degree", "fast.k", "pmethod"), "_") %>%
+  select(name, everything())
+```
+
+```{r}
+filter_runs(all.results, "mibi_tnbc", "MARS_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
   plot_performance(str.measure="multi.R2")
 ```
+
+Interestingly the performance seems to be pretty much invariant to the choice
+of hyperparameters here.
 
 ### `synthetic`
 
@@ -1094,10 +1124,37 @@ filter_runs(all.results, "mibi_tnbc", "MARS_hyper") %>%
 filter_runs(all.results, "synthetic", "MARS_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
-  plot_performance(str.measure="multi.R2")
+  select(algorithm) %>% 
+  distinct() %>%
+  mutate(name = algorithm) %>%
+  separate(algorithm, 
+           c("penalty", "degree", "fast.k", "pmethod"), "_") %>%
+  select(name, everything())
 ```
 
+```{r}
+filter_runs(all.results, "synthetic", "MARS_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
+  plot_performance(str.measure="multi.R2", targets = TRUE)
+```
+
+For the synthetic datasets we clearly see that a higher degree increases the
+model performance.
+
 ## Linear Boosting
+
+```{r}
+filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  select(algorithm) %>% 
+  distinct() %>%
+  mutate(name = algorithm) %>%
+  separate(algorithm, 
+           c("lambda", "alpha"), "_") %>%
+  select(name, everything())
+```
 
 ### `mibi_tnbc`
 
@@ -1108,7 +1165,21 @@ filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>%
   plot_performance(str.measure="multi.R2")
 ```
 
+No penalty leads to the best results.
+
 ## Tree Boosting
+
+```{r}
+filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "TBOOST_hyper_")) %>%
+  select(algorithm) %>% 
+  distinct() %>%
+  mutate(name = algorithm) %>%
+  separate(algorithm, 
+           c("eta", "max_depth", "min_child_weight", "subsample"), "_") %>%
+  select(name, everything())
+```
 
 ### `mibi_tnbc`
 
@@ -1118,5 +1189,8 @@ filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>%
   mutate(algorithm = str_remove(algorithm, "TBOOST_hyper_")) %>%
   plot_performance(str.measure="multi.R2")
 ```
+
+Similarly to the random forest above, we see that `max_depth = 1` reduces the
+overall performance.
 
 # References
