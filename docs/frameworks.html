@@ -360,6 +360,12 @@ div.tocify {
     <li>
       <a href="model_api.html">3.3 Alternatives</a>
     </li>
+    <li>
+      <a href="case_study_A.html">3.4 Case Study A</a>
+    </li>
+    <li>
+      <a href="case_study_B.html">3.5 Case Study B</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -422,7 +428,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-18
+<strong>Last updated:</strong> 2021-12-21
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -537,37 +543,38 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeabb88bb220a0839e3f77381ec9ceabaff514905ftargetblankabb88bba"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/abb88bb220a0839e3f77381ec9ceabaff514905f" target="_blank">abb88bb</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeef0bde60c5de5a12bdb01338e17b12c9e1112a5etargetblankef0bde6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/ef0bde60c5de5a12bdb01338e17b12c9e1112a5e" target="_blank">ef0bde6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeabb88bb220a0839e3f77381ec9ceabaff514905ftargetblankabb88bba" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreeef0bde60c5de5a12bdb01338e17b12c9e1112a5etargetblankef0bde6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/abb88bb220a0839e3f77381ec9ceabaff514905f" target="_blank">abb88bb</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/ef0bde60c5de5a12bdb01338e17b12c9e1112a5e" target="_blank">ef0bde6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    data/2021-12-06-15-42_all_results.RDS
-    Ignored:    data/2021-12-08-14-10_all_results.RDS
-    Ignored:    data/2021-12-09-09-21_all_results.RDS
-    Ignored:    data/2021-12-09-17-26_all_results.RDS
-    Ignored:    data/2021-12-13-18-43_all_results.RDS
-    Ignored:    data/2021-12-14-10-57_all_views.RDS
-    Ignored:    data/2021-12-14-17-59_all_views.RDS
-    Ignored:    data/2021-12-14-23-01_all_results.RDS
     Ignored:    data/2021-12-17-07-58_all_results.RDS
     Ignored:    data/2021-12-17-07-59_all_views.RDS
-    Ignored:    results/
+    Ignored:    output/case_study_A/
+    Ignored:    output/case_study_B/
 
 Untracked files:
-    Untracked:  analysis/images/
+    Untracked:  cluster_scripts/bash_scripts/
+    Untracked:  cluster_scripts/benchmark/merfish_bc.R
+    Untracked:  cluster_scripts/benchmark/merfish_liver.R
+    Untracked:  cluster_scripts/benchmark/merfish_preoptic.R
+    Untracked:  cluster_scripts/benchmark/mibi_tnbc.R
+    Untracked:  cluster_scripts/evaluation/
     Untracked:  code/4i_analysis.R
+    Untracked:  code/helper_functions.R
+    Untracked:  data/expression.RDS
+    Untracked:  data/mibi_tnbc_meta.RDS
 
 </code></pre>
 <p>
@@ -606,6 +613,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/e9c007647ea473f2118b7e74517932deb1b93556/docs/frameworks.html" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -739,7 +763,7 @@ schae211
 2021-12-02
 </td>
 <td>
-wflow_publish(files = “analysis/frameworks.Rmd”)
+wflow_publish(files = "analysis/frameworks.Rmd")
 </td>
 </tr>
 </tbody>
@@ -811,7 +835,7 @@ results &lt;- targets %&gt;%
                                        allowParallel = FALSE))
   })
 tictoc::toc()
-6.809 sec elapsed</code></pre>
+7.185 sec elapsed</code></pre>
 </div>
 <div id="tidymodels" class="section level3">
 <h3>Tidymodels</h3>
@@ -846,7 +870,7 @@ results &lt;- red.targets %&gt;%
       )
   })
 tictoc::toc()
-62.966 sec elapsed</code></pre>
+66.36 sec elapsed</code></pre>
 </div>
 <div id="own-function" class="section level3">
 <h3>Own function</h3>
@@ -892,7 +916,7 @@ res &lt;- names(expr) %&gt;%
   purrr::set_names() %&gt;%
   purrr::map(~ lm_bag(expr, .x, n.bags))
 tictoc::toc()
-4.129 sec elapsed</code></pre>
+4.164 sec elapsed</code></pre>
 </div>
 </div>
 <div id="random-forest" class="section level2">
@@ -912,7 +936,7 @@ test &lt;- purrr::map(targets, function(target) {
       data=expr)
 })
 tictoc::toc()
-5.498 sec elapsed</code></pre>
+5.599 sec elapsed</code></pre>
 </div>
 <div id="ranger" class="section level3">
 <h3>ranger</h3>
@@ -929,7 +953,7 @@ test &lt;- purrr::map(targets, function(target) {
   )
 })
 tictoc::toc()
-3.538 sec elapsed</code></pre>
+3.633 sec elapsed</code></pre>
 </div>
 </div>
 </div>
@@ -953,7 +977,7 @@ test &lt;- purrr::map(targets, function(target) {
 })
 Error: Only one model should be specified in tuneGrid with no resampling
 tictoc::toc()
-0.032 sec elapsed</code></pre>
+0.034 sec elapsed</code></pre>
 <p>So it tells me I should specify the parameters in tuneGrid and if I simply try to do that the following happens.</p>
 <p>More here: <a href="https://stackoverflow.com/questions/10498477/carettrain-specify-model-generation-parameters" class="uri">https://stackoverflow.com/questions/10498477/carettrain-specify-model-generation-parameters</a></p>
 <pre class="r"><code>tictoc::tic()
@@ -1076,8 +1100,8 @@ res &lt;- targets %&gt;%
                                        allowParallel = FALSE))
   })
 Note: Using an external vector in selections is ambiguous.
-ℹ Use `all_of(target)` instead of `target` to silence this message.
-ℹ See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
+i Use `all_of(target)` instead of `target` to silence this message.
+i See &lt;https://tidyselect.r-lib.org/reference/faq-external-vector.html&gt;.
 This message is displayed once per session.
 
 str(res$ECM$fits[[1]]$oob)
@@ -1206,12 +1230,7 @@ BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
 LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+[1] C
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -1228,7 +1247,7 @@ other attached packages:
 [25] forcats_0.5.1           stringr_1.4.0           dplyr_1.0.7            
 [28] purrr_0.3.4             readr_2.0.2             tidyr_1.1.4            
 [31] tibble_3.1.5            ggplot2_3.3.5           tidyverse_1.3.1        
-[34] mistyR_1.3.1            workflowr_1.6.2        
+[34] mistyR_1.3.3            workflowr_1.6.2        
 
 loaded via a namespace (and not attached):
   [1] readxl_1.3.1         uuid_0.1-4           backports_1.3.0     
@@ -1256,7 +1275,7 @@ loaded via a namespace (and not attached):
  [67] xml2_1.3.2           compiler_4.1.2       rstudioapi_0.13     
  [70] e1071_1.7-9          reprex_2.0.1         lhs_1.1.3           
  [73] bslib_0.3.1          stringi_1.7.5        highr_0.9           
- [76] Matrix_1.3-4         pillar_1.6.3         lifecycle_1.0.1     
+ [76] Matrix_1.4-0         pillar_1.6.3         lifecycle_1.0.1     
  [79] furrr_0.2.3          jquerylib_0.1.4      data.table_1.14.2   
  [82] httpuv_1.6.3         R6_2.5.1             promises_1.2.0.1    
  [85] mlr3misc_0.9.4       parallelly_1.28.1    codetools_0.2-18    
