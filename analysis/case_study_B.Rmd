@@ -1,0 +1,255 @@
+---
+title: "Case Study A"
+---
+
+```{r setup}
+knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
+knitr::opts_knit$set(root.dir = "~/Saez/report")
+```
+
+# Introduction
+
+This document is supposed to show how the new implementation can be useful in 
+the case of a neighborhood composition analysis.
+
+Loaded packages.
+
+```{r}
+library(mistyR, warn.conflicts = FALSE)
+library(tidyverse, warn.conflicts = FALSE)
+library(future, warn.conflicts = FALSE)
+plan("multisession", workers=14)
+```
+
+```{r}
+raw.expr <- readRDS("data/expression.RDS")
+raw.data <- readRDS("data/mibi_tnbc_meta.RDS")
+meta.data <- raw.data %>%
+  select(SampleID, cellSize, Group, immuneGroup, row, col) %>%
+  mutate(Group = case_when(
+    immuneGroup == "Non-Immune?" ~ Group,
+    immuneGroup != "Non-Immune?" ~ immuneGroup,
+    TRUE ~ "NA"
+  ), immuneGroup = NULL)
+meta.data %>% slice_head(n=6)
+```
+
+```{r}
+samples <- unique(meta.data$SampleID)
+samples
+```
+
+
+Getting expression per sample.
+
+```{r}
+expr.smp <- map(samples, function(smp) {
+    ret.expr <- raw.expr[meta.data$SampleID == smp, ] %>%
+      # Select only proteins
+      select(11:47)
+    
+    # Check for zero variance (otherwise MISTy throws an error)
+    target.var <- apply(ret.expr, 2, stats::sd, na.rm = TRUE)
+    ret.expr <- ret.expr %>% select(-names(which(target.var == 0)))
+    
+    # Check for how many unique values
+    target.unique <- colnames(ret.expr) %>%
+      purrr::set_names() %>%
+      purrr::map_int(~ length(unique(ret.expr %>% pull(.x))))
+    
+    colnames(ret.expr) <- make.names(colnames(ret.expr))
+    ret.expr
+  }) %>% setNames(samples)
+expr.smp$`1` %>% slice_head(n=6)
+```
+
+Getting positions for each sample
+
+```{r}
+pos.smp <- map(samples, function(smp) {
+  meta.data %>%
+    filter(SampleID == smp) %>%
+    select(row, col)
+}) %>% set_names(samples)
+pos.smp$`1` %>% slice_head(n=6)
+```
+
+Compute MISTy views.
+
+```{r message=FALSE, warning=FALSE}
+misty.views.smp <- map2(expr.smp, pos.smp, function(expr, coord) {
+  create_initial_view(expr) %>%
+    add_juxtaview(positions = coord, neighbor.thr = 40) %>%
+    add_paraview(positions = coord, l = 120, zoi = 40)
+}) %>% set_names(samples)
+```
+
+Run classic model.
+
+```{r}
+rf.result.files <- map2_chr(misty.views.smp, names(misty.views.smp), 
+                               function(misty.view, smp) {
+  run_misty(misty.view, results.folder = paste0("output/case_study_B/RF", smp))
+})
+rf.results <- collect_results(rf.result.files)
+```
+
+Look at the results.
+
+```{r}
+rf.results %>%
+  plot_improvement_stats("multi.R2") %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("juxta.40", clean=TRUE, cutoff=1.5) %>%
+  plot_interaction_heatmap("para.120", clean=TRUE)
+```
+
+Non-negative least squares for modeling the views.
+
+```{r}
+nnls_model <- function(view_data, target, seed, k = 10, ...) {
+  
+  folds <- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+  
+  check_unique <- all(map_lgl(folds, function(holdout) {
+    in.fold <- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in%
+                                                 holdout)]
+    train <- view_data[in.fold, ]
+    all(map_dbl(train, ~ length(unique(.x))) > 1)
+  }))
+  
+  if (ncol(view_data) <= 3 | !check_unique) {
+    holdout.predictions <- tibble(index = seq(1, nrow(view_data)),
+                                  prediction = view_data %>%
+                                    dplyr::pull(tidyselect::all_of(target)) %>%
+                                    mean)
+    importances <- rep(0, ncol(view_data)-1)
+    names(importances) <- colnames(view_data)[colnames(view_data) != target]
+  } else {
+      holdout.predictions <- purrr::imap_dfr(folds, function(holdout, i) {
+    
+      in.fold <- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in%
+                                                 holdout)]
+      
+      train <- view_data[in.fold, ]
+      test <- view_data[holdout, ]
+      
+      pred.train <- train %>% dplyr::select(-tidyselect::all_of(target)) %>%
+        as.matrix
+      label.train <- train %>% dplyr::pull(tidyselect::all_of(target))
+      
+      # start changing things here:
+      algo.arguments <- list(
+        x = pred.train,
+        y = label.train,
+        alpha = 1,
+        lambda = 0,
+        lower.limits = 0,
+        family = "gaussian"
+      )
+      
+      model <- do.call(glmnet::glmnet, algo.arguments)
+      
+      pred.test <- test %>% dplyr::select(-tidyselect::all_of(target)) %>% 
+        as.matrix
+      
+      pred <- predict(model, pred.test)
+      
+      tibble::tibble(index = holdout, prediction = as.vector(pred))
+    }) %>% dplyr::arrange(index)
+  
+    predictors <- view_data %>% 
+      dplyr::select(-tidyselect::all_of(target)) %>% as.matrix
+    labels <- view_data %>% dplyr::pull(tidyselect::all_of(target))
+    
+       # start changing things here:
+      algo.arguments.wm <- list(
+        x = predictors,
+        y = labels,
+        alpha = 1,
+        lambda = 0,
+        lower.limits = 0,
+        family = "gaussian"
+      )
+    
+    whole.model <- do.call(glmnet::glmnet, algo.arguments.wm)
+    
+    importances <- whole.model$beta[,1]
+    # fix for bypass intra (replace NA with 0 for consistent behavior)
+    importances <- ifelse(is.na(importances), 0, importances)
+  }
+  
+  list(unbiased.predictions = holdout.predictions, 
+       importances = importances)
+}
+```
+
+Run nnls model.
+
+```{r message=FALSE, warning=FALSE}
+nnls.result.files <- map2_chr(misty.views.smp, names(misty.views.smp), 
+                               function(misty.view, smp) {
+  run_misty(misty.view, results.folder = paste0("output/case_study_B/NNLS", smp),
+            model.function = nnls_model)
+})
+nnls.results <- collect_results(nnls.result.files)
+```
+
+```{r}
+nnls.results %>%
+  plot_improvement_stats("multi.R2") %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("juxta.40", clean=TRUE, cutoff = 1.5) %>%
+  plot_interaction_heatmap("para.120", clean=TRUE)
+```
+
+# Appendix
+
+```{r eval=FALSE, include=FALSE}
+# tmp
+target <- "Lag3"
+results.folder <- paste0("output/case_study_B/RF", 1)
+views <- misty.views.smp$`2`
+model.function <- random_forest_model
+model.name <- "rf"
+cv.folds <- 10
+bypass.intra <- FALSE
+seed <- 42
+cached <- FALSE
+append <- FALSE
+target.subset <- c()
+ellipsis.args <- list()
+ellipsis.args.text <- ""
+views$intraview$data %>% colnames
+target <- "OX40"
+```
+
+```{r eval=FALSE, include=FALSE}
+# tmp
+results.folder <- paste0("output/case_study_B/NNLS", 2)
+views <- misty.views.smp$`2`
+model.function <- nnls_model
+model.name <- "nnls"
+cv.folds <- 10
+bypass.intra <- FALSE
+seed <- 42
+cached <- FALSE
+append <- FALSE
+target.subset <- c()
+ellipsis.args <- list()
+ellipsis.args.text <- ""
+views$intraview$data %>% colnames
+target <- "OX40"
+view <- views$intraview
+
+view_data <- transformed.view.data
+target <- "OX40"
+seed <- 42
+k <- 10
+```
+
