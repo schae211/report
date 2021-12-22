@@ -1142,6 +1142,48 @@ filter_runs(all.results, "synthetic", "MARS_hyper") %>%
 For the synthetic datasets we clearly see that a higher degree increases the
 model performance.
 
+What about the timing?
+
+```{r message=FALSE, warning=FALSE}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+plan("multisession", workers=12)
+
+# Penalties: -1, 0, 2, 3
+penalties <- c(-1, 0, 2, -1, 0, 2, 3, 4, 3, 3, 3, 3)
+
+# Degrees: 1, 2, 3
+degrees <- c(1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2)
+
+# Fast K: 20, 10, 5
+fastks <- c(20, 20, 20, 20, 20, 20, 20, 20, 10, 5, 20, 20)
+
+# Prunning Method: "backward", "none", "forward"
+pmethods <- c("backward", "backward", "backward", "backward", "backward", 
+              "backward", "backward", "backward", "backward", "backward", 
+              "none", "forward")
+
+test <- pmap_dfr(list(penalties, degrees, fastks, pmethods),
+         function(penalty, degree, fast.k, pmethod) {
+           print(paste(penalty, degree, fast.k, pmethod, sep="_"))
+           start <- Sys.time()
+           
+           walk(all.views$`/synthetic/l12`, function(view) {
+             run_misty(views = view, model.function = mars_model,
+                       degree = degree, penalty = penalty, 
+                       fast.k = fast.k, pmethod = pmethod)
+           })
+           
+           end <- Sys.time()
+           unlink("results")
+           tibble(name = paste(penalty, degree, fast.k, pmethod, sep="_"),
+                  penalty = penalty, degree = degree, fast.k = fast.k, pmethod = pmethod,
+                  time = end - start)
+         }) %>%
+  arrange(time)
+```
+
+
 ## Linear Boosting
 
 ```{r}
