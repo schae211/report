@@ -22,8 +22,8 @@ do
   for ALG in $(seq 1 $3)
   do
      LOGGING=${FILE////-}
-     echo "sbatch --job-name="$LOGGING-$VIEW-$ALG" --time=23:30:00 --nodes=1 --cpus-per-task=$CPU --partition=single --output="/net/data.isilon/ag-saez/bq_pschaefer/LOGS/$LOGGING-$VIEW-$ALG-%j.log" --export=FILE=$FILE,VIEW=$VIEW,ALG=$ALG /net/data.isilon/ag-saez/bq_pschaefer/SCRIPTS/bash_scripts/file.sh"
-     sbatch --job-name="$LOGGING-$VIEW-$ALG" --time=23:30:00 --nodes=1 --cpus-per-task=$CPU --partition=single --output="/net/data.isilon/ag-saez/bq_pschaefer/LOGS/$LOGGING-$VIEW-$ALG-%j.log" --export=FILE=$FILE,VIEW=$VIEW,ALG=$ALG /net/data.isilon/ag-saez/bq_pschaefer/SCRIPTS/bash_scripts/file.sh
+     echo "sbatch --job-name="$LOGGING-$VIEW-$ALG" --time=23:30:00 --nodes=1 --cpus-per-task=$CPU --partition=single --output="/net/data.isilon/ag-saez/bq_pschaefer/LOGS/$LOGGING-$VIEW-$ALG-%j.log" --export=FILE=$FILE,VIEW=$VIEW,ALG=$ALG /net/data.isilon/ag-saez/bq_pschaefer/report/cluster_scripts/bash_scripts/file.sh"
+     sbatch --job-name="$LOGGING-$VIEW-$ALG" --time=23:30:00 --nodes=1 --cpus-per-task=$CPU --partition=single --output="/net/data.isilon/ag-saez/bq_pschaefer/LOGS/$LOGGING-$VIEW-$ALG-%j.log" --export=FILE=$FILE,VIEW=$VIEW,ALG=$ALG /net/data.isilon/ag-saez/bq_pschaefer/report/cluster_scripts/bash_scripts/file.sh
      sleep 5s
   done
 done
