@@ -41,7 +41,7 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -432,7 +432,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -441,7 +441,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -453,14 +453,14 @@ div.tocify {
 <strong>Last updated:</strong> 2021-12-23
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -529,36 +529,58 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
 </p>
 </div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/Saez/report
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree498e920eef1cecd04ccfe98cff78292243e755dftargetblank498e920a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/498e920eef1cecd04ccfe98cff78292243e755df" target="_blank">498e920</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreebffc8f2feff30826d389229c6195999ea99749e3targetblankbffc8f2a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/bffc8f2feff30826d389229c6195999ea99749e3" target="_blank">bffc8f2</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree498e920eef1cecd04ccfe98cff78292243e755dftargetblank498e920a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreebffc8f2feff30826d389229c6195999ea99749e3targetblankbffc8f2a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/498e920eef1cecd04ccfe98cff78292243e755df" target="_blank">498e920</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/bffc8f2feff30826d389229c6195999ea99749e3" target="_blank">bffc8f2</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    analysis/figure/
-    Ignored:    data/4iANCA/
     Ignored:    data/imc/
     Ignored:    data/merfish_bc/
     Ignored:    data/merfish_liver/
@@ -566,14 +588,15 @@ Ignored files:
     Ignored:    data/mibi_tnbc/
     Ignored:    data/seqfishp_brain/
     Ignored:    output/2021-12-17-07-58_all_results.RDS
-    Ignored:    output/2021-12-17-07-58_all_results.log
     Ignored:    output/2021-12-17-07-59_all_views.RDS
-    Ignored:    output/2021-12-20-16-20_all_results.RDS
-    Ignored:    output/2021-12-20-16-20_all_results.log
-    Ignored:    output/2021-12-21-12-22_all_results.RDS
-    Ignored:    output/2021-12-21-12-22_all_results.log
-    Ignored:    output/2021-12-23-09-57_all_results.RDS
-    Ignored:    output/2021-12-23-09-57_all_results.log
+    Ignored:    output/case_study_A/
+    Ignored:    output/case_study_B/
+
+Untracked files:
+    Untracked:  cluster_scripts/preprocessing/four_i_prep.R
+
+Unstaged changes:
+    Deleted:    cluster_scripts/preprocessing/four_i.prep.R
 
 </code></pre>
 <p>
@@ -612,6 +635,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/bffc8f2feff30826d389229c6195999ea99749e3/analysis/benchmark.Rmd" target="_blank">bffc8f2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+<td>
+wflow_publish("analysis/benchmark.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/benchmark.html" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1171,7 +1228,7 @@ suppressPackageStartupMessages(library(slider))</code></pre>
 <div id="introduction-and-data" class="section level1 tabset">
 <h1 class="tabset">Introduction and Data</h1>
 <p>Loading the data.</p>
-<pre><code>[1] &quot;Loading results from: output/2021-12-23-09-57_all_results.RDS&quot;</code></pre>
+<pre><code>[1] &quot;Loading results from: output/2021-12-17-07-58_all_results.RDS&quot;</code></pre>
 <pre><code>[1] &quot;Loading views from: output/2021-12-17-07-59_all_views.RDS&quot;</code></pre>
 <p>What data / experiments is the benchmarking based on?</p>
 <pre class="r"><code>str_extract(names(all.results), &quot;[^/]+(?=/)&quot;) %&gt;% unique</code></pre>
@@ -1513,6 +1570,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">3a864d2</a>
 </td>
 <td>
@@ -1562,6 +1630,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">3a864d2</a>
 </td>
 <td>
@@ -1583,7 +1662,7 @@ schae211
   check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["standard"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"40"},{"1":"TBOOST","2":"40"},{"1":"MARS","2":"40"},{"1":"BGMARS","2":"40"},{"1":"LBOOST","2":"40"},{"1":"LM","2":"40"},{"1":"SVM","2":"40"},{"1":"MLP","2":"40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["standard"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"40"},{"1":"TBOOST","2":"40"},{"1":"MARS","2":"40"},{"1":"BGMARS","2":"40"},{"1":"LBOOST","2":"40"},{"1":"LM","2":"40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
@@ -1616,6 +1695,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">9229052</a>
@@ -1700,6 +1790,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">9229052</a>
 </td>
 <td>
@@ -1756,7 +1857,7 @@ schae211
   check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"35"},{"1":"TBOOST","2":"36"},{"1":"MARS","2":"1"},{"1":"MARS80","2":"1"},{"1":"MARS60","2":"1"},{"1":"MARS40","2":"1"},{"1":"LBOOST","2":"36"},{"1":"LM","2":"36"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"36"},{"1":"TBOOST","2":"36"},{"1":"MARS","2":"1"},{"1":"MARS80","2":"1"},{"1":"MARS60","2":"1"},{"1":"MARS40","2":"1"},{"1":"LBOOST","2":"36"},{"1":"LM","2":"36"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
@@ -1791,6 +1892,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">3a864d2</a>
@@ -1840,6 +1952,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">3a864d2</a>
@@ -1900,6 +2023,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">3a864d2</a>
 </td>
 <td>
@@ -1938,6 +2072,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">3a864d2</a>
 </td>
 <td>
@@ -1961,7 +2106,7 @@ schae211
   check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"9"},{"1":"TBOOST","2":"9"},{"1":"MARS","2":"7"},{"1":"BGMARS","2":"1"},{"1":"LM","2":"9"},{"1":"SVM","2":"2"},{"1":"MLP","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"9"},{"1":"TBOOST","2":"9"},{"1":"MARS","2":"7"},{"1":"BGMARS","2":"1"},{"1":"LBOOST","2":"9"},{"1":"LM","2":"9"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
@@ -1996,6 +2141,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">3a864d2</a>
@@ -2034,6 +2190,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">3a864d2</a>
@@ -2096,6 +2263,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">9229052</a>
@@ -2167,6 +2345,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">9229052</a>
@@ -2265,16 +2454,17 @@ schae211
   list(splits = group_split(tidy.df), keys = group_keys(tidy.df))
 }</code></pre>
 <p>Define function to compute the cosine similarity given a tibble of vectors, where each column represents a vector. Indices are harcoded.</p>
-<pre class="r"><code>cosine_similarity &lt;- function(imp.tbl, relative = &quot;RF&quot;) {
+<pre class="r"><code>cosine_similarity &lt;- function(imp.tbl, exclude = c(1:5), relative = &quot;RF&quot;) {
   comp &lt;- imp.tbl %&gt;% pull(relative)
-  map_dbl(imp.tbl[-c(1:5)], function(vec) {
-    cosine.sim &lt;- (comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5)
+  map_dbl(imp.tbl[-exclude], function(vec) {
+    comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5
   })
 }</code></pre>
 <p>Define function to compute the jaccard index given a tibble of vectors, where each column represents a vector. Indices are harcoded.</p>
-<pre class="r"><code>jaccard_index &lt;- function(imp.tbl, relative = &quot;RF&quot;, cutoff = 0.5) {
+<pre class="r"><code>jaccard_index &lt;- function(imp.tbl, exclude = c(1:5), 
+                          relative = &quot;RF&quot;, cutoff = 0.5) {
   comp &lt;- imp.tbl %&gt;% filter(.data[[relative]] &gt; cutoff) %&gt;% pull(relation)
-  algs &lt;- names(imp.tbl)[-c(1:5)] %&gt;% setNames(names(imp.tbl)[-c(1:5)])
+  algs &lt;- names(imp.tbl)[-exclude] %&gt;% setNames(names(imp.tbl)[-exclude])
   
   map_dbl(algs, function(alg) {
     vec &lt;- imp.tbl %&gt;% filter(.data[[alg]] &gt; cutoff) %&gt;% pull(relation)
@@ -2301,9 +2491,14 @@ schae211
       map_dfr(function(tbl.id) {
         
         # 3. Compute cosine similarity (and add corresponding view and sample)
-        
-        args &lt;- rlist::list.merge(list(imp.tbl = split.list$splits[[tbl.id]]), 
-                                  ellipsis.args)
+        if (length(ellipsis.args) &gt; 0) {
+                  args &lt;- rlist::list.merge(
+                    list(imp.tbl = split.list$splits[[tbl.id]]), 
+                    ellipsis.args
+                    )
+        } else {
+          args &lt;- list(imp.tbl = split.list$splits[[tbl.id]])
+        }
         c(do.call(f, args), &quot;id&quot; = tbl.id)
           
       }) %&gt;% mutate(view = sel.view,
@@ -2318,46 +2513,7 @@ schae211
       summarise(mean = mean(cosine), sd = sd(cosine), .groups=&quot;drop&quot;) %&gt;%
       arrange(algorithm)
 }</code></pre>
-<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
-  get_importance() %&gt;%
-  wrap_function(jaccard_index, relative=&quot;RF&quot;, cutoff=0.5)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["view"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"intra","3":"0.4885020","4":"0.02765900"},{"1":"BGMARS","2":"para.6","3":"0.5517689","4":"0.05176364"},{"1":"LBOOST","2":"intra","3":"0.0000000","4":"0.00000000"},{"1":"LBOOST","2":"para.6","3":"0.0000000","4":"0.00000000"},{"1":"LM","2":"intra","3":"0.4757976","4":"0.05840807"},{"1":"LM","2":"para.6","3":"0.2286882","4":"0.03718948"},{"1":"MARS","2":"intra","3":"0.4783723","4":"0.03037054"},{"1":"MARS","2":"para.6","3":"0.4836687","4":"0.02722361"},{"1":"MLP","2":"intra","3":"0.3653629","4":"0.02951035"},{"1":"MLP","2":"para.6","3":"0.3090342","4":"0.04172183"},{"1":"RF","2":"intra","3":"1.0000000","4":"0.00000000"},{"1":"RF","2":"para.6","3":"1.0000000","4":"0.00000000"},{"1":"SVM","2":"intra","3":"0.5211930","4":"0.05526075"},{"1":"SVM","2":"para.6","3":"0.2723302","4":"0.03315482"},{"1":"TBOOST","2":"intra","3":"0.4594526","4":"0.02395888"},{"1":"TBOOST","2":"para.6","3":"0.7003634","4":"0.06983127"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
 <p>Function to compute the cosine similarity for each algorithm for all views and samples.</p>
-<pre class="r"><code>cosine_similarity_wrapper &lt;- function(misty.importances, relative = &quot;RF&quot;) {
-  
-  # Split the importance tibble corresponding to views and samples
-  # since we want to compare the algorithm for the same sample and view
-  split.list &lt;- split_importances(misty.importances)
-  
-  # 1. map over each view
-  map_dfr(unique(split.list$keys$view), function(sel.view) {
-    
-    # 2. Map over each sample corresponding to this view
-    split.list$keys %&gt;%
-      mutate(id = row_number()) %&gt;%
-      filter(view == sel.view) %&gt;%
-      pull(id, name = sample) %&gt;%
-      map_dfr(function(tbl.id) {
-        
-        # 3. Compute cosine similarity (and add corresponding view and sample)
-        c(cosine_similarity(split.list$splits[[tbl.id]], relative), &quot;id&quot; = tbl.id)
-          
-      }) %&gt;% mutate(view = sel.view,
-                    sample = split.list$keys$sample[as.integer(id)]) 
-  }) %&gt;%
-    pivot_longer(-c(id, view, sample), 
-                 names_to = &quot;algorithm&quot;, values_to = &quot;cosine&quot;) %&gt;%
-    
-      # 4. Group by algorithm 
-      # and get the mean of the cosine similarity for each sample
-      group_by(algorithm, view) %&gt;%
-      summarise(mean = mean(cosine), sd = sd(cosine), .groups=&quot;drop&quot;) %&gt;%
-      arrange(algorithm)
-}</code></pre>
 <pre class="r"><code>plot_cosine_similarity &lt;- function(cosine_similarity) {
   cosine_similarity %&gt;%
     mutate(low = mean-sd, high = mean+sd) %&gt;%
@@ -2368,39 +2524,9 @@ schae211
     facet_wrap(~ view) +
     theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
     lims(y = c(0, 1))
-}</code></pre>
-<pre class="r"><code>jaccard_index_wrapper &lt;- function(misty.importances, relative = &quot;RF&quot;, cutoff = 0.5) {
-  
-  # Split the importance tibble corresponding to views and samples
-  # since we want to compare the algorithm for the same sample and view
-  split.list &lt;- split_importances(misty.importances)
-  
-  # 1. map over each view
-  map_dfr(unique(split.list$keys$view), function(sel.view) {
-    
-    # 2. Map over each sample corresponding to this view
-    split.list$keys %&gt;%
-      mutate(id = row_number()) %&gt;%
-      filter(view == sel.view) %&gt;%
-      pull(id, name = sample) %&gt;%
-      map_dfr(function(tbl.id) {
-        
-        # 3. Compute jaccard index (and add corresponding view and sample)
-        c(jaccard_index(split.list$splits[[tbl.id]], relative, cutoff), &quot;id&quot; = tbl.id)
-          
-      }) %&gt;% mutate(view = sel.view,
-                    sample = split.list$keys$sample[as.integer(id)]) 
-  }) %&gt;%
-    pivot_longer(-c(id, view, sample), 
-                 names_to = &quot;algorithm&quot;, values_to = &quot;jaccard&quot;) %&gt;%
-    
-      # 4. Group by algorithm 
-      # and get the mean of the cosine similarity for each sample
-      group_by(algorithm, view) %&gt;%
-      summarise(mean = mean(jaccard), sd = sd(jaccard), .groups=&quot;drop&quot;) %&gt;%
-      arrange(algorithm)
-}</code></pre>
-<pre class="r"><code>plot_jaccard &lt;- function(jaccard) {
+}
+
+plot_jaccard &lt;- function(jaccard) {
   jaccard %&gt;%
     mutate(low = mean-sd, high = mean+sd) %&gt;%
     mutate(algorithm = factor(algorithm, levels = def.ord)) %&gt;%
@@ -2411,6 +2537,172 @@ schae211
     theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
     lims(y = c(0, 1))
 }</code></pre>
+<p>Function to plot heatmap of the cosine similarity of the jaccard index after binarization of the importances.</p>
+<pre class="r"><code>cosine_heatmap &lt;- function(misty.importances) {
+  tidy.df &lt;- misty.importances %&gt;%
+    unite(relation, Predictor, Target) %&gt;%
+    drop_na() %&gt;%
+    pivot_wider(names_from = relation, values_from = Importance)
+  
+  views &lt;- misty.importances$view %&gt;% unique
+  
+  plots &lt;- map(views, function(v) {
+    
+    tmp.df &lt;- tidy.df %&gt;%
+      filter(view == v) %&gt;%
+      select(-c(study, view.comp)) %&gt;%
+      mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+      group_by(algorithm) %&gt;%
+      summarise(across(4:(ncol(.)-1), mean)) %&gt;%
+      replace(is.na(.), 0) %&gt;%
+      pivot_longer(cols = !algorithm) %&gt;%
+      pivot_wider(names_from = algorithm, values_from = value) %&gt;%
+      select(-name)
+  
+    plot &lt;- map_dfr(colnames(tmp.df), function(alg) {
+      comp &lt;- tmp.df %&gt;% pull(alg)
+      map_dbl(tmp.df, function(vec) {
+        comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5
+      })
+    }) %&gt;%
+      as.data.frame() %&gt;%
+      replace(is.na(.), 0) %&gt;%
+      set_rownames(colnames(tmp.df)) %&gt;%
+      pheatmap::pheatmap(main = paste(&quot;Cosine Similarity:&quot;, v),
+                         silent = TRUE)
+    })
+  
+  do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
+}</code></pre>
+<pre class="r"><code>jaccard_heatmap &lt;- function(misty.importances, cutoff = 0.5) {
+  tidy.df &lt;- misty.importances %&gt;%
+    unite(relation, Predictor, Target) %&gt;%
+    drop_na() %&gt;%
+    pivot_wider(names_from = relation, values_from = Importance)
+  
+  views &lt;- misty.importances$view %&gt;% unique
+  
+  plots &lt;- map(views, function(v) {
+    
+    tmp.df &lt;- tidy.df %&gt;%
+      filter(view == v) %&gt;%
+      select(-c(study, view.comp)) %&gt;%
+      mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+      group_by(algorithm) %&gt;%
+      summarise(across(4:(ncol(.)-1), mean)) %&gt;%
+      replace(is.na(.), 0) %&gt;%
+      pivot_longer(cols = !algorithm) %&gt;%
+      pivot_wider(names_from = algorithm, values_from = value)
+    
+    algs &lt;- names(tmp.df)[-1] %&gt;% setNames(names(tmp.df)[-1])
+    
+    map_dfr(algs, function(alg1) {
+    comp &lt;- tmp.df %&gt;% 
+      filter(.data[[alg1]] &gt; cutoff) %&gt;% 
+      pull(name)
+    
+    map_dbl(algs, function(alg2) {
+      vec &lt;- tmp.df %&gt;% 
+      filter(.data[[alg2]] &gt; cutoff) %&gt;% 
+      pull(name)
+      length(intersect(comp, vec)) / length(union(comp, vec))
+      })
+    }) %&gt;%
+      as.data.frame() %&gt;%
+      replace(is.na(.), 0) %&gt;%
+      set_rownames(algs) %&gt;%
+      pheatmap::pheatmap(main = paste(&quot;Jaccard Index:&quot;, v), silent=TRUE)
+  })
+  do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
+}</code></pre>
+<pre class="r"><code>correlation_heatmap &lt;- function(misty.importances, m = &quot;pearson&quot;) {
+  tidy.df &lt;- misty.importances %&gt;%
+    unite(relation, Predictor, Target) %&gt;%
+    drop_na() %&gt;%
+    pivot_wider(names_from = relation, values_from = Importance)
+  
+  views &lt;- misty.importances$view %&gt;% unique
+  
+  plots &lt;- map(views, function(v) {
+    
+    tmp.df &lt;- tidy.df %&gt;%
+      filter(view == v) %&gt;%
+      select(-c(study, view.comp)) %&gt;%
+      mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+      group_by(algorithm) %&gt;%
+      summarise(across(4:(ncol(.)-1), mean)) %&gt;%
+      replace(is.na(.), 0) %&gt;%
+      pivot_longer(cols = !algorithm) %&gt;%
+      pivot_wider(names_from = algorithm, values_from = value) %&gt;%
+      select(-name)
+  
+    plot &lt;- map_dfr(colnames(tmp.df), function(alg) {
+      comp &lt;- tmp.df %&gt;% pull(alg)
+      map_dbl(tmp.df, function(vec) {
+        stats::cor(comp, vec, method = m)
+      })
+    }) %&gt;%
+      as.data.frame() %&gt;%
+      replace(is.na(.), 0) %&gt;%
+      set_rownames(colnames(tmp.df)) %&gt;%
+      pheatmap::pheatmap(main = paste(str_to_title(m), &quot;Correlation:&quot;, v),
+                         silent = TRUE)
+    })
+  
+  do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
+}</code></pre>
+<pre class="r"><code>correlation_scatter &lt;- function(misty.importances) {
+  views &lt;- misty.importances$view %&gt;% unique
+  
+  walk(views, function(v) {
+    misty.importances %&gt;%
+      unite(relation, Predictor, Target) %&gt;%
+      drop_na() %&gt;%
+      pivot_wider(names_from = relation, values_from = Importance) %&gt;%
+      filter(view == v) %&gt;%
+      select(-c(study, view.comp)) %&gt;%
+      mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+      group_by(algorithm) %&gt;%
+      summarise(across(4:(ncol(.)-1), mean)) %&gt;%
+      replace(is.na(.), 0) %&gt;%
+      pivot_longer(cols = !algorithm) %&gt;%
+      pivot_wider(names_from = algorithm, values_from = value) %&gt;%
+      select(-name) %&gt;%
+      scatterPlotMatrix::scatterPlotMatrix(corrPlotType = &quot;Text&quot;,
+                                           corrPlotCS = &quot;Viridis&quot;) %&gt;%
+      print()
+  })
+}</code></pre>
+<pre class="r"><code>cosine_heatmap2 &lt;- function(misty.importances) {
+  tidy.df &lt;- misty.importances %&gt;%
+    unite(relation, Predictor, Target) %&gt;%
+    drop_na() %&gt;%
+    pivot_wider(names_from = relation, values_from = Importance) %&gt;%
+    filter(view == &quot;intra&quot;) %&gt;%
+    select(-c(study, view.comp)) %&gt;%
+    mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
+    group_by(algorithm) %&gt;%
+    summarise(across(4:(ncol(.)-1), mean)) %&gt;%
+    replace(is.na(.), 0) %&gt;%
+    pivot_longer(cols = !algorithm) %&gt;%
+    pivot_wider(names_from = algorithm, values_from = value) %&gt;%
+    select(-name)
+  
+  map_dfr(colnames(tidy.df), function(alg) {
+    comp &lt;- tidy.df %&gt;% pull(alg)
+    map_dbl(tidy.df, function(vec) {
+      comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5
+    })
+  }) %&gt;%
+    mutate(comp = colnames(.)) %&gt;%
+    pivot_longer(!comp, names_to = &quot;algorithm&quot;, values_to = &quot;measure&quot;) %&gt;%
+    mutate(algorithm = factor(algorithm, levels = def.ord)) %&gt;%
+    mutate(comp = factor(comp, levels = def.ord)) %&gt;%
+    ggplot() +
+    geom_tile(aes(x = algorithm, y = comp, fill = measure)) +
+    scale_fill_viridis_c() +
+    scale_y_discrete(limits=rev)
+}</code></pre>
 <div id="synthetic-2" class="section level2">
 <h2><code>synthetic</code></h2>
 <p>For the boosting functions several importances are not returned?</p>
@@ -2419,27 +2711,16 @@ schae211
   check_algs()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"2200"},{"1":"LBOOST","2":"0","3":"2200"},{"1":"LM","2":"0","3":"2200"},{"1":"MARS","2":"0","3":"2200"},{"1":"MLP","2":"0","3":"2200"},{"1":"RF","2":"0","3":"2200"},{"1":"SVM","2":"0","3":"2200"},{"1":"TBOOST","2":"174","3":"2200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"2200"},{"1":"LBOOST","2":"174","3":"2200"},{"1":"LM","2":"0","3":"2200"},{"1":"MARS","2":"0","3":"2200"},{"1":"MLP","2":"0","3":"2200"},{"1":"RF","2":"0","3":"2200"},{"1":"SVM","2":"0","3":"2200"},{"1":"TBOOST","2":"174","3":"2200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div id="cosine-similarity" class="section level3">
-<h3>Cosine Similarity</h3>
-<p>Now let’s look at the cosine similarities.</p>
+<p>Now let’s look at the cosine similarities, pearson correlation, and the jaccard indices after binarization.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
-  get_importance() %&gt;%
-  cosine_similarity_wrapper()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["view"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"BGMARS","2":"intra","3":"0.80010059","4":"1.847419e-02"},{"1":"BGMARS","2":"para.6","3":"0.70034924","4":"1.690683e-02"},{"1":"LBOOST","2":"intra","3":"NaN","4":"NA"},{"1":"LBOOST","2":"para.6","3":"NaN","4":"NA"},{"1":"LM","2":"intra","3":"0.59308472","4":"1.852187e-02"},{"1":"LM","2":"para.6","3":"-0.01947042","4":"3.892767e-02"},{"1":"MARS","2":"intra","3":"0.77028676","4":"1.825054e-02"},{"1":"MARS","2":"para.6","3":"0.58431604","4":"3.521139e-02"},{"1":"MLP","2":"intra","3":"0.64228440","4":"2.369736e-02"},{"1":"MLP","2":"para.6","3":"0.42610378","4":"2.435441e-02"},{"1":"RF","2":"intra","3":"1.00000000","4":"1.812987e-16"},{"1":"RF","2":"para.6","3":"1.00000000","4":"1.958249e-16"},{"1":"SVM","2":"intra","3":"0.70216341","4":"1.714482e-02"},{"1":"SVM","2":"para.6","3":"0.18976885","4":"3.194078e-02"},{"1":"TBOOST","2":"intra","3":"0.76576572","4":"1.948244e-02"},{"1":"TBOOST","2":"para.6","3":"0.89473729","4":"2.046321e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p>And plot them.</p>
-<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
-  get_importance() %&gt;%
-  cosine_similarity_wrapper() %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
+  get_importance() %T&gt;%
+  cosine_heatmap() %T&gt;%
+  correlation_heatmap() %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-60-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-60-1">
 Past versions of unnamed-chunk-60-1.png
@@ -2462,6 +2743,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-60-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-60-1.png" target="_blank">781ba63</a>
@@ -2488,86 +2780,26 @@ schae211
 </table>
 </div>
 </div>
-</div>
-<div id="jaccard-index-after-binarization" class="section level3">
-<h3>Jaccard Index after Binarization</h3>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-60-2.png" width="576" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-60-3.png" width="576" style="display: block; margin: auto;" /></p>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
 <pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
   get_importance() %&gt;%
-  jaccard_index_wrapper(cutoff = 0) %&gt;%
-  plot_jaccard()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-61-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-61-1">
-Past versions of unnamed-chunk-61-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-61-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-61-1.png" target="_blank">781ba63</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-61-1.png" target="_blank">dc93ff5</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-19
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="pearson-correlation" class="section level3">
-<h3>Pearson Correlation</h3>
+  correlation_scatter()</code></pre>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>These pairwise comparison allow to take the variance into account, where as the heatmaps can only display a single value (mean).</p>
+<p>Cosine Similarity compared to random forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
   get_importance() %&gt;%
-  unite(relation, Predictor, Target) %&gt;%
-  drop_na() %&gt;%
-  pivot_wider(names_from = relation, values_from = Importance) %&gt;%
-  filter(view == &quot;intra&quot;) %&gt;%
-  select(-c(study, view.comp)) %&gt;%
-  mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
-  group_by(algorithm) %&gt;%
-  summarise(across(4:112, mean)) %&gt;%
-  replace(is.na(.), 0) %&gt;%
-  pivot_longer(cols = !algorithm) %&gt;%
-  pivot_wider(names_from = algorithm, values_from = value) %&gt;%
-  select(-name) %&gt;%
-  cor() %&gt;% 
-  corrplot::corrplot(method=&quot;color&quot;, col.lim = c(0,1), 
-      col = colorRampPalette(c(&quot;#414487FF&quot;, &quot;#414487FF&quot;, &quot;#414487FF&quot;,
-                               &quot;#414487FF&quot;, &quot;#22A884FF&quot;, &quot;#7AD151FF&quot;,
-                               &quot;#FDE725FF&quot;))(100),
-      tl.col = &quot;black&quot;)</code></pre>
-<pre><code>Warning in cor(.): the standard deviation is zero</code></pre>
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-62-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-62-1">
@@ -2591,6 +2823,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">781ba63</a>
@@ -2628,29 +2871,12 @@ schae211
 </table>
 </div>
 </div>
-<pre class="r"><code>tidy.df &lt;- filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+<p>Jaccard Index compared to radnom forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
   get_importance() %&gt;%
-  unite(relation, Predictor, Target) %&gt;%
-  drop_na() %&gt;%
-  pivot_wider(names_from = relation, values_from = Importance) %&gt;%
-  filter(view == &quot;intra&quot;) %&gt;%
-  select(-c(study, view.comp)) %&gt;%
-  mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
-  group_by(algorithm) %&gt;%
-  summarise(across(4:112, mean)) %&gt;%
-  replace(is.na(.), 0) %&gt;%
-  pivot_longer(cols = !algorithm) %&gt;%
-  pivot_wider(names_from = algorithm, values_from = value) %&gt;%
-  rename(importance = name) %&gt;%
-  pivot_longer(cols = !c(importance, RF)) %&gt;%
-  mutate(name = factor(name))
-
-ggplot() +
-  geom_point(aes(x = tidy.df$RF, y = tidy.df$value, col = tidy.df$name)) +
-  geom_line(aes(x = tidy.df$RF, y = tidy.df$RF), col = &quot;blue&quot;) +
-  coord_fixed() +
-  scale_color_brewer(palette=&quot;Dark2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-63-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-63-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-63-1">
 Past versions of unnamed-chunk-63-1.png
@@ -2673,6 +2899,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-63-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-63-1.png" target="_blank">781ba63</a>
@@ -2710,7 +2947,7 @@ schae211
 </table>
 </div>
 </div>
-</div>
+</details>
 </div>
 <div id="mibi_tnbc-2" class="section level2">
 <h2><code>mibi_tnbc</code></h2>
@@ -2719,17 +2956,81 @@ schae211
   check_algs()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"34170","3":"151200"},{"1":"LBOOST","2":"34170","3":"151200"},{"1":"LM","2":"34170","3":"151200"},{"1":"MARS","2":"34170","3":"151200"},{"1":"MLP","2":"34170","3":"151200"},{"1":"RF","2":"34170","3":"151200"},{"1":"SVM","2":"34566","3":"151200"},{"1":"TBOOST","2":"47018","3":"151200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"34170","3":"151200"},{"1":"LBOOST","2":"34170","3":"151200"},{"1":"LM","2":"34170","3":"151200"},{"1":"MARS","2":"34170","3":"151200"},{"1":"RF","2":"34170","3":"151200"},{"1":"TBOOST","2":"47018","3":"151200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div id="cosine-similarity-1" class="section level3">
-<h3>Cosine Similarity</h3>
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  cosine_similarity_wrapper() %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-1.png" width="672" style="display: block; margin: auto;" /></p>
+  drop_na() %T&gt;%
+  cosine_heatmap() %T&gt;%
+  correlation_heatmap() %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<pre><code>Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-65-1">
 Past versions of unnamed-chunk-65-1.png
@@ -2752,6 +3053,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">781ba63</a>
@@ -2800,25 +3112,25 @@ schae211
 </table>
 </div>
 </div>
-</div>
-</div>
-<div id="merfish_preoptic-2" class="section level2">
-<h2><code>merfish_preoptic</code></h2>
-<div id="cosine-similarity-2" class="section level3">
-<h3>Cosine Similarity</h3>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-2.png" width="576" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-65-3.png" width="576" style="display: block; margin: auto;" /></p>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"LBOOST","2":"0","3":"1248048"},{"1":"LM","2":"0","3":"1248048"},{"1":"MARS","2":"33705","3":"34668"},{"1":"MARS40","2":"28569","3":"34668"},{"1":"MARS60","2":"32742","3":"34668"},{"1":"MARS80","2":"33705","3":"34668"},{"1":"RF","2":"0","3":"1213380"},{"1":"TBOOST","2":"142643","3":"1248048"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  correlation_scatter()</code></pre>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  cosine_similarity_wrapper() %&gt;%
+  wrap_function(cosine_similarity) %&gt;%
   plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 24 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-67-1">
@@ -2842,6 +3154,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">781ba63</a>
@@ -2890,11 +3213,11 @@ schae211
 </table>
 </div>
 </div>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+<p>Jaccard Index compared to radnom forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  jaccard_index_wrapper() %&gt;%
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
   plot_jaccard()</code></pre>
-<pre><code>Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-68-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-68-1">
@@ -2918,6 +3241,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">781ba63</a>
@@ -2955,29 +3289,113 @@ schae211
 </table>
 </div>
 </div>
+</details>
 </div>
-</div>
-<div id="merfish_liver-2" class="section level2">
-<h2><code>merfish_liver</code></h2>
-</div>
-<div id="merfish_bc-2" class="section level2">
-<h2><code>merfish_bc</code></h2>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+<div id="merfish_preoptic-2" class="section level2">
+<h2><code>merfish_preoptic</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
   check_algs()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"9435","3":"21930"},{"1":"LM","2":"28815","3":"197370"},{"1":"MARS","2":"12495","3":"153510"},{"1":"MLP","2":"2040","3":"43860"},{"1":"RF","2":"10710","3":"197370"},{"1":"SVM","2":"14790","3":"43860"},{"1":"TBOOST","2":"48335","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"LBOOST","2":"0","3":"1248048"},{"1":"LM","2":"0","3":"1248048"},{"1":"MARS","2":"33705","3":"34668"},{"1":"MARS40","2":"28569","3":"34668"},{"1":"MARS60","2":"32742","3":"34668"},{"1":"MARS80","2":"33705","3":"34668"},{"1":"RF","2":"0","3":"1248048"},{"1":"TBOOST","2":"142643","3":"1248048"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div id="cosine-similarity-3" class="section level3">
-<h3>Cosine Similarity</h3>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
-  get_importance() %&gt;%
-  cosine_similarity_wrapper() %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-70-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %T&gt;%
+  cosine_heatmap() %T&gt;%
+  correlation_heatmap() %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<pre><code>Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-70-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-70-1">
 Past versions of unnamed-chunk-70-1.png
@@ -3000,6 +3418,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-70-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-70-1.png" target="_blank">781ba63</a>
@@ -3026,17 +3455,32 @@ schae211
 </table>
 </div>
 </div>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-70-2.png" width="576" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-70-3.png" width="576" style="display: block; margin: auto;" /></p>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  jaccard_index_wrapper() %&gt;%
-  plot_jaccard()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-71-1.png" width="672" style="display: block; margin: auto;" /></p>
+  correlation_scatter()</code></pre>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 15 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-71-1">
-Past versions of unnamed-chunk-71-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-72-1">
+Past versions of unnamed-chunk-72-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-71-1" class="collapse">
+<div id="fig-unnamed-chunk-72-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -3055,7 +3499,7 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">781ba63</a>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-72-1.png" target="_blank">781ba63</a>
 </td>
 <td>
 schae211
@@ -3064,29 +3508,26 @@ schae211
 2021-12-21
 </td>
 </tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-72-1.png" target="_blank">dc93ff5</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-19
+</td>
+</tr>
 </tbody>
 </table>
 </div>
 </div>
-</div>
-</div>
-<div id="ianca-2" class="section level2">
-<h2><code>4iANCA</code></h2>
-<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_153&quot;) %&gt;%
+<p>Jaccard Index compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"14040"},{"1":"LBOOST","2":"1592","3":"14040"},{"1":"LM","2":"0","3":"14040"},{"1":"MARS100","2":"0","3":"14040"},{"1":"MARS60","2":"0","3":"14040"},{"1":"MARS80","2":"0","3":"14040"},{"1":"RF","2":"0","3":"14040"},{"1":"TBOOST","2":"1592","3":"14040"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<div id="cosine-similarity-4" class="section level3">
-<h3>Cosine Similarity</h3>
-<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_153&quot;) %&gt;%
-  get_importance() %&gt;%
-  cosine_similarity_wrapper() %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-73-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-73-1">
@@ -3110,6 +3551,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-73-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-73-1.png" target="_blank">781ba63</a>
@@ -3136,118 +3588,109 @@ schae211
 </table>
 </div>
 </div>
-<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_153&quot;) %&gt;%
+</details>
+</div>
+<div id="merfish_liver-2" class="section level2">
+<h2><code>merfish_liver</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
   get_importance() %&gt;%
-  jaccard_index_wrapper() %&gt;%
-  plot_jaccard()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-74-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-74-1">
-Past versions of unnamed-chunk-74-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-74-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-74-1.png" target="_blank">781ba63</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-74-1.png" target="_blank">dc93ff5</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-19
-</td>
-</tr>
-</tbody>
-</table>
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"55794","3":"6480180"},{"1":"MARS","2":"53268","3":"9574320"},{"1":"TBOOST","2":"6044643","3":"8698620"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
+</details>
 </div>
+<div id="merfish_bc-2" class="section level2">
+<h2><code>merfish_bc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"21930"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"0","3":"197370"},{"1":"MARS","2":"21420","3":"153510"},{"1":"RF","2":"0","3":"197370"},{"1":"TBOOST","2":"13692","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"21930"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"0","3":"197370"},{"1":"MARS","2":"21420","3":"153510"},{"1":"RF","2":"0","3":"197370"},{"1":"TBOOST","2":"13692","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
 </div>
-</div>
-<div id="comparing-runtimes" class="section level1">
-<h1>Comparing Runtimes</h1>
-<p>Small timing benchmark based on the whole <code>synthetic</code> dataset, using the view composition: intraview and paraview with <code>l = 12</code> and executing the code with 12 workers.</p>
-<pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
-suppressPackageStartupMessages(library(future))
-plan(&quot;multisession&quot;, workers=12)
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %T&gt;%
+  cosine_heatmap() %T&gt;%
+  correlation_heatmap() %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<pre><code>Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
 
-c(&quot;RF&quot; = random_forest_model, &quot;TBOOST&quot; = gradient_boosting_model, 
-  &quot;MARS&quot; = mars_model, &quot;BGMARS&quot; = bagged_mars_model,
-  &quot;LM&quot; = linear_model, &quot;SVM&quot; = svm_model, &quot;MLP&quot; = mlp_model) %&gt;%
-  imap_dfr(function(fun, fun.name) {
-    start &lt;- Sys.time()
-    misty.results.path &lt;- 
-      imap_chr(all.views$`/synthetic/l12`, function(misty.views, name) {
-        misty.views %&gt;%
-          run_misty(model.function = fun, results.folder = paste0(&quot;results/&quot;, name))
-    })
-    end &lt;- Sys.time()
-    unlink(&quot;results&quot;, recursive = TRUE)
-    tibble::tibble(model.function = fun.name, time = (end - start))
-  }) %&gt;%
-  cbind(&quot;relative_to_RF&quot; = as.double(.$time) / 
-          as.double(rep(.$time[.$model.function==&quot;RF&quot;], length(.$model.function)))) %&gt;%
-  arrange(time)</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"38.97360 secs","3":"0.4887075"},{"1":"RF","2":"79.74833 secs","3":"1.0000000"},{"1":"TBOOST","2":"90.08630 secs","3":"1.1296324"},{"1":"MARS","2":"99.28674 secs","3":"1.2450009"},{"1":"SVM","2":"265.67103 secs","3":"3.3313681"},{"1":"MLP","2":"329.59916 secs","3":"4.1329916"},{"1":"BGMARS","2":"730.47235 secs","3":"9.1597201"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p>As expected the linear model is by far the fastest model. Random forest and gradient boosting with trees are equally fast and perform much better than the multi-layer perceptron, bagged mars models, and the support vector machine.</p>
-</div>
-<div id="hyperparameter-optimization" class="section level1 tabset">
-<h1 class="tabset">Hyperparameter Optimization</h1>
-<div id="rf" class="section level2">
-<h2>RF</h2>
-<div id="mibi_tnbc-3" class="section level3">
-<h3><code>mibi_tnbc</code></h3>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;RF_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
-  select(algorithm) %&gt;% 
-  distinct() %&gt;%
-  mutate(name = algorithm) %&gt;%
-  separate(algorithm, 
-           c(&quot;n.tree&quot;, &quot;min.node.size&quot;, &quot;max.depth&quot;, &quot;splitrule&quot;), &quot;_&quot;) %&gt;%
-  select(name, everything())</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.tree"],"name":[2],"type":["chr"],"align":["left"]},{"label":["min.node.size"],"name":[3],"type":["chr"],"align":["left"]},{"label":["max.depth"],"name":[4],"type":["chr"],"align":["left"]},{"label":["splitrule"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"100_1_0_variance","2":"100","3":"1","4":"0","5":"variance"},{"1":"100_50_0_variance","2":"100","3":"50","4":"0","5":"variance"},{"1":"100_5_0_extratrees","2":"100","3":"5","4":"0","5":"extratrees"},{"1":"100_5_0_maxstat","2":"100","3":"5","4":"0","5":"maxstat"},{"1":"100_5_0_variance","2":"100","3":"5","4":"0","5":"variance"},{"1":"100_5_10_variance","2":"100","3":"5","4":"10","5":"variance"},{"1":"100_5_1_variance","2":"100","3":"5","4":"1","5":"variance"},{"1":"200_5_0_variance","2":"200","3":"5","4":"0","5":"variance"},{"1":"500_5_0_variance","2":"500","3":"5","4":"0","5":"variance"},{"1":"50_5_0_variance","2":"50","3":"5","4":"0","5":"variance"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;RF_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
-  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-77-1.png" width="672" style="display: block; margin: auto;" /></p>
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero
+
+Warning in stats::cor(comp, vec, method = m): the standard deviation is zero</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-77-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-77-1">
 Past versions of unnamed-chunk-77-1.png
@@ -3270,6 +3713,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">9229052</a>
@@ -3329,31 +3783,25 @@ schae211
 </table>
 </div>
 </div>
-<p>We can clearly see that <code>max.depths = 1</code> reduces the performance significantly.</p>
-</div>
-</div>
-<div id="mars" class="section level2">
-<h2>MARS</h2>
-<div id="mibi_tnbc-4" class="section level3">
-<h3><code>mibi_tnbc</code></h3>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;MARS_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
-  select(algorithm) %&gt;% 
-  distinct() %&gt;%
-  mutate(name = algorithm) %&gt;%
-  separate(algorithm, 
-           c(&quot;penalty&quot;, &quot;degree&quot;, &quot;fast.k&quot;, &quot;pmethod&quot;), &quot;_&quot;) %&gt;%
-  select(name, everything())</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[3],"type":["chr"],"align":["left"]},{"label":["fast.k"],"name":[4],"type":["chr"],"align":["left"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward"},{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward"},{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;MARS_hyper&quot;) %&gt;% 
-  get_performance() %&gt;%
-  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
-  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-77-2.png" width="576" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-77-3.png" width="576" style="display: block; margin: auto;" /></p>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  correlation_scatter()</code></pre>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 9 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-79-1">
@@ -3377,6 +3825,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-79-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-79-1.png" target="_blank">9229052</a>
@@ -3425,6 +3884,295 @@ schae211
 </table>
 </div>
 </div>
+<p>Jaccard Index compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-80-1">
+Past versions of unnamed-chunk-80-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-80-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bbf04bbb5e42a9c22992a5299c8cf0c5fc22b99f/docs/figure/benchmark.Rmd/unnamed-chunk-80-1.png" target="_blank">bbf04bb</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-80-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+</div>
+<div id="ianca-2" class="section level2">
+<h2><code>4iANCA</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
+  get_importance() %&gt;%
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"50544"},{"1":"LBOOST","2":"1662","3":"50544"},{"1":"LM","2":"0","3":"50544"},{"1":"MARS100","2":"0","3":"50544"},{"1":"MARS60","2":"0","3":"50544"},{"1":"MARS80","2":"0","3":"50544"},{"1":"RF","2":"0","3":"50544"},{"1":"TBOOST","2":"1662","3":"50544"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
+  get_importance() %T&gt;%
+  cosine_heatmap() %T&gt;%
+  correlation_heatmap() %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-82-1.png" width="576" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-82-2.png" width="576" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-82-3.png" width="576" style="display: block; margin: auto;" /></p>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
+  get_importance() %&gt;%
+  correlation_scatter()</code></pre>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-84-1">
+Past versions of unnamed-chunk-84-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-84-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">9229052</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Jaccard Index compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-85-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-85-1">
+Past versions of unnamed-chunk-85-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-85-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-85-1.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bbf04bbb5e42a9c22992a5299c8cf0c5fc22b99f/docs/figure/benchmark.Rmd/unnamed-chunk-85-1.png" target="_blank">bbf04bb</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+</div>
+</div>
+<div id="comparing-runtimes" class="section level1">
+<h1>Comparing Runtimes</h1>
+<p>Small timing benchmark based on the whole <code>synthetic</code> dataset, using the view composition: intraview and paraview with <code>l = 12</code> and executing the code with 12 workers.</p>
+<pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+plan(&quot;multisession&quot;, workers=12)
+
+c(&quot;RF&quot; = random_forest_model, &quot;TBOOST&quot; = gradient_boosting_model, 
+  &quot;MARS&quot; = mars_model, &quot;BGMARS&quot; = bagged_mars_model,
+  &quot;LM&quot; = linear_model, &quot;SVM&quot; = svm_model, &quot;MLP&quot; = mlp_model) %&gt;%
+  imap_dfr(function(fun, fun.name) {
+    start &lt;- Sys.time()
+    misty.results.path &lt;- 
+      imap_chr(all.views$`/synthetic/l12`, function(misty.views, name) {
+        misty.views %&gt;%
+          run_misty(model.function = fun, results.folder = paste0(&quot;results/&quot;, name))
+    })
+    end &lt;- Sys.time()
+    unlink(&quot;results&quot;, recursive = TRUE)
+    tibble::tibble(model.function = fun.name, time = (end - start))
+  }) %&gt;%
+  cbind(&quot;relative_to_RF&quot; = as.double(.$time) / 
+          as.double(rep(.$time[.$model.function==&quot;RF&quot;], length(.$model.function)))) %&gt;%
+  arrange(time)</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"13.30581 secs","3":"0.5083671"},{"1":"RF","2":"26.17362 secs","3":"1.0000000"},{"1":"TBOOST","2":"26.50847 secs","3":"1.0127933"},{"1":"MARS","2":"40.37800 secs","3":"1.5426985"},{"1":"SVM","2":"78.55281 secs","3":"3.0012208"},{"1":"BGMARS","2":"158.13583 secs","3":"6.0418026"},{"1":"MLP","2":"184.02126 secs","3":"7.0307919"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>As expected the linear model is by far the fastest model. Random forest and gradient boosting with trees are equally fast and perform much better than the multi-layer perceptron, bagged mars models, and the support vector machine.</p>
+</div>
+<div id="hyperparameter-optimization" class="section level1 tabset">
+<h1 class="tabset">Hyperparameter Optimization</h1>
+<div id="rf" class="section level2">
+<h2>RF</h2>
+<div id="mibi_tnbc-3" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;RF_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
+  select(algorithm) %&gt;% 
+  distinct() %&gt;%
+  mutate(name = algorithm) %&gt;%
+  separate(algorithm, 
+           c(&quot;n.tree&quot;, &quot;min.node.size&quot;, &quot;max.depth&quot;, &quot;splitrule&quot;), &quot;_&quot;) %&gt;%
+  select(name, everything())</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.tree"],"name":[2],"type":["chr"],"align":["left"]},{"label":["min.node.size"],"name":[3],"type":["chr"],"align":["left"]},{"label":["max.depth"],"name":[4],"type":["chr"],"align":["left"]},{"label":["splitrule"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"100_1_0_variance","2":"100","3":"1","4":"0","5":"variance"},{"1":"100_5_0_extratrees","2":"100","3":"5","4":"0","5":"extratrees"},{"1":"100_5_0_maxstat","2":"100","3":"5","4":"0","5":"maxstat"},{"1":"100_5_0_variance","2":"100","3":"5","4":"0","5":"variance"},{"1":"100_5_1_variance","2":"100","3":"5","4":"1","5":"variance"},{"1":"100_5_10_variance","2":"100","3":"5","4":"10","5":"variance"},{"1":"100_50_0_variance","2":"100","3":"50","4":"0","5":"variance"},{"1":"200_5_0_variance","2":"200","3":"5","4":"0","5":"variance"},{"1":"50_5_0_variance","2":"50","3":"5","4":"0","5":"variance"},{"1":"500_5_0_variance","2":"500","3":"5","4":"0","5":"variance"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;RF_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-88-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We can clearly see that <code>max.depths = 1</code> reduces the performance significantly.</p>
+</div>
+</div>
+<div id="mars" class="section level2">
+<h2>MARS</h2>
+<div id="mibi_tnbc-4" class="section level3">
+<h3><code>mibi_tnbc</code></h3>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;MARS_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
+  select(algorithm) %&gt;% 
+  distinct() %&gt;%
+  mutate(name = algorithm) %&gt;%
+  separate(algorithm, 
+           c(&quot;penalty&quot;, &quot;degree&quot;, &quot;fast.k&quot;, &quot;pmethod&quot;), &quot;_&quot;) %&gt;%
+  select(name, everything())</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[3],"type":["chr"],"align":["left"]},{"label":["fast.k"],"name":[4],"type":["chr"],"align":["left"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward"},{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward"},{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;MARS_hyper&quot;) %&gt;% 
+  get_performance() %&gt;%
+  mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
+  plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-90-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Interestingly the performance seems to be pretty much invariant to the choice of hyperparameters here.</p>
 </div>
 <div id="synthetic-3" class="section level3">
@@ -3447,44 +4195,7 @@ schae211
   get_performance() %&gt;%
   mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;, targets = TRUE)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-81-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-81-1">
-Past versions of unnamed-chunk-81-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-81-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/bbf04bbb5e42a9c22992a5299c8cf0c5fc22b99f/docs/figure/benchmark.Rmd/unnamed-chunk-81-1.png" target="_blank">bbf04bb</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-92-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>For the synthetic datasets we clearly see that a higher degree increases the model performance.</p>
 <p>What about the timing?</p>
 <pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
@@ -3537,7 +4248,7 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
 [1] &quot;3_2_20_forward&quot;</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"57.36026 secs"},{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"57.84322 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"68.05167 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"78.47299 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"85.67498 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"99.01776 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"99.07437 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"99.28172 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"99.70097 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"100.17760 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"100.98642 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"101.68177 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"21.00377 secs"},{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"21.21757 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"24.84336 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"26.54961 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"32.97329 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"40.72299 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"40.87558 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"40.99109 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"41.23263 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"41.37474 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"41.38193 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"41.48541 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -3555,7 +4266,7 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
   select(name, everything())</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["lambda"],"name":[2],"type":["chr"],"align":["left"]},{"label":["alpha"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"0.5_0","2":"0.5","3":"0"},{"1":"0_0","2":"0","3":"0"},{"1":"0_0.5","2":"0","3":"0.5"},{"1":"0_1","2":"0","3":"1"},{"1":"1_0","2":"1","3":"0"},{"1":"5_0","2":"5","3":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["lambda"],"name":[2],"type":["chr"],"align":["left"]},{"label":["alpha"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"0_0","2":"0","3":"0"},{"1":"0_0.5","2":"0","3":"0.5"},{"1":"0_1","2":"0","3":"1"},{"1":"0.5_0","2":"0.5","3":"0"},{"1":"1_0","2":"1","3":"0"},{"1":"5_0","2":"5","3":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <div id="mibi_tnbc-5" class="section level3">
@@ -3564,55 +4275,7 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
   get_performance() %&gt;%
   mutate(algorithm = str_remove(algorithm, &quot;LBOOST_hyper_&quot;)) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-84-1">
-Past versions of unnamed-chunk-84-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-84-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">9229052</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">6de2243</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-22
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-95-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>No penalty leads to the best results.</p>
 </div>
 </div>
@@ -3629,7 +4292,7 @@ schae211
   select(name, everything())</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["eta"],"name":[2],"type":["chr"],"align":["left"]},{"label":["max_depth"],"name":[3],"type":["chr"],"align":["left"]},{"label":["min_child_weight"],"name":[4],"type":["chr"],"align":["left"]},{"label":["subsample"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"0.3_12_1_1","2":"0.3","3":"12","4":"1","5":"1"},{"1":"0.3_1_1_1","2":"0.3","3":"1","4":"1","5":"1"},{"1":"0.3_6_1_0.6","2":"0.3","3":"6","4":"1","5":"0.6"},{"1":"0.3_6_1_0.8","2":"0.3","3":"6","4":"1","5":"0.8"},{"1":"0.3_6_1_1","2":"0.3","3":"6","4":"1","5":"1"},{"1":"0.3_6_2_1","2":"0.3","3":"6","4":"2","5":"1"},{"1":"0.3_6_4_1","2":"0.3","3":"6","4":"4","5":"1"},{"1":"0.5_6_1_1","2":"0.5","3":"6","4":"1","5":"1"},{"1":"0.7_6_1_1","2":"0.7","3":"6","4":"1","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["eta"],"name":[2],"type":["chr"],"align":["left"]},{"label":["max_depth"],"name":[3],"type":["chr"],"align":["left"]},{"label":["min_child_weight"],"name":[4],"type":["chr"],"align":["left"]},{"label":["subsample"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"0.3_1_1_1","2":"0.3","3":"1","4":"1","5":"1"},{"1":"0.3_12_1_1","2":"0.3","3":"12","4":"1","5":"1"},{"1":"0.3_6_1_0.6","2":"0.3","3":"6","4":"1","5":"0.6"},{"1":"0.3_6_1_0.8","2":"0.3","3":"6","4":"1","5":"0.8"},{"1":"0.3_6_1_1","2":"0.3","3":"6","4":"1","5":"1"},{"1":"0.3_6_2_1","2":"0.3","3":"6","4":"2","5":"1"},{"1":"0.3_6_4_1","2":"0.3","3":"6","4":"4","5":"1"},{"1":"0.5_6_1_1","2":"0.5","3":"6","4":"1","5":"1"},{"1":"0.7_6_1_1","2":"0.7","3":"6","4":"1","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <div id="mibi_tnbc-6" class="section level3">
@@ -3638,55 +4301,7 @@ schae211
   get_performance() %&gt;%
   mutate(algorithm = str_remove(algorithm, &quot;TBOOST_hyper_&quot;)) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-86-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-86-1">
-Past versions of unnamed-chunk-86-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-86-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-86-1.png" target="_blank">9229052</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-86-1.png" target="_blank">6de2243</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-22
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-97-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Similarly to the random forest above, we see that <code>max_depth = 1</code> reduces the overall performance.</p>
 </div>
 </div>
@@ -3695,10 +4310,10 @@ schae211
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-10.1016/j.cell.2018.08.039" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">L. Keren, M. Bosse, D. Marquez, R. Angoshtari, S. Jain, S. Varma, S.-R. Yang, A. Kurian, D. V. Valen, R. West, S. C. Bendall, M. Angelo, <a href="https://doi.org/10.1016/j.cell.2018.08.039"><span class="nocase">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</span></a>. <em>Cell</em>. <strong>174</strong>, 1373–1387.e19 (2018).</div>
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">L. Keren, M. Bosse, D. Marquez, R. Angoshtari, S. Jain, S. Varma, S.-R. Yang, A. Kurian, D. V. Valen, R. West, S. C. Bendall, M. Angelo, <span class="nocase">A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging</span>. <em>Cell</em>. <strong>174</strong>, 1373–1387.e19 (2018).</div>
 </div>
 <div id="ref-10.1186/s13059-021-02404-0" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">J. Zhu, S. Sun, X. Zhou, <a href="https://doi.org/10.1186/s13059-021-02404-0"><span class="nocase">SPARK-X: non-parametric modeling enables scalable and robust detection of spatial expression patterns for large spatial transcriptomic studies</span></a>. <em>Genome Biology</em>. <strong>22</strong>, 184 (2021).</div>
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">J. Zhu, S. Sun, X. Zhou, <span class="nocase">SPARK-X: non-parametric modeling enables scalable and robust detection of spatial expression patterns for large spatial transcriptomic studies</span>. <em>Genome Biology</em>. <strong>22</strong>, 184 (2021).</div>
 </div>
 </div>
 <br>
@@ -3709,12 +4324,13 @@ schae211
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.1 (2021-08-10)
-Platform: x86_64-conda-linux-gnu (64-bit)
-Running under: CentOS Linux 7 (Core)
+<pre><code>R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS/LAPACK: /net/data.isilon/ag-saez/bq_pschaefer/SOFTWARE/miniconda3/envs/misty_benchmark/lib/libopenblasp-r0.3.18.so
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
 [1] C
@@ -3723,40 +4339,47 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] future_1.23.0   slider_0.2.2    magrittr_2.0.1  forcats_0.5.1  
- [5] stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4     readr_2.1.1    
- [9] tidyr_1.1.4     tibble_3.1.6    ggplot2_3.3.5   tidyverse_1.3.1
-[13] mistyR_1.3.3    workflowr_1.7.0
+ [1] future_1.22.1   slider_0.2.2    magrittr_2.0.1  forcats_0.5.1  
+ [5] stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4     readr_2.0.2    
+ [9] tidyr_1.1.4     tibble_3.1.5    ggplot2_3.3.5   tidyverse_1.3.1
+[13] mistyR_1.3.3    workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] fs_1.5.0           lubridate_1.8.0    filelock_1.0.2     RColorBrewer_1.1-2
- [5] httr_1.4.2         rprojroot_2.0.2    tools_4.1.1        backports_1.3.0   
- [9] utf8_1.2.2         R6_2.5.1           DBI_1.1.1          colorspace_2.0-2  
-[13] withr_2.4.3        tidyselect_1.1.1   processx_3.5.2     compiler_4.1.1    
-[17] git2r_0.28.0       cli_3.1.0          rvest_1.0.2        xml2_1.3.2        
-[21] labeling_0.4.2     scales_1.1.1       callr_3.7.0        digest_0.6.29     
-[25] rmarkdown_2.11     R.utils_2.11.0     pkgconfig_2.0.3    htmltools_0.5.2   
-[29] parallelly_1.30.0  dbplyr_2.1.1       fastmap_1.1.0      highr_0.9         
-[33] rlang_0.4.12       readxl_1.3.1       rstudioapi_0.13    jquerylib_0.1.4   
-[37] farver_2.1.0       generics_0.1.1     jsonlite_1.7.2     R.oo_1.24.0       
-[41] rlist_0.4.6.2      Rcpp_1.0.7         munsell_0.5.0      fansi_0.5.0       
-[45] furrr_0.2.3        lifecycle_1.0.1    R.methodsS3_1.8.1  stringi_1.7.6     
-[49] whisker_0.4        yaml_2.2.1         grid_4.1.1         parallel_4.1.1    
-[53] listenv_0.8.0      promises_1.2.0.1   crayon_1.4.2       haven_2.4.3       
-[57] hms_1.1.1          knitr_1.36         ps_1.6.0           pillar_1.6.4      
-[61] codetools_0.2-18   reprex_2.0.1       glue_1.6.0         evaluate_0.14     
-[65] getPass_0.2-2      data.table_1.14.2  modelr_0.1.8       vctrs_0.3.8       
-[69] tzdb_0.2.0         httpuv_1.6.4       cellranger_1.1.0   gtable_0.3.0      
-[73] assertthat_0.2.1   xfun_0.28          broom_0.7.10       later_1.3.0       
-[77] viridisLite_0.4.0  warp_0.2.0         corrplot_0.92      globals_0.14.0    
-[81] ellipsis_0.3.2    </code></pre>
+ [1] fs_1.5.0                lubridate_1.8.0         filelock_1.0.2         
+ [4] RColorBrewer_1.1-2      httr_1.4.2              rprojroot_2.0.2        
+ [7] tools_4.1.2             backports_1.3.0         bslib_0.3.1            
+[10] utf8_1.2.2              R6_2.5.1                DBI_1.1.1              
+[13] colorspace_2.0-2        withr_2.4.2             tidyselect_1.1.1       
+[16] gridExtra_2.3           scatterPlotMatrix_0.1.0 compiler_4.1.2         
+[19] git2r_0.28.0            cli_3.0.1               rvest_1.0.1            
+[22] xml2_1.3.2              labeling_0.4.2          sass_0.4.0             
+[25] scales_1.1.1            digest_0.6.28           rmarkdown_2.11         
+[28] R.utils_2.11.0          pkgconfig_2.0.3         htmltools_0.5.2        
+[31] parallelly_1.28.1       dbplyr_2.1.1            fastmap_1.1.0          
+[34] highr_0.9               htmlwidgets_1.5.4       rlang_0.4.12           
+[37] readxl_1.3.1            rstudioapi_0.13         jquerylib_0.1.4        
+[40] farver_2.1.0            generics_0.1.0          jsonlite_1.7.2         
+[43] R.oo_1.24.0             rlist_0.4.6.2           Rcpp_1.0.7             
+[46] munsell_0.5.0           fansi_0.5.0             furrr_0.2.3            
+[49] R.methodsS3_1.8.1       lifecycle_1.0.1         stringi_1.7.5          
+[52] whisker_0.4             yaml_2.2.1              grid_4.1.2             
+[55] parallel_4.1.2          listenv_0.8.0           promises_1.2.0.1       
+[58] crayon_1.4.1            haven_2.4.3             hms_1.1.1              
+[61] knitr_1.36              pillar_1.6.3            codetools_0.2-18       
+[64] reprex_2.0.1            glue_1.4.2              evaluate_0.14          
+[67] data.table_1.14.2       modelr_0.1.8            vctrs_0.3.8            
+[70] tzdb_0.1.2              httpuv_1.6.3            cellranger_1.1.0       
+[73] gtable_0.3.0            assertthat_0.2.1        xfun_0.26              
+[76] broom_0.7.9             later_1.3.0             viridisLite_0.4.0      
+[79] pheatmap_1.0.12         warp_0.2.0              globals_0.14.0         
+[82] ellipsis_0.3.2         </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
