@@ -1163,7 +1163,7 @@ pmethods <- c("backward", "backward", "backward", "backward", "backward",
               "backward", "backward", "backward", "backward", "backward", 
               "none", "forward")
 
-test <- pmap_dfr(list(penalties, degrees, fastks, pmethods),
+pmap_dfr(list(penalties, degrees, fastks, pmethods),
          function(penalty, degree, fast.k, pmethod) {
            print(paste(penalty, degree, fast.k, pmethod, sep="_"))
            start <- Sys.time()
