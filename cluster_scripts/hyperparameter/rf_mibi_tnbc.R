@@ -2,10 +2,6 @@
 ##### Command line args ##### 
 cmd.arg = as.numeric(commandArgs(trailingOnly = TRUE))[1]
 
-##### Start Time #####
-start <- Sys.time()
-timing.file <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/mibi_tnbc/RF_hyper/timing.txt"
-
 #####  Packages ##### 
 library(mistyR)
 library(future)
@@ -45,7 +41,7 @@ map(seq_len(length(number.trees)), ~ paste(number.trees[.x], min.node.sizes[.x],
 out <- paste("RF_hyper", number.trees[cmd.arg], min.node.sizes[cmd.arg], 
              max.depths[cmd.arg], splitrules[cmd.arg], sep = "_")
 
-purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
   run_misty(views = smp.views,
             results.folder = paste0(output.path, out, "/", smp.name),
             model.function = random_forest_model,
@@ -56,10 +52,3 @@ purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.na
             max.depth = max.depths[cmd.arg],
             splitrule = splitrules[cmd.arg])
 })
-
-##### End Time #####
-end <- Sys.time()
-difference <- end - start
-# it is just important that I take care of this timing file while reading 
-# the results.
-write(paste0(out, ", ", difference), file = timing.file, append = TRUE)

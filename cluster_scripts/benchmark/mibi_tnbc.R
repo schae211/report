@@ -38,7 +38,7 @@ misty.views.smp <- readRDS(paste0(input.path, "standard_views.RDS"))
 
 ##### Run MISTy #####
 if (cmd.arg2 == 1) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "RF/",smp.name),
               model.function = random_forest_model,
@@ -46,7 +46,7 @@ if (cmd.arg2 == 1) {
               cv.folds = 10)
   })
 } else if (cmd.arg2 == 2) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "BGMARS/",smp.name),
               model.function = bagged_mars_model,
@@ -55,7 +55,7 @@ if (cmd.arg2 == 1) {
               n.bags = 40)
   })
 } else if (cmd.arg2 == 3) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "MARS/",smp.name),
               model.function = mars_model,
@@ -63,7 +63,7 @@ if (cmd.arg2 == 1) {
               cv.folds = 10)
   })
 } else if (cmd.arg2 == 4) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "LM/",smp.name),
               model.function = linear_model,
@@ -71,7 +71,7 @@ if (cmd.arg2 == 1) {
               cv.folds = 10)
   })
 } else if (cmd.arg2 == 5) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "TBOOST/",smp.name),
               model.function = gradient_boosting_model,
@@ -80,7 +80,7 @@ if (cmd.arg2 == 1) {
               booster = "gbtree")
   })
 } else if (cmd.arg2 == 6) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "LBOOST/",smp.name),
               model.function = gradient_boosting_model,
@@ -89,7 +89,7 @@ if (cmd.arg2 == 1) {
               booster = "gblinear")
   })
 } else if (cmd.arg2 == 7) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "SVM/",smp.name),
               model.function = svm_model,
@@ -97,7 +97,7 @@ if (cmd.arg2 == 1) {
               cv.folds = 10)
   })
 } else if (cmd.arg2 == 8) {
-  purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "MLP/",smp.name),
               model.function = mlp_model,

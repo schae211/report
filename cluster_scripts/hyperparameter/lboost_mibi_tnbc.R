@@ -2,10 +2,6 @@
 ##### Command line args ##### 
 cmd.arg = as.numeric(commandArgs(trailingOnly = TRUE))[1]
 
-##### Start Time #####
-start <- Sys.time()
-timing.file <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/mibi_tnbc/LBOOST_hyper/timing.txt"
-
 #####  Packages ##### 
 library(mistyR)
 library(future)
@@ -35,7 +31,7 @@ map(seq_len(length(lambdas)), ~ paste(lambdas[.x], alphas[.x],
 ##### Run MISTy #####
 out <- paste("LBOOST_hyper", lambdas[cmd.arg], alphas[cmd.arg], sep = "_")
 
-purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
   run_misty(views = smp.views,
             results.folder = paste0(output.path, out, "/", smp.name),
             model.function = gradient_boosting_model,
@@ -45,10 +41,3 @@ purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.na
             lambda = lambdas[cmd.arg],
             alpha = alphas[cmd.arg])
 })
-
-##### End Time #####
-end <- Sys.time()
-difference <- end - start
-# it is just important that I take care of this timing file while reading 
-# the results.
-write(paste0(out, ", ", difference), file = timing.file, append = TRUE)

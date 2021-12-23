@@ -2,10 +2,6 @@
 ##### Command line args ##### 
 cmd.arg = as.numeric(commandArgs(trailingOnly = TRUE))[1]
 
-##### Start Time #####
-start <- Sys.time()
-timing.file <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/mibi_tnbc/TBOOST_hyper/timing.txt"
-
 #####  Packages ##### 
 library(mistyR)
 library(future)
@@ -44,7 +40,7 @@ map(seq_len(length(etas)), ~ paste(etas[.x], max_depths[.x],
 out <- paste("TBOOST_hyper", etas[cmd.arg], max_depths[cmd.arg], 
              min_child_weights[cmd.arg], subsamples[cmd.arg], sep = "_")
 
-purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.name) {
+purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
   run_misty(views = smp.views,
             results.folder = paste0(output.path, out, "/", smp.name),
             model.function = gradient_boosting_model,
@@ -56,10 +52,3 @@ purrr::walk2(misty.views.smp, names(misty.views.smp), function(smp.views, smp.na
             min_child_weight = min_child_weights[cmd.arg],
             subsample = subsamples[cmd.arg])
 })
-
-##### End Time #####
-end <- Sys.time()
-difference <- end - start
-# it is just important that I take care of this timing file while reading 
-# the results.
-write(paste0(out, ", ", difference), file = timing.file, append = TRUE)
