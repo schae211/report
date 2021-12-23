@@ -31,7 +31,7 @@ suppressPackageStartupMessages(library(slider))
 Loading the data.
 
 ```{r echo=FALSE}
-all.files <-  list.files("data", full.names = TRUE)
+all.files <-  list.files("output", full.names = TRUE)
 res.files <- all.files[str_ends(all.files, "results.RDS")]
 view.files <- all.files[str_ends(all.files, "views.RDS")]
 

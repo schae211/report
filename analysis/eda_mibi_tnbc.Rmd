@@ -1,0 +1,591 @@
+---
+title: "EDA MIBI TNBC"
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    toc_depth: 2
+    code_folding: hide
+editor_options: 
+  chunk_output_type: inline
+bibliography: references.bib
+csl: science.csl
+---
+
+Setup.
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
+knitr::opts_knit$set(root.dir = "~/Saez/report")
+```
+
+```{r}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+# Loading and Processing Data
+
+The columns Group and ImmuneGroup in the cell metadata are translated from
+numbers to their actual meaning.
+
+```{r}
+input <- read_csv("data/cellData.csv", show_col_types=FALSE)
+
+# See description in Readme
+group.trans <- c("1" = "Unidentified", "2" = "Immune", "3" = "Endothelial", 
+                 "4" = "Mesenchymal-like", "5" = "Tumor", 
+                 "6" = "Keratin-positive tumor")
+
+immune.group.trans <- c("0" = "Non-Immune?", "1" = "Tregs", "2" = "CD4 T", "3" = "CD8 T", 
+                        "4" = "CD3 T", "5" = "NK", "6" = "B",
+                        "7" = "Neutrophils", "8" = "Macrophages", 
+                        "9" = "DC", "10" = "DC/Mono", "11" = "Mono/Neu", 
+                        "12" = "Other immune")
+
+raw_data <- input %>%
+  mutate(Group = group.trans[as.character(Group)]) %>%
+  mutate(immuneGroup = immune.group.trans[as.character(immuneGroup)])
+  
+raw_data %>% slice_head(n=6)
+```
+
+Next we add the coordinates of the cells.
+
+Doing it in R takes quite some time but offers more control than the 
+[center of mass function in scipy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.center_of_mass.html).
+
+```{r}
+if ("coord.RDS" %in% list.files("data")) {
+  coord <- readRDS("data/coord.RDS")
+} else {
+  library(tiff)
+  lbs <- c(1:29, 31:41)
+  coord <- furrr::future_map_dfr(lbs, function(id) {
+    print(id)
+    # Read in raw matrix (in tiff format)
+    tiff <- readTIFF(paste0("/home/philipp/data/saez/mibi/p", id, "_labeledcellData.tiff"),
+                     as.is = TRUE)
+    seq.rows <- seq_len(nrow(tiff))
+    seq.cols <- seq_len(ncol(tiff))
+    # important: map over all unique values here! (but I removed 1 and 2)
+    cell.ids <- unique(as.vector(tiff))[-which(unique(as.vector(tiff)) %in% c(0,1))]
+    map_dfr(cell.ids, function(i) {
+      if (i %% 100 == 0) print(i)
+      # Convert to binary matrix with TRUE and FALSE
+      binary <- (tiff == i)
+      s <- sum(binary)
+      # Calculate center of mass
+      c(id = id, 
+        i = i,
+        x.center = sum(seq.rows * rowSums(binary)) / s,
+        y.center = sum(seq.cols * colSums(binary)) / s
+      )
+    })
+  })
+  saveRDS(coord, file = "data/coord.RDS")
+}
+```
+
+Then, join the coordinates with the meta data.
+
+```{r}
+data <- raw_data %>%
+  inner_join(coord, by = c("SampleID" = "id", 
+                                       "cellLabelInImage" = "i")) %>%
+  rename(row = x.center, col = y.center)
+```
+
+However, we have some coordiantes for cell IDs which are not in the meta data.
+For sample 40 there are for example 572 of those cell IDs which can be 
+found in the tiff but not in the meta data. Maybe those spots turned out not 
+be cells in the end (segmentation errors?). Or these are the cells with low 
+expression across all markers (sum < 0.1).
+
+```{r}
+dplyr::setdiff(
+  coord %>% filter(id == 40) %>% pull(i),
+  data %>% filter(SampleID == 40) %>% pull(cellLabelInImage)
+  ) %>%
+  length()
+```
+
+```{r echo=FALSE}
+# Before proceeding with the analysis, check whether we have any NAs.
+stopifnot(sum(map_int(colnames(data), ~ sum(is.na(data[[.x]])))) == 0)
+```
+
+Split the data into expression matrix and meta data.
+
+```{r}
+meta <- data %>%
+  select(c(1:3, 53:59))
+meta %>% slice_head(n=6)
+
+expr <- data %>%
+  select(4:52)
+expr %>% slice_head(n=6)
+```
+
+# Meta Data
+
+## Cell Counts
+
+Number of cells per sample. Curiously sample 30 is missing.
+
+```{r}
+meta %>%
+  count(SampleID) %>%
+  ggplot() +
+  geom_bar(aes(x=SampleID, y=n), stat = "identity")
+```
+
+Number of "cell types" over all samples as annotated by the authors or the
+study. We mostly have tumor and immune cells. Keratin serves as a marker
+for cancer cells.
+
+```{r}
+meta %>%
+  count(Group) %>%
+  arrange(desc(n))
+```
+
+Next we will have a closer look at the immune populations. And according
+to the number of cells present, macrophages and T-cells are the major
+players, followed by B-cells.
+
+```{r}
+meta %>%
+  count(immuneGroup) %>%
+  arrange(desc(n))
+```
+
+## Patient/Sample Metadata
+
+Patient data provided with the raw data.
+
+```{r}
+patient.info <- read_csv("data/patient_class.csv",
+                         col_names = c("SampleID", "Classification"),
+                         show_col_types=FALSE)
+patient.info %>% slice_head(n=6)
+```
+
+```{r}
+patient.info.paper <- readxl::read_xlsx("data/mmc2.xlsx", 
+                                        skip = 1, col_names = TRUE)
+
+patient.info.paper %>% slice_head(n=6)
+```
+
+## Cell Annotation
+
+How were the cells actually annotated? In the paper they used hierachical
+clustering (FlowSOM). Here we will only look at the first two principal 
+components.
+
+When looking at the first two principal components, we see quite a clear
+distinction between tumor and immune cells.
+(Random subsetting used to reduce overplotting).
+
+```{r fig.height=4, fig.width=12}
+pca <- stats::prcomp(expr)
+subs <- sample(nrow(pca$x), .05*nrow(pca$x))
+p1 <- ggplot() +
+  geom_point(aes(x=seq_len(length(pca$sdev)), y = pca$sdev^2))
+p2 <- ggplot() +
+  geom_point(aes(x=pca$x[subs,1], pca$x[subs,2], 
+                 color = meta$Group[subs]), size = 0.1) +
+  guides(colour = guide_legend(override.aes = list(size = 2)))
+gridExtra::grid.arrange(p1, p2, ncol=2)
+```
+
+Also for the sake of it the will cluster the cells using the louvain
+algorithm (graph-based). See the heatmap of the marker distribution accross
+the clusters below.
+
+```{r fig.width=6, fig.height=6}
+if ("graph.clusters.RDS" %in% list.files("data")) {
+  graph.clusters <- readRDS("data/graph.clusters.RDS")
+} else {
+  # shared nearest neighbor graph
+  snn <- bluster::makeSNNGraph(pca$x[,1:20], k = 20)
+  # louvain clustering
+  graph.clusters <- igraph::cluster_louvain(snn)$membership
+  saveRDS(graph.clusters, "data/graph.clusters.RDS")
+}
+
+# Making Psuedobulks per cluster
+expr.matrix <- as.matrix(
+  expr %>%
+    select(- c("Background", "P", "Si", "Au", "Na", "Ca", "Ta", "dsDNA",
+               "Fe"))
+)
+pseudobulk <- as.matrix(
+  map_dfr(unique(graph.clusters), function(i) {
+    colSums(expr.matrix[graph.clusters == i,])
+  })
+)
+rownames(pseudobulk) <- unique(graph.clusters)
+
+# Plotting Heatmap
+pheatmap::pheatmap(t(pseudobulk))
+```
+
+# Count Data
+
+Histograms per marker over all samples. We can see that that there is a huge
+variability in the expression of different markers. The measured entities 
+other than proteins (Au, Background, Beta catentin, C, Ca, Fe, Si, Ta) were
+later excluded from the analysis with MISTy.
+
+How were the "counts" normalized?
+
+According to the readme.rtf the markers were normalized by dividing the 
+counts by the cell size and transforming with arcsinh (inverse hyperbolic sine).
+Furthermore in the paper it is stated that after arcsinh transformation the
+markers were standard normalized.
+
+```{r fig.height=12, fig.width=18}
+expr %>%
+  pivot_longer(cols = everything(), names_to = "marker", values_to = "expression") %>%
+  ggplot() +
+  geom_histogram(aes(x=expression), bins = 100) +
+  facet_wrap(~ marker, scales = "free")
+```
+
+Looking at the boxplot for the expression per marker over all samples, ignoring
+outliers which are defined as points which includes all points outside of 
+median ± 1.5 * IQR (interquantile range), we can again see the broad
+variability.
+
+```{r}
+expr %>%
+  pivot_longer(cols = everything(), names_to = "marker", values_to = "expression") %>%
+  ggplot() +
+  geom_boxplot(aes(y=expression, x=marker), outlier.shape = NA) +
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
+  coord_cartesian(ylim = c(-5, 5))
+```
+
+Focusing on the measured proteins, the most highly expressed species 
+(according to the mean) are:
+
+```{r}
+tibble(marker = colnames(expr), mean.expression = colMeans(expr)) %>%
+  filter(!(marker %in% c("Ta", "Au", "P", "Si", "C", "Na", "Ca", "Fe", 
+                         "dsDNA", "Backgrond"))) %>%
+  slice_max(mean.expression, n=6)
+```
+
+# Spatial Data
+
+## General
+
+What is the scale? - 1 Pixel corresponds to about 390 nm.
+
+We will first look at the spatial data from all samples in one plot. The
+cell types are annotated according to the information the authors of the 
+original study provided.
+
+As pointed out in their publication, one can see that there is a continuum 
+between mixing of immune cells (yellow) and cancer tissue (green and blue).
+Either we can see a clear interface between both populations or they are
+totally mixed. This is actually associated with survival (see paper).
+Below this observation is quantified by calculating a similar mixing score
+as they did in the original publication.
+
+```{r fig.height=12, fig.width=18}
+meta %>%
+  ggplot() +
+  geom_point(aes(x = row, y = col, col = Group), size = .1) +
+  facet_wrap(~ SampleID) + 
+  guides(colour = guide_legend(override.aes = list(size = 4)))
+```
+
+## Mixing Score
+
+Calculating the mixing score by counting for all immune cells in each
+sample how many contacts to they have to cancer cells divided by the 
+contacts to other immune cells. The contacts are determined by
+Delaunay Triangulation and cells are only considered to be neighbors
+if the distance between them is below 40. 
+
+Importantly this mixing score is higher if there are more tumor cells
+than immune cells (as seen by the filling color of the barplot below,
+`ratio.count.tumor.immune` refers to the number of tumor cells 
+divided by the number of immune cells).
+
+(Remark: The authors of the paper used Haralick’s gray-level co-occurrence
+matrix to determine direct neighbors of each cell)
+
+```{r}
+# Setting the distance threshold for what is considered a neighbor in the DT.
+neighbor.thr <- 40
+
+if ("tumor.immune.contacts.RDS" %in% list.files("data")) {
+  contacts.smp <- readRDS("data/tumor.immune.contacts.RDS")
+} else {
+  
+  coord.type.smp <- unique(meta$SampleID) %>%
+  set_names(paste0("s", .)) %>%
+  map(function(id) {
+    meta %>%
+      filter(meta$SampleID == id) %>% 
+      select(row, col, Group) %>%
+      mutate(Group = ifelse(Group == "Keratin-positive tumor", 
+                            "Tumor", Group)) %>%
+      filter(Group %in% c("Tumor", "Immune")) %>%
+      mutate(id = seq_len(nrow(.)))
+  })
+
+  # helper function for getting direct neighbors
+  get_neighbors <- function(ddobj, id) {
+    dplyr::union(
+      ddobj$delsgs$ind1[which(ddobj$delsgs$ind2 == id)],
+      ddobj$delsgs$ind2[which(ddobj$delsgs$ind1 == id)]
+    )
+  }
+
+  contacts.smp <- coord.type.smp %>%
+  set_names() %>%
+  map_dfr(function(smp) {
+    
+    delaunay <- deldir::deldir(as.data.frame(smp %>% select(row, col)))
+    dists <- distances::distances(as.data.frame(smp %>% select(row, col)))
+    ids.to.map <- smp %>% filter(Group == "Immune") %>% pull(id)
+    
+    map(ids.to.map, function(i) {
+      alln <- get_neighbors(delaunay, i)
+      actualn <- alln[which(dists[alln, i] <= neighbor.thr)]
+      
+      smp %>%
+        filter(id %in% actualn) %>%
+        pull(Group)
+      
+    }) %>% 
+      unlist %>%
+      table
+  })
+}
+
+meta %>%
+  group_by(SampleID) %>%
+  count(Group) %>% 
+  pivot_wider(names_from = Group, values_from=n, names_prefix = "Count.") %>%
+  cbind(contacts.smp) %>%
+  mutate(ratio.tumor.immune = as.vector(Tumor/Immune * 100)) %>%
+  rename("Count.Keratin.positive.Tumor" = "Count.Keratin-positive tumor") %>%
+  replace(is.na(.), 0) %>%
+  mutate(Count.Tumor.Total = Count.Keratin.positive.Tumor + Count.Tumor) %>%
+  mutate(ratio.count.tumor.immune = Count.Tumor.Total / Count.Immune) %>%
+  ggplot() +
+  geom_bar(aes(x=reorder(SampleID, -ratio.tumor.immune), 
+               y=ratio.tumor.immune,
+               fill=ratio.count.tumor.immune), 
+           stat="identity") +
+  theme(axis.text.x = element_text(angle = 90, hjust = 1)) +
+  labs(x = "Sample", y = "Mixing Score") +
+  scale_fill_viridis_c()
+```
+
+Looking at the samples with the top mixing score, namely 15, 18, 22, 24, 31, 
+25, 21, 26
+
+```{r fig.width=12, fig.height=6}
+meta %>%
+  filter(SampleID %in% c(15, 18, 22, 24, 31, 25, 21, 26)) %>%
+  ggplot() +
+  geom_point(aes(x = row, y = col, col = Group), size = .1) +
+  facet_wrap(~ SampleID, ncol = 4) + 
+  guides(colour = guide_legend(override.aes = list(size = 4)))
+```
+
+Looking at the samples with the lowest mixing score, namely 35, 28, 16, 37, 
+4, 40, 41, 5.
+
+```{r fig.width=12, fig.height=6}
+meta %>%
+  filter(SampleID %in% c(35, 28, 16, 37, 4, 40, 41, 5)) %>%
+  ggplot() +
+  geom_point(aes(x = row, y = col, col = Group), size = .1) +
+  facet_wrap(~ SampleID, ncol = 4) + 
+  guides(colour = guide_legend(override.aes = list(size = 4)))
+```
+
+And we can see that those mixing scores resemble exactly what we see
+in the images.
+
+## Sample 40
+
+Looking more closely at sample 40 to make sure that the preprocessing
+went right. First, we will look at the cells only using their
+calculated center of mass.
+
+```{r fig.height=6, fig.width=8}
+meta %>%
+  filter(SampleID == 40) %>%
+  ggplot() +
+  geom_point(aes(x = row, y = col, col = Group), size=.4)  + 
+  guides(colour = guide_legend(override.aes = list(size = 2)))
+```
+
+Furthermore, we will look at the tiff.
+
+```{r fig.height=6, fig.width=8}
+library(tiff)
+id = 40
+tiff <- readTIFF(paste0("data/raw_tiffs/p", 
+                        id, "_labeledcellData.tiff"), as.is = TRUE)
+```
+
+First, the binary tiff, meaning all values that there not 0 or 1 (i.e. a
+cell was detected).
+
+```{r fig.height=6, fig.width=7}
+# get coordinates for where there was a cell detected (=: binary)
+binary <- apply(tiff, c(1,2), function(n) !(n %in% c(0,1)))
+binary.df <- as.data.frame(binary)
+rownames(binary.df) <- seq_len(nrow(binary))
+colnames(binary.df) <- seq_len(ncol(binary))
+
+df <- binary.df %>% 
+  rownames_to_column(var = "row") %>%
+  pivot_longer(cols = !(row), names_to = "col") %>%
+  mutate(row = as.numeric(row), col = as.numeric(col))
+
+subs <- sample(nrow(df), .03 * nrow(df))
+
+df %>%
+  slice(n = subs) %>%
+  mutate(cell.present = value) %>%
+  ggplot() +
+  geom_point(aes(x=row, y=col, col=cell.present), size=.1) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank()) +
+  scale_colour_manual(values = c("TRUE" = "green2", 
+                                 "FALSE" = "blue4"))  + 
+  guides(colour = guide_legend(override.aes = list(size = 2)))
+```
+
+Second, we will visualize the tiff and the labeled center of mass together.
+And on this scale the result actually looks quite nice.
+
+```{r fig.height=6, fig.width=8}
+s.40 <- meta %>%
+  filter(SampleID == 40)
+
+tiff.40 <- df %>%
+  filter(value) %>%
+  slice_sample(., n = nrow(.)/10)
+
+ggplot() +
+  geom_point(data = tiff.40, aes(x=row, y=col), col="black", 
+             size = 0.1, stroke = 0, shape = 16) +
+  geom_point(data = s.40, aes(x=row, y=col, col=Group), size = .5) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())  + 
+  guides(colour = guide_legend(override.aes = list(size = 2)))
+```
+
+To qualitatively assess the performance of the segmentation we will furthermore
+look at a close up of sample 40, more specifically the region from row 0 to
+row 600 and from col 1448 to col 2048. And we can see
+that the center of mass (colored point) mostly matches the cell boundaries,
+but not always!
+
+```{r fig.height=8, fig.width=10}
+c.max <- dim(binary)[1]
+top_left <- list(row = 0, col = c.max)
+bottom_right <- list(row = 600, col = c.max-600)
+
+# get the unique coordinates for each cell
+tiff.df <- as.data.frame(tiff)
+rownames(tiff.df) <- seq_len(nrow(tiff))
+colnames(tiff.df) <- seq_len(ncol(tiff))
+
+tiff.df.plot <- tiff.df %>%
+  rownames_to_column(var = "row") %>%
+  pivot_longer(cols = !(row), names_to = "col") %>%
+  mutate(row = as.numeric(row), col = as.numeric(col)) %>%
+  filter(!(value %in% c(0, 1))) %>%
+  # how to get only entry for each unique value
+  group_by(value) %>%
+  filter(row_number()==1) %>%
+  ungroup()
+
+s.40 <- meta %>%
+  filter(SampleID == 40) %>%
+  filter(row >= top_left$row, row <= bottom_right$row,
+         col >= bottom_right$col, col <= top_left$col)
+
+tiff.40 <- df %>%
+  filter(value) %>%
+  filter(row >= top_left$row, row <= bottom_right$row,
+         col >= bottom_right$col, col <= top_left$col)
+
+labels.40 <- tiff.df.plot %>%
+  filter(row >= top_left$row, row <= bottom_right$row,
+         col >= bottom_right$col, col <= top_left$col)
+
+ggplot() +
+  geom_point(data = tiff.40, aes(x=row, y=col), col="black", 
+             size = 0.1, stroke = 0, shape = 16) +
+  geom_point(data = s.40, aes(x=row, y=col, col=Group), size = 3) +
+  theme(
+    axis.text.x = element_blank(),
+    axis.text.y = element_blank(),
+    axis.ticks = element_blank())
+```
+
+Here are the corresponding IDs for comparison to the meta data.
+
+```{r fig.height=7, fig.width=8}
+ggplot(labels.40) +
+  geom_label(aes(x = row, y = col, label = value), size = 2.5)
+```
+
+# Merging Metadata
+
+Merging the meta data with the mixing score and some other measures.
+
+```{r}
+# Generating Sample Meta Data
+immune.counts <- meta %>%
+  group_by(SampleID) %>%
+  count(Group) %>%
+  pivot_wider(names_from = Group, values_from = n,
+              names_prefix = "Count.")
+
+total.counts <- meta %>%
+  count(SampleID) %>%
+  rename(Count.Total = n)
+
+mixing.score <- round(
+  contacts.smp %>% 
+    mutate(ratio.tumor.immune = Tumor/Immune * 100) %>%
+    pull(ratio.tumor.immune),
+  2)
+
+sample.meta <- patient.info %>%
+  filter(SampleID != 30) %>%
+  mutate(ratio.tumor.immune = as.vector(mixing.score)) %>%
+  inner_join(immune.counts, by = "SampleID") %>%
+  inner_join(total.counts, by = "SampleID") %>%
+  # see paper Figure 3, Panel C
+  mutate(Classification = 
+         case_when(Classification == 0 ~ "mixed",
+                   Classification == 1 ~ "compartimentalized",
+                   Classification == 2 ~ "cold")) %>% 
+  mutate(SampleID = as.character(SampleID)) %>%
+  left_join(patient.info.paper, by = c("SampleID" = "InternalId"))
+
+sample.meta %>% slice_head(n=6)
+```
+
+
+

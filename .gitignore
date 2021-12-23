@@ -12,5 +12,9 @@ analysis/site_libs
 analysis/results
 results
 output/*
-data/*all_results.RDS
-data/*all_views.RDS
+data/htapp
+data/imc
+data/merfish
+data/merfish_moffitt
+data/mibi
+data/seqfish_plus

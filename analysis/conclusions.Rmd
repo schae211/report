@@ -37,7 +37,8 @@ forest or gradient boosting. Thereby, their interpretability is much better.
 
 * Comments on time
 
-
+* See in tests, SVM and MLP and not fully reproducible yet. The results of
+different runs are similar but not exactly the same.
 
 # Open Questions & Future Directions:
 
