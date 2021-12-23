@@ -11,5 +11,5 @@ source /home/bq_pschaefer/.bashrc
 conda activate misty_benchmark
 
 # Run Rscript
-echo "Rscript /net/data.isilon/ag-saez/bq_pschaefer/SCRIPTS/$FILE $VIEW $ALG"
-Rscript /net/data.isilon/ag-saez/bq_pschaefer/SCRIPTS/$FILE $VIEW $ALG
+echo "Rscript /net/data.isilon/ag-saez/bq_pschaefer/report/cluster_scripts/$FILE $VIEW $ALG"
+Rscript /net/data.isilon/ag-saez/bq_pschaefer/report/cluster_scripts/$FILE $VIEW $ALG
