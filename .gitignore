@@ -12,9 +12,10 @@ analysis/site_libs
 analysis/results
 results
 output/*
-data/htapp
 data/imc
-data/merfish
-data/merfish_moffitt
-data/mibi
-data/seqfish_plus
+data/4iANCA
+data/merfish_bc
+data/merfish_liver
+data/merfish_preoptic
+data/mibi_tnbc
+data/seqfishp_brain
