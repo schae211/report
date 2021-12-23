@@ -469,43 +469,40 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef6b21ad6acd9a5655b86577345e180c92a9cae3dtargetblankf6b21ada"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/f6b21ad6acd9a5655b86577345e180c92a9cae3d" target="_blank">f6b21ad</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9f6973415fdeebbc39911fa1b896ce3d1c2ba710targetblank9f69734a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/9f6973415fdeebbc39911fa1b896ce3d1c2ba710" target="_blank">9f69734</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef6b21ad6acd9a5655b86577345e180c92a9cae3dtargetblankf6b21ada" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9f6973415fdeebbc39911fa1b896ce3d1c2ba710targetblank9f69734a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/f6b21ad6acd9a5655b86577345e180c92a9cae3d" target="_blank">f6b21ad</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/9f6973415fdeebbc39911fa1b896ce3d1c2ba710" target="_blank">9f69734</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    data/2021-12-17-07-58_all_results.RDS
-    Ignored:    data/2021-12-17-07-59_all_views.RDS
+    Ignored:    data/imc/
+    Ignored:    data/merfish_bc/
+    Ignored:    data/merfish_liver/
+    Ignored:    data/merfish_preoptic/
+    Ignored:    data/mibi_tnbc/
+    Ignored:    data/seqfishp_brain/
+    Ignored:    output/2021-12-17-07-58_all_results.RDS
+    Ignored:    output/2021-12-17-07-59_all_views.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
-    Ignored:    results/
 
 Untracked files:
-    Untracked:  analysis/eda_mibi_tnbc.Rmd
-    Untracked:  cluster_scripts/bash_scripts/
-    Untracked:  cluster_scripts/benchmark/merfish_bc.R
-    Untracked:  cluster_scripts/benchmark/merfish_liver.R
-    Untracked:  cluster_scripts/benchmark/merfish_preoptic.R
-    Untracked:  cluster_scripts/benchmark/mibi_tnbc.R
-    Untracked:  cluster_scripts/evaluation/
-    Untracked:  code/4i_analysis.R
-    Untracked:  code/helper_functions.R
-    Untracked:  data/expression.RDS
-    Untracked:  data/mibi_tnbc_meta.RDS
+    Untracked:  cluster_scripts/publish.R
 
 Unstaged changes:
-    Modified:   analysis/conclusions.Rmd
+    Modified:   analysis/benchmark.Rmd
+    Modified:   analysis/eda_mibi_tnbc.Rmd
+    Modified:   analysis/tutorial.Rmd
 
 </code></pre>
 <p>
@@ -549,6 +546,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/schae211/report/blob/64a9eda59c4bb96fda82c0cc7316b34a89a794b7/analysis/introduction.Rmd" target="_blank">64a9eda</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+<td>
+changing folder structure and .gitignore
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/ae89f12f9a7fa4c1d93ad7c482a0e01ef90489f7/docs/introduction.html" target="_blank">ae89f12</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/schae211/report/blob/f6b21ad6acd9a5655b86577345e180c92a9cae3d/analysis/introduction.Rmd" target="_blank">f6b21ad</a>
 </td>
 <td>
@@ -558,7 +589,7 @@ schae211
 2021-12-23
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -660,7 +691,7 @@ schae211
 2021-12-18
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -694,7 +725,7 @@ schae211
 2021-12-16
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -779,7 +810,7 @@ schae211
 2021-12-15
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 </tbody>
@@ -808,8 +839,8 @@ margin: 300px}
 </div>
 <div id="data-analysis" class="section level2">
 <h2>1.3 Data Analysis</h2>
-<p>No matter which of the above technologies is used, a table containing either the markers for each spatial unit (spot or single cells) or the coordinates of markers (high resolution but no segmentation) is obtained after preprocessing. Following normalization, standard scRNA-seq tools are often used to explore the data. However, as more spatially resolved datasets are being published, new tools are developed to exploit these richer information. For example the detection of spatially variable genes (e.g. SPARK-X <span class="citation">(<a href="#ref-10.1186/s13059-021-02404-0" role="doc-biblioref"><em>10</em></a>)</span>, SpatialDE <span class="citation">(<a href="#ref-10.1038/nmeth.4636" role="doc-biblioref"><em>11</em></a>)</span>), the detection of co-expression patterns/gene programs (e.g. ), and the detection of cellular niches (e.g. ).</p>
-<p>Upon identification of interesting patterns in spatially resolved omics data one might as the question what drives the emergence or stabilizes these patterns? Is the spatial structure driven by self-organization, juxtacrine/ paracrine signaling, or broad gradients of morphogens? Several tools have been published which tackle related questions. Spatial Variance Component Analysis (SVCA) <span class="citation">(<a href="#ref-10.1016/j.celrep.2019.08.077" role="doc-biblioref"><em>12</em></a>)</span> for example decomposed the variance of a given marker into an intrinsic, intercellular, and environmental component. However, these spatial contexts are fixed and no information about which other markers can explain the expression of a given marker are learned.</p>
+<p>No matter which of the above technologies is used, a table containing either the markers for each spatial unit (spot or single cells) or the coordinates of markers (high resolution but no segmentation) is obtained after preprocessing. Following normalization, standard scRNA-seq tools are often used to explore the data. However, as more spatially resolved datasets are being published, new tools are developed to exploit these richer information. There are tool for the detection of spatially variable genes (e.g. SPARK-X <span class="citation">(<a href="#ref-10.1186/s13059-021-02404-0" role="doc-biblioref"><em>10</em></a>)</span>, SpatialDE <span class="citation">(<a href="#ref-10.1038/nmeth.4636" role="doc-biblioref"><em>11</em></a>)</span>), detection of co-expression patterns/gene programs (e.g. ), and the detection of cellular niches (e.g. ).</p>
+<p>Upon identification of interesting patterns in spatially resolved omics data one might ask the question what drives the emergence or stabilizes these patterns? Is the spatial structure driven by self-organization, juxtacrine/ paracrine signaling, or broad gradients of morphogens? Several tools have been published which tackle related questions. Spatial Variance Component Analysis (SVCA) <span class="citation">(<a href="#ref-10.1016/j.celrep.2019.08.077" role="doc-biblioref"><em>12</em></a>)</span> for example decomposed the variance of a given marker into an intrinsic, intercellular, and environmental component. However, these spatial contexts are fixed and no information about which other markers can explain the expression of a given marker are learned.</p>
 <p>The Multiview Intercellular SpaTial modeling framework (MISTy) <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> on the other hand is much more flexible, allowing users to define the spatial context however they want. Additionally MISTy is build around an explainable machine learning algorithm faciliatating interpretability of the results. More specifically</p>
 <p>Show case here the primary figure we get from MISTy</p>
 <p>Use my presentation here :)</p>
