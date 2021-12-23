@@ -83,14 +83,17 @@ misty.views.smp <- map(samples, function(smp) {
   
   # Select Position and Expression
   pos <- img.red %>% select(c(x, y))
-  expr <- img.red %>% select(-c(x, y))
+  var_check <- map_lgl(img.red %>% select(-c(x, y)), ~ sd(.x) != 0)
+  expr <- img.red %>% 
+    select(names(var_check)[var_check])
   colnames(expr) <- make.names(colnames(expr)) # fix column names
   
-  # Create MISTy views (TODO: Is l = 10 reasonable)?
+  # Create MISTy views
   create_initial_view(data = expr) %>%
-    add_paraview(positions = pos, l = 10)
+    add_paraview(positions = pos, l = l)
 })
 
 print(paste0(output.path, "ratio_", ratio, "_views.RDS"))
 saveRDS(misty.views.smp, 
         file = paste0(output.path, "ratio_", ratio, "_views.RDS"))
+
