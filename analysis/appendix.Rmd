@@ -6,7 +6,7 @@ Setup.
 
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-knitr::opts_knit$set(root.dir = "~/Saez/report")
+#knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 Loaded packages.
