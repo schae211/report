@@ -16,7 +16,7 @@ Setup.
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
+knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
@@ -670,14 +670,14 @@ split_importances <- function(misty.importances) {
 }
 ```
 
-Define function to compute the cosine similarity given a tibble of vectors, where
-each column represents a vector. Indices are harcoded.
+Define function to compute the cosine similarity given a tibble of vectors, 
+where each column represents a vector. Indices are harcoded.
 
 ```{r}
-cosine_similarity <- function(imp.tbl, relative = "RF") {
+cosine_similarity <- function(imp.tbl, exclude = c(1:5), relative = "RF") {
   comp <- imp.tbl %>% pull(relative)
-  map_dbl(imp.tbl[-c(1:5)], function(vec) {
-    cosine.sim <- (comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5)
+  map_dbl(imp.tbl[-exclude], function(vec) {
+    comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5
   })
 }
 ```
@@ -686,9 +686,10 @@ Define function to compute the jaccard index given a tibble of vectors, where
 each column represents a vector. Indices are harcoded.
 
 ```{r}
-jaccard_index <- function(imp.tbl, relative = "RF", cutoff = 0.5) {
+jaccard_index <- function(imp.tbl, exclude = c(1:5), 
+                          relative = "RF", cutoff = 0.5) {
   comp <- imp.tbl %>% filter(.data[[relative]] > cutoff) %>% pull(relation)
-  algs <- names(imp.tbl)[-c(1:5)] %>% setNames(names(imp.tbl)[-c(1:5)])
+  algs <- names(imp.tbl)[-exclude] %>% setNames(names(imp.tbl)[-exclude])
   
   map_dbl(algs, function(alg) {
     vec <- imp.tbl %>% filter(.data[[alg]] > cutoff) %>% pull(relation)
@@ -697,8 +698,8 @@ jaccard_index <- function(imp.tbl, relative = "RF", cutoff = 0.5) {
 }
 ```
 
-Define wrapper function to compute comparitive statistics (e.g. cosine similarity,
-jaccard index), given a misty importances tibble.
+Define wrapper function to compute comparitive statistics (e.g. cosine
+similarity, jaccard index), given a misty importances tibble.
 
 First, the tibble containing the importances is split according to views and
 samples. Second, for each sub tibble the 
@@ -722,9 +723,14 @@ wrap_function <- function(misty.importances, f, ...) {
       map_dfr(function(tbl.id) {
         
         # 3. Compute cosine similarity (and add corresponding view and sample)
-        
-        args <- rlist::list.merge(list(imp.tbl = split.list$splits[[tbl.id]]), 
-                                  ellipsis.args)
+        if (length(ellipsis.args) > 0) {
+                  args <- rlist::list.merge(
+                    list(imp.tbl = split.list$splits[[tbl.id]]), 
+                    ellipsis.args
+                    )
+        } else {
+          args <- list(imp.tbl = split.list$splits[[tbl.id]])
+        }
         c(do.call(f, args), "id" = tbl.id)
           
       }) %>% mutate(view = sel.view,
@@ -741,49 +747,8 @@ wrap_function <- function(misty.importances, f, ...) {
 }
 ```
 
-```{r}
-filter_runs(all.results, "synthetic", "l6") %>%
-  get_importance() %>%
-  wrap_function(jaccard_index, relative="RF", cutoff=0.5)
-```
-
-
 Function to compute the cosine similarity for each algorithm 
 for all views and samples.
-
-```{r}
-cosine_similarity_wrapper <- function(misty.importances, relative = "RF") {
-  
-  # Split the importance tibble corresponding to views and samples
-  # since we want to compare the algorithm for the same sample and view
-  split.list <- split_importances(misty.importances)
-  
-  # 1. map over each view
-  map_dfr(unique(split.list$keys$view), function(sel.view) {
-    
-    # 2. Map over each sample corresponding to this view
-    split.list$keys %>%
-      mutate(id = row_number()) %>%
-      filter(view == sel.view) %>%
-      pull(id, name = sample) %>%
-      map_dfr(function(tbl.id) {
-        
-        # 3. Compute cosine similarity (and add corresponding view and sample)
-        c(cosine_similarity(split.list$splits[[tbl.id]], relative), "id" = tbl.id)
-          
-      }) %>% mutate(view = sel.view,
-                    sample = split.list$keys$sample[as.integer(id)]) 
-  }) %>%
-    pivot_longer(-c(id, view, sample), 
-                 names_to = "algorithm", values_to = "cosine") %>%
-    
-      # 4. Group by algorithm 
-      # and get the mean of the cosine similarity for each sample
-      group_by(algorithm, view) %>%
-      summarise(mean = mean(cosine), sd = sd(cosine), .groups="drop") %>%
-      arrange(algorithm)
-}
-```
 
 ```{r}
 plot_cosine_similarity <- function(cosine_similarity) {
@@ -797,43 +762,7 @@ plot_cosine_similarity <- function(cosine_similarity) {
     theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
     lims(y = c(0, 1))
 }
-```
 
-```{r}
-jaccard_index_wrapper <- function(misty.importances, relative = "RF", cutoff = 0.5) {
-  
-  # Split the importance tibble corresponding to views and samples
-  # since we want to compare the algorithm for the same sample and view
-  split.list <- split_importances(misty.importances)
-  
-  # 1. map over each view
-  map_dfr(unique(split.list$keys$view), function(sel.view) {
-    
-    # 2. Map over each sample corresponding to this view
-    split.list$keys %>%
-      mutate(id = row_number()) %>%
-      filter(view == sel.view) %>%
-      pull(id, name = sample) %>%
-      map_dfr(function(tbl.id) {
-        
-        # 3. Compute jaccard index (and add corresponding view and sample)
-        c(jaccard_index(split.list$splits[[tbl.id]], relative, cutoff), "id" = tbl.id)
-          
-      }) %>% mutate(view = sel.view,
-                    sample = split.list$keys$sample[as.integer(id)]) 
-  }) %>%
-    pivot_longer(-c(id, view, sample), 
-                 names_to = "algorithm", values_to = "jaccard") %>%
-    
-      # 4. Group by algorithm 
-      # and get the mean of the cosine similarity for each sample
-      group_by(algorithm, view) %>%
-      summarise(mean = mean(jaccard), sd = sd(jaccard), .groups="drop") %>%
-      arrange(algorithm)
-}
-```
-
-```{r}
 plot_jaccard <- function(jaccard) {
   jaccard %>%
     mutate(low = mean-sd, high = mean+sd) %>%
@@ -847,6 +776,193 @@ plot_jaccard <- function(jaccard) {
 }
 ```
 
+Function to plot heatmap of the cosine similarity of the jaccard index
+after binarization of the importances.
+
+```{r}
+cosine_heatmap <- function(misty.importances) {
+  tidy.df <- misty.importances %>%
+    unite(relation, Predictor, Target) %>%
+    drop_na() %>%
+    pivot_wider(names_from = relation, values_from = Importance)
+  
+  views <- misty.importances$view %>% unique
+  
+  plots <- map(views, function(v) {
+    
+    tmp.df <- tidy.df %>%
+      filter(view == v) %>%
+      select(-c(study, view.comp)) %>%
+      mutate(sample = str_extract(sample, "[^/]+$")) %>%
+      group_by(algorithm) %>%
+      summarise(across(4:(ncol(.)-1), mean)) %>%
+      replace(is.na(.), 0) %>%
+      pivot_longer(cols = !algorithm) %>%
+      pivot_wider(names_from = algorithm, values_from = value) %>%
+      select(-name)
+  
+    plot <- map_dfr(colnames(tmp.df), function(alg) {
+      comp <- tmp.df %>% pull(alg)
+      map_dbl(tmp.df, function(vec) {
+        comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5
+      })
+    }) %>%
+      as.data.frame() %>%
+      replace(is.na(.), 0) %>%
+      set_rownames(colnames(tmp.df)) %>%
+      pheatmap::pheatmap(main = paste("Cosine Similarity:", v),
+                         silent = TRUE)
+    })
+  
+  do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
+}
+```
+
+
+```{r}
+jaccard_heatmap <- function(misty.importances, cutoff = 0.5) {
+  tidy.df <- misty.importances %>%
+    unite(relation, Predictor, Target) %>%
+    drop_na() %>%
+    pivot_wider(names_from = relation, values_from = Importance)
+  
+  views <- misty.importances$view %>% unique
+  
+  plots <- map(views, function(v) {
+    
+    tmp.df <- tidy.df %>%
+      filter(view == v) %>%
+      select(-c(study, view.comp)) %>%
+      mutate(sample = str_extract(sample, "[^/]+$")) %>%
+      group_by(algorithm) %>%
+      summarise(across(4:(ncol(.)-1), mean)) %>%
+      replace(is.na(.), 0) %>%
+      pivot_longer(cols = !algorithm) %>%
+      pivot_wider(names_from = algorithm, values_from = value)
+    
+    algs <- names(tmp.df)[-1] %>% setNames(names(tmp.df)[-1])
+    
+    map_dfr(algs, function(alg1) {
+    comp <- tmp.df %>% 
+      filter(.data[[alg1]] > cutoff) %>% 
+      pull(name)
+    
+    map_dbl(algs, function(alg2) {
+      vec <- tmp.df %>% 
+      filter(.data[[alg2]] > cutoff) %>% 
+      pull(name)
+      length(intersect(comp, vec)) / length(union(comp, vec))
+      })
+    }) %>%
+      as.data.frame() %>%
+      replace(is.na(.), 0) %>%
+      set_rownames(algs) %>%
+      pheatmap::pheatmap(main = paste("Jaccard Index:", v), silent=TRUE)
+  })
+  do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
+}
+```
+
+
+```{r}
+correlation_heatmap <- function(misty.importances, m = "pearson") {
+  tidy.df <- misty.importances %>%
+    unite(relation, Predictor, Target) %>%
+    drop_na() %>%
+    pivot_wider(names_from = relation, values_from = Importance)
+  
+  views <- misty.importances$view %>% unique
+  
+  plots <- map(views, function(v) {
+    
+    tmp.df <- tidy.df %>%
+      filter(view == v) %>%
+      select(-c(study, view.comp)) %>%
+      mutate(sample = str_extract(sample, "[^/]+$")) %>%
+      group_by(algorithm) %>%
+      summarise(across(4:(ncol(.)-1), mean)) %>%
+      replace(is.na(.), 0) %>%
+      pivot_longer(cols = !algorithm) %>%
+      pivot_wider(names_from = algorithm, values_from = value) %>%
+      select(-name)
+  
+    plot <- map_dfr(colnames(tmp.df), function(alg) {
+      comp <- tmp.df %>% pull(alg)
+      map_dbl(tmp.df, function(vec) {
+        stats::cor(comp, vec, method = m)
+      })
+    }) %>%
+      as.data.frame() %>%
+      replace(is.na(.), 0) %>%
+      set_rownames(colnames(tmp.df)) %>%
+      pheatmap::pheatmap(main = paste(str_to_title(m), "Correlation:", v),
+                         silent = TRUE)
+    })
+  
+  do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
+}
+```
+
+
+```{r}
+correlation_scatter <- function(misty.importances) {
+  views <- misty.importances$view %>% unique
+  
+  walk(views, function(v) {
+    misty.importances %>%
+      unite(relation, Predictor, Target) %>%
+      drop_na() %>%
+      pivot_wider(names_from = relation, values_from = Importance) %>%
+      filter(view == v) %>%
+      select(-c(study, view.comp)) %>%
+      mutate(sample = str_extract(sample, "[^/]+$")) %>%
+      group_by(algorithm) %>%
+      summarise(across(4:(ncol(.)-1), mean)) %>%
+      replace(is.na(.), 0) %>%
+      pivot_longer(cols = !algorithm) %>%
+      pivot_wider(names_from = algorithm, values_from = value) %>%
+      select(-name) %>%
+      scatterPlotMatrix::scatterPlotMatrix(corrPlotType = "Text",
+                                           corrPlotCS = "Viridis") %>%
+      print()
+  })
+}
+```
+
+
+```{r}
+cosine_heatmap2 <- function(misty.importances) {
+  tidy.df <- misty.importances %>%
+    unite(relation, Predictor, Target) %>%
+    drop_na() %>%
+    pivot_wider(names_from = relation, values_from = Importance) %>%
+    filter(view == "intra") %>%
+    select(-c(study, view.comp)) %>%
+    mutate(sample = str_extract(sample, "[^/]+$")) %>%
+    group_by(algorithm) %>%
+    summarise(across(4:(ncol(.)-1), mean)) %>%
+    replace(is.na(.), 0) %>%
+    pivot_longer(cols = !algorithm) %>%
+    pivot_wider(names_from = algorithm, values_from = value) %>%
+    select(-name)
+  
+  map_dfr(colnames(tidy.df), function(alg) {
+    comp <- tidy.df %>% pull(alg)
+    map_dbl(tidy.df, function(vec) {
+      comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5
+    })
+  }) %>%
+    mutate(comp = colnames(.)) %>%
+    pivot_longer(!comp, names_to = "algorithm", values_to = "measure") %>%
+    mutate(algorithm = factor(algorithm, levels = def.ord)) %>%
+    mutate(comp = factor(comp, levels = def.ord)) %>%
+    ggplot() +
+    geom_tile(aes(x = algorithm, y = comp, fill = measure)) +
+    scale_fill_viridis_c() +
+    scale_y_discrete(limits=rev)
+}
+```
+
 ## `synthetic`
 
 For the boosting functions several importances are not returned?
@@ -857,85 +973,49 @@ filter_runs(all.results, "synthetic", "l6") %>%
   check_algs()
 ```
 
-### Cosine Similarity
+Now let's look at the cosine similarities, pearson correlation, and 
+the jaccard indices after binarization.
 
-Now let's look at the cosine similarities.
-
-```{r}
+```{r fig.height=6, fig.width=6}
 filter_runs(all.results, "synthetic", "l6") %>%
-  get_importance() %>%
-  cosine_similarity_wrapper()
+  get_importance() %T>%
+  cosine_heatmap() %T>%
+  correlation_heatmap() %>%
+  jaccard_heatmap(cutoff = 0.5)
 ```
 
-And plot them.
+<details> <summary>Click here for a Scatter Plot Matrix</summary> 
+```{r fig.width=12, fig.height=12}
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
+  correlation_scatter()
+```
+</details>
+
+<details> <summary>Click here for pairwise comparison to RF</summary> 
+
+These pairwise comparison allow to take the variance into account, where
+as the heatmaps can only display a single value (mean).
+
+Cosine Similarity compared to random forest
 
 ```{r}
 filter_runs(all.results, "synthetic", "l6") %>%
   get_importance() %>%
-  cosine_similarity_wrapper() %>%
+  wrap_function(cosine_similarity) %>%
   plot_cosine_similarity()
 ```
 
-### Jaccard Index after Binarization
+Jaccard Index compared to radnom forest
 
 ```{r}
 filter_runs(all.results, "synthetic", "l6") %>%
   get_importance() %>%
-  jaccard_index_wrapper(cutoff = 0) %>%
+  wrap_function(jaccard_index, cutoff=0) %>%
   plot_jaccard()
 ```
 
-### Pearson Correlation
-
-```{r}
-filter_runs(all.results, "synthetic", "l6") %>%
-  get_importance() %>%
-  unite(relation, Predictor, Target) %>%
-  drop_na() %>%
-  pivot_wider(names_from = relation, values_from = Importance) %>%
-  filter(view == "intra") %>%
-  select(-c(study, view.comp)) %>%
-  mutate(sample = str_extract(sample, "[^/]+$")) %>%
-  group_by(algorithm) %>%
-  summarise(across(4:112, mean)) %>%
-  replace(is.na(.), 0) %>%
-  pivot_longer(cols = !algorithm) %>%
-  pivot_wider(names_from = algorithm, values_from = value) %>%
-  select(-name) %>%
-  cor() %>% 
-  corrplot::corrplot(method="color", col.lim = c(0,1), 
-      col = colorRampPalette(c("#414487FF", "#414487FF", "#414487FF",
-                               "#414487FF", "#22A884FF", "#7AD151FF",
-                               "#FDE725FF"))(100),
-      tl.col = "black")
-```
-
-
-```{r fig.width=6, fig.height=6}
-tidy.df <- filter_runs(all.results, "synthetic", "l6") %>%
-  get_importance() %>%
-  unite(relation, Predictor, Target) %>%
-  drop_na() %>%
-  pivot_wider(names_from = relation, values_from = Importance) %>%
-  filter(view == "intra") %>%
-  select(-c(study, view.comp)) %>%
-  mutate(sample = str_extract(sample, "[^/]+$")) %>%
-  group_by(algorithm) %>%
-  summarise(across(4:112, mean)) %>%
-  replace(is.na(.), 0) %>%
-  pivot_longer(cols = !algorithm) %>%
-  pivot_wider(names_from = algorithm, values_from = value) %>%
-  rename(importance = name) %>%
-  pivot_longer(cols = !c(importance, RF)) %>%
-  mutate(name = factor(name))
-
-ggplot() +
-  geom_point(aes(x = tidy.df$RF, y = tidy.df$value, col = tidy.df$name)) +
-  geom_line(aes(x = tidy.df$RF, y = tidy.df$RF), col = "blue") +
-  coord_fixed() +
-  scale_color_brewer(palette="Dark2")
-```
-
+</details>
 
 ## `mibi_tnbc`
 
@@ -945,19 +1025,46 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
   check_algs()
 ```
 
-### Cosine Similarity
+```{r fig.height=8, fig.width=6}
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_importance() %>%
+  drop_na() %T>%
+  cosine_heatmap() %T>%
+  correlation_heatmap() %>%
+  jaccard_heatmap(cutoff = 0.5)
+```
+
+<details> <summary>Click here for a Scatter Plot Matrix</summary> 
+```{r fig.width=12, fig.height=12}
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_importance() %>%
+  correlation_scatter()
+```
+</details>
+
+<details> <summary>Click here for pairwise comparison to RF</summary> 
+
+Cosine Similarity compared to random forest
 
 ```{r}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
-  cosine_similarity_wrapper() %>%
+  wrap_function(cosine_similarity) %>%
   plot_cosine_similarity()
 ```
 
+Jaccard Index compared to radnom forest
+
+```{r}
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_importance() %>%
+  wrap_function(jaccard_index, cutoff=0) %>%
+  plot_jaccard()
+```
+
+</details>
 
 ## `merfish_preoptic`
-
-### Cosine Similarity
 
 ```{r}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
@@ -965,21 +1072,53 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   check_algs()
 ```
 
+```{r fig.height=8, fig.width=6}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_importance() %T>%
+  cosine_heatmap() %T>%
+  correlation_heatmap() %>%
+  jaccard_heatmap(cutoff = 0.5)
+```
+
+<details> <summary>Click here for a Scatter Plot Matrix</summary> 
+```{r fig.width=12, fig.height=12}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_importance() %>%
+  correlation_scatter()
+```
+</details>
+
+<details> <summary>Click here for pairwise comparison to RF</summary> 
+
+Cosine Similarity compared to random forest
+
 ```{r}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_importance() %>%
-  cosine_similarity_wrapper() %>%
+  wrap_function(cosine_similarity) %>%
   plot_cosine_similarity()
 ```
 
+Jaccard Index compared to random forest
+
 ```{r}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_importance() %>%
-  jaccard_index_wrapper() %>%
+  wrap_function(jaccard_index, cutoff=0) %>%
   plot_jaccard()
 ```
 
+</details>
+
 ## `merfish_liver`
+
+```{r}
+filter_runs(all.results, "merfish_liver", "std280") %>%
+  get_importance() %>%
+  check_algs()
+```
+
+</details>
 
 ## `merfish_bc`
 
@@ -989,45 +1128,95 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
   check_algs()
 ```
 
-### Cosine Similarity
-
 ```{r}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
-  get_importance() %>%
-  cosine_similarity_wrapper() %>%
-  plot_cosine_similarity()
-```
-
-```{r}
-filter_runs(all.results, "merfish_bc", "hvg") %>%
-  get_importance() %>%
-  jaccard_index_wrapper() %>%
-  plot_jaccard()
-```
-
-## `4iANCA`
-
-```{r}
-filter_runs(all.results, "4iANCA", "ratio_153") %>%
   get_importance() %>%
   check_algs()
 ```
 
-### Cosine Similarity
+```{r fig.height=8, fig.width=6}
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %T>%
+  cosine_heatmap() %T>%
+  correlation_heatmap() %>%
+  jaccard_heatmap(cutoff = 0.5)
+```
+
+<details> <summary>Click here for a Scatter Plot Matrix</summary> 
+```{r fig.width=12, fig.height=12}
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %>%
+  correlation_scatter()
+```
+</details>
+
+<details> <summary>Click here for pairwise comparison to RF</summary> 
+
+Cosine Similarity compared to random forest
 
 ```{r}
-filter_runs(all.results, "4iANCA", "ratio_153") %>%
+filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
-  cosine_similarity_wrapper() %>%
+  wrap_function(cosine_similarity) %>%
   plot_cosine_similarity()
 ```
 
+Jaccard Index compared to random forest
+
 ```{r}
-filter_runs(all.results, "4iANCA", "ratio_153") %>%
+filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
-  jaccard_index_wrapper() %>%
+  wrap_function(jaccard_index, cutoff=0) %>%
   plot_jaccard()
 ```
+
+</details>
+
+## `4iANCA`
+
+```{r}
+filter_runs(all.results, "4iANCA", "ratio_76") %>%
+  get_importance() %>%
+  check_algs()
+```
+
+```{r fig.height=8, fig.width=6}
+filter_runs(all.results, "4iANCA", "ratio_76") %>%
+  get_importance() %T>%
+  cosine_heatmap() %T>%
+  correlation_heatmap() %>%
+  jaccard_heatmap(cutoff = 0.5)
+```
+
+<details> <summary>Click here for a Scatter Plot Matrix</summary> 
+```{r fig.width=12, fig.height=12}
+filter_runs(all.results, "4iANCA", "ratio_76") %>%
+  get_importance() %>%
+  correlation_scatter()
+```
+</details>
+
+<details> <summary>Click here for pairwise comparison to RF</summary> 
+
+Cosine Similarity compared to random forest
+
+```{r}
+filter_runs(all.results, "4iANCA", "ratio_76") %>%
+  get_importance() %>%
+  wrap_function(cosine_similarity) %>%
+  plot_cosine_similarity()
+```
+
+Jaccard Index compared to random forest
+
+```{r}
+filter_runs(all.results, "4iANCA", "ratio_76") %>%
+  get_importance() %>%
+  wrap_function(jaccard_index, cutoff=0) %>%
+  plot_jaccard()
+```
+
+</details>
 
 # Comparing Runtimes
 
