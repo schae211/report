@@ -1,21 +1,33 @@
 
 ##### Command line args ##### 
-cmd.arg = as.numeric(commandArgs(trailingOnly = TRUE))[1]
+cmd.arg1 = as.numeric(commandArgs(trailingOnly = TRUE))[1]
+
+cmd.arg2 = as.numeric(commandArgs(trailingOnly = TRUE))[2]
 
 #####  Packages ##### 
 library(mistyR)
 library(future)
-plan("multisession", workers=16)
+plan("multisession")
 library(tidyverse)
-library(tiff)
 
 ##### Paths ##### 
-input.path <- "/net/data.isilon/ag-saez/bq_pschaefer/MISTY_VIEWS/mibi_tnbc/"
-output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/mibi_tnbc/RF_hyper/"
+if (cmd.arg1 == 1) {
+  input.path <- "/net/data.isilon/ag-saez/bq_pschaefer/MISTY_VIEWS/synthetic/"
+  input <- "l12.RDS"
+  output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/synthetic/RF_hyper/"
+} else if (cmd.arg1 == 2) {
+  input.path <- "/net/data.isilon/ag-saez/bq_pschaefer/MISTY_VIEWS/mibi_tnbc/"
+  input <- "standard_views.RDS"
+  output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/mibi_tnbc/RF_hyper/"
+} else if (cmd.arg1 == 3) {
+  input.path <- "/net/data.isilon/ag-saez/bq_pschaefer/MISTY_VIEWS/merfish_bc/"
+  input <- "hvg_views.RDS"
+  output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/merfish_bc/RF_hyper"
+}
 ifelse(!dir.exists(output.path), dir.create(output.path), FALSE)
 
 #####  Input ##### 
-misty.views.smp <- readRDS(paste0(input.path, "standard_views.RDS"))
+misty.views.smp <- readRDS(paste0(input.path, input))
 
 ##### Parameters ###### -> 10
 
@@ -38,8 +50,8 @@ map(seq_len(length(number.trees)), ~ paste(number.trees[.x], min.node.sizes[.x],
 
 
 ##### Run MISTy #####
-out <- paste("RF_hyper", number.trees[cmd.arg], min.node.sizes[cmd.arg], 
-             max.depths[cmd.arg], splitrules[cmd.arg], sep = "_")
+out <- paste("RF_hyper", number.trees[cmd.arg2], min.node.sizes[cmd.arg2], 
+             max.depths[cmd.arg2], splitrules[cmd.arg2], sep = "_")
 
 purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
   run_misty(views = smp.views,
@@ -47,8 +59,9 @@ purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
             model.function = random_forest_model,
             seed = 42,
             cv.folds = 10,
-            num.trees = number.trees[cmd.arg],
-            min.node.size = min.node.sizes[cmd.arg],
-            max.depth = max.depths[cmd.arg],
-            splitrule = splitrules[cmd.arg])
+            num.trees = number.trees[cmd.arg2],
+            min.node.size = min.node.sizes[cmd.arg2],
+            max.depth = max.depths[cmd.arg2],
+            splitrule = splitrules[cmd.arg2])
 })
+
