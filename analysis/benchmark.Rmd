@@ -922,9 +922,11 @@ correlation_scatter <- function(misty.importances) {
       pivot_longer(cols = !algorithm) %>%
       pivot_wider(names_from = algorithm, values_from = value) %>%
       select(-name) %>%
-      scatterPlotMatrix::scatterPlotMatrix(corrPlotType = "Text",
-                                           corrPlotCS = "Viridis") %>%
+      GGally::ggpairs(title=v) %>%
       print()
+      #scatterPlotMatrix::scatterPlotMatrix(corrPlotType = "Text",
+      #                                     corrPlotCS = "Viridis") %>%
+      #print()
   })
 }
 ```
@@ -976,7 +978,7 @@ filter_runs(all.results, "synthetic", "l6") %>%
 Now let's look at the cosine similarities, pearson correlation, and 
 the jaccard indices after binarization.
 
-```{r fig.height=6, fig.width=6}
+```{r fig.height=6, fig.width=6, warning=FALSE}
 filter_runs(all.results, "synthetic", "l6") %>%
   get_importance() %T>%
   cosine_heatmap() %T>%
@@ -985,7 +987,7 @@ filter_runs(all.results, "synthetic", "l6") %>%
 ```
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
-```{r fig.width=12, fig.height=12}
+```{r fig.width=12, fig.height=12, warning=FALSE}
 filter_runs(all.results, "synthetic", "l6") %>%
   get_importance() %>%
   correlation_scatter()
@@ -1017,6 +1019,8 @@ filter_runs(all.results, "synthetic", "l6") %>%
 
 </details>
 
+---
+
 ## `mibi_tnbc`
 
 ```{r}
@@ -1025,7 +1029,7 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
   check_algs()
 ```
 
-```{r fig.height=8, fig.width=6}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
   drop_na() %T>%
@@ -1035,7 +1039,7 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 ```
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
-```{r fig.width=12, fig.height=12}
+```{r fig.width=12, fig.height=12, warning=FALSE}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
   correlation_scatter()
@@ -1064,6 +1068,8 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 
 </details>
 
+---
+
 ## `merfish_preoptic`
 
 ```{r}
@@ -1072,7 +1078,7 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   check_algs()
 ```
 
-```{r fig.height=8, fig.width=6}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_importance() %T>%
   cosine_heatmap() %T>%
@@ -1081,7 +1087,7 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
 ```
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
-```{r fig.width=12, fig.height=12}
+```{r fig.width=12, fig.height=12, warning=FALSE}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_importance() %>%
   correlation_scatter()
@@ -1110,6 +1116,8 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
 
 </details>
 
+---
+
 ## `merfish_liver`
 
 ```{r}
@@ -1119,6 +1127,8 @@ filter_runs(all.results, "merfish_liver", "std280") %>%
 ```
 
 </details>
+
+---
 
 ## `merfish_bc`
 
@@ -1134,7 +1144,7 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
   check_algs()
 ```
 
-```{r fig.height=8, fig.width=6}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %T>%
   cosine_heatmap() %T>%
@@ -1143,7 +1153,7 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
 ```
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
-```{r fig.width=12, fig.height=12}
+```{r fig.width=12, fig.height=12, warning=FALSE}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
   correlation_scatter()
@@ -1171,6 +1181,8 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
 ```
 
 </details>
+
+---
 
 ## `4iANCA`
 
@@ -1180,7 +1192,7 @@ filter_runs(all.results, "4iANCA", "ratio_76") %>%
   check_algs()
 ```
 
-```{r fig.height=8, fig.width=6}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
   get_importance() %T>%
   cosine_heatmap() %T>%
@@ -1189,7 +1201,7 @@ filter_runs(all.results, "4iANCA", "ratio_76") %>%
 ```
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
-```{r fig.width=12, fig.height=12}
+```{r fig.width=12, fig.height=12, warning=FALSE}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
   get_importance() %>%
   correlation_scatter()
@@ -1217,6 +1229,8 @@ filter_runs(all.results, "4iANCA", "ratio_76") %>%
 ```
 
 </details>
+
+---
 
 # Comparing Runtimes
 
