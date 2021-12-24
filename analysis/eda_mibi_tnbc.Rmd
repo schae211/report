@@ -16,7 +16,7 @@ Setup.
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
-knitr::opts_knit$set(root.dir = "~/Saez/report")
+#knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
@@ -534,5 +534,125 @@ sample.meta <- patient.info %>%
 sample.meta
 ```
 
+Helper function to calculate distances to the neighbors.
 
+```{r}
+# helper function for nearest neighbors
+dist_k_nn <- function(sample, k) {
+  nn <- RANN::nn2(sample, eps=0.0, k = k)
+  map_dbl(seq_len(nrow(sample)), function(n) {
+    mean(nn$nn.dists[n, ])
+  })
+}
+
+# helper function for getting direct neighbors
+get_neighbors <- function(ddobj, id) {
+  dplyr::union(
+    ddobj$delsgs$ind1[which(ddobj$delsgs$ind2 == id)],
+    ddobj$delsgs$ind2[which(ddobj$delsgs$ind1 == id)]
+  )
+}
+```
+
+First we will look at the distribution of the  mean distances to the direct 
+neighbors (as determined by the delauney triangulation) to get a feeling for 
+which cutoff value should be used for the generation of the juxtaview. The
+corresponding distribution is shown below.
+(in blue the cutoff - 40 pixels (15.6 microns) - which was used in the end).
+
+```{r}
+coord.smp <- map(unique(coord$id), function(smp){
+  coord %>%
+    filter(id == smp) %>%
+    select(x.center, y.center)
+})
+
+# mean distance to the direct neighbors for each cell
+mean.dists.direct.neighbors <- map(coord.smp, function(smp) {
+  delaunay <- deldir::deldir(as.data.frame(smp))
+  dists <- distances::distances(as.data.frame(smp))
+  map_dbl(seq_len(nrow(smp)), function(id) {
+    nn <- get_neighbors(delaunay, id)
+    mean(dists[nn, id])
+  })
+}) 
+
+stat.per.sample <- map2_dfr(mean.dists.direct.neighbors,
+                            seq_len(length(mean.dists.direct.neighbors)),
+                            function(list, smp) {
+            data.frame(sample = smp, value = list)
+          })
+
+# histogram
+ggplot(data.frame(dist = mean.dists.direct.neighbors %>% unlist)) +
+  geom_histogram(aes(dist), bins = 100) +
+  lims(x = c(0,100)) +
+  geom_vline(xintercept = 40, col = "blue")
+```
+
+Summary statistics:
+
+```{r}
+data.frame(value = mean.dists.direct.neighbors %>% unlist) %>%
+  summarise(mean = mean(value), 
+            median = median(value), 
+            q25 = quantile(value, 0.25),
+            q75 = quantile(value, 0.75),
+            min = min(value),
+            max = max(value))
+```
+
+However, a more detailed look across the sample (boxplot) shows that the
+cutoff may be too low for certain samples. It may be good to increase this
+threshold to 50.
+
+```{r}
+# boxplot
+stat.per.sample %>%
+  mutate(sample = factor(sample)) %>%
+  ggplot() +
+  geom_boxplot(aes(x=sample, y=value)) +
+  geom_hline(yintercept = 40, col="blue") +
+  lims(y = c(0, 200))
+```
+
+Furthermore we will look at the distribution of the mean distances to the
+10 -, 20 -, 40 -, and 80 closest cells to get a feeling
+for which cutoff will be used to generate the paraview 
+(in blue the cutoff - 120 pixels (46.8 microns) - which was used in the end).
+
+```{r}
+neighbor.dists <- map_dfr(coord.smp, function(smp) {
+  c(10, 20, 40, 80) %>%
+    purrr::set_names() %>%
+    map_dfc(function(k) {
+  dist_k_nn(smp, k)
+    }) %>%
+  purrr::set_names(paste0("dist_to_", c("10", "20", "40", "80")))
+})
+
+neighbor.dists %>%
+  pivot_longer(cols = everything()) %>%
+  mutate(name = factor(name, 
+                       levels = paste0("dist_to_", c("10", "20", "40", "80")))) %>%
+  ggplot() +
+  geom_histogram(aes(value), bins = 100) +
+  facet_wrap(~ name) +
+  lims(x = c(0, 200)) +
+  geom_vline(xintercept = 120, col = "blue")
+```
+
+Summary statistics:
+
+```{r}
+neighbor.dists %>%
+  pivot_longer(cols = everything()) %>%
+  group_by(name) %>%
+  summarise(mean = mean(value), 
+            median = median(value), 
+            q25 = quantile(value, 0.25),
+            q75 = quantile(value, 0.75),
+            min = min(value),
+            max = max(value))
+```
 
