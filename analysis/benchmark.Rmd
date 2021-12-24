@@ -112,6 +112,8 @@ summary(
 
 -   Multiplexed Ion Beam Imaging (spatial proteomics) dataset from [A Structured Tumor-Immune Microenvironment in Triple Negative Breast Cancer Revealed by Multiplexed Ion Beam Imaging](https://dx.doi.org/10.1016/j.cell.2018.08.039) by Keren, L. et al. (Cell 174, 1373-1387.e19 (2018)) [@10.1016/j.cell.2018.08.039]
 
+-   [Exploratory Data Analysis](https://schae211.github.io/report/eda_mibi_tnbc.html)
+
 -   Data Availability: <https://mibi-share.ionpath.com/>
 
 -   Features: Spatial Proteomics, Single Cell Resolution, Segmentation
