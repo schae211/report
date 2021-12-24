@@ -565,22 +565,23 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree5bc0d43c8fa3b54d315fcedf8407b5cd349123d2targetblank5bc0d43a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/5bc0d43c8fa3b54d315fcedf8407b5cd349123d2" target="_blank">5bc0d43</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree7293cce62a9a6207427876bc678873fee6db820btargetblank7293ccea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/7293cce62a9a6207427876bc678873fee6db820b" target="_blank">7293cce</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree5bc0d43c8fa3b54d315fcedf8407b5cd349123d2targetblank5bc0d43a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree7293cce62a9a6207427876bc678873fee6db820btargetblank7293ccea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/5bc0d43c8fa3b54d315fcedf8407b5cd349123d2" target="_blank">5bc0d43</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/7293cce62a9a6207427876bc678873fee6db820b" target="_blank">7293cce</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    analysis/figure/
     Ignored:    data/imc/
     Ignored:    data/merfish_bc/
     Ignored:    data/merfish_liver/
@@ -591,6 +592,10 @@ Ignored files:
     Ignored:    output/2021-12-17-07-59_all_views.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
+    Ignored:    results/
+
+Untracked files:
+    Untracked:  analysis/eda_merfsh_liver.Rmd
 
 Unstaged changes:
     Modified:   analysis/benchmark.Rmd
@@ -632,6 +637,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/7293cce62a9a6207427876bc678873fee6db820b/analysis/eda_mibi_tnbc.Rmd" target="_blank">7293cce</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+<td>
+wflow_publish(“analysis/eda_mibi_tnbc.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/eda_mibi_tnbc.html" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -790,6 +829,43 @@ expr %&gt;% slice_head(n=6)</code></pre>
   ggplot() +
   geom_bar(aes(x=SampleID, y=n), stat = &quot;identity&quot;)</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-8-1">
+Past versions of unnamed-chunk-8-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-8-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-8-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Number of “cell types” over all samples as annotated by the authors or the study. We mostly have tumor and immune cells. Keratin serves as a marker for cancer cells.</p>
 <pre class="r"><code>meta %&gt;%
   count(Group) %&gt;%
@@ -843,6 +919,43 @@ patient.info.paper %&gt;% slice_head(n=6)</code></pre>
   geom_histogram(aes(x=expression), bins = 100) +
   facet_wrap(~ marker, scales = &quot;free&quot;)</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-13-1.png" width="1728" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-13-1">
+Past versions of unnamed-chunk-13-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-13-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-13-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Looking at the boxplot for the expression per marker over all samples, ignoring outliers which are defined as points which includes all points outside of median ± 1.5 * IQR (interquantile range), we can again see the broad variability.</p>
 <pre class="r"><code>expr %&gt;%
   pivot_longer(cols = everything(), names_to = &quot;marker&quot;, values_to = &quot;expression&quot;) %&gt;%
@@ -851,6 +964,43 @@ patient.info.paper %&gt;% slice_head(n=6)</code></pre>
   theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1)) +
   coord_cartesian(ylim = c(-5, 5))</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-14-1">
+Past versions of unnamed-chunk-14-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-14-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-14-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Focusing on the measured proteins, the most highly expressed species (according to the mean) are:</p>
 <pre class="r"><code>tibble(marker = colnames(expr), mean.expression = colMeans(expr)) %&gt;%
   filter(!(marker %in% c(&quot;Ta&quot;, &quot;Au&quot;, &quot;P&quot;, &quot;Si&quot;, &quot;C&quot;, &quot;Na&quot;, &quot;Ca&quot;, &quot;Fe&quot;, 
@@ -875,6 +1025,43 @@ patient.info.paper %&gt;% slice_head(n=6)</code></pre>
   facet_wrap(~ SampleID) + 
   guides(colour = guide_legend(override.aes = list(size = 4)))</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-16-1.png" width="1728" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-16-1">
+Past versions of unnamed-chunk-16-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-16-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-16-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="mixing-score" class="section level2">
 <h2>Mixing Score</h2>
@@ -950,6 +1137,43 @@ meta %&gt;%
   labs(x = &quot;Sample&quot;, y = &quot;Mixing Score&quot;) +
   scale_fill_viridis_c()</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-1">
+Past versions of unnamed-chunk-17-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-17-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-17-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Looking at the samples with the top mixing score, namely 15, 18, 22, 24, 31, 25, 21, 26</p>
 <pre class="r"><code>meta %&gt;%
   filter(SampleID %in% c(15, 18, 22, 24, 31, 25, 21, 26)) %&gt;%
@@ -958,6 +1182,43 @@ meta %&gt;%
   facet_wrap(~ SampleID, ncol = 4) + 
   guides(colour = guide_legend(override.aes = list(size = 4)))</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-18-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-1">
+Past versions of unnamed-chunk-18-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-18-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-18-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Looking at the samples with the lowest mixing score, namely 35, 28, 16, 37, 4, 40, 41, 5.</p>
 <pre class="r"><code>meta %&gt;%
   filter(SampleID %in% c(35, 28, 16, 37, 4, 40, 41, 5)) %&gt;%
@@ -966,6 +1227,43 @@ meta %&gt;%
   facet_wrap(~ SampleID, ncol = 4) + 
   guides(colour = guide_legend(override.aes = list(size = 4)))</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-19-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-19-1">
+Past versions of unnamed-chunk-19-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-19-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-19-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>And we can see that those mixing scores resemble exactly what we see in the images.</p>
 </div>
 <div id="sample-40" class="section level2">
@@ -977,6 +1275,43 @@ meta %&gt;%
   geom_point(aes(x = row, y = col, col = Group), size=.4)  + 
   guides(colour = guide_legend(override.aes = list(size = 2)))</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-20-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-1">
+Past versions of unnamed-chunk-20-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-20-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Furthermore, we will look at the tiff.</p>
 <pre class="r"><code>library(tiff)
 id = 40
@@ -1009,6 +1344,43 @@ df %&gt;%
                                  &quot;FALSE&quot; = &quot;blue4&quot;))  + 
   guides(colour = guide_legend(override.aes = list(size = 2)))</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-1">
+Past versions of unnamed-chunk-22-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-22-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-22-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Second, we will visualize the tiff and the labeled center of mass together. And on this scale the result actually looks quite nice.</p>
 <pre class="r"><code>s.40 &lt;- meta %&gt;%
   filter(SampleID == 40)
@@ -1027,6 +1399,43 @@ ggplot() +
     axis.ticks = element_blank())  + 
   guides(colour = guide_legend(override.aes = list(size = 2)))</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-23-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-1">
+Past versions of unnamed-chunk-23-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-23-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-23-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>To qualitatively assess the performance of the segmentation we will furthermore look at a close up of sample 40, more specifically the region from row 0 to row 600 and from col 1448 to col 2048. And we can see that the center of mass (colored point) mostly matches the cell boundaries, but not always!</p>
 <pre class="r"><code>c.max &lt;- dim(binary)[1]
 top_left &lt;- list(row = 0, col = c.max)
@@ -1070,10 +1479,84 @@ ggplot() +
     axis.text.y = element_blank(),
     axis.ticks = element_blank())</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-24-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-1">
+Past versions of unnamed-chunk-24-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-24-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-24-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Here are the corresponding IDs for comparison to the meta data.</p>
 <pre class="r"><code>ggplot(labels.40) +
   geom_label(aes(x = row, y = col, label = value), size = 2.5)</code></pre>
 <p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-25-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-25-1">
+Past versions of unnamed-chunk-25-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-25-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/586e9fdfd7e946db5ba3b47f41f0b2f34cc2317e/docs/figure/eda_mibi_tnbc.Rmd/unnamed-chunk-25-1.png" target="_blank">586e9fd</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="merging-metadata" class="section level1">
@@ -1115,6 +1598,113 @@ sample.meta</code></pre>
 {"columns":[{"label":["SampleID"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Classification"],"name":[2],"type":["chr"],"align":["left"]},{"label":["ratio.tumor.immune"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Count.Endothelial"],"name":[4],"type":["int"],"align":["right"]},{"label":["Count.Immune"],"name":[5],"type":["int"],"align":["right"]},{"label":["Count.Keratin-positive tumor"],"name":[6],"type":["int"],"align":["right"]},{"label":["Count.Mesenchymal-like"],"name":[7],"type":["int"],"align":["right"]},{"label":["Count.Tumor"],"name":[8],"type":["int"],"align":["right"]},{"label":["Count.Unidentified"],"name":[9],"type":["int"],"align":["right"]},{"label":["Count.Total"],"name":[10],"type":["int"],"align":["right"]},{"label":["DONOR_NO"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["YEAR"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["ANON_ID_ONCOSHARE"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["AGE_AT_DX"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["YEARDX"],"name":[15],"type":["chr"],"align":["left"]},{"label":["STAGE"],"name":[16],"type":["chr"],"align":["left"]},{"label":["SITE_02"],"name":[17],"type":["chr"],"align":["left"]},{"label":["LATERAL"],"name":[18],"type":["chr"],"align":["left"]},{"label":["GRADE"],"name":[19],"type":["chr"],"align":["left"]},{"label":["TCODE_P"],"name":[20],"type":["chr"],"align":["left"]},{"label":["NCODE_P"],"name":[21],"type":["chr"],"align":["left"]},{"label":["MCODE_P"],"name":[22],"type":["chr"],"align":["left"]},{"label":["AJCC_P"],"name":[23],"type":["chr"],"align":["left"]},{"label":["ER"],"name":[24],"type":["chr"],"align":["left"]},{"label":["PR"],"name":[25],"type":["chr"],"align":["left"]},{"label":["HER2NEU"],"name":[26],"type":["chr"],"align":["left"]},{"label":["CS_TUM_SIZE"],"name":[27],"type":["chr"],"align":["left"]},{"label":["RESULT_GENE_1"],"name":[28],"type":["chr"],"align":["left"]},{"label":["RESULT_MUTATION_1"],"name":[29],"type":["chr"],"align":["left"]},{"label":["TEST_OFFERING_1"],"name":[30],"type":["chr"],"align":["left"]},{"label":["RESULT_GENE_2"],"name":[31],"type":["chr"],"align":["left"]},{"label":["RESULT_MUTATION_2"],"name":[32],"type":["chr"],"align":["left"]},{"label":["TEST_OFFERING_2"],"name":[33],"type":["chr"],"align":["left"]},{"label":["MYRIAD_TEST_RESULT"],"name":[34],"type":["chr"],"align":["left"]},{"label":["RECURRENCE_LABEL"],"name":[35],"type":["chr"],"align":["left"]},{"label":["TIL_score"],"name":[36],"type":["chr"],"align":["left"]},{"label":["Survival_days_capped*"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["Censored"],"name":[38],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"mixed","3":"42.52","4":"35","5":"2558","6":"2488","7":"43","8":"1","9":"42","10":"5167","11":"30824","12":"2008","13":"9837","14":"77","15":"2008","16":"33","17":"C504","18":"2","19":"1","20":"3","21":"3","22":"0","23":"3C","24":"2","25":"2","26":"2","27":"064","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"NaN","37":"2612","38":"0"},{"1":"2","2":"mixed","3":"80.30","4":"100","5":"956","6":"1834","7":"130","8":"1","9":"7","10":"3028","11":"30805","12":"2007","13":"8254","14":"67","15":"2007","16":"32","17":"C509","18":"2","19":"3","20":"4B","21":"0","22":"0","23":"3B","24":"2","25":"2","26":"2","27":"170","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"1.5","37":"745","38":"0"},{"1":"3","2":"compartimentalized","3":"11.16","4":"112","5":"3179","6":"2249","7":"735","8":"23","9":"17","10":"6315","11":"30812","12":"2007","13":"12997","14":"42","15":"2007","16":"21","17":"C509","18":"2","19":"3","20":"X","21":"X","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"011","28":"0","29":"0","30":"BRACAnalysisLR01","31":"0","32":"0","33":"0","34":"NO MUTATION DETECTED","35":"NEGATIVE","36":"NaN","37":"3130","38":"1"},{"1":"4","2":"compartimentalized","3":"4.81","4":"132","5":"4161","6":"1680","7":"214","8":"429","9":"27","10":"6643","11":"30838","12":"2009","13":"10689","14":"41","15":"2009","16":"22","17":"C505","18":"2","19":"3","20":"2","21":"1A","22":"0","23":"2B","24":"2","25":"2","26":"2","27":"021","28":"0","29":"0","30":"BRACAnalysisLR01","31":"0","32":"0","33":"0","34":"NO MUTATION DETECTED","35":"POSITIVE","36":"3","37":"2523","38":"1"},{"1":"5","2":"compartimentalized","3":"9.08","4":"196","5":"2790","6":"2125","7":"236","8":"15","9":"44","10":"5406","11":"30865","12":"2011","13":"13917","14":"64","15":"2011","16":"11","17":"C508","18":"1","19":"3","20":"1B","21":"0","22":"NA","23":"99","24":"2","25":"2","26":"2","27":"010","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"3","37":"1683","38":"1"},{"1":"6","2":"compartimentalized","3":"15.51","4":"110","5":"2320","6":"3345","7":"130","8":"14","9":"79","10":"5998","11":"30847","12":"2009","13":"10798","14":"53","15":"2009","16":"10","17":"C508","18":"1","19":"3","20":"1C","21":"0I-","22":"0","23":"1","24":"2","25":"2","26":"2","27":"016","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"2.5","37":"2275","38":"1"},{"1":"7","2":"mixed","3":"88.39","4":"4","5":"558","6":"2551","7":"115","8":"81","9":"101","10":"3410","11":"30854","12":"2010","13":"6227","14":"62","15":"2009","16":"32","17":"C509","18":"2","19":"2","20":"X","21":"X","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"998","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"NaN","37":"584","38":"0"},{"1":"8","2":"mixed","3":"60.68","4":"1","5":"561","6":"1479","7":"369","8":"573","9":"153","10":"3136","11":"30846","12":"2009","13":"878","14":"26","15":"2009","16":"21","17":"C503","18":"1","19":"3","20":"NA","21":"NA","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"013","28":"BRCA1","29":"del exons 16-17","30":"7336","31":"0","32":"0","33":"0","34":"POSITIVE FOR A DELETERIOUS MUTATION","35":"POSITIVE","36":"1","37":"946","38":"0"},{"1":"9","2":"compartimentalized","3":"14.14","4":"75","5":"3272","6":"2642","7":"54","8":"51","9":"45","10":"6139","11":"30783","12":"2005","13":"1188","14":"79","15":"2005","16":"21","17":"C504","18":"2","19":"3","20":"2","21":"0","22":"0","23":"2A","24":"2","25":"2","26":"2","27":"032","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NA","36":"3","37":"3767","38":"1"},{"1":"10","2":"compartimentalized","3":"15.27","4":"40","5":"2866","6":"1500","7":"149","8":"3","9":"22","10":"4580","11":"30781","12":"2005","13":"13763","14":"60","15":"2005","16":"22","17":"C502","18":"2","19":"3","20":"2","21":"1A","22":"X","23":"99","24":"2","25":"2","26":"2","27":"024","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"3.5","37":"3822","38":"1"},{"1":"11","2":"mixed","3":"108.42","4":"18","5":"1617","6":"3193","7":"29","8":"251","9":"4","10":"5112","11":"30782","12":"2005","13":"7381","14":"38","15":"2005","16":"22","17":"C509","18":"1","19":"3","20":"2","21":"1A","22":"0","23":"2B","24":"2","25":"2","26":"2","27":"025","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"2","37":"3774","38":"1"},{"1":"12","2":"mixed","3":"48.18","4":"6","5":"3547","6":"3428","7":"12","8":"2","9":"NA","10":"6995","11":"30753","12":"2004","13":"15142","14":"31","15":"2004","16":"22","17":"C504","18":"2","19":"3","20":"2","21":"1","22":"0","23":"2","24":"2","25":"2","26":"2","27":"022","28":"BRCA1","29":"943ins10","30":"BRACAnalysisLR01","31":"NA","32":"NA","33":"NA","34":"POSITIVE FOR A DELETERIOUS MUTATION","35":"NEGATIVE","36":"NaN","37":"4353","38":"1"},{"1":"13","2":"mixed","3":"16.79","4":"38","5":"5163","6":"2244","7":"147","8":"52","9":"21","10":"7665","11":"30770","12":"2004","13":"8993","14":"37","15":"2004","16":"21","17":"C503","18":"2","19":"3","20":"X","21":"X","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"025","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"3.5","37":"1072","38":"0"},{"1":"14","2":"mixed","3":"103.49","4":"11","5":"1050","6":"5137","7":"60","8":"6","9":"6","10":"6270","11":"30766","12":"2004","13":"14269","14":"60","15":"2004","16":"21","17":"C505","18":"2","19":"3","20":"2","21":"0","22":"0","23":"3","24":"2","25":"2","26":"2","27":"021","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"1.5","37":"4145","38":"1"},{"1":"15","2":"cold","3":"419.12","4":"22","5":"114","6":"3004","7":"26","8":"13","9":"136","10":"3315","11":"30740","12":"2003","13":"8225","14":"79","15":"2002","16":"22","17":"C504","18":"1","19":"2","20":"2","21":"1","22":"X","23":"99","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"1","37":"1754","38":"0"},{"1":"16","2":"compartimentalized","3":"3.93","4":"31","5":"6499","6":"1673","7":"9","8":"NA","9":"NA","10":"8212","11":"30744","12":"2003","13":"5854","14":"39","15":"2003","16":"22","17":"C504","18":"2","19":"3","20":"2","21":"2A","22":"X","23":"99","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"NaN","37":"530","38":"0"},{"1":"17","2":"mixed","3":"27.06","4":"40","5":"3254","6":"3693","7":"63","8":"21","9":"NA","10":"7071","11":"30742","12":"2003","13":"11685","14":"45","15":"2003","16":"21","17":"C508","18":"2","19":"3","20":"1C","21":"2A","22":"X","23":"3A","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"NaN","37":"2842","38":"0"},{"1":"18","2":"mixed","3":"326.08","4":"2","5":"500","6":"5021","7":"6","8":"6","9":"4","10":"5539","11":"30734","12":"2002","13":"4328","14":"50","15":"2002","16":"22","17":"C508","18":"2","19":"3","20":"NA","21":"NA","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"NaN","37":"5063","38":"1"},{"1":"19","2":"cold","3":"110.62","4":"27","5":"208","6":"2662","7":"861","8":"586","9":"56","10":"4400","11":"30786","12":"2005","13":"2008","14":"35","15":"2005","16":"10","17":"C504","18":"2","19":"3","20":"1B","21":"0","22":"0","23":"1","24":"2","25":"2","26":"2","27":"009","28":"0","29":"0","30":"BRACAnalysisLR01","31":"0","32":"0","33":"0","34":"NO MUTATION DETECTED","35":"POSITIVE","36":"2","37":"3725","38":"1"},{"1":"20","2":"mixed","3":"76.11","4":"4","5":"1557","6":"3405","7":"13","8":"120","9":"4","10":"5103","11":"30739","12":"2003","13":"12164","14":"52","15":"2002","16":"10","17":"C505","18":"1","19":"3","20":"NA","21":"NA","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"3","37":"4761","38":"1"},{"1":"21","2":"mixed","3":"132.38","4":"15","5":"550","6":"4727","7":"112","8":"10","9":"9","10":"5423","11":"30732","12":"2002","13":"13043","14":"53","15":"2001","16":"31","17":"C503","18":"1","19":"3","20":"NA","21":"NA","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"NaN","37":"635","38":"0"},{"1":"22","2":"cold","3":"321.67","4":"12","5":"173","6":"2632","7":"44","8":"27","9":"184","10":"3072","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA","19":"NA","20":"NA","21":"NA","22":"NA","23":"NA","24":"NA","25":"NA","26":"NA","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NA","36":"NA","37":"NA","38":"NA"},{"1":"23","2":"mixed","3":"40.28","4":"130","5":"719","6":"3492","7":"111","8":"7","9":"31","10":"4490","11":"30762","12":"2004","13":"9930","14":"64","15":"2004","16":"33","17":"C508","18":"2","19":"3","20":"4A","21":"3B","22":"0","23":"3C","24":"2","25":"2","26":"2","27":"150","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"NaN","37":"91","38":"0"},{"1":"24","2":"cold","3":"217.92","4":"1","5":"88","6":"4501","7":"16","8":"NA","9":"7","10":"4613","11":"30771","12":"2004","13":"6832","14":"91","15":"2004","16":"32","17":"C508","18":"2","19":"3","20":"X","21":"X","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"057","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"1.5","37":"194","38":"0"},{"1":"25","2":"cold","3":"141.41","4":"12","5":"222","6":"1819","7":"594","8":"6","9":"5","10":"2658","11":"30738","12":"2002","13":"5774","14":"52","15":"2002","16":"10","17":"C508","18":"2","19":"2","20":"1C","21":"0","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"1","37":"4785","38":"1"},{"1":"26","2":"cold","3":"119.59","4":"10","5":"91","6":"4184","7":"168","8":"625","9":"41","10":"5119","11":"30754","12":"2004","13":"7496","14":"48","15":"2003","16":"22","17":"C505","18":"1","19":"3","20":"2","21":"1","22":"X","23":"2B","24":"2","25":"2","26":"2","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"1.5","37":"4430","38":"1"},{"1":"27","2":"mixed","3":"60.30","4":"46","5":"826","6":"3093","7":"234","8":"117","9":"16","10":"4332","11":"30765","12":"2004","13":"9051","14":"67","15":"2004","16":"10","17":"C509","18":"1","19":"3","20":"1C","21":"0","22":"0","23":"1","24":"2","25":"2","26":"2","27":"017","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"1.5","37":"3658","38":"0"},{"1":"28","2":"compartimentalized","3":"1.77","4":"62","5":"4503","6":"1270","7":"214","8":"1","9":"11","10":"6061","11":"30785","12":"2005","13":"7265","14":"68","15":"2005","16":"21","17":"C509","18":"1","19":"9","20":"IS","21":"1A","22":"0","23":"2A","24":"2","25":"2","26":"2","27":"999","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"NaN","37":"3767","38":"1"},{"1":"29","2":"mixed","3":"28.11","4":"16","5":"1760","6":"2724","7":"275","8":"7","9":"37","10":"4819","11":"30789","12":"2006","13":"11971","14":"36","15":"2005","16":"31","17":"C504","18":"2","19":"3","20":"X","21":"X","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"030","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"NaN","37":"1319","38":"0"},{"1":"31","2":"mixed","3":"177.51","4":"64","5":"316","6":"2895","7":"126","8":"14","9":"NA","10":"3415","11":"30860","12":"2010","13":"10305","14":"45","15":"2010","16":"22","17":"C503","18":"2","19":"3","20":"2","21":"0","22":"NA","23":"1","24":"2","25":"2","26":"2","27":"061","28":"0","29":"0","30":"BRACAnalysisLR01","31":"0","32":"0","33":"0","34":"NO MUTATION DETECTED","35":"POSITIVE","36":"1","37":"1009","38":"0"},{"1":"32","2":"compartimentalized","3":"15.10","4":"37","5":"3551","6":"1555","7":"5","8":"2","9":"8","10":"5158","11":"30868","12":"2011","13":"12238","14":"43","15":"2011","16":"21","17":"C504","18":"1","19":"3","20":"1C","21":"1A","22":"NA","23":"2A","24":"2","25":"2","26":"2","27":"013","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"4","37":"1568","38":"1"},{"1":"33","2":"mixed","3":"63.55","4":"7","5":"315","6":"1232","7":"456","8":"7","9":"29","10":"2046","11":"30866","12":"2011","13":"4317","14":"43","15":"2011","16":"22","17":"C502","18":"1","19":"2","20":"NA","21":"NA","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"030","28":"0","29":"0","30":"BRACAnalysisLR01","31":"0","32":"0","33":"0","34":"NO MUTATION DETECTED","35":"POSITIVE","36":"1.5","37":"1738","38":"1"},{"1":"34","2":"compartimentalized","3":"12.43","4":"22","5":"1309","6":"1187","7":"53","8":"NA","9":"285","10":"2856","11":"30821","12":"2008","13":"1302","14":"75","15":"2008","16":"21","17":"C504","18":"2","19":"3","20":"2","21":"0I-","22":"0","23":"2A","24":"2","25":"2","26":"2","27":"037","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"2.5","37":"2832","38":"1"},{"1":"35","2":"compartimentalized","3":"0.81","4":"57","5":"7031","6":"547","7":"61","8":"5","9":"15","10":"7716","11":"30827","12":"2008","13":"5137","14":"63","15":"2008","16":"21","17":"C505","18":"2","19":"3","20":"2","21":"0","22":"0","23":"2A","24":"2","25":"2","26":"2","27":"022","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"2.5","37":"2759","38":"1"},{"1":"36","2":"compartimentalized","3":"9.62","4":"68","5":"1423","6":"413","7":"955","8":"21","9":"59","10":"2939","11":"30818","12":"2008","13":"6340","14":"54","15":"2007","16":"40","17":"C501","18":"2","19":"4","20":"1C","21":"1A","22":"X","23":"NA","24":"2","25":"2","26":"2","27":"075","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"2","37":"3063","38":"1"},{"1":"37","2":"compartimentalized","3":"4.52","4":"138","5":"4673","6":"1127","7":"200","8":"1","9":"141","10":"6280","11":"30823","12":"2008","13":"7662","14":"75","15":"2008","16":"21","17":"C505","18":"1","19":"2","20":"1C","21":"1A","22":"X","23":"2A","24":"2","25":"2","26":"2","27":"012","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"POSITIVE","36":"NaN","37":"2853","38":"1"},{"1":"38","2":"mixed","3":"83.89","4":"20","5":"1030","6":"3198","7":"74","8":"2","9":"6","10":"4330","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA","19":"NA","20":"NA","21":"NA","22":"NA","23":"NA","24":"NA","25":"NA","26":"NA","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NA","36":"NA","37":"NA","38":"NA"},{"1":"39","2":"mixed","3":"21.56","4":"21","5":"2403","6":"1541","7":"5","8":"52","9":"8","10":"4030","11":"30851","12":"2010","13":"9256","14":"52","15":"2010","16":"22","17":"C508","18":"1","19":"3","20":"2","21":"1MI","22":"0","23":"2B","24":"2","25":"2","26":"2","27":"027","28":"BRCA2","29":"c.5073dupA (p.Trp1692Metfs*3)","30":"BRAC_myRiskHC","31":"NULL","32":"NULL","33":"NULL","34":"POSITIVE FOR A DELETERIOUS MUTATION","35":"NEGATIVE","36":"2.5","37":"2096","38":"1"},{"1":"40","2":"compartimentalized","3":"6.05","4":"304","5":"2486","6":"950","7":"534","8":"NA","9":"11","10":"4285","11":"30853","12":"2010","13":"8930","14":"39","15":"2004","16":"40","17":"C505","18":"2","19":"4","20":"X","21":"X","22":"NA","23":"NA","24":"2","25":"2","26":"2","27":"050","28":"NA","29":"NA","30":"BRACAnalysisLR01","31":"NA","32":"NA","33":"NA","34":"NO MUTATION DETECTED","35":"POSITIVE","36":"NaN","37":"3573","38":"0"},{"1":"41","2":"compartimentalized","3":"7.91","4":"40","5":"2844","6":"1047","7":"532","8":"15","9":"54","10":"4532","11":"30799","12":"2006","13":"8604","14":"59","15":"2006","16":"21","17":"C508","18":"1","19":"3","20":"1B","21":"1","22":"0","23":"2A","24":"2","25":"2","26":"2","27":"006","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NEGATIVE","36":"3.5","37":"3355","38":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>Helper function to calculate distances to the neighbors.</p>
+<pre class="r"><code># helper function for nearest neighbors
+dist_k_nn &lt;- function(sample, k) {
+  nn &lt;- RANN::nn2(sample, eps=0.0, k = k)
+  map_dbl(seq_len(nrow(sample)), function(n) {
+    mean(nn$nn.dists[n, ])
+  })
+}
+
+# helper function for getting direct neighbors
+get_neighbors &lt;- function(ddobj, id) {
+  dplyr::union(
+    ddobj$delsgs$ind1[which(ddobj$delsgs$ind2 == id)],
+    ddobj$delsgs$ind2[which(ddobj$delsgs$ind1 == id)]
+  )
+}</code></pre>
+<p>First we will look at the distribution of the mean distances to the direct neighbors (as determined by the delauney triangulation) to get a feeling for which cutoff value should be used for the generation of the juxtaview. The corresponding distribution is shown below. (in blue the cutoff - 40 pixels (15.6 microns) - which was used in the end).</p>
+<pre class="r"><code>coord.smp &lt;- map(unique(coord$id), function(smp){
+  coord %&gt;%
+    filter(id == smp) %&gt;%
+    select(x.center, y.center)
+})
+
+# mean distance to the direct neighbors for each cell
+mean.dists.direct.neighbors &lt;- map(coord.smp, function(smp) {
+  delaunay &lt;- deldir::deldir(as.data.frame(smp))
+  dists &lt;- distances::distances(as.data.frame(smp))
+  map_dbl(seq_len(nrow(smp)), function(id) {
+    nn &lt;- get_neighbors(delaunay, id)
+    mean(dists[nn, id])
+  })
+}) 
+
+stat.per.sample &lt;- map2_dfr(mean.dists.direct.neighbors,
+                            seq_len(length(mean.dists.direct.neighbors)),
+                            function(list, smp) {
+            data.frame(sample = smp, value = list)
+          })
+
+# histogram
+ggplot(data.frame(dist = mean.dists.direct.neighbors %&gt;% unlist)) +
+  geom_histogram(aes(dist), bins = 100) +
+  lims(x = c(0,100)) +
+  geom_vline(xintercept = 40, col = &quot;blue&quot;)</code></pre>
+<pre><code>Warning: Removed 1296 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>Warning: Removed 2 rows containing missing values (geom_bar).</code></pre>
+<p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Summary statistics:</p>
+<pre class="r"><code>data.frame(value = mean.dists.direct.neighbors %&gt;% unlist) %&gt;%
+  summarise(mean = mean(value), 
+            median = median(value), 
+            q25 = quantile(value, 0.25),
+            q75 = quantile(value, 0.75),
+            min = min(value),
+            max = max(value))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["mean"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["q25"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["q75"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"28.16758","2":"24.98152","3":"20.47891","4":"31.8669","5":"5.799564","6":"658.6949","_row":"25%"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>However, a more detailed look across the sample (boxplot) shows that the cutoff may be too low for certain samples. It may be good to increase this threshold to 50.</p>
+<pre class="r"><code># boxplot
+stat.per.sample %&gt;%
+  mutate(sample = factor(sample)) %&gt;%
+  ggplot() +
+  geom_boxplot(aes(x=sample, y=value)) +
+  geom_hline(yintercept = 40, col=&quot;blue&quot;) +
+  lims(y = c(0, 200))</code></pre>
+<pre><code>Warning: Removed 346 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-30-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Furthermore we will look at the distribution of the mean distances to the 10 -, 20 -, 40 -, and 80 closest cells to get a feeling for which cutoff will be used to generate the paraview (in blue the cutoff - 120 pixels (46.8 microns) - which was used in the end).</p>
+<pre class="r"><code>neighbor.dists &lt;- map_dfr(coord.smp, function(smp) {
+  c(10, 20, 40, 80) %&gt;%
+    purrr::set_names() %&gt;%
+    map_dfc(function(k) {
+  dist_k_nn(smp, k)
+    }) %&gt;%
+  purrr::set_names(paste0(&quot;dist_to_&quot;, c(&quot;10&quot;, &quot;20&quot;, &quot;40&quot;, &quot;80&quot;)))
+})
+
+neighbor.dists %&gt;%
+  pivot_longer(cols = everything()) %&gt;%
+  mutate(name = factor(name, 
+                       levels = paste0(&quot;dist_to_&quot;, c(&quot;10&quot;, &quot;20&quot;, &quot;40&quot;, &quot;80&quot;)))) %&gt;%
+  ggplot() +
+  geom_histogram(aes(value), bins = 100) +
+  facet_wrap(~ name) +
+  lims(x = c(0, 200)) +
+  geom_vline(xintercept = 120, col = &quot;blue&quot;)</code></pre>
+<pre><code>Warning: Removed 370 rows containing non-finite values (stat_bin).</code></pre>
+<pre><code>Warning: Removed 8 rows containing missing values (geom_bar).</code></pre>
+<p><img src="figure/eda_mibi_tnbc.Rmd/unnamed-chunk-31-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Summary statistics:</p>
+<pre class="r"><code>neighbor.dists %&gt;%
+  pivot_longer(cols = everything()) %&gt;%
+  group_by(name) %&gt;%
+  summarise(mean = mean(value), 
+            median = median(value), 
+            q25 = quantile(value, 0.25),
+            q75 = quantile(value, 0.75),
+            min = min(value),
+            max = max(value))</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["q25"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["q75"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"dist_to_10","2":"27.42074","3":"25.74972","4":"21.99514","5":"31.11150","6":"10.74915","7":"197.3021"},{"1":"dist_to_20","2":"40.55149","3":"38.20127","4":"32.84291","5":"45.91572","6":"18.46207","7":"249.7238"},{"1":"dist_to_40","2":"59.04309","3":"55.76289","4":"48.26657","5":"66.81526","6":"32.82939","7":"389.7812"},{"1":"dist_to_80","2":"85.45077","3":"80.81068","4":"70.21629","5":"96.42643","6":"50.71439","7":"533.5656"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
 <div id="refs">
 
 </div>
@@ -1151,24 +1741,24 @@ other attached packages:
  [9] ggplot2_3.3.5   tidyverse_1.3.1 mistyR_1.3.3    workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7        lubridate_1.8.0   assertthat_0.2.1  rprojroot_2.0.2  
- [5] digest_0.6.28     utf8_1.2.2        R6_2.5.1          cellranger_1.1.0 
- [9] backports_1.3.0   reprex_2.0.1      evaluate_0.14     httr_1.4.2       
-[13] highr_0.9         pillar_1.6.3      rlang_0.4.12      readxl_1.3.1     
-[17] rstudioapi_0.13   whisker_0.4       jquerylib_0.1.4   rmarkdown_2.11   
-[21] labeling_0.4.2    bit_4.0.4         munsell_0.5.0     broom_0.7.9      
-[25] compiler_4.1.2    httpuv_1.6.3      modelr_0.1.8      xfun_0.26        
-[29] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.1  viridisLite_0.4.0
-[33] fansi_0.5.0       crayon_1.4.1      tzdb_0.1.2        dbplyr_2.1.1     
-[37] withr_2.4.2       later_1.3.0       grid_4.1.2        jsonlite_1.7.2   
-[41] gtable_0.3.0      lifecycle_1.0.1   DBI_1.1.1         git2r_0.28.0     
-[45] magrittr_2.0.1    scales_1.1.1      vroom_1.5.5       cli_3.0.1        
-[49] stringi_1.7.5     farver_2.1.0      fs_1.5.0          promises_1.2.0.1 
-[53] xml2_1.3.2        bslib_0.3.1       ellipsis_0.3.2    generics_0.1.0   
-[57] vctrs_0.3.8       tools_4.1.2       bit64_4.0.5       glue_1.4.2       
-[61] hms_1.1.1         parallel_4.1.2    fastmap_1.1.0     yaml_2.2.1       
-[65] colorspace_2.0-2  rvest_1.0.1       knitr_1.36        haven_2.4.3      
-[69] sass_0.4.0       </code></pre>
+ [1] httr_1.4.2        sass_0.4.0        bit64_4.0.5       vroom_1.5.5      
+ [5] jsonlite_1.7.2    viridisLite_0.4.0 modelr_0.1.8      bslib_0.3.1      
+ [9] assertthat_0.2.1  highr_0.9         cellranger_1.1.0  yaml_2.2.1       
+[13] pillar_1.6.3      backports_1.3.0   glue_1.4.2        digest_0.6.28    
+[17] promises_1.2.0.1  rvest_1.0.1       colorspace_2.0-2  htmltools_0.5.2  
+[21] httpuv_1.6.3      pkgconfig_2.0.3   broom_0.7.9       haven_2.4.3      
+[25] scales_1.1.1      RANN_2.6.1        whisker_0.4       later_1.3.0      
+[29] tzdb_0.1.2        git2r_0.28.0      generics_0.1.0    farver_2.1.0     
+[33] ellipsis_0.3.2    withr_2.4.2       cli_3.0.1         magrittr_2.0.1   
+[37] crayon_1.4.1      readxl_1.3.1      deldir_1.0-5      evaluate_0.14    
+[41] fs_1.5.0          fansi_0.5.0       xml2_1.3.2        distances_0.1.8  
+[45] tools_4.1.2       hms_1.1.1         lifecycle_1.0.1   munsell_0.5.0    
+[49] reprex_2.0.1      compiler_4.1.2    jquerylib_0.1.4   rlang_0.4.12     
+[53] grid_4.1.2        rstudioapi_0.13   labeling_0.4.2    rmarkdown_2.11   
+[57] gtable_0.3.0      DBI_1.1.1         R6_2.5.1          lubridate_1.8.0  
+[61] knitr_1.36        fastmap_1.1.0     bit_4.0.4         utf8_1.2.2       
+[65] rprojroot_2.0.2   stringi_1.7.5     parallel_4.1.2    Rcpp_1.0.7       
+[69] vctrs_0.3.8       dbplyr_2.1.1      tidyselect_1.1.1  xfun_0.26        </code></pre>
 </div>
 </div>
 
