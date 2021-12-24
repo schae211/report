@@ -16,7 +16,7 @@ Setup.
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
+knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
@@ -30,7 +30,7 @@ The columns Group and ImmuneGroup in the cell metadata are translated from
 numbers to their actual meaning.
 
 ```{r}
-input <- read_csv("data/cellData.csv", show_col_types=FALSE)
+input <- read_csv("data/mibi_tnbc/cellData.csv", show_col_types=FALSE)
 
 # See description in Readme
 group.trans <- c("1" = "Unidentified", "2" = "Immune", "3" = "Endothelial", 
@@ -56,8 +56,8 @@ Doing it in R takes quite some time but offers more control than the
 [center of mass function in scipy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.center_of_mass.html).
 
 ```{r}
-if ("coord.RDS" %in% list.files("data")) {
-  coord <- readRDS("data/coord.RDS")
+if ("coord.RDS" %in% list.files("data/mibi_tnbc")) {
+  coord <- readRDS("data/mibi_tnbc/coord.RDS")
 } else {
   library(tiff)
   lbs <- c(1:29, 31:41)
@@ -83,7 +83,7 @@ if ("coord.RDS" %in% list.files("data")) {
       )
     })
   })
-  saveRDS(coord, file = "data/coord.RDS")
+  saveRDS(coord, file = "data/mibi_tnbc/coord.RDS")
 }
 ```
 
@@ -165,71 +165,17 @@ meta %>%
 Patient data provided with the raw data.
 
 ```{r}
-patient.info <- read_csv("data/patient_class.csv",
+patient.info <- read_csv("data/mibi_tnbc/patient_class.csv",
                          col_names = c("SampleID", "Classification"),
                          show_col_types=FALSE)
 patient.info %>% slice_head(n=6)
 ```
 
 ```{r}
-patient.info.paper <- readxl::read_xlsx("data/mmc2.xlsx", 
+patient.info.paper <- readxl::read_xlsx("data/mibi_tnbc/mmc2.xlsx", 
                                         skip = 1, col_names = TRUE)
 
 patient.info.paper %>% slice_head(n=6)
-```
-
-## Cell Annotation
-
-How were the cells actually annotated? In the paper they used hierachical
-clustering (FlowSOM). Here we will only look at the first two principal 
-components.
-
-When looking at the first two principal components, we see quite a clear
-distinction between tumor and immune cells.
-(Random subsetting used to reduce overplotting).
-
-```{r fig.height=4, fig.width=12}
-pca <- stats::prcomp(expr)
-subs <- sample(nrow(pca$x), .05*nrow(pca$x))
-p1 <- ggplot() +
-  geom_point(aes(x=seq_len(length(pca$sdev)), y = pca$sdev^2))
-p2 <- ggplot() +
-  geom_point(aes(x=pca$x[subs,1], pca$x[subs,2], 
-                 color = meta$Group[subs]), size = 0.1) +
-  guides(colour = guide_legend(override.aes = list(size = 2)))
-gridExtra::grid.arrange(p1, p2, ncol=2)
-```
-
-Also for the sake of it the will cluster the cells using the louvain
-algorithm (graph-based). See the heatmap of the marker distribution accross
-the clusters below.
-
-```{r fig.width=6, fig.height=6}
-if ("graph.clusters.RDS" %in% list.files("data")) {
-  graph.clusters <- readRDS("data/graph.clusters.RDS")
-} else {
-  # shared nearest neighbor graph
-  snn <- bluster::makeSNNGraph(pca$x[,1:20], k = 20)
-  # louvain clustering
-  graph.clusters <- igraph::cluster_louvain(snn)$membership
-  saveRDS(graph.clusters, "data/graph.clusters.RDS")
-}
-
-# Making Psuedobulks per cluster
-expr.matrix <- as.matrix(
-  expr %>%
-    select(- c("Background", "P", "Si", "Au", "Na", "Ca", "Ta", "dsDNA",
-               "Fe"))
-)
-pseudobulk <- as.matrix(
-  map_dfr(unique(graph.clusters), function(i) {
-    colSums(expr.matrix[graph.clusters == i,])
-  })
-)
-rownames(pseudobulk) <- unique(graph.clusters)
-
-# Plotting Heatmap
-pheatmap::pheatmap(t(pseudobulk))
 ```
 
 # Count Data
@@ -323,8 +269,8 @@ matrix to determine direct neighbors of each cell)
 # Setting the distance threshold for what is considered a neighbor in the DT.
 neighbor.thr <- 40
 
-if ("tumor.immune.contacts.RDS" %in% list.files("data")) {
-  contacts.smp <- readRDS("data/tumor.immune.contacts.RDS")
+if ("tumor.immune.contacts.RDS" %in% list.files("data/mibi_tnbc")) {
+  contacts.smp <- readRDS("data/mibi_tnbc/tumor.immune.contacts.RDS")
 } else {
   
   coord.type.smp <- unique(meta$SampleID) %>%
@@ -367,6 +313,7 @@ if ("tumor.immune.contacts.RDS" %in% list.files("data")) {
       unlist %>%
       table
   })
+  saveRDS(contacts.smp, "data/mibi_tnbc/tumor.immune.contacts.RDS")
 }
 
 meta %>%
@@ -435,7 +382,7 @@ Furthermore, we will look at the tiff.
 ```{r fig.height=6, fig.width=8}
 library(tiff)
 id = 40
-tiff <- readTIFF(paste0("data/raw_tiffs/p", 
+tiff <- readTIFF(paste0("data/mibi_tnbc/raw_tiffs/p", 
                         id, "_labeledcellData.tiff"), as.is = TRUE)
 ```
 
@@ -584,7 +531,7 @@ sample.meta <- patient.info %>%
   mutate(SampleID = as.character(SampleID)) %>%
   left_join(patient.info.paper, by = c("SampleID" = "InternalId"))
 
-sample.meta %>% slice_head(n=6)
+sample.meta
 ```
 
 
