@@ -7,7 +7,7 @@ cmd.arg2 = as.numeric(commandArgs(trailingOnly = TRUE))[2]
 #####  Packages ##### 
 library(mistyR)
 library(future)
-plan("multisession")
+plan("multisession", workers=12)
 library(tidyverse)
 
 ##### Paths ##### 
