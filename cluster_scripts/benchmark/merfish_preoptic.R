@@ -30,7 +30,7 @@ ifelse(!dir.exists(output.path), dir.create(output.path), FALSE)
 ##### Packages ##### 
 library(mistyR)
 library(future)
-plan("multisession")
+plan("multisession", workers=20)
 library(tidyverse)
 
 ##### Input ##### 
@@ -65,15 +65,18 @@ if (cmd.arg2 == 1) {
               model.function = bagged_mars_model,
               seed = 42,
               cv.folds = 10,
-              n.bags = 20)
+              n.bags = 40,
+              fast.k = 4)
   })
 } else if (cmd.arg2 == 3) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
-              results.folder = paste0(output.path, "MARS/",smp.name),
+              results.folder = paste0(output.path, "MARS60/",smp.name),
               model.function = mars_model,
               seed = 42,
-              cv.folds = 10)
+              cv.folds = 10,
+              fast.k = 5,
+              approx = 0.6)
   })
 } else if (cmd.arg2 == 4) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
