@@ -63,6 +63,7 @@ if (cmd.arg2 == 1) {
               model.function = random_forest_model,
               seed = 42,
               cv.folds = 10)
+    gc()
   })
 } else if (cmd.arg2 == 2) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -72,6 +73,7 @@ if (cmd.arg2 == 1) {
               seed = 42,
               cv.folds = 10,
               n.bags = 20)
+    gc()
   })
 } else if (cmd.arg2 == 3) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -80,6 +82,7 @@ if (cmd.arg2 == 1) {
               model.function = mars_model,
               seed = 42,
               cv.folds = 10)
+    gc()
   })
 } else if (cmd.arg2 == 4) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -88,6 +91,7 @@ if (cmd.arg2 == 1) {
               model.function = linear_model,
               seed = 42,
               cv.folds = 10)
+    gc()
   })
 } else if (cmd.arg2 == 5) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -97,6 +101,7 @@ if (cmd.arg2 == 1) {
               seed = 42,
               cv.folds = 10,
               booster = "gbtree")
+    gc()
   })
 } else if (cmd.arg2 == 6) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -106,6 +111,7 @@ if (cmd.arg2 == 1) {
               seed = 42,
               cv.folds = 10,
               booster = "gblinear")
+    gc()
   })
 } else if (cmd.arg2 == 7) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -113,6 +119,7 @@ if (cmd.arg2 == 1) {
               results.folder = paste0(output.path, "MARS80/",smp.name),
               model.function = mars_model,
               approx = 0.6)
+    gc()
   })
 } else if (cmd.arg2 == 8) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -120,6 +127,7 @@ if (cmd.arg2 == 1) {
               results.folder = paste0(output.path, "MARS60/",smp.name),
               model.function = mars_model,
               approx = 0.6)
+    gc()
   })
 } else if (cmd.arg2 == 9) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -128,6 +136,7 @@ if (cmd.arg2 == 1) {
               model.function = svm_model,
               seed = 42,
               cv.folds = 10)
+    gc()
   })
 } else if (cmd.arg2 == 10) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
@@ -136,5 +145,6 @@ if (cmd.arg2 == 1) {
               model.function = mlp_model,
               seed = 42,
               cv.folds = 10)
+    gc()
   })
 }
