@@ -30,7 +30,7 @@ suppressPackageStartupMessages(library(slider))
 
 Loading the data.
 
-```{r echo=FALSE}
+```{r}
 all.files <-  list.files("output", full.names = TRUE)
 res.files <- all.files[str_ends(all.files, "results.RDS")]
 view.files <- all.files[str_ends(all.files, "views.RDS")]
@@ -153,6 +153,8 @@ summary(
 
 -  MERFISH data from the murine hypothalamic preoptic region from [Molecular, spatial, and functional single-cell profiling of the hypothalamic preoptic region](https://dx.doi.org/10.1126/science.aau5324) by Moffitt, R. et al. (Science 362, 6416 (2018))
 
+-   [Exploratory Data Analysis](https://schae211.github.io/report/eda_merfish_preoptic.html)
+
 -   Data Availability: [Spatial DB](http://www.spatialomics.org/SpatialDB/merfish_30385464_browse.php)
 
 -   Features: Spatial Transcriptomics, Single Cell Resolution, Segmentation
@@ -194,6 +196,8 @@ summary(
 ## `merfish_liver`
 
 -   MERFISH data from the murine fetal liver from [Spatial transcriptome profiling by MERFISH reveals fetal liver hematopoietic stem cell niche architecture](https://dx.doi.org/10.1038/s41421-021-00266-1) by Yanfang, L. et al. (Cell Discovery 7, 47 (2021))
+
+-   [Exploratory Data Analysis](https://schae211.github.io/report/eda_merfish_liver.html)
 
 -   Data Availability: [SIYUAN WANG LAB](https://campuspress.yale.edu/wanglab/HSCMERFISH/)
 
@@ -1196,7 +1200,8 @@ filter_runs(all.results, "4iANCA", "ratio_76") %>%
 
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
-  get_importance() %T>%
+  get_importance() %>%
+  filter(view != "para.10") %T>%
   cosine_heatmap() %T>%
   correlation_heatmap() %>%
   jaccard_heatmap(cutoff = 0.5)
@@ -1206,6 +1211,7 @@ filter_runs(all.results, "4iANCA", "ratio_76") %>%
 ```{r fig.width=12, fig.height=12, warning=FALSE}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
   get_importance() %>%
+  filter(view != "para.10") %>%
   correlation_scatter()
 ```
 </details>
@@ -1217,6 +1223,7 @@ Cosine Similarity compared to random forest
 ```{r}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
   get_importance() %>%
+  filter(view != "para.10") %>%
   wrap_function(cosine_similarity) %>%
   plot_cosine_similarity()
 ```
@@ -1226,6 +1233,7 @@ Jaccard Index compared to random forest
 ```{r}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
   get_importance() %>%
+  filter(view != "para.10") %>%
   wrap_function(jaccard_index, cutoff=0) %>%
   plot_jaccard()
 ```
@@ -1395,11 +1403,12 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
 filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  filter(str_count(algorithm, "_") == 2) %>%
   select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
-           c("lambda", "alpha"), "_") %>%
+           c("nrounds", "lambda", "alpha"), "_") %>%
   select(name, everything())
 ```
 
@@ -1409,10 +1418,60 @@ filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>%
 filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  filter(str_count(algorithm, "_") == 2) %>%
   plot_performance(str.measure="multi.R2")
 ```
 
-No penalty leads to the best results.
+No penalty leads to the best results and more boosting rounds 
+increases the performance here.
+
+### `merfish_bc`
+
+```{r eval=FALSE}
+# TODO
+filter_runs(all.results, "merfish_bc", "LBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  filter(str_count(algorithm, "_") == 2) %>%
+  select(algorithm) %>% 
+  distinct() %>%
+  mutate(name = algorithm) %>%
+  separate(algorithm, 
+           c("nrounds", "lambda", "alpha"), "_") %>%
+  select(name, everything())
+```
+
+```{r eval=FALSE}
+# TODO
+filter_runs(all.results, "merfish_bc", "LBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  filter(str_count(algorithm, "_") == 2) %>%
+  plot_performance(str.measure="multi.R2")
+```
+
+### `synthetic`
+
+```{r}
+filter_runs(all.results, "synthetic", "LBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  filter(str_count(algorithm, "_") == 2) %>%
+  select(algorithm) %>% 
+  distinct() %>%
+  mutate(name = algorithm) %>%
+  separate(algorithm, 
+           c("nrounds", "lambda", "alpha"), "_") %>%
+  select(name, everything())
+```
+
+```{r}
+filter_runs(all.results, "synthetic", "LBOOST_hyper") %>% 
+  get_performance() %>%
+  mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
+  filter(str_count(algorithm, "_") == 2) %>%
+  plot_performance(str.measure="multi.R2")
+```
 
 ## Tree Boosting
 
