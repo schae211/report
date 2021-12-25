@@ -22,7 +22,7 @@ if (cmd.arg1 == 1) {
 } else if (cmd.arg1 == 3) {
   input.path <- "/net/data.isilon/ag-saez/bq_pschaefer/MISTY_VIEWS/merfish_bc/"
   input <- "hvg_views.RDS"
-  output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/merfish_bc/LBOOST_hyper"
+  output.path <- "/net/data.isilon/ag-saez/bq_pschaefer/OUTPUT/merfish_bc/LBOOST_hyper/"
 }
 ifelse(!dir.exists(output.path), dir.create(output.path), FALSE)
 
