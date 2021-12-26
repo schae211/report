@@ -52,9 +52,6 @@ raw_data %>% slice_head(n=6)
 
 Next we add the coordinates of the cells.
 
-Doing it in R takes quite some time but offers more control than the 
-[center of mass function in scipy](https://docs.scipy.org/doc/scipy/reference/generated/scipy.ndimage.center_of_mass.html).
-
 ```{r}
 if ("coord.RDS" %in% list.files("data/mibi_tnbc")) {
   coord <- readRDS("data/mibi_tnbc/coord.RDS")
@@ -85,22 +82,19 @@ if ("coord.RDS" %in% list.files("data/mibi_tnbc")) {
   })
   saveRDS(coord, file = "data/mibi_tnbc/coord.RDS")
 }
-```
 
-Then, join the coordinates with the meta data.
-
-```{r}
+# join coordinates with the meta data.
 data <- raw_data %>%
   inner_join(coord, by = c("SampleID" = "id", 
                                        "cellLabelInImage" = "i")) %>%
   rename(row = x.center, col = y.center)
 ```
 
-However, we have some coordiantes for cell IDs which are not in the meta data.
+However, we have some coordinates for cell IDs which are not in the meta data.
 For sample 40 there are for example 572 of those cell IDs which can be 
 found in the tiff but not in the meta data. Maybe those spots turned out not 
 be cells in the end (segmentation errors?). Or these are the cells with low 
-expression across all markers (sum < 0.1).
+expression across all markers ("sum(expression) < 0.1").
 
 ```{r}
 dplyr::setdiff(
