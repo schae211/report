@@ -245,3 +245,70 @@ number = {1},
 volume = {22}, 
 keywords = {}
 }
+
+@article{10.1371/journal.pone.0201904, 
+year = {2018}, 
+title = {{On the overestimation of random forest’s out-of-bag error}}, 
+author = {Janitza, Silke and Hornung, Roman}, 
+journal = {PLoS ONE}, 
+doi = {10.1371/journal.pone.0201904}, 
+pmid = {30080866}, 
+pmcid = {PMC6078316}, 
+abstract = {{The ensemble method random forests has become a popular classification tool in bioinformatics and related fields. The out-of-bag error is an error estimation technique often used to evaluate the accuracy of a random forest and to select appropriate values for tuning parameters, such as the number of candidate predictors that are randomly drawn for a split, referred to as mtry. However, for binary classification problems with metric predictors it has been shown that the out-of-bag error can overestimate the true prediction error depending on the choices of random forests parameters. Based on simulated and real data this paper aims to identify settings for which this overestimation is likely. It is, moreover, questionable whether the out-of-bag error can be used in classification tasks for selecting tuning parameters like mtry, because the overestimation is seen to depend on the parameter mtry. The simulation-based and real-data based studies with metric predictor variables performed in this paper show that the overestimation is largest in balanced settings and in settings with few observations, a large number of predictor variables, small correlations between predictors and weak effects. There was hardly any impact of the overestimation on tuning parameter selection. However, although the prediction performance of random forests was not substantially affected when using the out-of-bag error for tuning parameter selection in the present studies, one cannot be sure that this applies to all future data. For settings with metric predictor variables it is therefore strongly recommended to use stratified subsampling with sampling fractions that are proportional to the class sizes for both tuning parameter selection and error estimation in random forests. This yielded less biased estimates of the true prediction error. In unbalanced settings, in which there is a strong interest in predicting observations from the smaller classes well, sampling the same number of observations from each class is a promising alternative.}}, 
+pages = {e0201904}, 
+number = {8}, 
+volume = {13}, 
+keywords = {}
+}
+
+@electronic{noauthororeditor2013applied,
+  abstract = {This text is intended for a broad audience as both an introduction to predictive models as well as a guide to applying them. Non-mathematical readers will appreciate the intuitive explanations of the techniques while an emphasis on problem-solving with real data across a wide variety of applications will aid practitioners who wish to extend their expertise. Readers should have knowledge of basic statistical ideas, such as correlation and linear regression analysis. While the text is biased against complex equations, a mathematical background is needed for advanced topics. Dr. Kuhn is a Director of Non-Clinical Statistics at Pfizer Global R&D in Groton Connecticut. He has been applying predictive models in the pharmaceutical and diagnostic industries for over 15 years and is the author of a number of R packages. Dr. Johnson has more than a decade of statistical consulting and predictive modeling experience in pharmaceutical research and development. He is a co-founder of Arbor Analytics, a firm specializing in predictive modeling and is a former Director of Statistics at Pfizer Global R&D. His scholarly work centers on the application and development of statistical methodology and learning algorithms. Applied Predictive Modeling covers the overall predictive modeling process, beginning with the crucial steps of data preprocessing, data splitting and foundations of model tuning. The text then provides intuitive explanations of numerous common and modern regression and classification techniques, always with an emphasis on illustrating and solving real data problems. Addressing practical concerns extends beyond model fitting to topics such as handling class imbalance, selecting predictors, and pinpointing causes of poor model performance-all of which are problems that occur frequently in practice. The text illustrates all parts of the modeling process through many hands-on, real-life examples. And every chapter contains extensive R code for each step of the process. The data sets and corresponding code are available in the book's companion AppliedPredictiveModeling R package, which is freely available on the CRAN archive. This multi-purpose text can be used as an introduction to predictive models and the overall modeling process, a practitioner's reference handbook, or as a text for advanced undergraduate or graduate level predictive modeling courses. To that end, each chapter contains problem sets to help solidify the covered concepts and uses data available in the book's R package. Readers and students interested in implementing the methods should have some basic knowledge of R. And a handful of the more advanced topics require some mathematical knowledge.},
+  added-at = {2015-05-25T13:54:39.000+0200},
+  address = {New York, NY},
+  author = {Kuhn, Max and Johnson, Kjell},
+  biburl = {https://www.bibsonomy.org/bibtex/20ffe1d130cc2d823a0d83058c337dd8d/vivion},
+  booktitle = {Applied Predictive Modeling},
+  description = {Applied Predictive Modeling: 9781461468486: Medicine & Health Science Books @ Amazon.com},
+  interhash = {28fb1de6e768ed47c29f0a5d6d6dbe5d},
+  intrahash = {0ffe1d130cc2d823a0d83058c337dd8d},
+  isbn = {9781461468493 1461468493 1461468485 9781461468486},
+  keywords = {ML data-science machine-learning statistics},
+  publisher = {Springer},
+  refid = {844349710},
+  timestamp = {2015-05-25T14:06:06.000+0200},
+  title = {Applied predictive modeling},
+  url = {http://www.amazon.com/Applied-Predictive-Modeling-Max-Kuhn/dp/1461468485/},
+  year = 2013
+}
+
+@book{molnar2019, title = {Interpretable Machine Learning}, author = {Christoph Molnar}, year = {2019}, subtitle = {A Guide for Making Black Box Models Explainable} }
+
+@book{James2013,
+  added-at = {2019-10-12T20:03:56.000+0200},
+  author = {James, Gareth and Witten, Daniela and Hastie, Trevor and Tibshirani, Robert},
+  biburl = {https://www.bibsonomy.org/bibtex/2444186c86d18bddb4433c12fa126f6be/lopusz_kdd},
+  interhash = {b3febabdc45a8629023cee7323dfbd86},
+  intrahash = {444186c86d18bddb4433c12fa126f6be},
+  keywords = {general_machine_learning},
+  publisher = {Springer},
+  timestamp = {2019-10-12T23:45:37.000+0200},
+  title = {An Introduction to Statistical Learning: with Applications in R },
+  url = {https://faculty.marshall.usc.edu/gareth-james/ISL/},
+  year = 2013
+}
+
+@book{hastie01statisticallearning,
+  added-at = {2008-05-16T16:17:42.000+0200},
+  address = {New York, NY, USA},
+  author = {Hastie, Trevor and Tibshirani, Robert and Friedman, Jerome},
+  biburl = {https://www.bibsonomy.org/bibtex/2f58afc5c9793fcc8ad8389824e57984c/sb3000},
+  interhash = {d585aea274f2b9b228fc1629bc273644},
+  intrahash = {f58afc5c9793fcc8ad8389824e57984c},
+  keywords = {ml statistics},
+  publisher = {Springer New York Inc.},
+  series = {Springer Series in Statistics},
+  timestamp = {2008-05-16T16:17:43.000+0200},
+  title = {The Elements of Statistical Learning},
+  year = 2001
+}
+

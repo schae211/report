@@ -360,7 +360,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -369,7 +369,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -378,10 +378,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2021-12-26
+<strong>Last updated:</strong> 2022-01-03
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -397,12 +397,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -469,16 +469,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreed5c3ed886e6c614a55e4522a19fc56a65058b60etargetblankd5c3ed8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/d5c3ed886e6c614a55e4522a19fc56a65058b60e" target="_blank">d5c3ed8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639targetblank9abc4f3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639" target="_blank">9abc4f3</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreed5c3ed886e6c614a55e4522a19fc56a65058b60etargetblankd5c3ed8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639targetblank9abc4f3a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/d5c3ed886e6c614a55e4522a19fc56a65058b60e" target="_blank">d5c3ed8</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639" target="_blank">9abc4f3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -492,13 +492,14 @@ Ignored files:
     Ignored:    data/mibi_tnbc/
     Ignored:    data/seqfishp_brain/
     Ignored:    output/2021-12-25-09-41_all_views.RDS
-    Ignored:    output/2021-12-25-09-42_all_results.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
-    Ignored:    results/
 
 Untracked files:
     Untracked:  analysis/eda_merfish_preoptic.Rmd
+
+Unstaged changes:
+    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -537,6 +538,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/befa55221508f1e956be4a52c2f4704fd2c7661b/docs/introduction.html" target="_blank">befa552</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -619,7 +637,7 @@ schae211
 2021-12-23
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -721,7 +739,7 @@ schae211
 2021-12-18
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -755,7 +773,7 @@ schae211
 2021-12-16
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -840,7 +858,7 @@ schae211
 2021-12-15
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 </tbody>
@@ -870,30 +888,23 @@ margin: 300px}
 <div id="data-analysis" class="section level2">
 <h2>1.3 Data Analysis</h2>
 <p>No matter which of the above technologies is used, a table containing either the markers for each spatial unit (spot or single cells) or the coordinates of markers (high resolution but no segmentation) is obtained after preprocessing. Following normalization, standard scRNA-seq tools are often used to explore the data. However, as more spatially resolved datasets are being published, new tools are developed to exploit these richer information. There are tool for the detection of spatially variable genes (e.g. SPARK-X <span class="citation">(<a href="#ref-10.1186/s13059-021-02404-0" role="doc-biblioref"><em>10</em></a>)</span>, SpatialDE <span class="citation">(<a href="#ref-10.1038/nmeth.4636" role="doc-biblioref"><em>11</em></a>)</span>), detection of co-expression patterns/gene programs (e.g. ), and the detection of cellular niches (e.g. ).</p>
-<p>Upon identification of interesting patterns in spatially resolved omics data one might ask the question what drives the emergence or stabilizes these patterns? Is the spatial structure driven by self-organization, juxtacrine/ paracrine signaling, or broad gradients of morphogens? Several tools have been published which tackle related questions. Spatial Variance Component Analysis (SVCA) <span class="citation">(<a href="#ref-10.1016/j.celrep.2019.08.077" role="doc-biblioref"><em>12</em></a>)</span> for example decomposed the variance of a given marker into an intrinsic, intercellular, and environmental component. However, these spatial contexts are fixed and no information about which other markers can explain the expression of a given marker are learned.</p>
-<p>The Multiview Intercellular SpaTial modeling framework (MISTy) <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> on the other hand is much more flexible, allowing users to define the spatial context however they want. Additionally MISTy is build around an explainable machine learning algorithm faciliatating interpretability of the results. More specifically</p>
-<p>Show case here the primary figure we get from MISTy</p>
-<p>Use my presentation here :)</p>
-<p>More importantly, one can ask questions, such as how diseases and tissue disorganization are associated.</p>
-<ul>
-<li><p>Include the theis model <span class="citation">(<a href="#ref-Fischer2021.07.11.451750" role="doc-biblioref"><em>13</em></a>)</span></p></li>
-<li><p>MISTy is an explainable machine learning framework to probe intra- and intercellular marker interactions.</p></li>
-<li><p>Assuming we have different markers (proteins, transcripts, etc.).</p></li>
-</ul>
-<p><strong>1. Question</strong>: Can we predict the expression of marker X using the information about the expression of other markers within the same cell (juxtaview)</p>
-<p><strong>2. Question</strong>: Does our prediction improve if we take the expression of the other markers in the spatial context into consideration?</p>
-<ul>
-<li>Thereby we can define spatial context flexibly, meaning only the direct neighbors (juxtaview) or the broader tissue (paraview), (or actually any other view you could think of).</li>
-</ul>
-<p><strong>3. Question</strong>: What kind of spatial context is important to improve our prediction?</p>
-<p><strong>4. Question</strong>: Which other markers are helpful to predict the expression of marker X?</p>
-<ul>
-<li>If another marker Y is important to predict the expression of markers, there is some sort of relationship between the markers (which has neither to be causal nor linear!).</li>
-</ul>
-<p><img src="https://www.dropbox.com/s/5wyh520i1wl62ul/graphical_abstract.png?raw=1" align="center" width="500"></p>
+<p>Upon identification of interesting patterns in spatially resolved omics data one might ask the question what drives the emergence or stabilizes these patterns? Is the spatial structure driven by self-organization, juxtacrine/ paracrine signaling, or broad gradients of morphogens? Several tools have been published which tackle related questions. Spatial Variance Component Analysis (SVCA) <span class="citation">(<a href="#ref-10.1016/j.celrep.2019.08.077" role="doc-biblioref"><em>12</em></a>)</span> for example decomposed the variance of a given marker into an intrinsic, intercellular, and environmental component. However, these spatial contexts are fixed and no information about which interactions can explain the expression of a given marker are learned.</p>
+<p>In contrast, Multiview Intercellular SpaTial modeling framework (MISTy) <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> is much more flexible, allowing users to define the spatial context however they want. By default juxtacrine and paracrine views can be composed, which include the direct neighbors of a given cell and the broader tissue environment. Importantly, MISTy is build around an explainable machine learning algorithm facilitating interpretability of the results. This means after training a given model composed of several views, we obtain for each view and for each target marker in the view which other markers are helpful in explaining the expression of the considered marker (hereafter refereed to as importances). The basic MISTy workflow and the primary questions that can be answered are shown below.</p>
+<p>So we start by defining certain views. The intraview is always the baseline view in which we only take intracellular information into account, i.e. we predict the expression of a given marker in a cell using the expression values for all other markers in the same cell (or rather spatial units). Then, we add other views taking the spatial context into consideration, for example the paraview in which we predict the expression of a given marker in a cell using the expression of all the other markers in the tissue environment weighted by their distances to the considered cell. The colors in the figure should indicate the weight, which is by default computed via a Gaussian kernel (but other kernels are possible). As indicated in the figure, each view is modeled by a random forest and for each marker in each view, one random forest model in computed. The predictions from each view are combined in a late-fusion meta model based on ridge regression to control for correlated views.</p>
+<p><img src="https://www.dropbox.com/s/jynhjs4hc7k7oye/Slide6.png?raw=1" align="center" width="800"></p>
+<p>So first, we can ask for which targets the prediction improves if we take the spatial context into consideration. Therefore, we compare the R2 (fraction of variance explained) of the intra-view model and the multi-view model.</p>
+<p><img src="https://www.dropbox.com/s/jteucwitjj5cywr/Slide8.png?raw=1" align="center" width="800"></p>
+<p>Next we can answer the question which view is more important in the prediction of a given target by comparing the coefficents in the meta model.</p>
+<p><img src="https://www.dropbox.com/s/ad54sbjxw5ue7ea/Slide9.png?raw=1" align="center" width="800"></p>
+<p>Exploiting the interpretability of random forest, we can also ask which other markers are important when predicting the expression ofa given marker in a given view. These “importances” are weighted by the p-value of the corresponding view in the meta model.</p>
+<p><img src="https://www.dropbox.com/s/9f5kggot1jgwcee/Slide10.png?raw=1" align="center" width="800"></p>
+<p>For a given target, there are often large differences in performance measures such as the gain in variance explained and to find out what drives the differences MISTy signatures can be used. To that end, the results for all views and all targets in each sample are combined into a vector. So each sample has certain coordinates in the results space which can for example be visualized by plotting the first two principal components. Samples that share a certain tissue organisation often cluster together. In the example below, one can clearly see that compartmentalized tumors cluster together.</p>
+<p><img src="https://www.dropbox.com/s/xru4pzsnjwl64so/Slide30.png?raw=1" align="center" width="800"></p>
 </div>
 <div id="this-work" class="section level2">
 <h2>1.4 This Work</h2>
+<p>In this work, the code base of MISTy was refactored in such a way that different machine learning models can be used to model each view as indicated in the scheme below:</p>
+<p><img src="https://www.dropbox.com/s/226o7lo8zfxk2dm/implementation.png?raw=1" align="center" width="800"></p>
 <p>In the <a href="https://schae211.github.io/report/tutorial.html">Methods</a> section I will describe the flexible implementation of different machine learning algorithms for training view-specific models in MISTy. Based on the new underlying framework, the function to model each view is now passed as an argument to the <code>run_misty()</code> call. The default model is still random forest, but now users can either plug in another provided model function such as gradient boosting or define their own function such as non-negative least-squares.</p>
 <pre class="r"><code>misty.views %&gt;%
   run_misty(model.function = gradient_boosting_model, 
@@ -912,6 +923,7 @@ Click here for MISTy flowchart
   run_misty(method = &quot;bag&quot;, learner = &quot;earth&quot;, 
             n.learners = 50, degree = 2)</code></pre>
 <p>In the end, I will <a href="https://schae211.github.io/report/model_api.html">discuss</a> the results of my work and pose remaining open questions for the development of MISTy and the field of spatial omics technologies.</p>
+<hr />
 </div>
 </div>
 <div id="references" class="section level1">
@@ -953,9 +965,6 @@ Click here for MISTy flowchart
 <div id="ref-10.1016/j.celrep.2019.08.077" class="csl-entry">
 <div class="csl-left-margin">12. </div><div class="csl-right-inline">D. Arnol, D. Schapiro, B. Bodenmiller, J. Saez-Rodriguez, O. Stegle, <span class="nocase">Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis</span>. <em>Cell Reports</em>. <strong>29</strong>, 202–211.e6 (2019).</div>
 </div>
-<div id="ref-Fischer2021.07.11.451750" class="csl-entry">
-<div class="csl-left-margin">13. </div><div class="csl-right-inline">D. S. Fischer, A. C. Schaar, F. J. Theis, Learning cell communication from spatial graphs of cells. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2021.07.11.451750">10.1101/2021.07.11.451750</a>.</div>
-</div>
 </div>
 <br>
 <p>
@@ -974,26 +983,28 @@ BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
 LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
-[1] C
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
-other attached packages:
-[1] workflowr_1.6.2
-
 loaded via a namespace (and not attached):
  [1] Rcpp_1.0.7         pillar_1.6.3       compiler_4.1.2     bslib_0.3.1       
  [5] later_1.3.0        RColorBrewer_1.1-2 jquerylib_0.1.4    git2r_0.28.0      
- [9] tools_4.1.2        digest_0.6.28      jsonlite_1.7.2     evaluate_0.14     
-[13] lifecycle_1.0.1    tibble_3.1.5       pkgconfig_2.0.3    rlang_0.4.12      
-[17] rstudioapi_0.13    yaml_2.2.1         xfun_0.26          fastmap_1.1.0     
-[21] DiagrammeR_1.0.6.1 stringr_1.4.0      knitr_1.36         fs_1.5.0          
-[25] vctrs_0.3.8        sass_0.4.0         htmlwidgets_1.5.4  rprojroot_2.0.2   
-[29] glue_1.4.2         R6_2.5.1           fansi_0.5.0        rmarkdown_2.11    
-[33] magrittr_2.0.1     whisker_0.4        promises_1.2.0.1   ellipsis_0.3.2    
-[37] htmltools_0.5.2    httpuv_1.6.3       utf8_1.2.2         stringi_1.7.5     
-[41] visNetwork_2.1.0   crayon_1.4.1      </code></pre>
+ [9] workflowr_1.6.2    tools_4.1.2        digest_0.6.28      jsonlite_1.7.2    
+[13] evaluate_0.14      lifecycle_1.0.1    tibble_3.1.5       pkgconfig_2.0.3   
+[17] rlang_0.4.12       rstudioapi_0.13    yaml_2.2.1         xfun_0.26         
+[21] fastmap_1.1.0      DiagrammeR_1.0.6.1 stringr_1.4.0      knitr_1.36        
+[25] fs_1.5.0           vctrs_0.3.8        sass_0.4.0         htmlwidgets_1.5.4 
+[29] rprojroot_2.0.2    glue_1.4.2         R6_2.5.1           fansi_0.5.0       
+[33] rmarkdown_2.11     magrittr_2.0.1     whisker_0.4        promises_1.2.0.1  
+[37] ellipsis_0.3.2     htmltools_0.5.2    httpuv_1.6.3       utf8_1.2.2        
+[41] stringi_1.7.5      visNetwork_2.1.0   crayon_1.4.1      </code></pre>
 </div>
 </div>
 

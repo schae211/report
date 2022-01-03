@@ -1,5 +1,7 @@
 ---
 title: "Methods"
+editor_options: 
+  chunk_output_type: inline
 ---
 
 Setup.
@@ -18,25 +20,20 @@ suppressPackageStartupMessages(library(tidyverse))
 plan("multisession", workers=14)
 ```
 
-# Introduction
+In this file, I will briefly explain how I envision the new MISTy workflow. I refactored the code such that users can supply their own function if they would like. If not, we ship MISTy with several implemented functions such as gradient boosting that can simply be plugged into the model. More details can be found below.
 
-In this tutorial, I will briefly explain how I envision the new MISTy workflow.
-Instead of only offering a pre-defined set of ML algorithms to model each 
-view, I refactored the code such that users can supply their own function
-if they would like. If not, we ship MISTy with several implemented functions
-such as gradient boosting that can simply be plugged into the model. 
-More details can be found below.
+# Overivew
 
 ## Data
 
-For the sake of this tutorial we will be using the synthetic dataset
+Here we will be using the synthetic dataset
 supplied in the MISTy package. As explained in the 
 [Get Started Vignette](https://saezlab.github.io/mistyR/articles/mistyR.html),
 this dataset is based on a two-dimensional cellular automata model which 
 models the production, diffusion, degradation and interactions of 11 
 molecular species in 4 different cell types. 
 
-In total there are 10 tibbles, each of which contains about 4000 cells and 
+In total there are 10 samples (tibbles), each of which contains about 4000 cells and 
 their corresponding expresssion, and position in a 100x100 grid
 (randomly assigned) as well as the cell type identity. (For more information
 see `help("synthetic")`).
@@ -47,11 +44,10 @@ data("synthetic")
 
 ## MISTy Views
 
-For the sake of keeping things simply, we will only look at the first
-instance of the synthetic dataset for now.
+For the sake of keeping things simply, we will only look at the sample of the synthetic dataset.
 
 We will start by creating two MISTy views: a) Intraview and b) Paraview
-with a Gaussian kernel (default) and a radius of 10.
+with a Gaussian kernel (default) a radius of 10 and no zone of indifference.
 
 ```{r}
 expr <- synthetic$synthetic1 %>% dplyr::select(-c(row, col, type))
@@ -64,7 +60,7 @@ misty.views <- expr %>%
 ## Running MISty
 
 The default ML algorithm is still random forest and thus we do not even
-have to specify it.
+have to specify it if we want to use it.
 
 ```{r}
 misty.run <- misty.views %>%
@@ -113,7 +109,6 @@ with the additional ellipsis arguments.
 
 ```{r}
 seed <- 42 # default
-
 ellipsis.args <- list() # assume no ellipsis arguments were given
 
 # default ranger arguments
@@ -147,7 +142,6 @@ list(unbiased.predictions = predictions,
 rm(view_data, target.vector, expr, model, ellipsis.args, algo.arguments)
 ```
 
-
 As seen above, we can also easily supply arguments to the `ranger` RF implementation.
 Say we would like to increase the number of trees and use another splitrule.
 Let's compare the runtime for example (should be higher with more trees).
@@ -180,7 +174,15 @@ misty.results %>%
   plot_interaction_heatmap("para.10")
 ```
 
-Below all the supplied function will be desribed in more detail.
+Below all the supplied function will be described in more detail.
+
+## General Remarks
+
+Useful ressources for an overview of regression models include [@noauthororeditor2013applied, @James2013, @hastie01statisticallearning].
+
+Depending on the machine learning model different approaches were used for performance assessment. For the random forest out-of-bag estimates can be used which is computationally much more efficient than k-fold cross-validation. However, it has been shown that [@10.1371/journal.pone.0201904] that the out-of-bag estimates may underestimate the accuracy of the model for unobserved data. For algorithms not based on bagging (trained with boostrapped samples) k-fold cross-validation is used to assess the performance. 
+
+Determining the importances of the predictors (i.e. other markers) for each target is much more algorithm specific than the performance estimation. For random forests for example the importance corresponds to the average decrease in the RSS over all splits for a given predictor. A similar idea is used to asses the importances of MARS models here. During the backward pass (when terms are deleted from the model), the decrease of the RSS is measured for each subset relative to the previous subset. Then, for each variable the average decrease in RSS over all subsets in which the variable is included is used as importance. However if the `degree` is larger than one, the importance for a given model term containing several predictors is spread equally for all predictors. (see [Notes on the earth package](http://www.milbo.org/doc/earth-notes.pdf) for more details). Also the importance extraction for boosted trees (in `xgboost`) works similar to the method in random forest. Importantly one should note that random forests and boosted trees deal very different with correlated features since random forests are likely to use two correlated features evenly often whereas boosted models randomly chose one feature and then omit the other feature (see more details here [here](https://xgboost.readthedocs.io/en/stable/R-package/discoverYourData.html)). For the Mutli-layer Perceptron the importances are computed by permuting each predictor (one at a time) and computing the reduction in predictive performance (global model agnostic method). A helpful guide to interpretable machine learning was written by Christoph Molnar [@molnar2019].
 
 # All Supplied Functions {.tabset}
 
@@ -193,7 +195,7 @@ Below all the supplied function will be desribed in more detail.
 
  - Unbiased predictions are based on OOB predictions.
  
- - 
+ - Importances for each predictor for a given target a determined by averaging the decrease in RSS over all splits in which a predictor was used.
 
 ```{r}
 random_forest_model
@@ -212,10 +214,12 @@ misty.views %>%
  
 ## Gradient Boosting
 
- - Short description: 
+ - Short description: Sequential training of weak learners (either regression trees or linear models) where the learner $m+1$ is fitted on the residuals of the model containing $m$ learners ($F_M$). The error can be minimized by exploiting the gradient with respect to the model $F_M$.
 
  - Unbiased predictions are based on k-fold cross-validation (aggregarted 
  predictions for the holdout sets)
+ 
+ - Importances for each predictor for a given target a determined by averaging the decrease in RSS over all splits in which a predictor was used (for tree gradient boosting).
 
 ```{r}
 gradient_boosting_model
@@ -226,6 +230,18 @@ gradient_boosting_model
 ```{r}
 misty.views %>%
   run_misty(model.function = gradient_boosting_model) %>%
+  collect_results() %>%
+  plot_improvement_stats("gain.R2") %>%
+  plot_view_contributions() %>%
+  plot_interaction_heatmap("para.10")
+```
+
+ - Linear Gradient Boosting (here it is usually better to use more boosting iterations (`nrounds`) than 10).
+
+```{r}
+misty.views %>%
+  run_misty(model.function = gradient_boosting_model,
+            booster = "gblinear", nrounds = 20) %>%
   collect_results() %>%
   plot_improvement_stats("gain.R2") %>%
   plot_view_contributions() %>%
@@ -243,13 +259,10 @@ misty.views %>%
  the degree of interaction (`degree`) such that the constructed features are
  not single hinge functions but products of 2 (or more) hinge functions.
  
-  - Unbiased predictions are based on k-fold cross-validation (aggregarted 
+  - Unbiased predictions are based on k-fold cross-validation (aggregated 
  predictions for the holdout sets)
  
-  - The name `bagged_earth_model` comes from the fact that the name mars
- is protected and thus the implementation of the algorithm is called `earth` 
- (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert
- Tibshirani)
+ - The importances for each predictor are determined during the backward pass (when terms are deleted from the model). The decrease of the RSS is measured for each subset relative to the previous subset. Then, for each predictor the average decrease in RSS over all subsets in which the variable is included is used as importance. However if the `degree` hyperparamter is larger than one, the importance for a given model term containing several predictors is spread equally to all predictors.
  
 ```{r}
 mars_model
@@ -276,6 +289,8 @@ misty.views %>%
  not single hinge functions but products of 2 (or more) hinge functions.
 
  - Unbiased predictions are based on OOB predictions.
+ 
+ - See importance extraction in MARS model above. Additionally the importances for each predictor are averaged over each constituent model.
  
  - The name `bagged_earth_model` comes from the fact that the name mars
  is protected and thus the implementation of the algorithm is called `earth` 
@@ -323,7 +338,7 @@ misty.views %>%
   plot_interaction_heatmap("para.10")
 ```
 
-## Support Vector Machine
+## Linear Support Vector Machine
 
  - Short description: In regression setting the support vector machine
  can be framed as a robust regression technique that is less sensitive
@@ -336,10 +351,9 @@ sum of squared coefficients.
  - Unbiased predictions are based on k-fold cross-validation (aggregarted 
  predictions for the holdout sets)
  
- - Importantly, we added an approximation argument to the implementation which
- basically says at what fraction of the training instances the SVM will be
- trained on. This drastically decreases the training time and does not 
- really effect the performance.
+ - 
+ 
+ - Importantly, we added an approximation argument to the implementation which basically says at what fraction of the training instances the SVM will be trained on (by default 40%). This drastically decreases the training time and does not seem to effect the performance to much.
 
 ```{r}
 svm_model
@@ -358,16 +372,13 @@ misty.views %>%
 
 ## Multi-layer Perceptron
 
- - Short description: A small fully connected feedforward network, trained using
- standard backpropagation (no batches?). Default activation function is logistic.
+ - Short description: A small fully connected feedforward network, trained using standard backpropagation (no batches?). Default activation function is logistic.
 
- - Unbiased predictions are based on k-fold cross-validation (aggregarted 
- predictions for the holdout sets)
+ - Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)
  
- - Importantly, the feature importances is here calculated based on a global 
- model agnostic method. More specifically each feature is permuated (one at a time)
- and then the reduction in preditive performance is used as measure for the
- variable importance. (This is achieved using the `iml` R package).
+ - Importantly, the feature importances is here calculated based on a global model agnostic method. More specifically each feature is permuted (one at a time) and then the reduction in predictive performance is used as measure for the variable importance. (This is achieved using the `iml` R package).
+ 
+ - By default only 60% of the training instances are used for training to increase the performance
 
 ```{r}
 mlp_model
@@ -387,17 +398,15 @@ misty.views %>%
 
 # How to construct you own function
 
-1. To construct a view-specific function we need to clearly state the
-expected input and output to the function.
+To construct a view-specific function one needs to clearly state the
+expected input and output of the view-specific function.
 
 ## Input
-
-The input will be:
 
 1. `view_data`: A tibble with each row corresponding to a spatial unit 
 (e.g. Visium spot or single cell) and each column corresponding to a marker.
 
-Based on the assert statements in `run_misty`, one can be sure that the 
+Due to an assert statements in `run_misty`, one can be sure that the 
 variance of each target is non-zero.
 
 For example the intraview from above.
@@ -406,31 +415,25 @@ For example the intraview from above.
 misty.views$intraview$data %>% slice_head(n=6)
 ```
 
-2. `target`: String corresponding to the marker which should be modeled.
+2. `target`: String corresponding to the marker which should be modeled. (column name of the `view_data` tibble)
 
 For example "ECM"
 
 3. `seed`: Integer (passed down from `run_misty`)
 
-Default seed is 42.
+The default seed is 42.
 
 ## Output
 
 The output must be a named list comprising of:
 
-1. `unbiased.predictions`: Tibble with one column called `index` for the "cell id"
-and another column called `prediction` for the unbiased prediction.
+1. `unbiased.predictions`: Tibble with one column called `index` for the "cell id" and another column called `prediction` for the unbiased prediction.
 
-These unbiased predictions for the specified target can either come from the
-aggregated out-of-bag (OOB) predictions of a bagged ensembl model or the 
-aggregated predictions for holdout set for k-fold cross-validation.
+These unbiased predictions for the specified target can either come from the aggregated out-of-bag (OOB) predictions of a bagged ensemble model or the aggregated predictions for holdout sets of k-fold cross-validation.
 
-The unbiased predictions are needed as input for the linear fusion model,
-which combined the unbiased predictions from each view-specific model to 
-assess the contribution from each view (using the coefficients).
+The unbiased predictions are needed as input for the ridge regression late-fusion model, which combines the unbiased predictions from each view-specific model to assess the contribution from each view (using the coefficients).
 
-2. `importances` : Named Vector with the importances of the predictors as 
-values and the names of the predictors as names (see the example below)
+2. `importances` : Named Vector with the importances of the predictors as values and the names of the predictors as names (see the example below)
 
 ---
 
@@ -457,13 +460,9 @@ res.list$importances
 
 ## Example Function
 
-To showcase how one can construct such a function, we will build a 
-view-specific model based on a decision tree (implemented by `rpart`)
+To showcase how one can construct such a function, we will build a view-specific model based on a regression tree (implemented by `rpart`)
 
-To visualize what each step is necessary for, we will use the paraview from 
-above and model "ECM". So in general our input is going to look somehow
-like that. We have a tibble with the rows as spatial units (e.g. cells) 
-and the columns are the markers (target or predictors).
+To visualize what each step is necessary for, we will use the paraview from above and model "ECM". So in general our input is going to look somehow like that. We have a tibble with the rows as spatial units (e.g. cells) and the columns are the markers (target or predictors).
 
 ```{r}
 seed <- 42
@@ -482,7 +481,6 @@ So in the end the function should call `rpart` with this formula:
 as.formula(paste0(target, "~ ."))
 ```
 
-
 ```{r}
 test.model <- rpart::rpart(formula = as.formula(paste0(target, "~ .")), 
                            data = view_data
@@ -490,8 +488,7 @@ test.model <- rpart::rpart(formula = as.formula(paste0(target, "~ .")),
 summary(test.model)
 ```
 
-Now to get unbiased predictions we need to do cross validation and aggregate 
-the predictions for the holdout instances.
+Now to get unbiased predictions we need to perform cross validation and aggregate the predictions for the holdout instances.
 
 First we will create the 5 folds using `caret::createFolds`
 
@@ -505,8 +502,7 @@ folds <- withr::with_seed(
 str(folds)
 ```
 
-Next we will train a model for each fold and aggregate the prediction of the
-holdout instances.
+Next we will train a model for each fold and aggregate the prediction of the holdout instances.
 
 ```{r}
 holdout.predictions <- purrr::map_dfr(folds, function(holdout) {
@@ -528,9 +524,7 @@ holdout.predictions <- purrr::map_dfr(folds, function(holdout) {
 str(holdout.predictions)
 ```
 
-As described above, apart from the unbiased predictions, we need the importances
-of the predictors (interpretable model!). Therefore we will train one more
-model on the whole dataset. And return the importances as named vector.
+As described above, apart from the unbiased predictions, we need the importances of the predictors (interpretable model!). Therefore we will train one more model on the whole dataset. And return the importances as named vector.
 
 ```{r}
 algo.arguments.wm <- list(formula = as.formula(paste0(target, "~ .")), 
@@ -588,7 +582,7 @@ reg_tree_model_1 <- function(view_data, seed = 42, k = 5) {
 }
 ```
 
-And it works perfectly.
+And it works nicely.
 
 ```{r}
 test <- reg_tree_model_1(view_data = view_data)
@@ -645,10 +639,7 @@ reg_tree_model_2 <- function(view_data, seed = 42, k = 5, ...) {
 }
 ```
 
-Now check by supplying some parameters to `rpart.control`. For example
-changing the complexity parameter `cp` from 0.01 to 0.001. In regression setting
-this means that if a split does not decreae the $R^2$ by at least a factor of `cp`, 
-the split is not attempted.
+Now we check by supplying some parameters to `rpart.control`. For example changing the complexity parameter `cp` from 0.01 to 0.001. In regression setting this means that if a split does not decreae the $R^2$ by at least a factor of `cp`,  the split is not attempted.
 
 ```{r}
 test2 <- reg_tree_model_2(view_data = view_data, cp = 0.001)
@@ -671,7 +662,3 @@ unlink("results", recursive=TRUE)
 ```
 
 # References
-
-1. Kuhn, M., & Johnson, K., 2018, Applied predictive modeling, Springer, 
-Chapter 7 (Nonlinear Regression Models).
-

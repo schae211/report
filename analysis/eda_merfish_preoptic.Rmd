@@ -1,0 +1,341 @@
+---
+title: "EDA MERFISH PREOPTIC"
+output:
+  workflowr::wflow_html:
+    toc: yes
+    toc_float: yes
+    toc_depth: 2
+    code_folding: hide
+editor_options: 
+  chunk_output_type: inline
+bibliography: references.bib
+csl: science.csl
+---
+
+Setup.
+
+```{r setup, echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
+knitr::opts_knit$set(root.dir = "~/Saez/report")
+```
+
+```{r}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(tidyverse))
+```
+
+# Loading and Processing Data
+
+```{r}
+data <- read_csv(list.files("data/merfish_preoptic/", full.names = TRUE)[1])
+```
+
+# Meta Data
+
+Split meta data and expression data.
+
+```{r}
+meta.data = data[,1:9]
+meta.data
+```
+
+```{r}
+expr.data = data[,-c(1:9)] %>%
+  select(-starts_with("Blank"))
+expr.data
+```
+
+Number of samples.
+
+```{r}
+samples <-meta.data %>%
+  pull(Animal_ID) %>%
+  unique()
+samples
+```
+
+# Statistics per Sample
+
+How many cells per sample?
+
+```{r}
+map_dbl(samples, function(smp) {
+  meta.data %>%
+    filter(Animal_ID == smp) %>%
+    nrow()
+}) %>%
+  tibble(n.cells = ., sample = samples) %>%
+  mutate(sample = factor(sample, levels = sort(samples))) %>%
+  ggplot() +
+  geom_bar(aes(x=n.cells, y=sample), stat="identity") +
+  labs(x = "Number of Cells", y = "Sample")
+```
+
+```{r}
+sample.data <- meta.data %>%
+  group_by(Animal_ID) %>%
+  summarise(n = n(), Animal_sex = Animal_sex, Behavior = Behavior, .groups = "drop") %>%
+  distinct()
+sample.data
+```
+
+Distribution of cell types per sample
+
+```{r fig.width=12, fig.height=12}
+meta.data %>%
+  count(Animal_ID, Cell_class) %>%
+  ggplot() +
+  geom_bar(aes(x = n, y = Cell_class), stat="identity") +
+  facet_wrap(~ Animal_ID)
+```
+
+Distribution of the markers (difficult to plot since we have 156 markers
+and 36 samples!).
+
+So first we will simply plot the mean for each sample for each marker.
+
+```{r fig.width=24, fig.height=6}
+expr.data %>%
+  mutate(sample = meta.data$Animal_ID) %>%
+  pivot_longer(!sample) %>%
+  mutate(sample = factor(sample, levels = sort(samples))) %>%
+  group_by(sample, name) %>%
+  summarise(mean = mean(value), sd = sd(value)) %>%
+  mutate(min = mean-sd, max = mean+sd) %>%
+  ggplot() +
+  geom_point(aes(x = name, y = mean, color = sample)) +
+  labs(x = "Markers", y = "Mean Expression") +
+  theme(axis.text.x = element_blank())
+```
+
+Now let's focus on the spatially variable transcripts.
+
+To that end let's first get the expression and positions per sample.
+
+```{r}
+expr.smp <- expr.data %>%
+  select(-Fos) %>%
+  mutate(sample = meta.data$Animal_ID) %>%
+  group_by(sample) %>%
+  group_split(.keep=FALSE)
+
+expr.keys <- expr.data %>%
+  mutate(sample = meta.data$Animal_ID) %>%
+  group_by(sample) %>%
+  group_keys()
+
+names(expr.smp) <- expr.keys$sample
+
+pos.smp <- meta.data %>%
+  select(Animal_ID, Centroid_X, Centroid_Y) %>%
+  group_by(Animal_ID) %>%
+  group_split(.keep=FALSE)
+
+pos.keys <- meta.data %>%
+  select(Animal_ID, Centroid_X, Centroid_Y) %>%
+  group_by(Animal_ID) %>%
+  group_keys()
+
+names(pos.smp) <- pos.keys$Animal_ID
+```
+
+Quick check.
+
+```{r}
+map2_lgl(expr.smp, pos.smp, ~ nrow(.x) == nrow(.y))
+```
+
+```{r results='hide'}
+spark.results <- map2(expr.smp, pos.smp, ~ SPARK::sparkx(count_in = t(as.matrix(.x)), 
+                                                locus_in = as.matrix(.y), 
+                                                numCores = 12, 
+                                                option = "single", 
+                                                verbose = FALSE))
+
+sel.markers <- spark.results %>%
+  map(~ .x$res_mtest %>% slice_min(adjustedPval, n = 80) %>% rownames) %>%
+  unlist() %>% table %>% as_tibble() %>%
+  filter(n > 27) %>%
+  rename("marker" = ".") %>%
+  pull(marker)
+```
+
+```{r}
+sel.markers
+```
+
+For each sample (animal).
+
+```{r fig.width=24, fig.height=6}
+expr.data %>%
+  mutate(sample = meta.data$Animal_ID) %>%
+  pivot_longer(!sample) %>%
+  filter(name %in% sel.markers) %>%
+  mutate(sample = factor(sample, levels = sort(samples))) %>%
+  ggplot() +
+  geom_boxplot(aes(x = name, y = value, color = sample), outlier.shape = NA) +
+  lims(y = c(0, 100))
+```
+
+For each sex.
+
+```{r fig.width=24, fig.height=6}
+expr.data %>%
+  mutate(sex = meta.data$Animal_sex) %>%
+  pivot_longer(!sex) %>%
+  filter(name %in% sel.markers) %>%
+  ggplot() +
+  geom_boxplot(aes(x = name, y = value, color = sex), outlier.shape = NA) +
+  lims(y = c(0, 50))
+```
+
+# Spatial Data
+
+Looking at the spatial data (starting with sample = Animal 1)
+
+```{r fig.height=6, fig.width=6}
+walk(unique(meta.data$Animal_ID), function(smp) {
+  plot <- meta.data %>%
+  filter(Animal_ID == smp) %>%
+  ggplot() +
+  geom_point(aes(x=Centroid_X, y=Centroid_Y, col=Cell_class), size=0.1)
+  
+  print(plot)
+})
+```
+
+Now plotting some fewer kinds of cells.
+
+```{r fig.height=6, fig.width=6}
+walk(unique(meta.data$Animal_ID), function(smp) {
+  plot <- meta.data %>%
+  filter(Animal_ID == smp) %>%
+  mutate(type = str_extract(Cell_class, "[^0-9]+")) %>%
+  ggplot() +
+  geom_point(aes(x=Centroid_X, y=Centroid_Y, col=type), size=0.1)
+  
+  print(plot)
+})
+```
+
+# Distribution of Distances
+
+Looking at the distances.
+
+Helper function to calculate distances to the neighbors.
+
+```{r}
+# helper function for nearest neighbors
+dist_k_nn <- function(sample, k) {
+  nn <- RANN::nn2(sample, eps=0.0, k = k)
+  map_dbl(seq_len(nrow(sample)), function(n) {
+    mean(nn$nn.dists[n, ])
+  })
+}
+
+# helper function for getting direct neighbors
+get_neighbors <- function(ddobj, id) {
+  dplyr::union(
+    ddobj$delsgs$ind1[which(ddobj$delsgs$ind2 == id)],
+    ddobj$delsgs$ind2[which(ddobj$delsgs$ind1 == id)]
+  )
+}
+```
+
+First we will look at the distribution of the  mean distances to the direct 
+neighbors (as determined by the delauney triangulation) to get a feeling for 
+which cutoff value should be used for the generation of the juxtaview. The
+corresponding distribution is shown below.
+(in blue the cutoff - 30 pixels - which was used in the end).
+
+```{r}
+# mean distance to the direct neighbors for each cell
+mean.dists.direct.neighbors <- map(pos.smp, function(smp) {
+  delaunay <- deldir::deldir(as.data.frame(smp))
+  dists <- distances::distances(as.data.frame(smp))
+  map_dbl(seq_len(nrow(smp)), function(id) {
+    nn <- get_neighbors(delaunay, id)
+    mean(dists[nn, id])
+  })
+}) 
+
+stat.per.sample <- map2_dfr(mean.dists.direct.neighbors,
+                            seq_len(length(mean.dists.direct.neighbors)),
+                            function(list, smp) {
+            data.frame(sample = smp, value = list)
+          })
+
+# histogram
+ggplot(data.frame(dist = mean.dists.direct.neighbors %>% unlist)) +
+  geom_histogram(aes(dist), bins = 100) +
+  lims(x = c(0,100)) +
+  geom_vline(xintercept = 30, col = "blue")
+```
+
+Summary statistics:
+
+```{r}
+data.frame(value = mean.dists.direct.neighbors %>% unlist) %>%
+  summarise(mean = mean(value), 
+            median = median(value), 
+            q25 = quantile(value, 0.25),
+            q75 = quantile(value, 0.75),
+            min = min(value),
+            max = max(value))
+```
+
+However, a more detailed look across the sample (boxplot) shows that the
+cutoff may be too low for certain samples. It may be good to increase this
+threshold to 50.
+
+```{r}
+# boxplot
+stat.per.sample %>%
+  mutate(sample = factor(sample)) %>%
+  ggplot() +
+  geom_boxplot(aes(x=sample, y=value), outlier.shape = NA) +
+  geom_hline(yintercept = 30, col="blue") +
+  lims(y = c(0, 200))
+```
+
+Furthermore we will look at the distribution of the mean distances to the
+10 -, 20 -, 40 -, and 80 closest cells to get a feeling
+for which cutoff will be used to generate the paraview 
+(in blue the cutoff - 120 pixels (46.8 microns) - which was used in the end).
+
+```{r}
+neighbor.dists <- map_dfr(pos.smp, function(smp) {
+  c(10, 20, 40, 80) %>%
+    purrr::set_names() %>%
+    map_dfc(function(k) {
+  dist_k_nn(smp, k)
+    }) %>%
+  purrr::set_names(paste0("dist_to_", c("10", "20", "40", "80")))
+})
+
+neighbor.dists %>%
+  pivot_longer(cols = everything()) %>%
+  mutate(name = factor(name, 
+                       levels = paste0("dist_to_", c("10", "20", "40", "80")))) %>%
+  ggplot() +
+  geom_histogram(aes(value), bins = 100) +
+  facet_wrap(~ name) +
+  lims(x = c(0, 200)) +
+  geom_vline(xintercept = 120, col = "blue")
+```
+
+Summary statistics:
+
+```{r}
+neighbor.dists %>%
+  pivot_longer(cols = everything()) %>%
+  group_by(name) %>%
+  summarise(mean = mean(value), 
+            median = median(value), 
+            q25 = quantile(value, 0.25),
+            q75 = quantile(value, 0.75),
+            min = min(value),
+            max = max(value))
+```
+
+

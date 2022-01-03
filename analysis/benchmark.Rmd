@@ -1303,7 +1303,7 @@ filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>%
   plot_performance(str.measure="multi.R2")
 ```
 
-We can clearly see that `max.depths = 1` reduces the performance significantly.
+We can clearly see that `max.depths = 1` reduces the performance significantly. Apart from that the model seems very robust to hyperparamter changes which is anothter reason why random forests are so popular.
 
 ## MARS
 
@@ -1355,7 +1355,7 @@ filter_runs(all.results, "synthetic", "MARS_hyper") %>%
 For the synthetic datasets we clearly see that a higher degree increases the
 model performance.
 
-What about the timing?
+### Runtimes
 
 ```{r message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library(mistyR))
@@ -1378,7 +1378,6 @@ pmethods <- c("backward", "backward", "backward", "backward", "backward",
 
 pmap_dfr(list(penalties, degrees, fastks, pmethods),
          function(penalty, degree, fast.k, pmethod) {
-           print(paste(penalty, degree, fast.k, pmethod, sep="_"))
            start <- Sys.time()
            
            walk(all.views$`/synthetic/l12`, function(view) {
@@ -1396,6 +1395,44 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
   arrange(time)
 ```
 
+```{r message=FALSE, warning=FALSE}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+plan("multisession", workers=12)
+
+# Degrees: 1, 2, 3
+degrees <- c(1, 1, 1, 2, 2, 
+             2, 2, 2, 2, 2, 
+             2, 2)
+
+# Fast K: 20, 10, 5
+fastks <- c(20, 10, 5, 20, 10, 
+            5, 20, 10, 5, 20, 
+            10, 5)
+
+# Thresholds
+threshs <- c(0.001, 0.001, 0.001, 0.001, 0.001,
+             0.001, 0.05, 0.05, 0.05, 0.01,
+             0.01, 0.01)
+
+pmap_dfr(list(degrees, fastks, threshs),
+         function(degree, fast.k, thr) {
+           start <- Sys.time()
+           
+           walk(all.views$`/synthetic/l12`, function(view) {
+             run_misty(views = view, model.function = mars_model,
+                       degree = degree, fast.k = fast.k, 
+                       thresh = thr)
+           })
+           
+           end <- Sys.time()
+           unlink("results")
+           tibble(name = paste(degree, fast.k, thr, sep="_"),
+                  degree = degree, fast.k = fast.k, thresh = thr,
+                  time = end - start)
+         }) %>%
+  arrange(time)
+```
 
 ## Linear Boosting
 
@@ -1423,7 +1460,7 @@ filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>%
 ```
 
 No penalty leads to the best results and more boosting rounds 
-increases the performance here.
+increases the performance here. In general more boosting iterations are needed for linear gradient boosting compared to tree gradient boosting.
 
 ### `merfish_bc`
 
@@ -1496,7 +1533,37 @@ filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>%
   plot_performance(str.measure="multi.R2")
 ```
 
-Similarly to the random forest above, we see that `max_depth = 1` reduces the
-overall performance.
+Similarly to the random forest above, we see that `max_depth = 1` reduces the overall performance. Apart from that the model seems to be very robust to hyperparamter changes.
+
+## MLP
+
+### Runtimes
+
+```{r message=FALSE, warning=FALSE}
+suppressPackageStartupMessages(library(mistyR))
+suppressPackageStartupMessages(library(future))
+plan("multisession", workers=12)
+
+funcs <- c("Std_Backpropagation", "BackpropBatch", "Quickprop",
+           "BackpropChunk", "BackpropMomentum")
+
+map_dfr(funcs, function(func) {
+   #print(func)
+   start <- Sys.time()
+   
+   walk(all.views$`/synthetic/l12`, function(view) {
+     run_misty(views = view, model.function = mlp_model,
+               learnFunc = func)
+   })
+   
+   end <- Sys.time()
+   unlink("results")
+   tibble(funcs = func,
+          time = end - start)
+  }) %>%
+  arrange(time)
+```
+
+And we see that the choice of learning algorithm does not make much of a difference here and that the default "BackpropBatch" seems to be the best choice.
 
 # References
