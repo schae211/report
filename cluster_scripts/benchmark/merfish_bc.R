@@ -95,7 +95,8 @@ if (cmd.arg2 == 1) {
               model.function = gradient_boosting_model,
               seed = 42,
               cv.folds = 10,
-              booster = "gblinear")
+              booster = "gblinear",
+              nrounds = 20)
   })
 } else if (cmd.arg2 == 7) {
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {

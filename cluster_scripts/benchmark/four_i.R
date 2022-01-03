@@ -72,7 +72,7 @@ if (cmd.arg2 == 1) {
               model.function = bagged_mars_model,
               seed = 42,
               cv.folds = 10,
-              n.bags = 20)
+              n.bags = 40)
     gc()
   })
 } else if (cmd.arg2 == 3) {
@@ -110,7 +110,8 @@ if (cmd.arg2 == 1) {
               model.function = gradient_boosting_model,
               seed = 42,
               cv.folds = 10,
-              booster = "gblinear")
+              booster = "gblinear",
+              nrounds = 20)
     gc()
   })
 } else if (cmd.arg2 == 7) {
