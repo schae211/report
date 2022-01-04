@@ -69,13 +69,13 @@ if (cmd.arg2 == 1) {
               fast.k = 4)
   })
 } else if (cmd.arg2 == 3) {
+  plan("sequential")
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "MARS60/",smp.name),
               model.function = mars_model,
               seed = 42,
               cv.folds = 10,
-              fast.k = 5,
               approx = 0.6)
   })
 } else if (cmd.arg2 == 4) {

@@ -60,10 +60,10 @@ if (cmd.arg2 == 1) {
               model.function = bagged_mars_model,
               seed = 42,
               cv.folds = 10,
-              n.bags = 30,
-              fast.k = 10)
+              n.bags = 30)
   })
 } else if (cmd.arg2 == 3) {
+  plan("sequential")
   purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "MARS/",smp.name),
