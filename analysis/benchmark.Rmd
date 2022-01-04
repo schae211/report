@@ -16,7 +16,7 @@ Setup.
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
+knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
@@ -327,7 +327,7 @@ map2_dfr(all.views[str_starts(names(all.views), "/4iANCA")],
                names_to = "sample", 
                values_to = "n") %>%
   group_by(experiment) %>%
-  summarise(mean_n = mean(n)) %>%
+  dplyr::summarise(mean_n = mean(n)) %>%
   arrange(mean_n)
 ```
 
@@ -389,11 +389,10 @@ check_runs <- function(misty.performances, ordering = NULL) {
   }
   
   misty.performances %>%
-    select(algorithm, sample, view) %>%
     distinct() %>%
     mutate(algorithm = factor(algorithm, levels = levs())) %>%
     group_by(view, algorithm) %>%
-    summarise(sample_number = n(), .groups="drop") %>%
+    dplyr::summarise(sample_number = n(), .groups="drop") %>%
     pivot_wider(names_from = "view", values_from = "sample_number")
 }
 ```
@@ -447,7 +446,7 @@ plot_performance <- function(misty.performances, str.measure,
     filter(!(algorithm %in% exclude)) %>%
     mutate(algorithm = factor(algorithm, levels=levs())) %>%
     group_by(view, algorithm, target) %>%
-    summarise(mean = mean(value), median = median(value), 
+    dplyr::summarise(mean = mean(value), median = median(value), 
               sd = sd(value), .groups = "drop_last") %>%
     ggplot() +
     geom_tile(aes(x = algorithm, y = target, 
@@ -649,14 +648,14 @@ Define function to check whether all importances are present for each algorithm
 check_algs <- function(misty.performances) {
   misty.performances %>%
     unite(relation, Predictor, Target, sep="_") %>%
-    select(-c(study, view.comp)) %>%
+    dplyr::select(-c(study, view.comp)) %>%
     drop_na() %>%
     pivot_wider(names_from=relation, values_from=Importance) %>%
     mutate(sample = str_extract(sample, "[^/]+$")) %>%
     pivot_longer(cols = !c(sample, view, algorithm)) %>%
     mutate(check.NA = is.na(value)) %>%
     group_by(algorithm) %>%
-    summarise(n.NAs = sum(check.NA), n = n())
+    dplyr::summarise(n.NAs = sum(check.NA), n = n())
 }
 ```
 
@@ -748,7 +747,7 @@ wrap_function <- function(misty.importances, f, ...) {
       # 4. Group by algorithm 
       # and get the mean of the cosine similarity for each sample
       group_by(algorithm, view) %>%
-      summarise(mean = mean(cosine), sd = sd(cosine), .groups="drop") %>%
+      dplyr::summarise(mean = mean(cosine), sd = sd(cosine), .groups="drop") %>%
       arrange(algorithm)
 }
 ```
@@ -798,14 +797,14 @@ cosine_heatmap <- function(misty.importances) {
     
     tmp.df <- tidy.df %>%
       filter(view == v) %>%
-      select(-c(study, view.comp)) %>%
+      dplyr::select(-c(study, view.comp)) %>%
       mutate(sample = str_extract(sample, "[^/]+$")) %>%
       group_by(algorithm) %>%
-      summarise(across(4:(ncol(.)-1), mean)) %>%
+      dplyr::summarise(across(4:(ncol(.)-1), mean)) %>%
       replace(is.na(.), 0) %>%
       pivot_longer(cols = !algorithm) %>%
       pivot_wider(names_from = algorithm, values_from = value) %>%
-      select(-name)
+      dplyr::select(-name)
   
     plot <- map_dfr(colnames(tmp.df), function(alg) {
       comp <- tmp.df %>% pull(alg)
@@ -838,10 +837,10 @@ jaccard_heatmap <- function(misty.importances, cutoff = 0.5) {
     
     tmp.df <- tidy.df %>%
       filter(view == v) %>%
-      select(-c(study, view.comp)) %>%
+      dplyr::select(-c(study, view.comp)) %>%
       mutate(sample = str_extract(sample, "[^/]+$")) %>%
       group_by(algorithm) %>%
-      summarise(across(4:(ncol(.)-1), mean)) %>%
+      dplyr::summarise(across(4:(ncol(.)-1), mean)) %>%
       replace(is.na(.), 0) %>%
       pivot_longer(cols = !algorithm) %>%
       pivot_wider(names_from = algorithm, values_from = value)
@@ -883,14 +882,14 @@ correlation_heatmap <- function(misty.importances, m = "pearson") {
     
     tmp.df <- tidy.df %>%
       filter(view == v) %>%
-      select(-c(study, view.comp)) %>%
+      dplyr::select(-c(study, view.comp)) %>%
       mutate(sample = str_extract(sample, "[^/]+$")) %>%
       group_by(algorithm) %>%
-      summarise(across(4:(ncol(.)-1), mean)) %>%
+      dplyr::summarise(across(4:(ncol(.)-1), mean)) %>%
       replace(is.na(.), 0) %>%
       pivot_longer(cols = !algorithm) %>%
       pivot_wider(names_from = algorithm, values_from = value) %>%
-      select(-name)
+      dplyr::select(-name)
   
     plot <- map_dfr(colnames(tmp.df), function(alg) {
       comp <- tmp.df %>% pull(alg)
@@ -920,14 +919,14 @@ correlation_scatter <- function(misty.importances) {
       drop_na() %>%
       pivot_wider(names_from = relation, values_from = Importance) %>%
       filter(view == v) %>%
-      select(-c(study, view.comp)) %>%
+      dplyr::select(-c(study, view.comp)) %>%
       mutate(sample = str_extract(sample, "[^/]+$")) %>%
       group_by(algorithm) %>%
-      summarise(across(4:(ncol(.)-1), mean)) %>%
+      dplyr::summarise(across(4:(ncol(.)-1), mean)) %>%
       replace(is.na(.), 0) %>%
       pivot_longer(cols = !algorithm) %>%
       pivot_wider(names_from = algorithm, values_from = value) %>%
-      select(-name) %>%
+      dplyr::select(-name) %>%
       GGally::ggpairs(title=v) %>%
       print()
       #scatterPlotMatrix::scatterPlotMatrix(corrPlotType = "Text",
@@ -945,14 +944,14 @@ cosine_heatmap2 <- function(misty.importances) {
     drop_na() %>%
     pivot_wider(names_from = relation, values_from = Importance) %>%
     filter(view == "intra") %>%
-    select(-c(study, view.comp)) %>%
+    dplyr::select(-c(study, view.comp)) %>%
     mutate(sample = str_extract(sample, "[^/]+$")) %>%
     group_by(algorithm) %>%
-    summarise(across(4:(ncol(.)-1), mean)) %>%
+    dplyr::summarise(across(4:(ncol(.)-1), mean)) %>%
     replace(is.na(.), 0) %>%
     pivot_longer(cols = !algorithm) %>%
     pivot_wider(names_from = algorithm, values_from = value) %>%
-    select(-name)
+    dplyr::select(-name)
   
   map_dfr(colnames(tidy.df), function(alg) {
     comp <- tidy.df %>% pull(alg)
@@ -1126,7 +1125,7 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
 
 ## `merfish_liver`
 
-```{r}
+```{r eval=FALSE}
 filter_runs(all.results, "merfish_liver", "std280") %>%
   get_importance() %>%
   check_algs()
@@ -1287,12 +1286,12 @@ the multi-layer perceptron, bagged mars models, and the support vector machine.
 filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "RF_hyper_")) %>%
-  select(algorithm) %>% 
+  dplyr::select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
            c("n.tree", "min.node.size", "max.depth", "splitrule"), "_") %>%
-  select(name, everything())
+  dplyr::select(name, everything())
 ```
 
 
@@ -1313,12 +1312,12 @@ We can clearly see that `max.depths = 1` reduces the performance significantly. 
 filter_runs(all.results, "mibi_tnbc", "MARS_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
-  select(algorithm) %>% 
+  dplyr::select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
            c("penalty", "degree", "fast.k", "pmethod"), "_") %>%
-  select(name, everything())
+  dplyr::select(name, everything())
 ```
 
 ```{r}
@@ -1337,12 +1336,12 @@ of hyperparameters here.
 filter_runs(all.results, "synthetic", "MARS_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
-  select(algorithm) %>% 
+  dplyr::select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
            c("penalty", "degree", "fast.k", "pmethod"), "_") %>%
-  select(name, everything())
+  dplyr::select(name, everything())
 ```
 
 ```{r}
@@ -1441,12 +1440,12 @@ filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>%
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
   filter(str_count(algorithm, "_") == 2) %>%
-  select(algorithm) %>% 
+  dplyr::select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
            c("nrounds", "lambda", "alpha"), "_") %>%
-  select(name, everything())
+  dplyr::select(name, everything())
 ```
 
 ### `mibi_tnbc`
@@ -1470,12 +1469,12 @@ filter_runs(all.results, "merfish_bc", "LBOOST_hyper") %>%
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
   filter(str_count(algorithm, "_") == 2) %>%
-  select(algorithm) %>% 
+  dplyr::select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
            c("nrounds", "lambda", "alpha"), "_") %>%
-  select(name, everything())
+  dplyr::select(name, everything())
 ```
 
 ```{r eval=FALSE}
@@ -1494,12 +1493,12 @@ filter_runs(all.results, "synthetic", "LBOOST_hyper") %>%
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
   filter(str_count(algorithm, "_") == 2) %>%
-  select(algorithm) %>% 
+  dplyr::select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
            c("nrounds", "lambda", "alpha"), "_") %>%
-  select(name, everything())
+  dplyr::select(name, everything())
 ```
 
 ```{r}
@@ -1516,12 +1515,12 @@ filter_runs(all.results, "synthetic", "LBOOST_hyper") %>%
 filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "TBOOST_hyper_")) %>%
-  select(algorithm) %>% 
+  dplyr::select(algorithm) %>% 
   distinct() %>%
   mutate(name = algorithm) %>%
   separate(algorithm, 
            c("eta", "max_depth", "min_child_weight", "subsample"), "_") %>%
-  select(name, everything())
+  dplyr::select(name, everything())
 ```
 
 ### `mibi_tnbc`
