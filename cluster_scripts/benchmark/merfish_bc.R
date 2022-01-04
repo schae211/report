@@ -30,7 +30,7 @@ ifelse(!dir.exists(output.path), dir.create(output.path), FALSE)
 ##### Packages ##### 
 library(mistyR)
 library(future)
-plan("multisession", workers=12)
+plan("multisession", workers=4)
 library(tidyverse)
 
 ##### Input ##### 
