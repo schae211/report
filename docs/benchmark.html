@@ -450,7 +450,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-01-05
+<strong>Last updated:</strong> 2022-01-06
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -541,16 +541,16 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreec0b65657788ede113238ba788d21cf3c2db62ea8targetblankc0b6565a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/c0b65657788ede113238ba788d21cf3c2db62ea8" target="_blank">c0b6565</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreee9f9b715e376197922a70610293d6c06e84eae3ctargetblanke9f9b71a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/e9f9b715e376197922a70610293d6c06e84eae3c" target="_blank">e9f9b71</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreec0b65657788ede113238ba788d21cf3c2db62ea8targetblankc0b6565a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreee9f9b715e376197922a70610293d6c06e84eae3ctargetblanke9f9b71a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/c0b65657788ede113238ba788d21cf3c2db62ea8" target="_blank">c0b6565</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/e9f9b715e376197922a70610293d6c06e84eae3c" target="_blank">e9f9b71</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -580,6 +580,8 @@ Ignored files:
     Ignored:    output/2021-12-30-14-31_all_results.log
     Ignored:    output/2022-01-04-07-24_all_results.RDS
     Ignored:    output/2022-01-04-07-24_all_results.log
+    Ignored:    output/2022-01-05-22-43_all_results.RDS
+    Ignored:    output/2022-01-05-22-43_all_results.log
     Ignored:    results/
 
 </code></pre>
@@ -619,6 +621,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/e9f9b715e376197922a70610293d6c06e84eae3c/docs/benchmark.html" target="_blank">e9f9b71</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-05
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -1463,7 +1482,7 @@ latest.views &lt;- str_extract(view.files, &quot;[0-9-]+&quot;) %&gt;%
   which.max()
 
 print(paste(&quot;Loading results from:&quot;, res.files[latest.result]))</code></pre>
-<pre><code>[1] &quot;Loading results from: output/2022-01-04-07-24_all_results.RDS&quot;</code></pre>
+<pre><code>[1] &quot;Loading results from: output/2022-01-05-22-43_all_results.RDS&quot;</code></pre>
 <pre class="r"><code>all.results &lt;- readRDS(res.files[latest.result])
 
 print(paste(&quot;Loading views from:&quot;, view.files[latest.views]))</code></pre>
@@ -2231,7 +2250,7 @@ schae211
   check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"30240"},{"1":"TBOOST","2":"31104"},{"1":"LBOOST","2":"30240"},{"1":"LM","2":"31104"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"30240"},{"1":"TBOOST","2":"31104"},{"1":"MARS60","2":"3456"},{"1":"LBOOST","2":"30888"},{"1":"LM","2":"31104"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
@@ -2450,7 +2469,7 @@ schae211
   check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["std280"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"183168"},{"1":"TBOOST","2":"183168"},{"1":"LBOOST","2":"183168"},{"1":"LM","2":"183168"},{"1":"SVM","2":"488"},{"1":"MLP","2":"10200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["std280"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"183168"},{"1":"TBOOST","2":"183168"},{"1":"LM","2":"183168"},{"1":"SVM","2":"488"},{"1":"MLP","2":"26584"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
@@ -2623,7 +2642,7 @@ schae211
   check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"5856"},{"1":"TBOOST","2":"5048"},{"1":"MARS","2":"3736"},{"1":"BGMARS","2":"536"},{"1":"LBOOST","2":"5088"},{"1":"LM","2":"5288"},{"1":"SVM","2":"912"},{"1":"MLP","2":"1312"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"5856"},{"1":"TBOOST","2":"5048"},{"1":"MARS","2":"4888"},{"1":"BGMARS","2":"1368"},{"1":"LBOOST","2":"6192"},{"1":"LM","2":"5288"},{"1":"SVM","2":"912"},{"1":"MLP","2":"1312"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
@@ -2833,7 +2852,7 @@ schae211
   check_runs(ordering = def.ord)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["ratio_153"],"name":[2],"type":["int"],"align":["right"]},{"label":["ratio_19"],"name":[3],"type":["int"],"align":["right"]},{"label":["ratio_38"],"name":[4],"type":["int"],"align":["right"]},{"label":["ratio_76"],"name":[5],"type":["int"],"align":["right"]},{"label":["ratio_9"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"7736","3":"7776","4":"7776","5":"7776","6":"7776"},{"1":"TBOOST","2":"7736","3":"7776","4":"7776","5":"7776","6":"7776"},{"1":"MARS100","2":"7736","3":"7776","4":"7776","5":"7776","6":"1680"},{"1":"MARS80","2":"2160","3":"7776","4":"7776","5":"7776","6":"872"},{"1":"MARS60","2":"2160","3":"7776","4":"7776","5":"7776","6":"1728"},{"1":"BGMARS","2":"7736","3":"1760","4":"7776","5":"7776","6":"1200"},{"1":"LBOOST","2":"7736","3":"7776","4":"7776","5":"7776","6":"NA"},{"1":"LM","2":"7736","3":"7776","4":"7776","5":"7776","6":"7776"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["ratio_153"],"name":[2],"type":["int"],"align":["right"]},{"label":["ratio_19"],"name":[3],"type":["int"],"align":["right"]},{"label":["ratio_38"],"name":[4],"type":["int"],"align":["right"]},{"label":["ratio_76"],"name":[5],"type":["int"],"align":["right"]},{"label":["ratio_9"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"7736","3":"7776","4":"7776","5":"7776","6":"7776"},{"1":"TBOOST","2":"7736","3":"7776","4":"7776","5":"7776","6":"7776"},{"1":"MARS100","2":"7736","3":"7776","4":"7776","5":"7776","6":"1800"},{"1":"MARS80","2":"2160","3":"7776","4":"7776","5":"7776","6":"872"},{"1":"MARS60","2":"2160","3":"7776","4":"7776","5":"7776","6":"1728"},{"1":"BGMARS","2":"7736","3":"1760","4":"7776","5":"7776","6":"3216"},{"1":"LBOOST","2":"7736","3":"7776","4":"7776","5":"7776","6":"NA"},{"1":"LM","2":"7736","3":"7776","4":"7776","5":"7776","6":"7776"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, c(&quot;ratio_153&quot;, &quot;ratio_76&quot;, &quot;ratio_38&quot;,
@@ -3813,7 +3832,7 @@ Click here for pairwise comparison to RF
   get_importance() %&gt;%
   wrap_function(cosine_similarity) %&gt;%
   plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-62-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-62-1">
@@ -4533,7 +4552,6 @@ Click here for pairwise comparison to RF
   get_importance() %&gt;%
   wrap_function(cosine_similarity) %&gt;%
   plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-67-1">
@@ -4768,7 +4786,7 @@ schae211
   check_algs()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"LBOOST","2":"0","3":"1213380"},{"1":"LM","2":"0","3":"1248048"},{"1":"RF","2":"0","3":"1213380"},{"1":"TBOOST","2":"142643","3":"1248048"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"LBOOST","2":"8667","3":"1248048"},{"1":"LM","2":"0","3":"1248048"},{"1":"MARS60","2":"0","3":"138672"},{"1":"RF","2":"0","3":"1213380"},{"1":"TBOOST","2":"142643","3":"1248048"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
@@ -5285,7 +5303,7 @@ Click here for pairwise comparison to RF
   get_importance() %&gt;%
   wrap_function(cosine_similarity) %&gt;%
   plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 15 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-72-1">
@@ -5384,7 +5402,7 @@ schae211
   get_importance() %&gt;%
   wrap_function(jaccard_index, cutoff=0) %&gt;%
   plot_jaccard()</code></pre>
-<pre><code>Warning: Removed 6 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-73-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-73-1">
@@ -5507,7 +5525,7 @@ schae211
   check_algs()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"26775","3":"43860"},{"1":"LBOOST","2":"34935","3":"197370"},{"1":"LM","2":"28815","3":"197370"},{"1":"MARS","2":"12495","3":"131580"},{"1":"MLP","2":"2040","3":"43860"},{"1":"RF","2":"10710","3":"197370"},{"1":"SVM","2":"14790","3":"43860"},{"1":"TBOOST","2":"48335","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"255","3":"43860"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"28815","3":"197370"},{"1":"MARS","2":"19635","3":"175440"},{"1":"MLP","2":"2040","3":"43860"},{"1":"RF","2":"10710","3":"197370"},{"1":"SVM","2":"14790","3":"43860"},{"1":"TBOOST","2":"48335","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
@@ -5515,7 +5533,7 @@ schae211
   check_algs()</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"26775","3":"43860"},{"1":"LBOOST","2":"34935","3":"197370"},{"1":"LM","2":"28815","3":"197370"},{"1":"MARS","2":"12495","3":"131580"},{"1":"MLP","2":"2040","3":"43860"},{"1":"RF","2":"10710","3":"197370"},{"1":"SVM","2":"14790","3":"43860"},{"1":"TBOOST","2":"48335","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"255","3":"43860"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"28815","3":"197370"},{"1":"MARS","2":"19635","3":"175440"},{"1":"MLP","2":"2040","3":"43860"},{"1":"RF","2":"10710","3":"197370"},{"1":"SVM","2":"14790","3":"43860"},{"1":"TBOOST","2":"48335","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
@@ -6065,7 +6083,7 @@ Click here for pairwise comparison to RF
   get_importance() %&gt;%
   wrap_function(cosine_similarity) %&gt;%
   plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 15 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-79-1">
@@ -6650,7 +6668,7 @@ Click here for pairwise comparison to RF
   filter(view != &quot;para.10&quot;) %&gt;%
   wrap_function(cosine_similarity) %&gt;%
   plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 5 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
 <p><img src="figure/benchmark.Rmd/unnamed-chunk-84-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-84-1">
@@ -6862,7 +6880,7 @@ c(&quot;RF&quot; = random_forest_model, &quot;TBOOST&quot; = gradient_boosting_m
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"37.60351 secs","3":"0.4888794"},{"1":"MARS","2":"53.39140 secs","3":"0.6941360"},{"1":"RF","2":"76.91777 secs","3":"1.0000000"},{"1":"TBOOST","2":"79.83979 secs","3":"1.0379888"},{"1":"SVM","2":"238.66547 secs","3":"3.1028650"},{"1":"MLP","2":"255.91240 secs","3":"3.3270907"},{"1":"BGMARS","2":"311.53184 secs","3":"4.0501932"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"38.26531 secs","3":"0.4977057"},{"1":"MARS","2":"55.43333 secs","3":"0.7210052"},{"1":"RF","2":"76.88340 secs","3":"1.0000000"},{"1":"TBOOST","2":"86.98419 secs","3":"1.1313781"},{"1":"SVM","2":"262.97669 secs","3":"3.4204613"},{"1":"MLP","2":"321.26777 secs","3":"4.1786364"},{"1":"BGMARS","2":"344.63056 secs","3":"4.4825095"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>As expected the linear model is by far the fastest model. Random forest and gradient boosting with trees are equally fast and perform much better than the multi-layer perceptron, bagged mars models, and the support vector machine.</p>
@@ -7137,7 +7155,7 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"45.59199 secs"},{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"47.06404 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"50.84838 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"59.08177 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"62.15036 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"62.24057 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"62.73389 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"62.79137 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"63.02719 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"63.08042 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"63.60100 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"65.45652 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"47.03558 secs"},{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"47.31408 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"54.41894 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"63.44322 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"67.22149 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"68.31014 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"68.33407 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"68.67372 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"69.11412 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"69.14698 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"69.53895 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"70.57931 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
@@ -7178,7 +7196,7 @@ pmap_dfr(list(degrees, fastks, threshs),
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["thresh"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_5_0.05","2":"2","3":"5","4":"0.050","5":"47.11990 secs"},{"1":"2_20_0.05","2":"2","3":"20","4":"0.050","5":"47.16616 secs"},{"1":"1_5_0.001","2":"1","3":"5","4":"0.001","5":"47.39641 secs"},{"1":"2_10_0.05","2":"2","3":"10","4":"0.050","5":"47.77993 secs"},{"1":"1_10_0.001","2":"1","3":"10","4":"0.001","5":"50.26134 secs"},{"1":"2_5_0.01","2":"2","3":"5","4":"0.010","5":"51.92159 secs"},{"1":"2_10_0.01","2":"2","3":"10","4":"0.010","5":"57.85839 secs"},{"1":"2_20_0.01","2":"2","3":"20","4":"0.010","5":"63.10103 secs"},{"1":"2_5_0.001","2":"2","3":"5","4":"0.001","5":"63.41528 secs"},{"1":"1_20_0.001","2":"1","3":"20","4":"0.001","5":"74.75278 secs"},{"1":"2_10_0.001","2":"2","3":"10","4":"0.001","5":"76.46511 secs"},{"1":"2_20_0.001","2":"2","3":"20","4":"0.001","5":"85.73054 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["thresh"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["drtn"],"align":["right"]}],"data":[{"1":"1_5_0.001","2":"1","3":"5","4":"0.001","5":"47.36851 secs"},{"1":"2_20_0.05","2":"2","3":"20","4":"0.050","5":"48.93192 secs"},{"1":"2_10_0.05","2":"2","3":"10","4":"0.050","5":"49.31255 secs"},{"1":"1_10_0.001","2":"1","3":"10","4":"0.001","5":"50.00286 secs"},{"1":"2_5_0.05","2":"2","3":"5","4":"0.050","5":"50.07932 secs"},{"1":"2_5_0.01","2":"2","3":"5","4":"0.010","5":"53.77968 secs"},{"1":"2_10_0.01","2":"2","3":"10","4":"0.010","5":"64.11922 secs"},{"1":"2_5_0.001","2":"2","3":"5","4":"0.001","5":"69.77861 secs"},{"1":"2_20_0.01","2":"2","3":"20","4":"0.010","5":"69.87427 secs"},{"1":"1_20_0.001","2":"1","3":"20","4":"0.001","5":"75.02828 secs"},{"1":"2_10_0.001","2":"2","3":"10","4":"0.001","5":"82.60621 secs"},{"1":"2_20_0.001","2":"2","3":"20","4":"0.001","5":"96.80381 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -7420,7 +7438,7 @@ map_dfr(funcs, function(func) {
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["funcs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]}],"data":[{"1":"BackpropBatch","2":"4.480180 mins"},{"1":"BackpropMomentum","2":"4.602212 mins"},{"1":"Std_Backpropagation","2":"4.800702 mins"},{"1":"BackpropChunk","2":"4.825399 mins"},{"1":"Quickprop","2":"6.341918 mins"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["funcs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]}],"data":[{"1":"BackpropBatch","2":"5.646748 mins"},{"1":"BackpropMomentum","2":"5.831262 mins"},{"1":"Std_Backpropagation","2":"6.006597 mins"},{"1":"BackpropChunk","2":"6.107993 mins"},{"1":"Quickprop","2":"7.756196 mins"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>And we see that the choice of learning algorithm does not make much of a difference here and that the default “BackpropBatch” seems to be the best choice.</p>
