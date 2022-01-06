@@ -42,7 +42,7 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -360,7 +360,7 @@ $(document).ready(function () {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -369,7 +369,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -378,17 +378,17 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-01-06
+<strong>Last updated:</strong> 2022-01-03
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -397,12 +397,12 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -469,48 +469,37 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreee9f9b715e376197922a70610293d6c06e84eae3ctargetblanke9f9b71a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/e9f9b715e376197922a70610293d6c06e84eae3c" target="_blank">e9f9b71</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639targetblank9abc4f3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639" target="_blank">9abc4f3</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreee9f9b715e376197922a70610293d6c06e84eae3ctargetblanke9f9b71a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639targetblank9abc4f3a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/e9f9b715e376197922a70610293d6c06e84eae3c" target="_blank">e9f9b71</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639" target="_blank">9abc4f3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    data/4iANCA/
     Ignored:    data/imc/
     Ignored:    data/merfish_bc/
     Ignored:    data/merfish_liver/
     Ignored:    data/merfish_preoptic/
     Ignored:    data/mibi_tnbc/
     Ignored:    data/seqfishp_brain/
-    Ignored:    output/2021-12-17-07-58_all_results.RDS
-    Ignored:    output/2021-12-17-07-58_all_results.log
-    Ignored:    output/2021-12-17-07-59_all_views.RDS
-    Ignored:    output/2021-12-20-16-20_all_results.RDS
-    Ignored:    output/2021-12-20-16-20_all_results.log
-    Ignored:    output/2021-12-21-12-22_all_results.RDS
-    Ignored:    output/2021-12-21-12-22_all_results.log
-    Ignored:    output/2021-12-23-09-57_all_results.RDS
-    Ignored:    output/2021-12-23-09-57_all_results.log
     Ignored:    output/2021-12-25-09-41_all_views.RDS
-    Ignored:    output/2021-12-25-09-42_all_results.RDS
-    Ignored:    output/2021-12-25-09-42_all_results.log
-    Ignored:    output/2021-12-30-14-31_all_results.RDS
-    Ignored:    output/2021-12-30-14-31_all_results.log
-    Ignored:    output/2022-01-04-07-24_all_results.RDS
-    Ignored:    output/2022-01-04-07-24_all_results.log
-    Ignored:    output/2022-01-05-22-43_all_results.RDS
-    Ignored:    output/2022-01-05-22-43_all_results.log
-    Ignored:    results/
+    Ignored:    output/case_study_A/
+    Ignored:    output/case_study_B/
+
+Untracked files:
+    Untracked:  analysis/eda_merfish_preoptic.Rmd
+
+Unstaged changes:
+    Modified:   analysis/introduction.Rmd
 
 </code></pre>
 <p>
@@ -549,40 +538,6 @@ Message
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/schae211/report/blob/9c685243ffb415c4587548686f00985d9ad7e35d/analysis/introduction.Rmd" target="_blank">9c68524</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-03
-</td>
-<td>
-finished introduction, read through method section
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/schae211/report/9c685243ffb415c4587548686f00985d9ad7e35d/docs/introduction.html" target="_blank">9c68524</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-03
-</td>
-<td>
-finished introduction, read through method section
-</td>
-</tr>
 <tr>
 <td>
 html
@@ -682,7 +637,7 @@ schae211
 2021-12-23
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -784,7 +739,7 @@ schae211
 2021-12-18
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -818,7 +773,7 @@ schae211
 2021-12-16
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 <tr>
@@ -903,7 +858,7 @@ schae211
 2021-12-15
 </td>
 <td>
-wflow_publish("analysis/introduction.Rmd")
+wflow_publish(“analysis/introduction.Rmd”)
 </td>
 </tr>
 </tbody>
@@ -919,7 +874,7 @@ text-align: justify;
 margin: 300px}
 </style>
 <p>In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq<span class="citation">(<a href="#ref-10.1016/j.cell.2015.05.002" role="doc-biblioref"><em>1</em></a>)</span> in 2015, the number of studies based on single-cell omics has exploded, primarily due to the commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, this technology requires a single-cell suspension, meaning tissues must be dissociated. Consequently, we loose information about the spatial context of cells, which is crucial for their function. Cells use different mechanisms to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Thereby, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, inferring the interaction of different proteins or more broadly cell-cell communication (CCC) using single-cell expression data from dissociated tissues is difficult.</p>
-<p>Taking the spatial context into consideration should help to infer interactions. One the one hand this requires multiplexed spatially resolved data, which only became available in the recent years. Below, I will briefly describe new spatially resolved transcriptomic (1.1) and proteomic approaches (1.2) based on these reviews <span class="citation">(<a href="#ref-Moses2021.05.11.443152" role="doc-biblioref"><em>2</em></a>, <a href="#ref-10.3389/fimmu.2019.02657" role="doc-biblioref"><em>3</em></a>)</span>. On the other hand, adequate analysis frameworks are required to analyze these kind of data. Most approaches focus on visualization of the data, finding spatially variable genes/gene programs, or cellular niches (what does this mean?). However, few tools aim to answer the questions what drives the expression of certain genes/proteins. MISTy, an analysis framework based on explanatory machine learning, has been developed by Tanevski et al. <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> to answer exactly this question. Given a marker (gene/protein), the user can define predictors (hereafter called views) which take the spatial context into account. For example, a view could comprise the expression of other markers in the direct neighborhood, or the distance to certain morphological features. The relationship between the chosen marker and each view is then modeled with a random forest model, and all these view-specific models are then combined in a meta model via ridge regression. In this work, the framework was generalized in such a way, that the relationship between individual views and the target of interest can now be modeled by any user supplied machine learning algorithm. Thus, allowing users to choose the best algorithm for the task at hand in the spirit of the “no free lunch theorem” (which describes that there is no single model that works optimally for all tasks). I will further describe MISTy and other spatial omics tools below (1.3).</p>
+<p>Taking the spatial context into consideration should help to infer interactions. One the one hand this requires multiplexed spatially resolved data, which only became available in the recent years. Below, I will briefly describe new spatially resolved transcriptomic (1.1) and proteomic approaches (1.2) based on these reviews <span class="citation">(<a href="#ref-Moses2021.05.11.443152" role="doc-biblioref"><em>2</em></a>, <a href="#ref-10.3389/fimmu.2019.02657" role="doc-biblioref"><em>3</em></a>)</span>. On the other hand, adequate analysis frameworks are required to analyze these kind of data. Most approaches focus on visualization of the data, finding spatially variable genes/gene programs, or cellular niches (what does this mean?). However, few tools aim to answer the questions what drives the expression of certain genes/proteins. MISTy, an analysis framework based on explanatory machine learning, has been developed by Tanevski et al. <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> to answer exactly this question. Given a marker (gene/protein), the user can define predictors (hereafter called views) which take the spatial context into account. For example, a view could comprise the expression of other markers in the direct neighborhood, or the distance to certain morphological features. The relationship between the chosen marker and each view is then modeled with a random forest model, and all these view-specific models are then combined in a meta model via ridge regression. In this work, the framework was generalized in such a way, that the relationship between individual views and the target of interest can now be modeled by any user supplied machine learning algorithm. Thus, allowing users to choose the best algorithm for the task at hand in the spirit of the no free lunch theorem. I will further describe MISTy and other spatial omics tools below (1.3).</p>
 <div id="spatial-transcriptomics" class="section level1">
 <h1>1.1 Spatial Transcriptomics</h1>
 <p>Modern spatial transcriptomic approaches can be broadly classified into four categories, namely microdissection, single-molecule fluorescent in-situ hybridization (smFISH), in-situ sequencing (ISS), and spatial barcoding in conjunction with next-generation sequencing (NGS). Microdissection refers to a couple of methods for isolating small regions of interest which can subsequently be analyzed (for example by NGS). Advantages are the flexibility with respect to the size of the isolated spots (e.g. down to the size of nuclei) and downstream analysis, and the compatibility with FFPE tissues. However, this comes at the cost of being laborious due to sequential handling of the isolated spots. Thus, the throughput, meaning how many cells/spots can be processed in a given time, is much higher for the other methods mentioned above. In particular spatial barcoding with NGS offers a high throughput due to its commercialization by 10X Genomics (“Visium”) and standard downstream pipelines of NGS data (demultiplexing, alignment, etc.).</p>
@@ -962,7 +917,7 @@ Click here for MISTy flowchart
 <script type="application/json" data-for="htmlwidget-06bbab40e228689d42ad">{"x":{"diagram":"digraph{\n\n      # setting the global strucutre (top to low)\n      graph[rankdir = TL]\n  \n      # setting the default node layout\n      node[shape = rectangle, style = filled]\n  \n      subgraph cluster_1 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Input: Spatial Omics\"\n        node[fillcolor = White, margin = 0.2]\n          EXP[label = \"expression\"]\n          POS[label = \"positions\"]\n      }\n      \n      subgraph cluster_3 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Generating Views\"\n        node[fillcolor = White, margin = 0.2]\n        CIV[label = \"create_initial_view()\"]\n        AJV[label = \"add_juxtaview()\"]\n        APV[label = \"add_paraview()\"]\n      }\n      \n      subgraph cluster_4 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"MISTy Views\"\n        node[fillcolor = White, margin = 0.2]\n        IV[label = \"intraview\"]\n        JV[label = \"juxtaview\"]\n        PV[label = \"paraview\"]\n        V[label = \"misty views\"]\n      }\n      \n      subgraph cluster_5 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"MISTy Parameters\"\n        node[fillcolor = White, margin = 0.2]\n        RES[label = \"results.folder\"]\n        MF[label = \"model.function\", fillcolor = \"Gold\"]\n        TS[label = \"target.subset\"]\n        CV[label = \"cv.folds\"]\n        BI[label = \"bypass.intra\"]\n        DOTS[label = \"...\"]\n      }\n      \n      subgraph cluster_6 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Output: MISTy Results\"\n        node[fillcolor = White, margin = 0.2]\n          PER[label = \"performance\"]\n          CON[label = \"contribution\"]\n          IMP[label = \"importances\"]\n      }\n      \n      subgraph cluster_8 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Running MISTy\"\n        node[fillcolor = White, margin = 0.2]\n        RM[label = \"run_misty()\"]\n        CR[label = \"collect_results()\"]\n      }\n      \n      edge[color = black, arrowhead = vee, arrowsize = 0.8]\n      EXP -> CIV\n      POS -> {APV, AJV}\n      CIV -> {APV, AJV}\n      CIV -> IV\n      APV -> PV\n      AJV -> JV\n      {IV, PV, JV} -> V\n      {V, RES, MF, TS, CV, BI, DOTS} -> RM\n      RM -> CR\n      CR -> {PER, CON, IMP}\n      \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </details>
 <p>In the results section, I will first show <a href="https://schae211.github.io/report/benchmark.html">benchmarking</a> results, where I compare the performance of different algorithms on different spatial omics datasets. Furthermore, I explore the impact of different hyperparameters on the model performance for the algorithms.</p>
-<p>In the <a href="https://schae211.github.io/report/frameworks.html">frameworks</a> section I briefly describe why we could not use one of the major machine learning frameworks in R, namely <code>caret</code>, <code>tidymodels</code>, and <code>mlr3</code> as back-end in MISTy models. These frameworks are either not flexible enough, or their performance is bad.</p>
+<p>In the <a href="https://schae211.github.io/report/frameworks.html">frameworks</a> section I briefly describe we could not use one of the major machine learning frameworks in R, namely <code>caret</code>, <code>tidymodels</code>, and <code>mlr3</code> as backend in MISTy models. These frameworks are either not flexible enough, or their performance is bad.</p>
 <p>Also, I will describe an <a href="https://schae211.github.io/report/model_api.html">alternative</a> implementation of a new MISTy framework that allows users to select more ML models than only random forests, but not to use functions defined by themselves. Running MISTy with an ensemble of 50 MARS models (interaction term 2) trained with bootstrap samples would looks like this.</p>
 <pre class="r"><code>misty.views %&gt;% 
   run_misty(method = &quot;bag&quot;, learner = &quot;earth&quot;, 
@@ -975,40 +930,40 @@ Click here for MISTy flowchart
 <h1>References</h1>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-10.1016/j.cell.2015.05.002" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">E. Z. Macosko, A. Basu, R. Satija, J. Nemesh, K. Shekhar, M. Goldman, I. Tirosh, A. R. Bialas, N. Kamitaki, E. M. Martersteck, J. J. Trombetta, D. A. Weitz, J. R. Sanes, A. K. Shalek, A. Regev, S. A. McCarroll, <a href="https://doi.org/10.1016/j.cell.2015.05.002"><span class="nocase">Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets</span></a>. <em>Cell</em>. <strong>161</strong>, 1202–1214 (2015).</div>
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">E. Z. Macosko, A. Basu, R. Satija, J. Nemesh, K. Shekhar, M. Goldman, I. Tirosh, A. R. Bialas, N. Kamitaki, E. M. Martersteck, J. J. Trombetta, D. A. Weitz, J. R. Sanes, A. K. Shalek, A. Regev, S. A. McCarroll, <span class="nocase">Highly Parallel Genome-wide Expression Profiling of Individual Cells Using Nanoliter Droplets</span>. <em>Cell</em>. <strong>161</strong>, 1202–1214 (2015).</div>
 </div>
 <div id="ref-Moses2021.05.11.443152" class="csl-entry">
 <div class="csl-left-margin">2. </div><div class="csl-right-inline">L. Moses, L. Pachter, Museum of spatial transcriptomics. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2021.05.11.443152">10.1101/2021.05.11.443152</a>.</div>
 </div>
 <div id="ref-10.3389/fimmu.2019.02657" class="csl-entry">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">H. Baharlou, N. P. Canete, A. L. Cunningham, A. N. Harman, E. Patrick, <a href="https://doi.org/10.3389/fimmu.2019.02657"><span class="nocase">Mass Cytometry Imaging for the Study of Human Diseases—Applications and Data Analysis Strategies</span></a>. <em>Frontiers in Immunology</em>. <strong>10</strong>, 2657 (2019).</div>
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">H. Baharlou, N. P. Canete, A. L. Cunningham, A. N. Harman, E. Patrick, <span class="nocase">Mass Cytometry Imaging for the Study of Human Diseases—Applications and Data Analysis Strategies</span>. <em>Frontiers in Immunology</em>. <strong>10</strong>, 2657 (2019).</div>
 </div>
 <div id="ref-Tanevski2020.05.08.084145" class="csl-entry">
 <div class="csl-left-margin">4. </div><div class="csl-right-inline">J. Tanevski, R. O. R. Flores, A. Gabor, D. Schapiro, J. Saez-Rodriguez, Explainable multi-view framework for dissecting intercellular signaling from highly multiplexed spatial data. <em>bioRxiv</em> (2021), doi:<a href="https://doi.org/10.1101/2020.05.08.084145">10.1101/2020.05.08.084145</a>.</div>
 </div>
 <div id="ref-10.1016/j.neuron.2016.10.001" class="csl-entry">
-<div class="csl-left-margin">5. </div><div class="csl-right-inline">S. Shah, E. Lubeck, W. Zhou, L. Cai, <a href="https://doi.org/10.1016/j.neuron.2016.10.001"><span class="nocase">In Situ Transcription Profiling of Single Cells Reveals Spatial Organization of Cells in the Mouse Hippocampus</span></a>. <em>Neuron</em>. <strong>92</strong>, 342–357 (2016).</div>
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">S. Shah, E. Lubeck, W. Zhou, L. Cai, <span class="nocase">In Situ Transcription Profiling of Single Cells Reveals Spatial Organization of Cells in the Mouse Hippocampus</span>. <em>Neuron</em>. <strong>92</strong>, 342–357 (2016).</div>
 </div>
 <div id="ref-10.1073/pnas.1612826113" class="csl-entry">
-<div class="csl-left-margin">6. </div><div class="csl-right-inline">J. R. Moffitt, J. Hao, G. Wang, K. H. Chen, H. P. Babcock, X. Zhuang, <a href="https://doi.org/10.1073/pnas.1612826113"><span class="nocase">High-throughput single-cell gene-expression profiling with multiplexed error-robust fluorescence in situ hybridization</span></a>. <em>Proceedings of the National Academy of Sciences</em>. <strong>113</strong>, 11046–11051 (2016).</div>
+<div class="csl-left-margin">6. </div><div class="csl-right-inline">J. R. Moffitt, J. Hao, G. Wang, K. H. Chen, H. P. Babcock, X. Zhuang, <span class="nocase">High-throughput single-cell gene-expression profiling with multiplexed error-robust fluorescence in situ hybridization</span>. <em>Proceedings of the National Academy of Sciences</em>. <strong>113</strong>, 11046–11051 (2016).</div>
 </div>
 <div id="ref-10.1016/j.cell.2020.06.038" class="csl-entry">
-<div class="csl-left-margin">7. </div><div class="csl-right-inline">W.-T. Chen, A. Lu, K. Craessaerts, B. Pavie, C. S. Frigerio, N. Corthout, X. Qian, J. Laláková, M. Kühnemund, I. Voytyuk, L. Wolfs, R. Mancuso, E. Salta, S. Balusu, A. Snellinx, S. Munck, A. Jurek, J. F. Navarro, T. C. Saido, I. Huitinga, J. Lundeberg, M. Fiers, B. D. Strooper, <a href="https://doi.org/10.1016/j.cell.2020.06.038"><span class="nocase">Spatial Transcriptomics and In Situ Sequencing to Study Alzheimer’s Disease</span></a>. <em>Cell</em>. <strong>182</strong>, 976–991.e19 (2020).</div>
+<div class="csl-left-margin">7. </div><div class="csl-right-inline">W.-T. Chen, A. Lu, K. Craessaerts, B. Pavie, C. S. Frigerio, N. Corthout, X. Qian, J. Laláková, M. Kühnemund, I. Voytyuk, L. Wolfs, R. Mancuso, E. Salta, S. Balusu, A. Snellinx, S. Munck, A. Jurek, J. F. Navarro, T. C. Saido, I. Huitinga, J. Lundeberg, M. Fiers, B. D. Strooper, <span class="nocase">Spatial Transcriptomics and In Situ Sequencing to Study Alzheimer’s Disease</span>. <em>Cell</em>. <strong>182</strong>, 976–991.e19 (2020).</div>
 </div>
 <div id="ref-10.1038/nmeth.2869" class="csl-entry">
-<div class="csl-left-margin">8. </div><div class="csl-right-inline">C. Giesen, H. A. O. Wang, D. Schapiro, N. Zivanovic, A. Jacobs, B. Hattendorf, P. J. Schüffler, D. Grolimund, J. M. Buhmann, S. Brandt, Z. Varga, P. J. Wild, D. Günther, B. Bodenmiller, <a href="https://doi.org/10.1038/nmeth.2869"><span class="nocase">Highly multiplexed imaging of tumor tissues with subcellular resolution by mass cytometry</span></a>. <em>Nature Methods</em>. <strong>11</strong>, 417–422 (2014).</div>
+<div class="csl-left-margin">8. </div><div class="csl-right-inline">C. Giesen, H. A. O. Wang, D. Schapiro, N. Zivanovic, A. Jacobs, B. Hattendorf, P. J. Schüffler, D. Grolimund, J. M. Buhmann, S. Brandt, Z. Varga, P. J. Wild, D. Günther, B. Bodenmiller, <span class="nocase">Highly multiplexed imaging of tumor tissues with subcellular resolution by mass cytometry</span>. <em>Nature Methods</em>. <strong>11</strong>, 417–422 (2014).</div>
 </div>
 <div id="ref-10.1038/nm.3488" class="csl-entry">
-<div class="csl-left-margin">9. </div><div class="csl-right-inline">M. Angelo, S. C. Bendall, R. Finck, M. B. Hale, C. Hitzman, A. D. Borowsky, R. M. Levenson, J. B. Lowe, S. D. Liu, S. Zhao, Y. Natkunam, G. P. Nolan, <a href="https://doi.org/10.1038/nm.3488"><span class="nocase">Multiplexed ion beam imaging of human breast tumors</span></a>. <em>Nature Medicine</em>. <strong>20</strong>, 436–442 (2014).</div>
+<div class="csl-left-margin">9. </div><div class="csl-right-inline">M. Angelo, S. C. Bendall, R. Finck, M. B. Hale, C. Hitzman, A. D. Borowsky, R. M. Levenson, J. B. Lowe, S. D. Liu, S. Zhao, Y. Natkunam, G. P. Nolan, <span class="nocase">Multiplexed ion beam imaging of human breast tumors</span>. <em>Nature Medicine</em>. <strong>20</strong>, 436–442 (2014).</div>
 </div>
 <div id="ref-10.1186/s13059-021-02404-0" class="csl-entry">
-<div class="csl-left-margin">10. </div><div class="csl-right-inline">J. Zhu, S. Sun, X. Zhou, <a href="https://doi.org/10.1186/s13059-021-02404-0"><span class="nocase">SPARK-X: non-parametric modeling enables scalable and robust detection of spatial expression patterns for large spatial transcriptomic studies</span></a>. <em>Genome Biology</em>. <strong>22</strong>, 184 (2021).</div>
+<div class="csl-left-margin">10. </div><div class="csl-right-inline">J. Zhu, S. Sun, X. Zhou, <span class="nocase">SPARK-X: non-parametric modeling enables scalable and robust detection of spatial expression patterns for large spatial transcriptomic studies</span>. <em>Genome Biology</em>. <strong>22</strong>, 184 (2021).</div>
 </div>
 <div id="ref-10.1038/nmeth.4636" class="csl-entry">
-<div class="csl-left-margin">11. </div><div class="csl-right-inline">V. Svensson, S. A. Teichmann, O. Stegle, <a href="https://doi.org/10.1038/nmeth.4636"><span class="nocase">SpatialDE: identification of spatially variable genes</span></a>. <em>Nature methods</em>. <strong>15</strong>, 343–346 (2018).</div>
+<div class="csl-left-margin">11. </div><div class="csl-right-inline">V. Svensson, S. A. Teichmann, O. Stegle, <span class="nocase">SpatialDE: identification of spatially variable genes</span>. <em>Nature methods</em>. <strong>15</strong>, 343–346 (2018).</div>
 </div>
 <div id="ref-10.1016/j.celrep.2019.08.077" class="csl-entry">
-<div class="csl-left-margin">12. </div><div class="csl-right-inline">D. Arnol, D. Schapiro, B. Bodenmiller, J. Saez-Rodriguez, O. Stegle, <a href="https://doi.org/10.1016/j.celrep.2019.08.077"><span class="nocase">Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis</span></a>. <em>Cell Reports</em>. <strong>29</strong>, 202–211.e6 (2019).</div>
+<div class="csl-left-margin">12. </div><div class="csl-right-inline">D. Arnol, D. Schapiro, B. Bodenmiller, J. Saez-Rodriguez, O. Stegle, <span class="nocase">Modeling Cell-Cell Interactions from Spatial Molecular Data with Spatial Variance Component Analysis</span>. <em>Cell Reports</em>. <strong>29</strong>, 202–211.e6 (2019).</div>
 </div>
 </div>
 <br>
@@ -1019,42 +974,44 @@ Click here for MISTy flowchart
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.1.1 (2021-08-10)
-Platform: x86_64-conda-linux-gnu (64-bit)
-Running under: CentOS Linux 7 (Core)
+<pre><code>R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS/LAPACK: /net/data.isilon/ag-saez/bq_pschaefer/SOFTWARE/miniconda3/envs/misty_benchmark/lib/libopenblasp-r0.3.18.so
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
-[1] C
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
-other attached packages:
-[1] workflowr_1.7.0
-
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7         RColorBrewer_1.1-2 pillar_1.6.4       compiler_4.1.1    
- [5] later_1.3.0        git2r_0.28.0       jquerylib_0.1.4    tools_4.1.1       
- [9] getPass_0.2-2      digest_0.6.29      jsonlite_1.7.2     evaluate_0.14     
-[13] lifecycle_1.0.1    tibble_3.1.6       pkgconfig_2.0.3    rlang_0.4.12      
-[17] rstudioapi_0.13    yaml_2.2.1         xfun_0.28          fastmap_1.1.0     
-[21] DiagrammeR_1.0.6.1 httr_1.4.2         stringr_1.4.0      knitr_1.36        
-[25] htmlwidgets_1.5.4  fs_1.5.0           vctrs_0.3.8        rprojroot_2.0.2   
-[29] glue_1.6.0         R6_2.5.1           processx_3.5.2     fansi_0.5.0       
-[33] rmarkdown_2.11     callr_3.7.0        magrittr_2.0.1     whisker_0.4       
-[37] ps_1.6.0           promises_1.2.0.1   ellipsis_0.3.2     htmltools_0.5.2   
-[41] httpuv_1.6.4       utf8_1.2.2         stringi_1.7.6      visNetwork_2.1.0  
-[45] crayon_1.4.2      </code></pre>
+ [1] Rcpp_1.0.7         pillar_1.6.3       compiler_4.1.2     bslib_0.3.1       
+ [5] later_1.3.0        RColorBrewer_1.1-2 jquerylib_0.1.4    git2r_0.28.0      
+ [9] workflowr_1.6.2    tools_4.1.2        digest_0.6.28      jsonlite_1.7.2    
+[13] evaluate_0.14      lifecycle_1.0.1    tibble_3.1.5       pkgconfig_2.0.3   
+[17] rlang_0.4.12       rstudioapi_0.13    yaml_2.2.1         xfun_0.26         
+[21] fastmap_1.1.0      DiagrammeR_1.0.6.1 stringr_1.4.0      knitr_1.36        
+[25] fs_1.5.0           vctrs_0.3.8        sass_0.4.0         htmlwidgets_1.5.4 
+[29] rprojroot_2.0.2    glue_1.4.2         R6_2.5.1           fansi_0.5.0       
+[33] rmarkdown_2.11     magrittr_2.0.1     whisker_0.4        promises_1.2.0.1  
+[37] ellipsis_0.3.2     htmltools_0.5.2    httpuv_1.6.3       utf8_1.2.2        
+[41] stringi_1.7.5      visNetwork_2.1.0   crayon_1.4.1      </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
