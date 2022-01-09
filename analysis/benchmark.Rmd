@@ -16,7 +16,7 @@ Setup.
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
+knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
@@ -24,6 +24,12 @@ suppressPackageStartupMessages(library(mistyR))
 suppressPackageStartupMessages(library(tidyverse))
 suppressPackageStartupMessages(library(magrittr))
 suppressPackageStartupMessages(library(slider))
+```
+
+```{r}
+# default ordering of the algorithms
+def.ord <-  c("RF", "TBOOST", "MARS100", "MARS", "MARS80", "MARS60", "MARS40",
+              "BGMARS", "LBOOST", "LM", "SVM", "MLP")
 ```
 
 # Introduction and Data {.tabset}
@@ -104,6 +110,12 @@ summary(
   map_dbl(all.views$`/synthetic/l6`, 
           ~ nrow(.x$intraview$data))
 )
+```
+
+-   QC of MISTy runs:
+
+```{r}
+
 ```
 
 ------------------------------------------------------------------------
@@ -374,7 +386,7 @@ Define a function to check whether something is missing in misty performance
 files.
 
 ```{r}
-check_runs <- function(misty.performances, ordering = NULL) {
+check_runs <- function(misty.performances, ordering = NULL, exclude = c()) {
   
     levs <- function() {
     if (is.null(ordering)) {
@@ -391,6 +403,8 @@ check_runs <- function(misty.performances, ordering = NULL) {
   misty.performances %>%
     distinct() %>%
     mutate(algorithm = factor(algorithm, levels = levs())) %>%
+    select(view, algorithm, sample) %>%
+    distinct() %>%
     group_by(view, algorithm) %>%
     dplyr::summarise(sample_number = n(), .groups="drop") %>%
     pivot_wider(names_from = "view", values_from = "sample_number")
@@ -460,13 +474,6 @@ plot_performance <- function(misty.performances, str.measure,
   print(plot)
 }
 ```
-
-```{r}
-# default ordering of the algorithms
-def.ord <-  c("RF", "TBOOST", "MARS100", "MARS", "MARS80", "MARS60", "MARS40",
-              "BGMARS", "LBOOST", "LM", "SVM", "MLP")
-```
-
 
 ## `synthetic`
 
@@ -549,10 +556,12 @@ filter_runs(all.results, "merfish_liver", "std280") %>%
 ```{r fig.width=8}
 filter_runs(all.results, "merfish_liver", "std280") %>%
   get_performance() %T>%
-  plot_performance(str.measure = "mulit.R2", str.summary = "mean",
-                   targets = FALSE, ordering = def.ord) %T>%
+  plot_performance(str.measure = "multi.R2", str.summary = "mean",
+                   targets = FALSE, ordering = def.ord,
+                   exclude = c("MLP", "SVM")) %T>%
   plot_performance(str.measure = "gain.R2", str.summary = "mean",
-                   targets = FALSE, ordering = def.ord) %>%
+                   targets = FALSE, ordering = def.ord,
+                   exclude = c("MLP", "SVM")) %>%
   invisible()
 ```
 
@@ -574,10 +583,10 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_performance() %T>%
   plot_performance(str.measure = "multi.R2", str.summary = "mean",
-                   targets = FALSE, exclude = c("BGMARS"),
+                   targets = FALSE, exclude = c("BGMARS", "SVM", "MLP"),
                    ordering = def.ord) %T>%
   plot_performance(str.measure = "gain.R2", str.summary = "mean",
-                   targets = FALSE, exclude = c("BGMARS"),
+                   targets = FALSE, exclude = c("BGMARS", "SVM", "MLP"),
                    ordering = def.ord) %>%
   invisible()
 ```
@@ -610,16 +619,6 @@ filter_runs(all.results, "4iANCA", c("ratio_153", "ratio_76", "ratio_38",
 ```
 
 ---
-
-# Performance Figure
-
-Plot the performances of the different algorithms for all studies in one figure
-using only one view from each study.
-
-```{r}
-
-```
-
 
 # Comparing Importances {.tabset}
 
@@ -980,15 +979,21 @@ filter_runs(all.results, "synthetic", "l6") %>%
   check_algs()
 ```
 
-Now let's look at the cosine similarities, pearson correlation, and 
-the jaccard indices after binarization.
+Cosine similarity.
 
 ```{r fig.height=6, fig.width=6, warning=FALSE}
 filter_runs(all.results, "synthetic", "l6") %>%
-  get_importance() %T>%
-  cosine_heatmap() %>%
+  get_importance() %>%
+  cosine_heatmap()
+```
+
+<details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
+```{r fig.height=6, fig.width=6, warning=FALSE}
+filter_runs(all.results, "synthetic", "l6") %>%
+  get_importance() %>%
   jaccard_heatmap(cutoff = 0.5)
 ```
+</details>
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
 ```{r fig.width=12, fig.height=12, warning=FALSE}
@@ -1036,10 +1041,18 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
-  drop_na() %T>%
-  cosine_heatmap() %>%
+  drop_na() %>%
+  cosine_heatmap()
+```
+
+<details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
+```{r fig.height=6, fig.width=6, warning=FALSE}
+filter_runs(all.results, "mibi_tnbc", "standard") %>%
+  get_importance() %>%
+  drop_na() %>%
   jaccard_heatmap(cutoff = 0.5)
 ```
+</details>
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
 ```{r fig.width=12, fig.height=12, warning=FALSE}
@@ -1083,10 +1096,17 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
 
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
-  get_importance() %T>%
-  cosine_heatmap() %>%
+  get_importance() %>%
+  cosine_heatmap()
+```
+
+<details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
+```{r fig.height=6, fig.width=6, warning=FALSE}
+filter_runs(all.results, "merfish_preoptic", "hvg") %>%
+  get_importance() %>%
   jaccard_heatmap(cutoff = 0.5)
 ```
+</details>
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
 ```{r fig.width=12, fig.height=12, warning=FALSE}
@@ -1140,18 +1160,19 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
   check_algs()
 ```
 
-```{r}
-filter_runs(all.results, "merfish_bc", "hvg") %>%
-  get_importance() %>%
-  check_algs()
-```
-
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
-  get_importance() %T>%
-  cosine_heatmap() %>%
+  get_importance() %>%
+  cosine_heatmap()
+```
+
+<details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
+```{r fig.height=6, fig.width=6, warning=FALSE}
+filter_runs(all.results, "merfish_bc", "hvg") %>%
+  get_importance() %>%
   jaccard_heatmap(cutoff = 0.5)
 ```
+</details>
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
 ```{r fig.width=12, fig.height=12, warning=FALSE}
@@ -1196,10 +1217,18 @@ filter_runs(all.results, "4iANCA", "ratio_76") %>%
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
   get_importance() %>%
-  filter(view != "para.10") %T>%
-  cosine_heatmap() %>%
+  filter(view != "para.10") %>%
+  cosine_heatmap()
+```
+
+<details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
+```{r fig.height=6, fig.width=6, warning=FALSE}
+filter_runs(all.results, "4iANCA", "ratio_76") %>%
+  get_importance() %>%
+  filter(view != "para.10") %>%
   jaccard_heatmap(cutoff = 0.5)
 ```
+</details>
 
 <details> <summary>Click here for a Scatter Plot Matrix</summary> 
 ```{r fig.width=12, fig.height=12, warning=FALSE}
