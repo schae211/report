@@ -28,7 +28,7 @@ See the corresponding
 
 ### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2 Exploring Different Machine Learning Frameworks in R](https://schae211.github.io/report/frameworks.html)
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3 Alternative implementation of new algorithms ofr trainign view-specific models](https://schae211.github.io/report/model_api.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3 Alternative implementation of new algorithms for training view-specific models](https://schae211.github.io/report/model_api.html)
 
 ## [&nbsp;&nbsp;&nbsp; 4. Discussion](https://schae211.github.io/report/conclusions.html)
 
