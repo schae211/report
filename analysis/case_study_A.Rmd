@@ -9,8 +9,13 @@ knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
 
 # Introduction
 
-This document is supposed to show how the new implementation can be useful in 
-the case of a neighborhood composition analysis.
+This document is supposed to show how the new implementation can be useful in the case of a neighborhood composition analysis. Meaning whether we can predict the identiy of a cell type using the neighboring cell types.
+
+However, after updating the MISTy meta model from linear regression to ridge regression, MISTy is not able to learn something from the spatial context anymore.
+
+# Setup
+
+## Packages
 
 Loaded packages.
 
@@ -21,20 +26,23 @@ library(future, warn.conflicts = FALSE)
 plan("multisession", workers=12)
 ```
 
-Loading data generated in MIBI_Analysis.Rmd
+## Import
+
+Loading data generated in "eda_mibi_tnbc.Rmd".
 
 ```{r}
 raw.data <- readRDS("data/mibi_tnbc_meta.RDS")
 raw.data %>% slice_head(n=6)
 ```
 
+How many samples do we have?
+
 ```{r}
 samples <- unique(raw.data$SampleID)
 samples
 ```
 
-
-Adding a column in Group specifying the immuneGroup
+Adding a column in Group specifying the immuneGroup.
 
 ```{r}
 meta.data <- raw.data %>%
@@ -47,17 +55,38 @@ meta.data <- raw.data %>%
 meta.data %>% slice_head(n=6)
 ```
 
+Simplifying the cell types.
+
+```{r}
+meta.data <- meta.data %>%
+  mutate(Group = case_when(
+    Group == "DC/Mono" | Group == "DC" ~ "DC",
+    Group == "Keratin-positive tumor" | Group == "Tumor" ~ "Tumor",
+    TRUE ~ Group
+  ))
+```
+
 Visualizing the frequency of the cell types.
 
 ```{r}
 meta.data %>% 
   count(Group) %>%
   ggplot() +
-  geom_bar(aes(x=n, y=Group), stat="identity")
+  geom_bar(aes(x=n, y=Group), stat="identity") +
+  labs(x = "n", y = "Celltype")
 ```
 
-Prepare the data by one hot encoding the cell types. (removing from each
-sample cell types whose total number in the sample in below the `cutoff`)
+We see already that tumor cells make up by far the most cell types. Such unbalanced datasets pose problems for many machine learning algorithms, as the prediction error can easily be reduced by always predicting the most abundant class. 
+
+We will remove NK cells because they are so rare, and Unidentified cells / Other immune because they are not very helpful.
+
+```{r}
+meta.data <- meta.data %>%
+  filter(!(Group %in% c("Unidentified", "NK", "Other immune")))
+  #filter(!(Group %in% c("Unidentified", "NK", "Other immune", "Tumor")))
+```
+
+Prepare the data by one hot encoding the cell types. Also we will remove from each sample cell types whose total number in the sample in below the `cutoff`, which is here `10`. 
 
 ```{r}
 lvls <- meta.data$Group %>% unique
@@ -99,7 +128,9 @@ map(expr.smp, ~ colnames(.x)) %>%
   count(celltypes)
 ```
 
-Check equivalently in how many cell types are retained in each sample?
+We see that especially DC (dendritic cells), B cells, NK (natural killer cells), and Tregs (regulatory T-cells) are only present in a quarter or half of the samples.
+
+Check equivalently how many cell types are retained in each sample?
 
 ```{r fig.height=6}
 map2_dfr(expr.smp, names(expr.smp), ~ list("value" = ncol(.x), 
@@ -108,7 +139,7 @@ map2_dfr(expr.smp, names(expr.smp), ~ list("value" = ncol(.x),
   geom_bar(aes(x = value, y = reorder(sample, value)), stat="identity")
 ```
 
-Maybe one should remove sample 24.
+We will remove sample 24, since it only contrain 4 distinct cell types.
 
 ```{r}
 to_remove <- c(24)
@@ -117,6 +148,7 @@ expr.smp <- expr.smp[!(names(expr.smp) %in% to_remove)]
 positions.smp <- positions.smp[!(names(positions.smp) %in% to_remove)]
 ```
 
+## MISTy Views
 
 Computing the MISTy Views, based on the 50 nearest neighbors (constant weight).
 (using quietly to capute the message and warnings).
@@ -130,9 +162,7 @@ generate_misty_views <- function(expr.list, position.list) {
   })
 }
 safe_generate_misty_views <- quietly(generate_misty_views)
-```
 
-```{r}
 misty.views.run <- safe_generate_misty_views(expr.smp, positions.smp)
 misty.views.smp <- misty.views.run$result
 ```
@@ -144,7 +174,16 @@ misty.views.run$warnings
 ```
 </details>
 
+# Running MISTy
+
+## Random Forest
+
 Running MISTy with the base case.
+
+```{r include=FALSE}
+misty.views.smp$`1`$paraview.50$data[1,] %>% unlist %>% plot
+```
+
 
 ```{r}
 run_misty_wrapper <- function(misty.views.smp) {
@@ -160,9 +199,7 @@ run_misty_wrapper <- function(misty.views.smp) {
   collect_results(results.paths)
 }
 safe_run_misty <- quietly(run_misty_wrapper)
-```
 
-```{r}
 misty.run.rf <- safe_run_misty(misty.views.smp)
 misty.results.rf <- misty.run.rf$result
 ```
@@ -174,8 +211,7 @@ misty.run.rf$warnings
 ```
 </details>
 
-So essentially I get nothing here, and I think this is due to Ridge regression,
-but I am not sure yet.
+As mentioned in the introduction, MISTy is not able to learn anything from the spatial context.
 
 ```{r}
 misty.results.rf %>%
@@ -200,9 +236,7 @@ run_misty_wrapper <- function(misty.views.smp) {
   collect_results(results.paths)
 }
 safe_run_misty <- quietly(run_misty_wrapper)
-```
 
-```{r}
 misty.run.tboost <- safe_run_misty(misty.views.smp)
 misty.results.tboost <- misty.run.tboost$result
 ```
@@ -213,6 +247,8 @@ misty.results.tboost <- misty.run.tboost$result
 misty.run.tboost$warnings
 ```
 </details>
+
+
 
 ```{r}
 misty.results.tboost %>%
@@ -313,9 +349,7 @@ run_misty_wrapper <- function(misty.views.smp) {
   collect_results(results.paths)
 }
 safe_run_misty <- quietly(run_misty_wrapper)
-```
 
-```{r}
 misty.run.nnls <- safe_run_misty(misty.views.smp)
 misty.results.nnls <- misty.run.nnls$result
 ```
@@ -326,6 +360,8 @@ misty.results.nnls <- misty.run.nnls$result
 misty.run.nnls$warnings
 ```
 </details>
+
+Just like for the random forest model, there is no gain in R2 here.
 
 ```{r}
 misty.results.nnls %>%
@@ -401,9 +437,7 @@ run_misty_wrapper <- function(misty.views.smp) {
   collect_results(results.paths)
 }
 safe_run_misty <- quietly(run_misty_wrapper)
-```
 
-```{r}
 misty.run.rfc <- safe_run_misty(misty.views.smp)
 misty.results.nnls <- misty.run.rfc$result
 ```
@@ -437,7 +471,6 @@ map_lgl(samples[!(samples %in% to_remove)], function(smp) {
   TRUE
 })
 ```
-
 
 ```{r eval=FALSE, include=FALSE}
 views <- misty.views.smp$`1`
