@@ -41,7 +41,7 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -410,7 +410,7 @@ div.tocify {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -419,7 +419,7 @@ div.tocify {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -428,17 +428,17 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-01-06
+<strong>Last updated:</strong> 2022-01-09
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -507,59 +507,69 @@ This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysi
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongabsolute"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>File paths:</strong> absolute </a>
 </p>
 </div>
-<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div id="strongFilepathsstrongabsolute" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>
+Using absolute paths to the files within your workflowr project makes it difficult for you and others to run your code on a different machine. Change the absolute path(s) below to the suggested relative path(s) to make your code more reproducible.
+</p>
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th style="text-align:left;">
+absolute
+</th>
+<th style="text-align:left;">
+relative
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+~/Saez/report
+</td>
+<td style="text-align:left;">
+.
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree8e3228c738ef42285600b9cebed9075c17ae2995targetblank8e3228ca"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/8e3228c738ef42285600b9cebed9075c17ae2995" target="_blank">8e3228c</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree11af3f685f2a22c808586f000aebf7e7649ff3a7targetblank11af3f6a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/11af3f685f2a22c808586f000aebf7e7649ff3a7" target="_blank">11af3f6</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree8e3228c738ef42285600b9cebed9075c17ae2995targetblank8e3228ca" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree11af3f685f2a22c808586f000aebf7e7649ff3a7targetblank11af3f6a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/8e3228c738ef42285600b9cebed9075c17ae2995" target="_blank">8e3228c</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/11af3f685f2a22c808586f000aebf7e7649ff3a7" target="_blank">11af3f6</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    data/4iANCA/
     Ignored:    data/imc/
     Ignored:    data/merfish_bc/
     Ignored:    data/merfish_liver/
     Ignored:    data/merfish_preoptic/
     Ignored:    data/mibi_tnbc/
     Ignored:    data/seqfishp_brain/
-    Ignored:    output/2021-12-17-07-58_all_results.RDS
-    Ignored:    output/2021-12-17-07-58_all_results.log
-    Ignored:    output/2021-12-17-07-59_all_views.RDS
-    Ignored:    output/2021-12-20-16-20_all_results.RDS
-    Ignored:    output/2021-12-20-16-20_all_results.log
-    Ignored:    output/2021-12-21-12-22_all_results.RDS
-    Ignored:    output/2021-12-21-12-22_all_results.log
-    Ignored:    output/2021-12-23-09-57_all_results.RDS
-    Ignored:    output/2021-12-23-09-57_all_results.log
     Ignored:    output/2021-12-25-09-41_all_views.RDS
-    Ignored:    output/2021-12-25-09-42_all_results.RDS
-    Ignored:    output/2021-12-25-09-42_all_results.log
-    Ignored:    output/2021-12-30-14-31_all_results.RDS
-    Ignored:    output/2021-12-30-14-31_all_results.log
     Ignored:    output/2022-01-04-07-24_all_results.RDS
-    Ignored:    output/2022-01-04-07-24_all_results.log
     Ignored:    output/2022-01-05-22-43_all_results.RDS
-    Ignored:    output/2022-01-05-22-43_all_results.log
+    Ignored:    output/case_study_A/
+    Ignored:    output/case_study_B/
     Ignored:    results/
 
 </code></pre>
@@ -599,6 +609,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/11af3f685f2a22c808586f000aebf7e7649ff3a7/analysis/tutorial.Rmd" target="_blank">11af3f6</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+<td>
+wflow_publish(“analysis/tutorial.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/tutorial.html" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -800,7 +844,7 @@ schae211
 2021-12-08
 </td>
 <td>
-wflow_publish("analysis/tutorial.Rmd")
+wflow_publish(“analysis/tutorial.Rmd”)
 </td>
 </tr>
 <tr>
@@ -885,7 +929,7 @@ schae211
 2021-12-02
 </td>
 <td>
-wflow_publish(files = "analysis/tutorial.Rmd")
+wflow_publish(files = “analysis/tutorial.Rmd”)
 </td>
 </tr>
 </tbody>
@@ -930,51 +974,7 @@ Generating paraview</code></pre>
 <pre class="r"><code>misty.run &lt;- misty.views %&gt;%
   run_misty()
 
-Training models
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)
-Warning: &#39;timedatectl&#39; indicates the non-existent timezone name &#39;n/a&#39;
-Warning: Your system is mis-configured: &#39;/etc/localtime&#39; is not a symlink
-Warning: It is strongly recommended to set envionment variable TZ to &#39;Europe/
-Berlin&#39; (or equivalent)</code></pre>
+Training models</code></pre>
 <p>To make things more explicitly the above call is the same as:</p>
 <pre class="r"><code>misty.run &lt;- misty.views %&gt;%
   run_misty(model.function = random_forest_model)
@@ -982,21 +982,38 @@ Berlin&#39; (or equivalent)</code></pre>
 Training models</code></pre>
 <p>But what is this <code>random_forest_model</code> actually?</p>
 <pre class="r"><code>random_forest_model
-function (view_data, target, seed, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, num.trees = 100, importance = &quot;impurity&quot;, 
-        mtry = NULL, verbose = FALSE, num.threads = 1, seed = seed)
-    if (!(length(ellipsis.args) == 0)) {
-        algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-    }
-    model &lt;- do.call(ranger::ranger, algo.arguments)
-    predictions &lt;- tibble::tibble(index = seq_len(nrow(view_data)), 
-        prediction = model$predictions)
-    list(unbiased.predictions = predictions, importances = model$variable.importance)
+function(view_data, target, seed, ...) {
+  ellipsis.args &lt;- list(...)
+
+  # default ranger arguments
+  algo.arguments &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    num.trees = 100,
+    importance = &quot;impurity&quot;,
+    mtry = NULL,
+    verbose = FALSE,
+    num.threads = 1,
+    seed = seed
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+  }
+
+  model &lt;- do.call(ranger::ranger, algo.arguments)
+
+  predictions &lt;- tibble::tibble(
+    index = seq_len(nrow(view_data)),
+    prediction = model$predictions
+  )
+
+  list(
+    unbiased.predictions = predictions,
+    importances = model$variable.importance
+  )
 }
-&lt;bytecode: 0x5592fc403958&gt;
+&lt;bytecode: 0x55f2d2ad1f28&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <p>It is a function that takes in the data of a single view, for example the <code>paraview</code> -</p>
 <pre class="r"><code>misty.views$paraview.10$data %&gt;% slice_head(n=6)</code></pre>
@@ -1047,7 +1064,7 @@ list(unbiased.predictions = predictions,
      importances = model$variable.importance) %&gt;%
   str() # add str here to show output
 List of 2
- $ unbiased.predictions: tibble [4,205 x 2] (S3: tbl_df/tbl/data.frame)
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
   ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
   ..$ prediction: num [1:4205] 0.141 0.115 0.266 0.673 0.494 ...
  $ importances         : Named num [1:10] 54.1 60.9 60.3 49.9 69 ...
@@ -1061,7 +1078,7 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-11.004 sec elapsed</code></pre>
+4.891 sec elapsed</code></pre>
 <pre class="r"><code>tictoc::tic()
 misty.run &lt;- misty.views %&gt;%
   run_misty(model.function = random_forest_model, num.trees = 100, 
@@ -1069,7 +1086,7 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-4.999 sec elapsed</code></pre>
+1.785 sec elapsed</code></pre>
 </div>
 <div id="misty-results" class="section level2">
 <h2>MISTy results</h2>
@@ -1111,6 +1128,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-13-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/tutorial.Rmd/unnamed-chunk-13-1.png" target="_blank">781ba63</a>
@@ -1184,6 +1212,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-13-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-13-2.png" target="_blank">c428797</a>
 </td>
 <td>
@@ -1244,6 +1283,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-13-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-13-3.png" target="_blank">c428797</a>
 </td>
 <td>
@@ -1298,21 +1348,38 @@ schae211
 <li><p>Importances for each predictor for a given target a determined by averaging the decrease in RSS over all splits in which a predictor was used.</p></li>
 </ul>
 <pre class="r"><code>random_forest_model
-function (view_data, target, seed, ...) 
-{
-    ellipsis.args &lt;- list(...)
-    algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, num.trees = 100, importance = &quot;impurity&quot;, 
-        mtry = NULL, verbose = FALSE, num.threads = 1, seed = seed)
-    if (!(length(ellipsis.args) == 0)) {
-        algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-    }
-    model &lt;- do.call(ranger::ranger, algo.arguments)
-    predictions &lt;- tibble::tibble(index = seq_len(nrow(view_data)), 
-        prediction = model$predictions)
-    list(unbiased.predictions = predictions, importances = model$variable.importance)
+function(view_data, target, seed, ...) {
+  ellipsis.args &lt;- list(...)
+
+  # default ranger arguments
+  algo.arguments &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    num.trees = 100,
+    importance = &quot;impurity&quot;,
+    mtry = NULL,
+    verbose = FALSE,
+    num.threads = 1,
+    seed = seed
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+  }
+
+  model &lt;- do.call(ranger::ranger, algo.arguments)
+
+  predictions &lt;- tibble::tibble(
+    index = seq_len(nrow(view_data)),
+    prediction = model$predictions
+  )
+
+  list(
+    unbiased.predictions = predictions,
+    importances = model$variable.importance
+  )
 }
-&lt;bytecode: 0x5592fc403958&gt;
+&lt;bytecode: 0x55f2d2ad1f28&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model</li>
@@ -1357,6 +1424,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-15-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/tutorial.Rmd/unnamed-chunk-15-1.png" target="_blank">781ba63</a>
@@ -1430,6 +1508,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-15-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-15-2.png" target="_blank">c428797</a>
 </td>
 <td>
@@ -1490,6 +1579,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-15-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-15-3.png" target="_blank">c428797</a>
 </td>
 <td>
@@ -1530,60 +1630,101 @@ schae211
 <h2>Gradient Boosting</h2>
 <ul>
 <li><p>Short description: Sequential training of weak learners (either regression trees or linear models) where the learner <span class="math inline">\(m+1\)</span> is fitted on the residuals of the model containing <span class="math inline">\(m\)</span> learners (<span class="math inline">\(F_M\)</span>). The error can be minimized by exploiting the gradient with respect to the model <span class="math inline">\(F_M\)</span>.</p></li>
-<li><p>Unbiased predictions are based on k-fold cross-validation (aggregarted predictions for the holdout sets)</p></li>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
 <li><p>Importances for each predictor for a given target a determined by averaging the decrease in RSS over all splits in which a predictor was used (for tree gradient boosting).</p></li>
 </ul>
 <pre class="r"><code>gradient_boosting_model
-function (view_data, target, seed, k = 10, ...) 
-{
-    assertthat::assert_that(requireNamespace(&quot;xgboost&quot;, quietly = TRUE), 
-        msg = &quot;The package xgboost is required to use gradient boosting&quot;)
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        train &lt;- view_data[in.fold, ]
-        test &lt;- view_data[holdout, ]
-        pred.train &lt;- train %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% 
-            as.matrix()
-        label.train &lt;- train %&gt;% dplyr::pull(tidyselect::all_of(target))
-        algo.arguments &lt;- list(data = pred.train, label = label.train, 
-            booster = &quot;gbtree&quot;, nrounds = 10, verbose = 0, objective = &quot;reg:squarederror&quot;, 
-            nthread = 1)
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(xgboost::xgboost, algo.arguments)
-        pred.test &lt;- test %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% 
-            as.matrix()
-        label.hat &lt;- predict(model, pred.test)
-        tibble::tibble(index = holdout, prediction = label.hat)
-    }) %&gt;% dplyr::arrange(index)
-    predictors &lt;- view_data %&gt;% dplyr::select(-tidyselect::all_of(target)) %&gt;% 
-        as.matrix()
-    labels &lt;- view_data %&gt;% dplyr::pull(tidyselect::all_of(target))
-    algo.arguments.wm &lt;- list(data = predictors, label = labels, 
-        booster = &quot;gbtree&quot;, nrounds = 10, verbose = 0, objective = &quot;reg:squarederror&quot;, 
-        nthread = 1)
+function(view_data, target, seed, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;xgboost&quot;, quietly = TRUE),
+    msg = &quot;The package xgboost is required to use gradient boosting&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    train &lt;- view_data[in.fold, ]
+    test &lt;- view_data[holdout, ]
+
+    pred.train &lt;- train %&gt;%
+      dplyr::select(-tidyselect::all_of(target)) %&gt;%
+      as.matrix()
+    label.train &lt;- train %&gt;% dplyr::pull(tidyselect::all_of(target))
+
+    algo.arguments &lt;- list(
+      data = pred.train,
+      label = label.train,
+      booster = &quot;gbtree&quot;,
+      nrounds = 10,
+      verbose = 0,
+      objective = &quot;reg:squarederror&quot;,
+      nthread = 1
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(xgboost::xgboost, algo.arguments.wm)
-    importances &lt;- tryCatch({
-        importance_matrix &lt;- xgboost::xgb.importance(model = whole.model)
-        importances &lt;- unlist(importance_matrix[, 2])
-        names(importances) &lt;- unlist(importance_matrix[, 1])
-        importances
-    }, error = function(cond) {
-        importances &lt;- rep(0, ncol(predictors))
-        names(importances) &lt;- colnames(predictors)
-        importances
-    })
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(xgboost::xgboost, algo.arguments)
+
+    pred.test &lt;- test %&gt;%
+      dplyr::select(-tidyselect::all_of(target)) %&gt;%
+      as.matrix()
+
+    label.hat &lt;- predict(model, pred.test)
+
+    tibble::tibble(index = holdout, prediction = label.hat)
+  }) %&gt;% dplyr::arrange(index)
+
+  predictors &lt;- view_data %&gt;%
+    dplyr::select(-tidyselect::all_of(target)) %&gt;%
+    as.matrix()
+  labels &lt;- view_data %&gt;% dplyr::pull(tidyselect::all_of(target))
+
+  algo.arguments.wm &lt;- list(
+    data = predictors,
+    label = labels,
+    booster = &quot;gbtree&quot;,
+    nrounds = 10,
+    verbose = 0,
+    objective = &quot;reg:squarederror&quot;,
+    nthread = 1
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(xgboost::xgboost, algo.arguments.wm)
+
+  # if bypass intra is true, we need to catch the error due to &quot;no.var&quot; = 0
+  importances &lt;- tryCatch(
+    {
+      importance_matrix &lt;- xgboost::xgb.importance(model = whole.model)
+      importances &lt;- unlist(importance_matrix[, 2])
+      names(importances) &lt;- unlist(importance_matrix[, 1])
+      importances
+    },
+    error = function(cond) {
+      importances &lt;- rep(0, ncol(predictors))
+      names(importances) &lt;- colnames(predictors)
+      importances
+    }
+  )
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x559306507e88&gt;
+&lt;bytecode: 0x55f2d69dfd78&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -1628,6 +1769,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">781ba63</a>
@@ -1701,6 +1853,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">c428797</a>
 </td>
 <td>
@@ -1761,6 +1924,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">c428797</a>
 </td>
 <td>
@@ -1817,7 +1991,120 @@ Collecting importances
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-18-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-18-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-1">
+Past versions of unnamed-chunk-18-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-18-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-18-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-18-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-2">
+Past versions of unnamed-chunk-18-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-18-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-18-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-18-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-18-3">
+Past versions of unnamed-chunk-18-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-18-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-18-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="mars" class="section level2">
 <h2>MARS</h2>
@@ -1828,45 +2115,72 @@ Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
 <li><p>The importances for each predictor are determined during the backward pass (when terms are deleted from the model). The decrease of the RSS is measured for each subset relative to the previous subset. Then, for each predictor the average decrease in RSS over all subsets in which the variable is included is used as importance. However if the <code>degree</code> hyperparamter is larger than one, the importance for a given model term containing several predictors is spread equally to all predictors.</p></li>
 </ul>
 <pre class="r"><code>mars_model
-function (view_data, target, seed, approx = 1, k = 10, ...) 
-{
-    assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE), 
-        msg = &quot;The package earth is required to use mars&quot;)
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        if (approx != 1) 
-            in.fold &lt;- sample(in.fold, length(in.fold) * approx)
-        train &lt;- view_data[in.fold, ]
-        test &lt;- view_data[holdout, ]
-        algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = train, degree = 2, fast.k = 5, thresh = 0.01)
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(earth::earth, algo.arguments)
-        label.hat &lt;- predict(model, test)
-        tibble::tibble(index = holdout, prediction = label.hat[, 
-            1])
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, degree = 2, fast.k = 5, thresh = 0.01)
+function(view_data, target, seed, approx = 1.0, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE),
+    msg = &quot;The package earth is required to use mars&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- sample(in.fold, length(in.fold) * approx)
+
+    train &lt;- view_data[in.fold, ]
+    test &lt;- view_data[holdout, ]
+
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = train,
+      degree = 2,
+      fast.k = 5,   # reducing fast.k and
+      thresh = 0.01 # increasing thresh to increase the performance
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(earth::earth, algo.arguments.wm)
-    importances &lt;- earth::evimp(whole.model, trim = FALSE, sqrt. = TRUE)[, 
-        6]
-    names(importances) &lt;- stringr::str_remove(names(importances), 
-        &quot;-unused&quot;)
-    if (all(is.na(names(importances)))) 
-        importances &lt;- c(no.var = 0)
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(earth::earth, algo.arguments)
+
+    label.hat &lt;- predict(model, test)
+
+    tibble::tibble(index = holdout, prediction = label.hat[,1])
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    degree = 2,
+    fast.k = 5,
+    thresh = 0.01
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(earth::earth, algo.arguments.wm)
+
+  importances &lt;- earth::evimp(whole.model, trim = FALSE, sqrt. = TRUE)[, 6]
+  names(importances) &lt;- stringr::str_remove(names(importances), &quot;-unused&quot;)
+  # fix for bypass intra
+  if (all(is.na(names(importances)))) importances &lt;- c(&quot;no.var&quot; = 0)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x5593000c9730&gt;
+&lt;bytecode: 0x55f2d7e0a1d8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <pre class="r"><code>misty.views %&gt;%
   run_misty(model.function = mars_model) %&gt;%
@@ -1885,7 +2199,120 @@ Collecting importances
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-20-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-20-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-1">
+Past versions of unnamed-chunk-20-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-20-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-20-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-2">
+Past versions of unnamed-chunk-20-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-20-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-20-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-20-3">
+Past versions of unnamed-chunk-20-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-20-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-20-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="bagged-mars" class="section level2">
 <h2>Bagged MARS</h2>
@@ -1897,44 +2324,75 @@ Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
 <li><p>The name <code>bagged_earth_model</code> comes from the fact that the name mars is protected and thus the implementation of the algorithm is called <code>earth</code> (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert Tibshirani)</p></li>
 </ul>
 <pre class="r"><code>bagged_mars_model
-function (view_data, target, seed, n.bags = 50, ...) 
-{
-    assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE), 
-        msg = &quot;The package earth is required to use mars&quot;)
-    ellipsis.args &lt;- list(...)
-    bags &lt;- withr::with_seed(seed, caret::createResample(1:nrow(view_data), 
-        times = n.bags))
-    models &lt;- purrr::map(bags, function(bag) {
-        algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = view_data[bag, ], degree = 2, fast.k = 5, 
-            thresh = 0.01)
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(earth::earth, algo.arguments)
-        oob &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            bag)]
-        pred &lt;- predict(model, view_data[oob, ])
-        list(model = model, prediction = tibble::tibble(index = oob, 
-            prediction = as.vector(pred)))
-    })
-    predictions &lt;- purrr::map_dfr(models, function(model) {
-        tibble::tibble(model$prediction)
-    }) %&gt;% dplyr::group_by(index) %&gt;% dplyr::summarise(prediction = mean(prediction)) %&gt;% 
-        dplyr::arrange(index)
-    assertthat::assert_that(nrow(predictions) == nrow(view_data), 
-        msg = &quot;There are too few bags to get OOB predictions for all observations.\n      Consider increasing the number of bags or using CV.&quot;)
-    importances &lt;- purrr::map_dfr(models, function(model) {
-        coefs &lt;- earth::evimp(model$model, trim = FALSE, sqrt. = TRUE)[, 
-            6]
-        names(coefs) &lt;- stringr::str_remove(names(coefs), &quot;-unused&quot;)
-        names(coefs) &lt;- ifelse(is.na(names(coefs)), &quot;no.var&quot;, 
-            names(coefs))
-        coefs
-    }) %&gt;% colMeans(na.rm = TRUE)
-    list(unbiased.predictions = predictions, importances = importances)
+function(view_data, target, seed,
+                              n.bags = 50, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE),
+    msg = &quot;The package earth is required to use mars&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  # generate the bags
+  bags &lt;- withr::with_seed(
+    seed,
+    caret::createResample(1:nrow(view_data), times = n.bags)
+  )
+
+  # build one model for each bag, return oob predictions and importances
+  models &lt;- purrr::map(bags, function(bag) {
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[bag, ],
+      degree = 2,
+      fast.k = 5,
+      thresh = 0.01
+    )
+
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+
+    model &lt;- do.call(earth::earth, algo.arguments)
+
+    oob &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% bag)]
+
+    pred &lt;- predict(model, view_data[oob, ])
+    list(
+      model = model,
+      prediction = tibble::tibble(index = oob, prediction = as.vector(pred))
+    )
+  })
+
+  # Generate the OOB predictions, using the average for each sample
+  predictions &lt;- purrr::map_dfr(models, function(model) {
+    tibble::tibble(model$prediction)
+  }) %&gt;%
+    dplyr::group_by(index) %&gt;%
+    dplyr::summarise(prediction = mean(prediction)) %&gt;%
+    dplyr::arrange(index)
+
+  assertthat::assert_that(nrow(predictions) == nrow(view_data),
+    msg = &quot;There are too few bags to get OOB predictions for all observations.
+      Consider increasing the number of bags or using CV.&quot;
+  )
+
+  importances &lt;- purrr::map_dfr(models, function(model) {
+    coefs &lt;- earth::evimp(model$model, trim = FALSE, sqrt. = TRUE)[, 6]
+    names(coefs) &lt;- stringr::str_remove(names(coefs), &quot;-unused&quot;)
+    # fix for bypass intra
+    names(coefs) &lt;- ifelse(is.na(names(coefs)), &quot;no.var&quot;, names(coefs))
+    coefs
+  }) %&gt;% colMeans(na.rm = TRUE)
+
+
+
+  list(
+    unbiased.predictions = predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x55930850d0d0&gt;
+&lt;bytecode: 0x55f2da1218d8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -1956,7 +2414,120 @@ Collecting importances
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-22-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-22-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-1">
+Past versions of unnamed-chunk-22-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-22-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-22-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-22-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-2">
+Past versions of unnamed-chunk-22-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-22-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-22-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-22-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-3">
+Past versions of unnamed-chunk-22-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-22-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-22-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="linear-model" class="section level2">
 <h2>Linear Model</h2>
@@ -1966,28 +2537,44 @@ Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
 <li><p>In particular this model was supplied to understand more easily, how a view-specifc model based on cross-validation can be constructed</p></li>
 </ul>
 <pre class="r"><code>linear_model
-function (view_data, target, seed, k = 10, ...) 
-{
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        algo.arguments &lt;- list(formula = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = view_data[in.fold, ])
-        model &lt;- do.call(stats::lm, algo.arguments)
-        pred &lt;- predict.lm(model, view_data[holdout, ])
-        tibble::tibble(index = holdout, prediction = as.vector(pred))
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(formula = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data)
-    whole.model &lt;- do.call(stats::lm, algo.arguments.wm)
-    importances &lt;- whole.model$coefficients[names(whole.model$coefficients) != 
-        &quot;(Intercept)&quot;]
-    importances &lt;- ifelse(is.na(importances), 0, importances)
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+function(view_data, target, seed, k = 10, ...) {
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ]
+    )
+
+    model &lt;- do.call(stats::lm, algo.arguments)
+
+    pred &lt;- predict.lm(model, view_data[holdout, ])
+
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data
+  )
+
+  whole.model &lt;- do.call(stats::lm, algo.arguments.wm)
+
+  importances &lt;- whole.model$coefficients[names(whole.model$coefficients) != &quot;(Intercept)&quot;]
+  # fix for bypass intra (replace NA with 0 for consistent behavior)
+  importances &lt;- ifelse(is.na(importances), 0, importances)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x559306ff0ce8&gt;
+&lt;bytecode: 0x55f2dd8f2b40&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -2009,7 +2596,120 @@ Collecting importances
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-24-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-24-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-1">
+Past versions of unnamed-chunk-24-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-24-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-24-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-24-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-2">
+Past versions of unnamed-chunk-24-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-24-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-24-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-24-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-3">
+Past versions of unnamed-chunk-24-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-24-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-24-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="linear-support-vector-machine" class="section level2">
 <h2>Linear Support Vector Machine</h2>
@@ -2020,42 +2720,70 @@ Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
 <li><p>Importantly, we added an approximation argument to the implementation which basically says at what fraction of the training instances the SVM will be trained on (by default 40%). This drastically decreases the training time and does not seem to effect the performance to much.</p></li>
 </ul>
 <pre class="r"><code>svm_model
-function (view_data, target, seed, approx = 0.4, k = 10, ...) 
-{
-    assertthat::assert_that(requireNamespace(&quot;kernlab&quot;, quietly = TRUE), 
-        msg = &quot;The package kernlab is required to use linear SVM&quot;)
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        if (approx != 1) 
-            in.fold &lt;- sample(in.fold, length(in.fold) * approx)
-        algo.arguments &lt;- list(x = stats::as.formula(paste0(target, 
-            &quot; ~ .&quot;)), data = view_data[in.fold, ], kernel = &quot;vanilladot&quot;, 
-            C = 1, type = &quot;eps-svr&quot;, kpar = list())
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(kernlab::ksvm, algo.arguments)
-        pred &lt;- kernlab::predict(model, view_data[holdout, ])
-        tibble::tibble(index = holdout, prediction = as.vector(pred))
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(x = stats::as.formula(paste0(target, 
-        &quot; ~ .&quot;)), data = view_data, kernel = &quot;vanilladot&quot;, C = 1, 
-        type = &quot;eps-svr&quot;, kpar = list())
+function(view_data, target, seed, approx = 0.4, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;kernlab&quot;, quietly = TRUE),
+    msg = &quot;The package kernlab is required to use linear SVM&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- sample(in.fold, length(in.fold) * approx)
+
+    algo.arguments &lt;- list(
+      x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ],
+      kernel = &quot;vanilladot&quot;,
+      C = 1,
+      type = &quot;eps-svr&quot;,
+      kpar = list() # no hyperparameters for linear kernel
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(kernlab::ksvm, algo.arguments.wm)
-    importances &lt;- (t(whole.model@coef) %*% whole.model@xmatrix)[1, 
-        ]
-    if (is.null(names(importances))) 
-        importances &lt;- c(no.var = 0)
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(kernlab::ksvm, algo.arguments)
+
+    pred &lt;- kernlab::predict(model, view_data[holdout, ])
+
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    kernel = &quot;vanilladot&quot;,
+    C = 1,
+    type = &quot;eps-svr&quot;,
+    kpar = list() # no hyperparameters for linear kernel
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(kernlab::ksvm, algo.arguments.wm)
+
+  importances &lt;- (t(whole.model@coef) %*% whole.model@xmatrix)[1, ]
+  # fix for bypass intra
+  if (is.null(names(importances))) importances &lt;- c(&quot;no.var&quot; = 0)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x559301713ce0&gt;
+&lt;bytecode: 0x55f2d8f7d180&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -2077,7 +2805,120 @@ Collecting importances
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-26-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-26-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-26-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-26-1">
+Past versions of unnamed-chunk-26-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-26-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-26-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-26-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-26-2">
+Past versions of unnamed-chunk-26-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-26-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-26-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-26-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-26-3">
+Past versions of unnamed-chunk-26-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-26-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-26-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="multi-layer-perceptron" class="section level2">
 <h2>Multi-layer Perceptron</h2>
@@ -2088,55 +2929,90 @@ Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
 <li><p>By default only 60% of the training instances are used for training to increase the performance</p></li>
 </ul>
 <pre class="r"><code>mlp_model
-function (view_data, target, seed, approx = 0.6, k = 10, ...) 
-{
-    assertthat::assert_that(requireNamespace(&quot;RSNNS&quot;, quietly = TRUE), 
-        msg = &quot;The package RSNNS is required to use mlp&quot;)
-    ellipsis.args &lt;- list(...)
-    folds &lt;- withr::with_seed(seed, caret::createFolds(seq.int(1, 
-        nrow(view_data)), k = k))
-    predictors &lt;- colnames(view_data)[colnames(view_data) != 
-        target]
-    X &lt;- view_data %&gt;% dplyr::select(tidyselect::all_of(predictors)) %&gt;% 
-        as.matrix()
-    Y &lt;- view_data %&gt;% dplyr::pull(target)
-    holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-        in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% 
-            holdout)]
-        if (approx != 1) 
-            in.fold &lt;- sample(in.fold, length(in.fold) * approx)
-        X_train &lt;- X[in.fold, ] %&gt;% as.matrix()
-        Y_train &lt;- Y[in.fold]
-        X_test &lt;- X[holdout, ] %&gt;% as.matrix()
-        Y_test &lt;- Y[holdout]
-        algo.arguments &lt;- list(x = X_train, y = Y_train, size = c(10), 
-            learnFunc = &quot;BackpropBatch&quot;)
-        if (!(length(ellipsis.args) == 0)) {
-            algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-        }
-        model &lt;- do.call(RSNNS::mlp, algo.arguments)
-        label.hat &lt;- predict(model, X_test)
-        tibble::tibble(index = holdout, prediction = label.hat[, 
-            1])
-    }) %&gt;% dplyr::arrange(index)
-    algo.arguments.wm &lt;- list(x = X, y = Y, size = c(10), learnFunc = &quot;BackpropBatch&quot;)
+function(view_data, target, seed, approx = 0.6, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;RSNNS&quot;, quietly = TRUE),
+    msg = &quot;The package RSNNS is required to use mlp&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  predictors &lt;- colnames(view_data)[colnames(view_data) != target]
+  X &lt;- view_data %&gt;%
+    dplyr::select(tidyselect::all_of(predictors)) %&gt;%
+    as.matrix()
+  Y &lt;- view_data %&gt;% dplyr::pull(target)
+
+  # made this an imap to track the folds!
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- sample(in.fold, length(in.fold) * approx)
+
+    X_train &lt;- X[in.fold, ] %&gt;% as.matrix()
+    Y_train &lt;- Y[in.fold]
+
+    X_test &lt;- X[holdout, ] %&gt;% as.matrix()
+    Y_test &lt;- Y[holdout]
+
+    algo.arguments &lt;- list(
+      x = X_train,
+      y = Y_train,
+      size = c(10),
+      learnFunc = &quot;BackpropBatch&quot;
+    )
+
     if (!(length(ellipsis.args) == 0)) {
-        algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
     }
-    whole.model &lt;- do.call(RSNNS::mlp, algo.arguments.wm)
-    if (ncol(X) == 1) {
-        importances &lt;- c(no.var = 0)
-    }
-    else {
-        predictor &lt;- iml::Predictor$new(model = whole.model, 
-            data = as.data.frame(X), y = Y)
-        imp &lt;- iml::FeatureImp$new(predictor, loss = &quot;mse&quot;)$results
-        importances &lt;- imp$importance
-        names(importances) &lt;- imp$feature
-    }
-    list(unbiased.predictions = holdout.predictions, importances = importances)
+
+    model &lt;- do.call(RSNNS::mlp, algo.arguments)
+
+    label.hat &lt;- predict(model, X_test)
+
+    tibble::tibble(index = holdout, prediction = label.hat[,1])
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    x = X,
+    y = Y,
+    size = c(10),
+    learnFunc = &quot;BackpropBatch&quot;
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(RSNNS::mlp, algo.arguments.wm)
+
+  # fix for bypass intra (or in general if there is only a single predictor)
+  if (ncol(X) == 1) {
+    importances &lt;- c(&quot;no.var&quot; = 0)
+  } else {
+    predictor &lt;- iml::Predictor$new(
+      model = whole.model,
+      data = as.data.frame(X),
+      y = Y
+    )
+
+    imp &lt;- iml::FeatureImp$new(predictor, loss = &quot;mse&quot;)$results
+    importances &lt;- imp$importance
+    names(importances) &lt;- imp$feature
+  }
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
 }
-&lt;bytecode: 0x55930380ec00&gt;
+&lt;bytecode: 0x55f2d88f1b18&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -2173,7 +3049,120 @@ Collecting importances
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-28-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-28-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-28-1">
+Past versions of unnamed-chunk-28-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-28-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-28-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-28-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-28-2">
+Past versions of unnamed-chunk-28-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-28-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-28-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-28-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-28-3">
+Past versions of unnamed-chunk-28-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-28-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-28-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="how-to-construct-you-own-function" class="section level1">
@@ -2219,7 +3208,7 @@ Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
                          seed = 42)
 str(res.list)
 List of 2
- $ unbiased.predictions: tibble [4,205 x 2] (S3: tbl_df/tbl/data.frame)
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
   ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
   ..$ prediction: num [1:4205] 0.0563 0.0952 0.1236 0.169 0.1617 ...
  $ importances         : Named num [1:10] 27.5 26.1 43.5 16.3 248.3 ...
@@ -2332,7 +3321,7 @@ List of 5
   tibble::tibble(index = holdout, prediction = label.hat)
 }) %&gt;% dplyr::arrange(index)
 str(holdout.predictions)
-tibble [4,205 x 2] (S3: tbl_df/tbl/data.frame)
+tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
  $ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
  $ prediction: Named num [1:4205] 0.238 0.237 0.238 0.24 0.236 ...
   ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</code></pre>
@@ -2350,7 +3339,7 @@ importances
 <pre class="r"><code>list(unbiased.predictions = holdout.predictions, 
        importances = importances) %&gt;% str # again added str for visualization
 List of 2
- $ unbiased.predictions: tibble [4,205 x 2] (S3: tbl_df/tbl/data.frame)
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
   ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
   ..$ prediction: Named num [1:4205] 0.238 0.237 0.238 0.24 0.236 ...
   .. ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
@@ -2395,7 +3384,7 @@ List of 2
 <pre class="r"><code>test &lt;- reg_tree_model_1(view_data = view_data)
 str(test)
 List of 2
- $ unbiased.predictions: tibble [4,205 x 2] (S3: tbl_df/tbl/data.frame)
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
   ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
   ..$ prediction: Named num [1:4205] 0.238 0.237 0.238 0.24 0.236 ...
   .. ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
@@ -2450,7 +3439,7 @@ List of 2
 <pre class="r"><code>test2 &lt;- reg_tree_model_2(view_data = view_data, cp = 0.001)
 str(test2)
 List of 2
- $ unbiased.predictions: tibble [4,205 x 2] (S3: tbl_df/tbl/data.frame)
+ $ unbiased.predictions: tibble [4,205 × 2] (S3: tbl_df/tbl/data.frame)
   ..$ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
   ..$ prediction: Named num [1:4205] 0.154 0.16 0.154 0.209 0.594 ...
   .. ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
@@ -2480,68 +3469,73 @@ caret::defaultSummary(data = data.frame(obs = target.vector,
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()
-R version 4.1.1 (2021-08-10)
-Platform: x86_64-conda-linux-gnu (64-bit)
-Running under: CentOS Linux 7 (Core)
+R version 4.1.2 (2021-11-01)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 20.04.3 LTS
 
 Matrix products: default
-BLAS/LAPACK: /net/data.isilon/ag-saez/bq_pschaefer/SOFTWARE/miniconda3/envs/misty_benchmark/lib/libopenblasp-r0.3.18.so
+BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
-[1] C
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
  [1] forcats_0.5.1   stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4    
- [5] readr_2.1.1     tidyr_1.1.4     tibble_3.1.6    ggplot2_3.3.5  
- [9] tidyverse_1.3.1 future_1.23.0   mistyR_1.3.3    workflowr_1.7.0
+ [5] readr_2.0.2     tidyr_1.1.4     tibble_3.1.6    ggplot2_3.3.5  
+ [9] tidyverse_1.3.1 future_1.22.1   mistyR_1.3.3    workflowr_1.6.2
 
 loaded via a namespace (and not attached):
   [1] colorspace_2.0-2     ellipsis_0.3.2       class_7.3-19        
-  [4] rprojroot_2.0.2      fs_1.5.0             rstudioapi_0.13     
+  [4] rprojroot_2.0.2      fs_1.5.2             rstudioapi_0.13     
   [7] listenv_0.8.0        furrr_0.2.3          farver_2.1.0        
  [10] prodlim_2019.11.13   fansi_0.5.0          lubridate_1.8.0     
  [13] ranger_0.13.1        xml2_1.3.2           codetools_0.2-18    
- [16] splines_4.1.1        R.methodsS3_1.8.1    knitr_1.36          
+ [16] splines_4.1.2        R.methodsS3_1.8.1    knitr_1.37          
  [19] rlist_0.4.6.2        jsonlite_1.7.2       pROC_1.18.0         
- [22] caret_6.0-90         broom_0.7.10         dbplyr_2.1.1        
- [25] R.oo_1.24.0          compiler_4.1.1       httr_1.4.2          
+ [22] caret_6.0-90         broom_0.7.9          dbplyr_2.1.1        
+ [25] R.oo_1.24.0          compiler_4.1.2       httr_1.4.2          
  [28] tictoc_1.0.1         backports_1.3.0      assertthat_0.2.1    
- [31] Matrix_1.3-4         fastmap_1.1.0        cli_3.1.0           
- [34] later_1.3.0          htmltools_0.5.2      tools_4.1.1         
+ [31] Matrix_1.4-0         fastmap_1.1.0        cli_3.1.0           
+ [34] later_1.3.0          htmltools_0.5.2      tools_4.1.2         
  [37] gtable_0.3.0         glue_1.6.0           reshape2_1.4.4      
  [40] Rcpp_1.0.7           cellranger_1.1.0     jquerylib_0.1.4     
- [43] vctrs_0.3.8          nlme_3.1-153         iterators_1.0.13    
- [46] timeDate_3043.102    xfun_0.28            gower_0.2.2         
- [49] globals_0.14.0       ps_1.6.0             rvest_1.0.2         
- [52] lifecycle_1.0.1      getPass_0.2-2        MASS_7.3-54         
- [55] scales_1.1.1         ipred_0.9-12         hms_1.1.1           
- [58] promises_1.2.0.1     parallel_4.1.1       RColorBrewer_1.1-2  
- [61] yaml_2.2.1           rpart_4.1-15         stringi_1.7.6       
- [64] highr_0.9            distances_0.1.8      foreach_1.5.1       
- [67] filelock_1.0.2       lava_1.6.10          rlang_0.4.12        
- [70] pkgconfig_2.0.3      evaluate_0.14        lattice_0.20-45     
- [73] recipes_0.1.17       labeling_0.4.2       processx_3.5.2      
- [76] tidyselect_1.1.1     parallelly_1.30.0    plyr_1.8.6          
- [79] magrittr_2.0.1       R6_2.5.1             generics_0.1.1      
- [82] DBI_1.1.1            pillar_1.6.4         haven_2.4.3         
- [85] whisker_0.4          withr_2.4.3          survival_3.2-13     
- [88] nnet_7.3-16          future.apply_1.8.1   modelr_0.1.8        
- [91] crayon_1.4.2         utf8_1.2.2           tzdb_0.2.0          
- [94] rmarkdown_2.11       grid_4.1.1           readxl_1.3.1        
- [97] data.table_1.14.2    callr_3.7.0          git2r_0.28.0        
-[100] ModelMetrics_1.2.2.2 reprex_2.0.1         digest_0.6.29       
-[103] httpuv_1.6.4         R.utils_2.11.0       stats4_4.1.1        
-[106] munsell_0.5.0       </code></pre>
+ [43] vctrs_0.3.8          nlme_3.1-152         iterators_1.0.13    
+ [46] timeDate_3043.102    xfun_0.29            gower_0.2.2         
+ [49] globals_0.14.0       rvest_1.0.1          lifecycle_1.0.1     
+ [52] MASS_7.3-54          scales_1.1.1         ipred_0.9-12        
+ [55] hms_1.1.1            promises_1.2.0.1     parallel_4.1.2      
+ [58] RColorBrewer_1.1-2   yaml_2.2.1           sass_0.4.0          
+ [61] rpart_4.1-15         stringi_1.7.6        highr_0.9           
+ [64] distances_0.1.8      foreach_1.5.1        filelock_1.0.2      
+ [67] lava_1.6.10          rlang_0.4.12         pkgconfig_2.0.3     
+ [70] evaluate_0.14        lattice_0.20-45      recipes_0.1.17      
+ [73] labeling_0.4.2       tidyselect_1.1.1     parallelly_1.28.1   
+ [76] plyr_1.8.6           magrittr_2.0.1       R6_2.5.1            
+ [79] generics_0.1.1       DBI_1.1.1            pillar_1.6.4        
+ [82] haven_2.4.3          whisker_0.4          withr_2.4.3         
+ [85] survival_3.2-13      nnet_7.3-16          future.apply_1.8.1  
+ [88] modelr_0.1.8         crayon_1.4.2         utf8_1.2.2          
+ [91] tzdb_0.1.2           rmarkdown_2.11       grid_4.1.2          
+ [94] readxl_1.3.1         data.table_1.14.2    git2r_0.28.0        
+ [97] ModelMetrics_1.2.2.2 reprex_2.0.1         digest_0.6.29       
+[100] httpuv_1.6.4         R.utils_2.11.0       stats4_4.1.2        
+[103] munsell_0.5.0        bslib_0.3.1         </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-https://docs.mathjax.org/en/latest/web/configuration.html. This will make
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
