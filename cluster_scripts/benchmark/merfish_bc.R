@@ -114,4 +114,24 @@ if (cmd.arg2 == 1) {
               seed = 42,
               cv.folds = 10)
   })
+} else if (cmd.arg2 == 9) {
+  plan("sequential")
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
+    run_misty(views = smp.views,
+              results.folder = paste0(output.path, "MARS80/",smp.name),
+              model.function = mars_model,
+              seed = 42,
+              cv.folds = 10,
+              approx = 0.8)
+  })
+} else if (cmd.arg2 == 10) {
+  plan("sequential")
+  purrr::iwalk(misty.views.smp, function(smp.views, smp.name) {
+    run_misty(views = smp.views,
+              results.folder = paste0(output.path, "MARS60/",smp.name),
+              model.function = mars_model,
+              seed = 42,
+              cv.folds = 10,
+              approx = 0.6)
+  })
 }
