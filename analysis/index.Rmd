@@ -1,5 +1,6 @@
 ---
 title: "Implementation and Benchmarking of Different Machine Learning Algorithms for Training View-Specific Models in MISTy"
+author: Philipp SL Schäfer
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:
@@ -20,16 +21,20 @@ See the corresponding
 
 ## &nbsp;&nbsp;&nbsp; 2. Methods
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1 New MISTy API allowing to use any model for training view-specific models](https://schae211.github.io/report/tutorial.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2.1 Flexible MISTy Framework to use any Algorithm for Training View-Specific Models](https://schae211.github.io/report/tutorial.html)
 
 ## &nbsp;&nbsp;&nbsp; 3. Results
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1 Benchmarking different algorithms for modeling views in different datasets](https://schae211.github.io/report/benchmark.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.1 Benchmarking Different Algorithms for Modeling Views](https://schae211.github.io/report/benchmark.html)
 
 ### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.2 Exploring Different Machine Learning Frameworks in R](https://schae211.github.io/report/frameworks.html)
 
-### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3 Alternative implementation of new algorithms for training view-specific models](https://schae211.github.io/report/model_api.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.3 Alternative Implementation of New Algorithms for Training View-Specific Models](https://schae211.github.io/report/model_api.html)
 
-## [&nbsp;&nbsp;&nbsp; 4. Discussion](https://schae211.github.io/report/conclusions.html)
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.4 Case Study: Neighborhood Composition Analysis](https://schae211.github.io/report/case_study_A.html)
+
+### [&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3.5 Case Study: Implementing non-negative least-squares as view-specific model](https://schae211.github.io/report/case_study_B.html)
+
+## [&nbsp;&nbsp;&nbsp; 4. Conclusions & Discussion](https://schae211.github.io/report/conclusions.html)
 
 ## [&nbsp;&nbsp;&nbsp; 5. Appendix](https://schae211.github.io/report/appendix.html)
