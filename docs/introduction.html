@@ -357,10 +357,19 @@ $(document).ready(function () {
 
 </div>
 
+<div id="TOC">
+<ul>
+<li><a href="#spatial-transcriptomics">1.1 Spatial Transcriptomics</a></li>
+<li><a href="#spatial-proteomics">1.2 Spatial Proteomics</a></li>
+<li><a href="#data-analysis">1.3 Data Analysis</a></li>
+<li><a href="#this-work">1.4 This Work</a></li>
+<li><a href="#references">References</a></li>
+</ul>
+</div>
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -369,7 +378,7 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -378,10 +387,10 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-01-03
+<strong>Last updated:</strong> 2022-01-09
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -397,12 +406,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
 </div>
 </div>
 </div>
@@ -469,16 +478,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639targetblank9abc4f3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639" target="_blank">9abc4f3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree3610830365f5d8c0ef222c4eb87e519e9d90fb84targetblank3610830a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/3610830365f5d8c0ef222c4eb87e519e9d90fb84" target="_blank">3610830</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639targetblank9abc4f3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree3610830365f5d8c0ef222c4eb87e519e9d90fb84targetblank3610830a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/9abc4f3fc7e14eb50bf6c29ee8e01d0bb34e4639" target="_blank">9abc4f3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/3610830365f5d8c0ef222c4eb87e519e9d90fb84" target="_blank">3610830</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -492,14 +501,14 @@ Ignored files:
     Ignored:    data/mibi_tnbc/
     Ignored:    data/seqfishp_brain/
     Ignored:    output/2021-12-25-09-41_all_views.RDS
+    Ignored:    output/2022-01-04-07-24_all_results.RDS
+    Ignored:    output/2022-01-05-22-43_all_results.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
 
-Untracked files:
-    Untracked:  analysis/eda_merfish_preoptic.Rmd
-
 Unstaged changes:
-    Modified:   analysis/introduction.Rmd
+    Modified:   analysis/benchmark.Rmd
+    Modified:   analysis/conclusions.Rmd
 
 </code></pre>
 <p>
@@ -538,6 +547,91 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/3610830365f5d8c0ef222c4eb87e519e9d90fb84/analysis/introduction.Rmd" target="_blank">3610830</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+<td>
+wflow_publish("analysis/introduction.Rmd", delete_cache = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/b8361ffd99ade8580c54828a78ce041f3b1da0a6/docs/introduction.html" target="_blank">b8361ff</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+<td>
+intro
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/4b467f5d769522fbc5725528f11d543ffbad7e97/docs/introduction.html" target="_blank">4b467f5</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/9c685243ffb415c4587548686f00985d9ad7e35d/analysis/introduction.Rmd" target="_blank">9c68524</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-03
+</td>
+<td>
+finished introduction, read through method section
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/9c685243ffb415c4587548686f00985d9ad7e35d/docs/introduction.html" target="_blank">9c68524</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-03
+</td>
+<td>
+finished introduction, read through method section
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -637,7 +731,7 @@ schae211
 2021-12-23
 </td>
 <td>
-wflow_publish(“analysis/introduction.Rmd”)
+wflow_publish("analysis/introduction.Rmd")
 </td>
 </tr>
 <tr>
@@ -739,7 +833,7 @@ schae211
 2021-12-18
 </td>
 <td>
-wflow_publish(“analysis/introduction.Rmd”)
+wflow_publish("analysis/introduction.Rmd")
 </td>
 </tr>
 <tr>
@@ -773,7 +867,7 @@ schae211
 2021-12-16
 </td>
 <td>
-wflow_publish(“analysis/introduction.Rmd”)
+wflow_publish("analysis/introduction.Rmd")
 </td>
 </tr>
 <tr>
@@ -858,7 +952,7 @@ schae211
 2021-12-15
 </td>
 <td>
-wflow_publish(“analysis/introduction.Rmd”)
+wflow_publish("analysis/introduction.Rmd")
 </td>
 </tr>
 </tbody>
@@ -873,39 +967,40 @@ body {
 text-align: justify;
 margin: 300px}
 </style>
-<p>In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq<span class="citation">(<a href="#ref-10.1016/j.cell.2015.05.002" role="doc-biblioref"><em>1</em></a>)</span> in 2015, the number of studies based on single-cell omics has exploded, primarily due to the commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, this technology requires a single-cell suspension, meaning tissues must be dissociated. Consequently, we loose information about the spatial context of cells, which is crucial for their function. Cells use different mechanisms to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Thereby, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, inferring the interaction of different proteins or more broadly cell-cell communication (CCC) using single-cell expression data from dissociated tissues is difficult.</p>
-<p>Taking the spatial context into consideration should help to infer interactions. One the one hand this requires multiplexed spatially resolved data, which only became available in the recent years. Below, I will briefly describe new spatially resolved transcriptomic (1.1) and proteomic approaches (1.2) based on these reviews <span class="citation">(<a href="#ref-Moses2021.05.11.443152" role="doc-biblioref"><em>2</em></a>, <a href="#ref-10.3389/fimmu.2019.02657" role="doc-biblioref"><em>3</em></a>)</span>. On the other hand, adequate analysis frameworks are required to analyze these kind of data. Most approaches focus on visualization of the data, finding spatially variable genes/gene programs, or cellular niches (what does this mean?). However, few tools aim to answer the questions what drives the expression of certain genes/proteins. MISTy, an analysis framework based on explanatory machine learning, has been developed by Tanevski et al. <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> to answer exactly this question. Given a marker (gene/protein), the user can define predictors (hereafter called views) which take the spatial context into account. For example, a view could comprise the expression of other markers in the direct neighborhood, or the distance to certain morphological features. The relationship between the chosen marker and each view is then modeled with a random forest model, and all these view-specific models are then combined in a meta model via ridge regression. In this work, the framework was generalized in such a way, that the relationship between individual views and the target of interest can now be modeled by any user supplied machine learning algorithm. Thus, allowing users to choose the best algorithm for the task at hand in the spirit of the no free lunch theorem. I will further describe MISTy and other spatial omics tools below (1.3).</p>
+<p>In recent years the field of single-cell biology has vastly expanded. Since the publication of Drop-seq<span class="citation">(<a href="#ref-10.1016/j.cell.2015.05.002" role="doc-biblioref"><em>1</em></a>)</span> in 2015, the number of studies based on single-cell omics has exploded, primarily due to the commercialization of microfluidics-based single-cell sequencing by 10X Genomics. However, this technology requires a single-cell suspension, meaning tissues must be dissociated before being analyzed. Consequently, we loose information about the spatial context of cells, which is crucial for their function. Cells use different mechanisms to exchange information such as juxtacrine signaling via membrane-bound ligands or paracrine signaling via secreted ligands. Thereby, most communication mechanisms are limited to the neighborhood of a given cell due to dilution of signals by diffusion or the requirement of direct cell-to-cell contact. Therefore, inferring the interaction of different proteins or more broadly cell-cell communication (CCC) using single-cell expression data from dissociated tissues is difficult. Consequently, knowing about the position of single cells should help to infer interactions.</p>
+<p>The required multiplexed spatially resolved data only became available in recent years. Below, I will briefly describe new spatially resolved transcriptomic (1.1) and proteomic approaches (1.2) based on these reviews <span class="citation">(<a href="#ref-Moses2021.05.11.443152" role="doc-biblioref"><em>2</em></a>, <a href="#ref-10.3389/fimmu.2019.02657" role="doc-biblioref"><em>3</em></a>)</span>. Apart from the data, adequate analysis frameworks and tools are needed to gain biological insights. Most approaches focus on visualization of the data, finding spatially variable genes/gene programs, or cellular niches. However, few tools aim to decipher which factors/features in/of the cellular environment could drive the expression of certain genes/proteins. MISTy, an analysis framework based on explanatory machine learning, has been developed by Tanevski et al. <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> to tackle this question. Given a marker (gene/protein), the user defines predictors based on the spatial context (hereafter called views). For example, a view could comprise the expression of all other markers in the direct neighborhood (juxtaview). For example given the expression of our marker A in a certain cell, can this expression be predicted using the expression of marker B and C in the neighboring cells. Each of these views is modeled with a random forest model, and all these view-specific models are then combined in a meta model via ridge regression (the model will be described in more detail below). In this work, the framework was generalized in such a way, that the view-specific models can now be build using any user-supplied machine learning algorithm. Thus, allowing users to choose the best algorithm for the task at hand in the spirit of the “no free lunch theorem” (which describes that there is no single model that works optimally for all tasks). I will further describe MISTy and other tools to analyze spatial omics data below (1.3).</p>
 <div id="spatial-transcriptomics" class="section level1">
 <h1>1.1 Spatial Transcriptomics</h1>
-<p>Modern spatial transcriptomic approaches can be broadly classified into four categories, namely microdissection, single-molecule fluorescent in-situ hybridization (smFISH), in-situ sequencing (ISS), and spatial barcoding in conjunction with next-generation sequencing (NGS). Microdissection refers to a couple of methods for isolating small regions of interest which can subsequently be analyzed (for example by NGS). Advantages are the flexibility with respect to the size of the isolated spots (e.g. down to the size of nuclei) and downstream analysis, and the compatibility with FFPE tissues. However, this comes at the cost of being laborious due to sequential handling of the isolated spots. Thus, the throughput, meaning how many cells/spots can be processed in a given time, is much higher for the other methods mentioned above. In particular spatial barcoding with NGS offers a high throughput due to its commercialization by 10X Genomics (“Visium”) and standard downstream pipelines of NGS data (demultiplexing, alignment, etc.).</p>
+<p>Modern spatial transcriptomic approaches can be broadly classified into four categories, namely microdissection, single-molecule fluorescent in-situ hybridization (smFISH), in-situ sequencing (ISS), and spatial barcoding in conjunction with next-generation sequencing (NGS). Microdissection refers to a couple of methods for isolating small regions of interest which can subsequently be analyzed (for example by NGS). Advantages are the flexibility with respect to the size of the isolated spots (e.g. down to the size of nuclei) and with respect to the downstream analysis, and the compatibility with FFPE tissues. However, this comes at the cost of being laborious due to sequential handling of the isolated spots. Thus, the throughput, meaning how many cells/spots can be processed in a given time, is much higher for the other methods. In particular spatial barcoding with NGS offers a high throughput due to its commercialization by 10X Genomics (“Visium”) and standard downstream pipelines of NGS data (demultiplexing, alignment, etc.).</p>
 <p>Visium is based on slides containing spots coated with capture sequences comprising a sequencing handle, barcode, UMI, and poly-T. The tissue is added on top of the slide and permeabilized, such that the polyadenylated transcripts bind to the capture sequences. Being based on NGS, these methods cover the whole transcriptome, which comes at the expense of a low resolution (corresponding to the size of the spots).</p>
-<p>Both smFISH and ISS have single-cell (or even subcellular) resolution. Two commong methods for smFISH are seqFISH <span class="citation">(<a href="#ref-10.1016/j.neuron.2016.10.001" role="doc-biblioref"><em>5</em></a>)</span> and MERFISH <span class="citation">(<a href="#ref-10.1073/pnas.1612826113" role="doc-biblioref"><em>6</em></a>)</span>. They are both based on multiple rounds of hybridization. seqFISH uses unique sequences of colors in each hybridization round to identify transcripts (i.e. in each round a transcript is labeled with multiple probes containing the same fluorophore). MERFISH uses transcript specific encoding probes which can be bound by fluorescently labeled readout probes which always have the some color. By construction, a readout probe binds or does not bind a given transcript in a given hybridization round, creating a binary code of the same length as the number of hybridzation rounds. So each transcript is encoded by a unique binary code. By choosing a Hamming distance larger than one, this approach helps to reduce detection errors. Usually both methods cover around 300 different transcripts, but can be scaled up to cover many more genes (usually at the cost of including fewer cells).</p>
+<p>Both smFISH and ISS have single-cell (or even subcellular) resolution. Two common methods for smFISH are seqFISH <span class="citation">(<a href="#ref-10.1016/j.neuron.2016.10.001" role="doc-biblioref"><em>5</em></a>)</span> and MERFISH <span class="citation">(<a href="#ref-10.1073/pnas.1612826113" role="doc-biblioref"><em>6</em></a>)</span>. They are both based on multiple rounds of hybridization. seqFISH uses unique sequences of colors in each hybridization round to identify transcripts (i.e. in each round a transcript is labeled with multiple probes containing the same fluorophore). MERFISH uses transcript specific encoding probes which can be bound by fluorescently labeled readout probes which always have the some color. By construction, a readout probe binds or does not bind a given transcript in a given hybridization round, creating a binary code of the same length as the number of hybridzation rounds. So each transcript is encoded by a unique binary code. By choosing a Hamming distance larger than one, this approach helps to reduce detection errors. Usually both methods cover around 300 different transcripts, but can be scaled up to cover many more genes (usually at the cost of including fewer cells).</p>
 <p>The last category of spatial transcriptomic technologies discussed here comprises ISS, which can be divided into sequencing by ligation (SBL) and sequencing by synthesis (SBS). Most ISS technolgies, such as the Cartana platform (10X Genomics) are based on SBL. The specificity of DNA ligation is exploited by padlock probes which can only be ligated if they perfectly bind to reverse transcribed RNAs. Upon ligation the padlock probes are amplified by rolling-circle amplification (RCA) and detected by fluorescence labeling. <span class="citation">(<a href="#ref-10.1016/j.cell.2020.06.038" role="doc-biblioref"><em>7</em></a>)</span> Due to RCA signal amplification the imaging can be done at lower magnifications compared to smFISH methods allowing for larger tissue sections to be imaged.</p>
-<div id="spatial-proteomics" class="section level2">
-<h2>1.2 Spatial Proteomics</h2>
-<p>Apart from spatial transcriptomics, the field of spatial proteomics is also rapidly expanding. Two examples for spatial proteomic technologies are imaging mass cytometry (IMC) <span class="citation">(<a href="#ref-10.1038/nmeth.2869" role="doc-biblioref"><em>8</em></a>)</span> and multiplexed ion beam imaging (MIBI) <span class="citation">(<a href="#ref-10.1038/nm.3488" role="doc-biblioref"><em>9</em></a>)</span>. Conventional technologies to visualize proteins in tissue sections such as immunohistochemistry (IHC) are based on antibodies conjugated with fluorophores or reporter enzymes, which makes mulitplexing difficult due to spectral overlap. For IHC several rounds of staining, imaging and photobleaching are needed for multiplexing, whereas IMC and MIBI solve this issue by using antibodies conjugated with heavy-metal isotopes which can be detected via mass cytometry imaging. Both technologies can image up to 40 different proteins. MIBI uses an oxygen duoplasmatron ion beam to ionize the heavy-metal labels, whereas IMC uses an UV laser to abalte the tissue which is subsequently atomized and ionized. According to Baharlou H. et al <span class="citation">(<a href="#ref-10.3389/fimmu.2019.02657" role="doc-biblioref"><em>3</em></a>)</span>, the main differences between the technologies is that the size of the MIBI ion beam and thus the spatial resolution is tunable between 1,000 and 260 nm, whereas the IMC laser is fixed at 1,000 nm. However, IMC has faster acquisition times compared to MIBI.</p>
 </div>
-<div id="data-analysis" class="section level2">
-<h2>1.3 Data Analysis</h2>
+<div id="spatial-proteomics" class="section level1">
+<h1>1.2 Spatial Proteomics</h1>
+<p>Apart from spatial transcriptomics, the field of spatial proteomics is also rapidly expanding. Two examples for spatial proteomic technologies are imaging mass cytometry (IMC) <span class="citation">(<a href="#ref-10.1038/nmeth.2869" role="doc-biblioref"><em>8</em></a>)</span> and multiplexed ion beam imaging (MIBI) <span class="citation">(<a href="#ref-10.1038/nm.3488" role="doc-biblioref"><em>9</em></a>)</span>. Conventional technologies to visualize proteins in tissue sections such as immunohistochemistry (IHC) are based on antibodies conjugated with fluorophores or reporter enzymes, which makes mulitplexing difficult due to spectral overlap. For IHC several rounds of staining, imaging and photobleaching are needed for multiplexing, whereas IMC and MIBI solve this issue by using antibodies conjugated with heavy-metal isotopes which can be detected via mass cytometry imaging. Both technologies can image up to 40 different proteins. MIBI uses an oxygen duoplasmatron ion beam to ionize the heavy-metal labels, whereas IMC uses an UV laser to ablate the tissue which is subsequently atomized and ionized. According to Baharlou H. et al <span class="citation">(<a href="#ref-10.3389/fimmu.2019.02657" role="doc-biblioref"><em>3</em></a>)</span>, the main differences between the technologies is that the size of the MIBI ion beam and thus the spatial resolution is tunable between 1,000 and 260 nm, whereas the IMC laser is fixed at 1,000 nm. However, IMC has faster acquisition times compared to MIBI.</p>
+</div>
+<div id="data-analysis" class="section level1">
+<h1>1.3 Data Analysis</h1>
 <p>No matter which of the above technologies is used, a table containing either the markers for each spatial unit (spot or single cells) or the coordinates of markers (high resolution but no segmentation) is obtained after preprocessing. Following normalization, standard scRNA-seq tools are often used to explore the data. However, as more spatially resolved datasets are being published, new tools are developed to exploit these richer information. There are tool for the detection of spatially variable genes (e.g. SPARK-X <span class="citation">(<a href="#ref-10.1186/s13059-021-02404-0" role="doc-biblioref"><em>10</em></a>)</span>, SpatialDE <span class="citation">(<a href="#ref-10.1038/nmeth.4636" role="doc-biblioref"><em>11</em></a>)</span>), detection of co-expression patterns/gene programs (e.g. ), and the detection of cellular niches (e.g. ).</p>
 <p>Upon identification of interesting patterns in spatially resolved omics data one might ask the question what drives the emergence or stabilizes these patterns? Is the spatial structure driven by self-organization, juxtacrine/ paracrine signaling, or broad gradients of morphogens? Several tools have been published which tackle related questions. Spatial Variance Component Analysis (SVCA) <span class="citation">(<a href="#ref-10.1016/j.celrep.2019.08.077" role="doc-biblioref"><em>12</em></a>)</span> for example decomposed the variance of a given marker into an intrinsic, intercellular, and environmental component. However, these spatial contexts are fixed and no information about which interactions can explain the expression of a given marker are learned.</p>
-<p>In contrast, Multiview Intercellular SpaTial modeling framework (MISTy) <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> is much more flexible, allowing users to define the spatial context however they want. By default juxtacrine and paracrine views can be composed, which include the direct neighbors of a given cell and the broader tissue environment. Importantly, MISTy is build around an explainable machine learning algorithm facilitating interpretability of the results. This means after training a given model composed of several views, we obtain for each view and for each target marker in the view which other markers are helpful in explaining the expression of the considered marker (hereafter refereed to as importances). The basic MISTy workflow and the primary questions that can be answered are shown below.</p>
-<p>So we start by defining certain views. The intraview is always the baseline view in which we only take intracellular information into account, i.e. we predict the expression of a given marker in a cell using the expression values for all other markers in the same cell (or rather spatial units). Then, we add other views taking the spatial context into consideration, for example the paraview in which we predict the expression of a given marker in a cell using the expression of all the other markers in the tissue environment weighted by their distances to the considered cell. The colors in the figure should indicate the weight, which is by default computed via a Gaussian kernel (but other kernels are possible). As indicated in the figure, each view is modeled by a random forest and for each marker in each view, one random forest model in computed. The predictions from each view are combined in a late-fusion meta model based on ridge regression to control for correlated views.</p>
+<p>In contrast, MISTy (Multiview Intercellular SpaTial modeling framework) <span class="citation">(<a href="#ref-Tanevski2020.05.08.084145" role="doc-biblioref"><em>4</em></a>)</span> is much more flexible, allowing users to define the spatial context however they want. By default juxtacrine and paracrine views can be composed, which include the direct neighbors of a given cell and the broader tissue environment. Importantly, MISTy is build around an explainable machine learning algorithm facilitating interpretability of the results. This means after training a given model composed of several views, we obtain for each view and for each target marker in the view which other markers are helpful in explaining the expression of the considered marker (hereafter refereed to as importances). The basic MISTy workflow and the primary questions that can be answered are shown below.</p>
+<p>So we start by defining certain views. The intraview is usually the baseline view in which we only take intracellular information into account, i.e. we predict the expression of a given marker in a cell using the expression values for all other markers in the same cell (or rather spatial units). Then, we add other views taking the spatial context into consideration, for example the juxtaview in which we predict the expression of a given marker in a cell using the expression of the other markers in the directly neighboring cells, or the paraview in which we use the other markers in the tissue environment weighted by their distances to the considered cell as predictors. The colors in the figure should indicate these weights, which are by default computed via a Gaussian kernel (but other kernels are possible). As indicated in the figure, each view is modeled by a random forest, meaning for each marker in each view, one random forest model in computed. The predictions from each view are combined in a late-fusion meta model based on ridge regression to control for correlated views.</p>
 <p><img src="https://www.dropbox.com/s/jynhjs4hc7k7oye/Slide6.png?raw=1" align="center" width="800"></p>
-<p>So first, we can ask for which targets the prediction improves if we take the spatial context into consideration. Therefore, we compare the R2 (fraction of variance explained) of the intra-view model and the multi-view model.</p>
+<p>So first, we can ask for which targets the prediction improves if we take the spatial context into consideration. Therefore, we compare the R2 (fraction of variance explained) of the intra-view model (below in red) and the multi-view model (below in green), which comprises all views.</p>
 <p><img src="https://www.dropbox.com/s/jteucwitjj5cywr/Slide8.png?raw=1" align="center" width="800"></p>
-<p>Next we can answer the question which view is more important in the prediction of a given target by comparing the coefficents in the meta model.</p>
+<p>Next we can answer the question how (relatively) important each view is in the the prediction of a given target by comparing the coefficents in the meta model.</p>
 <p><img src="https://www.dropbox.com/s/ad54sbjxw5ue7ea/Slide9.png?raw=1" align="center" width="800"></p>
-<p>Exploiting the interpretability of random forest, we can also ask which other markers are important when predicting the expression ofa given marker in a given view. These “importances” are weighted by the p-value of the corresponding view in the meta model.</p>
+<p>Exploiting the interpretability of random forest, we can also ask which other markers are important when predicting the expression of a given marker in a given view. These “importances” are weighted by the p-value of the corresponding view in the meta model.</p>
 <p><img src="https://www.dropbox.com/s/9f5kggot1jgwcee/Slide10.png?raw=1" align="center" width="800"></p>
-<p>For a given target, there are often large differences in performance measures such as the gain in variance explained and to find out what drives the differences MISTy signatures can be used. To that end, the results for all views and all targets in each sample are combined into a vector. So each sample has certain coordinates in the results space which can for example be visualized by plotting the first two principal components. Samples that share a certain tissue organisation often cluster together. In the example below, one can clearly see that compartmentalized tumors cluster together.</p>
+<p>For a given target, there are often large differences in performance measures such as the gain in variance explained (R2). To find out what drives the differences in the results, MISTy signatures can be used. To that end, the results for all views and all targets in each sample are combined into a vector. So each sample has certain coordinates in the results space which can for example be visualized by plotting the first two principal components. Samples that share a certain tissue organisation often cluster together. In the example below, one can clearly see that compartmentalized tumors cluster together.</p>
 <p><img src="https://www.dropbox.com/s/xru4pzsnjwl64so/Slide30.png?raw=1" align="center" width="800"></p>
 </div>
-<div id="this-work" class="section level2">
-<h2>1.4 This Work</h2>
-<p>In this work, the code base of MISTy was refactored in such a way that different machine learning models can be used to model each view as indicated in the scheme below:</p>
+<div id="this-work" class="section level1">
+<h1>1.4 This Work</h1>
+<p>In this work, the code base of MISTy was refactored and extended in such a way that different machine learning models apart from random forest can now be used to model each view as indicated in the scheme below. Importantly, the implementation also enables users to provide their own favorite algorithm, making MISTy as flexible as possible.</p>
 <p><img src="https://www.dropbox.com/s/226o7lo8zfxk2dm/implementation.png?raw=1" align="center" width="800"></p>
-<p>In the <a href="https://schae211.github.io/report/tutorial.html">Methods</a> section I will describe the flexible implementation of different machine learning algorithms for training view-specific models in MISTy. Based on the new underlying framework, the function to model each view is now passed as an argument to the <code>run_misty()</code> call. The default model is still random forest, but now users can either plug in another provided model function such as gradient boosting or define their own function such as non-negative least-squares.</p>
+<p>In the <a href="https://schae211.github.io/report/tutorial.html">Methods</a> section I will describe this flexible implementation which allows the usage of different machine learning algorithms for training view-specific models in MISTy. Based on the new underlying framework, the function to model each view is now passed as an argument to the <code>run_misty()</code> call. The default model is still random forest, but now users can either plug in another provided model function such as gradient boosting or define their own function such as non-negative least-squares. The code below specifies that the <code>gradient_boosting_model</code> with trees (<code>booster = "gbtree"</code>) should be used to model views.</p>
 <pre class="r"><code>misty.views %&gt;%
   run_misty(model.function = gradient_boosting_model, 
             booster = &quot;gbtree&quot;)</code></pre>
@@ -916,15 +1011,14 @@ Click here for MISTy flowchart
 <div id="htmlwidget-06bbab40e228689d42ad" style="width:672px;height:480px;" class="grViz html-widget"></div>
 <script type="application/json" data-for="htmlwidget-06bbab40e228689d42ad">{"x":{"diagram":"digraph{\n\n      # setting the global strucutre (top to low)\n      graph[rankdir = TL]\n  \n      # setting the default node layout\n      node[shape = rectangle, style = filled]\n  \n      subgraph cluster_1 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Input: Spatial Omics\"\n        node[fillcolor = White, margin = 0.2]\n          EXP[label = \"expression\"]\n          POS[label = \"positions\"]\n      }\n      \n      subgraph cluster_3 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Generating Views\"\n        node[fillcolor = White, margin = 0.2]\n        CIV[label = \"create_initial_view()\"]\n        AJV[label = \"add_juxtaview()\"]\n        APV[label = \"add_paraview()\"]\n      }\n      \n      subgraph cluster_4 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"MISTy Views\"\n        node[fillcolor = White, margin = 0.2]\n        IV[label = \"intraview\"]\n        JV[label = \"juxtaview\"]\n        PV[label = \"paraview\"]\n        V[label = \"misty views\"]\n      }\n      \n      subgraph cluster_5 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"MISTy Parameters\"\n        node[fillcolor = White, margin = 0.2]\n        RES[label = \"results.folder\"]\n        MF[label = \"model.function\", fillcolor = \"Gold\"]\n        TS[label = \"target.subset\"]\n        CV[label = \"cv.folds\"]\n        BI[label = \"bypass.intra\"]\n        DOTS[label = \"...\"]\n      }\n      \n      subgraph cluster_6 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Output: MISTy Results\"\n        node[fillcolor = White, margin = 0.2]\n          PER[label = \"performance\"]\n          CON[label = \"contribution\"]\n          IMP[label = \"importances\"]\n      }\n      \n      subgraph cluster_8 {\n        graph[shape = rectangle]\n        style = rounded\n        bgcolor = PaleTurquoise\n        label = \"Running MISTy\"\n        node[fillcolor = White, margin = 0.2]\n        RM[label = \"run_misty()\"]\n        CR[label = \"collect_results()\"]\n      }\n      \n      edge[color = black, arrowhead = vee, arrowsize = 0.8]\n      EXP -> CIV\n      POS -> {APV, AJV}\n      CIV -> {APV, AJV}\n      CIV -> IV\n      APV -> PV\n      AJV -> JV\n      {IV, PV, JV} -> V\n      {V, RES, MF, TS, CV, BI, DOTS} -> RM\n      RM -> CR\n      CR -> {PER, CON, IMP}\n      \n}","config":{"engine":"dot","options":null}},"evals":[],"jsHooks":[]}</script>
 </details>
-<p>In the results section, I will first show <a href="https://schae211.github.io/report/benchmark.html">benchmarking</a> results, where I compare the performance of different algorithms on different spatial omics datasets. Furthermore, I explore the impact of different hyperparameters on the model performance for the algorithms.</p>
-<p>In the <a href="https://schae211.github.io/report/frameworks.html">frameworks</a> section I briefly describe we could not use one of the major machine learning frameworks in R, namely <code>caret</code>, <code>tidymodels</code>, and <code>mlr3</code> as backend in MISTy models. These frameworks are either not flexible enough, or their performance is bad.</p>
+<p>In the results section, I will first show <a href="https://schae211.github.io/report/benchmark.html">benchmarking</a> results, where I compare the performance of different algorithms on different spatial omics datasets. I also explore how the importances differ between the models. Lastly, I show the impact of different hyperparameters on the model performance for the algorithms.</p>
+<p>In the <a href="https://schae211.github.io/report/frameworks.html">frameworks</a> section I briefly describe why we could not use one of the major machine learning frameworks in R, namely <code>caret</code>, <code>tidymodels</code>, and <code>mlr3</code> as back-end in MISTy models. These frameworks are either not flexible enough, or their performance is insufficient.</p>
 <p>Also, I will describe an <a href="https://schae211.github.io/report/model_api.html">alternative</a> implementation of a new MISTy framework that allows users to select more ML models than only random forests, but not to use functions defined by themselves. Running MISTy with an ensemble of 50 MARS models (interaction term 2) trained with bootstrap samples would looks like this.</p>
 <pre class="r"><code>misty.views %&gt;% 
   run_misty(method = &quot;bag&quot;, learner = &quot;earth&quot;, 
             n.learners = 50, degree = 2)</code></pre>
 <p>In the end, I will <a href="https://schae211.github.io/report/model_api.html">discuss</a> the results of my work and pose remaining open questions for the development of MISTy and the field of spatial omics technologies.</p>
 <hr />
-</div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
@@ -983,28 +1077,26 @@ BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
 LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
- [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
- [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
- [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
- [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
- [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+[1] C
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
+other attached packages:
+[1] workflowr_1.6.2
+
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.7         pillar_1.6.3       compiler_4.1.2     bslib_0.3.1       
+ [1] Rcpp_1.0.7         pillar_1.6.4       compiler_4.1.2     bslib_0.3.1       
  [5] later_1.3.0        RColorBrewer_1.1-2 jquerylib_0.1.4    git2r_0.28.0      
- [9] workflowr_1.6.2    tools_4.1.2        digest_0.6.28      jsonlite_1.7.2    
-[13] evaluate_0.14      lifecycle_1.0.1    tibble_3.1.5       pkgconfig_2.0.3   
-[17] rlang_0.4.12       rstudioapi_0.13    yaml_2.2.1         xfun_0.26         
-[21] fastmap_1.1.0      DiagrammeR_1.0.6.1 stringr_1.4.0      knitr_1.36        
-[25] fs_1.5.0           vctrs_0.3.8        sass_0.4.0         htmlwidgets_1.5.4 
-[29] rprojroot_2.0.2    glue_1.4.2         R6_2.5.1           fansi_0.5.0       
-[33] rmarkdown_2.11     magrittr_2.0.1     whisker_0.4        promises_1.2.0.1  
-[37] ellipsis_0.3.2     htmltools_0.5.2    httpuv_1.6.3       utf8_1.2.2        
-[41] stringi_1.7.5      visNetwork_2.1.0   crayon_1.4.1      </code></pre>
+ [9] tools_4.1.2        digest_0.6.29      jsonlite_1.7.2     evaluate_0.14     
+[13] lifecycle_1.0.1    tibble_3.1.6       pkgconfig_2.0.3    rlang_0.4.12      
+[17] rstudioapi_0.13    yaml_2.2.1         xfun_0.29          fastmap_1.1.0     
+[21] DiagrammeR_1.0.6.1 stringr_1.4.0      knitr_1.37         fs_1.5.2          
+[25] vctrs_0.3.8        sass_0.4.0         htmlwidgets_1.5.4  rprojroot_2.0.2   
+[29] glue_1.6.0         R6_2.5.1           fansi_0.5.0        rmarkdown_2.11    
+[33] magrittr_2.0.1     whisker_0.4        promises_1.2.0.1   ellipsis_0.3.2    
+[37] htmltools_0.5.2    httpuv_1.6.4       utf8_1.2.2         stringi_1.7.6     
+[41] visNetwork_2.1.0   crayon_1.4.2      </code></pre>
 </div>
 </div>
 
