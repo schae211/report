@@ -42,6 +42,7 @@ if (cmd.arg1 == 1) {
   l <- raw_l * 2**4
 } else if (cmd.arg1 == 6) {
   # additional experiment without rescaling the image
+  options(future.globals.maxSize = 1000 * 1024^2)
   ratio <- 1
   l <- raw_ratio * raw_l
 } 
