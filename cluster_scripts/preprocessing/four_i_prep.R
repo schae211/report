@@ -25,23 +25,26 @@ average_eukaryotic_cell_microns <- 20
 raw_ratio <- floor(average_eukaryotic_cell_microns / side_pixel_microns)
 raw_l <- 3
 # ratio <- raw_ratio
-
 if (cmd.arg1 == 1) {
   ratio <- raw_ratio
   l <- raw_l
 } else if (cmd.arg1 == 2) {
   ratio <- floor(raw_ratio / 2**1)
-  l <- raw_l * 2
+  l <- raw_l * 2**1
 } else if (cmd.arg1 == 3) {
   ratio <- floor(raw_ratio / 2**2)
-  l <- raw_l * 4
+  l <- raw_l * 2**2
 } else if (cmd.arg1 == 4) {
   ratio <- floor(raw_ratio / 2**3)
-  l <- raw_l * 8
+  l <- raw_l * 2**3
 } else if (cmd.arg1 == 5) {
   ratio <- floor(raw_ratio / 2**4)
-  l <- raw_l * 8
-}
+  l <- raw_l * 2**4
+} else if (cmd.arg1 == 6) {
+  # additional experiment without rescaling the image
+  ratio <- 1
+  l <- raw_ratio * raw_l
+} 
 
 #####  Input ##### 
 print("reading data")
@@ -73,13 +76,17 @@ misty.views.smp <- map(samples, function(smp) {
   #   scale_color_viridis_c()
   
   # Reduce Size
-  img.red <- img %>% 
-    mutate(x = trunc(x/ratio), y = trunc(y/ratio)) %>% 
-    select(-c(...1, cluster)) %>% 
-    unite("xy", x, y) %>%
-    group_by(xy) %>% 
-    summarize(across(everything(), median)) %>% # why should we take the median and not the sum here?
-    separate("xy", c("x","y"), convert = TRUE)
+  if (ratio == 1) {
+    img.red <- img
+  } else {
+    img.red <- img %>% 
+      mutate(x = trunc(x/ratio), y = trunc(y/ratio)) %>% 
+      select(-c(...1, cluster)) %>% 
+      unite("xy", x, y) %>%
+      group_by(xy) %>% 
+      summarize(across(everything(), median)) %>% 
+      separate("xy", c("x","y"), convert = TRUE)
+  }
   
   # Select Position and Expression
   pos <- img.red %>% select(c(x, y))
@@ -90,7 +97,8 @@ misty.views.smp <- map(samples, function(smp) {
   
   # Create MISTy views
   create_initial_view(data = expr) %>%
-    add_paraview(positions = pos, l = l)
+    add_paraview(positions = pos, l = l, 
+                 approx = ifelse(ratio == 1, 0.5, 1))
 })
 
 print(paste0(output.path, "ratio_", ratio, "_views.RDS"))
