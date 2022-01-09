@@ -119,7 +119,7 @@ if (cmd.arg2 == 1) {
     run_misty(views = smp.views,
               results.folder = paste0(output.path, "MARS80/",smp.name),
               model.function = mars_model,
-              approx = 0.6)
+              approx = 0.8)
     gc()
   })
 } else if (cmd.arg2 == 8) {
