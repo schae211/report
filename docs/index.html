@@ -9,6 +9,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Philipp SL Schäfer" />
 
 
 <title>Implementation and Benchmarking of Different Machine Learning Algorithms for Training View-Specific Models in MISTy</title>
@@ -328,6 +329,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Implementation and Benchmarking of Different Machine Learning Algorithms for Training View-Specific Models in MISTy</h1>
+<h4 class="author">Philipp SL Schäfer</h4>
 
 </div>
 
@@ -383,16 +385,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef9425c3e40f3dcf596dfcb28ab8a179c2af79828targetblankf9425c3a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/f9425c3e40f3dcf596dfcb28ab8a179c2af79828" target="_blank">f9425c3</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree272a8897658dc01057a4d69f197c92ce74f00eedtargetblank272a889a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/272a8897658dc01057a4d69f197c92ce74f00eed" target="_blank">272a889</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreef9425c3e40f3dcf596dfcb28ab8a179c2af79828targetblankf9425c3a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree272a8897658dc01057a4d69f197c92ce74f00eedtargetblank272a889a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/f9425c3e40f3dcf596dfcb28ab8a179c2af79828" target="_blank">f9425c3</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/272a8897658dc01057a4d69f197c92ce74f00eed" target="_blank">272a889</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -410,10 +412,6 @@ Ignored files:
     Ignored:    output/2022-01-05-22-43_all_results.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
-    Ignored:    results/
-
-Unstaged changes:
-    Modified:   analysis/tutorial.Rmd
 
 </code></pre>
 <p>
@@ -457,6 +455,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/schae211/report/blob/272a8897658dc01057a4d69f197c92ce74f00eed/analysis/index.Rmd" target="_blank">272a889</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+<td>
+wflow_publish("analysis/index.Rmd")
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/31eff368262ac985068cc19a028e672d362dd979/docs/index.html" target="_blank">31eff36</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/schae211/report/blob/f9425c3e40f3dcf596dfcb28ab8a179c2af79828/analysis/index.Rmd" target="_blank">f9425c3</a>
 </td>
 <td>
@@ -466,7 +498,7 @@ schae211
 2022-01-09
 </td>
 <td>
-wflow_publish(“analysis/index.Rmd”)
+wflow_publish("analysis/index.Rmd")
 </td>
 </tr>
 <tr>
@@ -551,7 +583,7 @@ schae211
 2021-12-18
 </td>
 <td>
-wflow_publish(“analysis/index.Rmd”)
+wflow_publish("analysis/index.Rmd")
 </td>
 </tr>
 <tr>
@@ -585,7 +617,7 @@ schae211
 2021-12-16
 </td>
 <td>
-wflow_publish(“analysis/index.Rmd”)
+wflow_publish("analysis/index.Rmd")
 </td>
 </tr>
 <tr>
@@ -755,7 +787,7 @@ schae211
 2021-12-08
 </td>
 <td>
-wflow_publish(“analysis/index.Rmd”)
+wflow_publish("analysis/index.Rmd")
 </td>
 </tr>
 <tr>
@@ -859,24 +891,30 @@ Start workflowr project.
 </div>
 <div id="methods" class="section level2">
 <h2>    2. Methods</h2>
-<div id="new-misty-api-allowing-to-use-any-model-for-training-view-specific-models" class="section level3">
-<h3><a href="https://schae211.github.io/report/tutorial.html">       2.1 New MISTy API allowing to use any model for training view-specific models</a></h3>
+<div id="flexible-misty-framework-to-use-any-algorithm-for-training-view-specific-models" class="section level3">
+<h3><a href="https://schae211.github.io/report/tutorial.html">       2.1 Flexible MISTy Framework to use any Algorithm for Training View-Specific Models</a></h3>
 </div>
 </div>
 <div id="results" class="section level2">
 <h2>    3. Results</h2>
-<div id="benchmarking-different-algorithms-for-modeling-views-in-different-datasets" class="section level3">
-<h3><a href="https://schae211.github.io/report/benchmark.html">       3.1 Benchmarking different algorithms for modeling views in different datasets</a></h3>
+<div id="benchmarking-different-algorithms-for-modeling-views" class="section level3">
+<h3><a href="https://schae211.github.io/report/benchmark.html">       3.1 Benchmarking Different Algorithms for Modeling Views</a></h3>
 </div>
 <div id="exploring-different-machine-learning-frameworks-in-r" class="section level3">
 <h3><a href="https://schae211.github.io/report/frameworks.html">       3.2 Exploring Different Machine Learning Frameworks in R</a></h3>
 </div>
 <div id="alternative-implementation-of-new-algorithms-for-training-view-specific-models" class="section level3">
-<h3><a href="https://schae211.github.io/report/model_api.html">       3.3 Alternative implementation of new algorithms for training view-specific models</a></h3>
+<h3><a href="https://schae211.github.io/report/model_api.html">       3.3 Alternative Implementation of New Algorithms for Training View-Specific Models</a></h3>
+</div>
+<div id="case-study-neighborhood-composition-analysis" class="section level3">
+<h3><a href="https://schae211.github.io/report/case_study_A.html">       3.4 Case Study: Neighborhood Composition Analysis</a></h3>
+</div>
+<div id="case-study-implementing-non-negative-least-squares-as-view-specific-model" class="section level3">
+<h3><a href="https://schae211.github.io/report/case_study_B.html">       3.5 Case Study: Implementing non-negative least-squares as view-specific model</a></h3>
 </div>
 </div>
-<div id="discussion" class="section level2">
-<h2><a href="https://schae211.github.io/report/conclusions.html">    4. Discussion</a></h2>
+<div id="conclusions-discussion" class="section level2">
+<h2><a href="https://schae211.github.io/report/conclusions.html">    4. Conclusions &amp; Discussion</a></h2>
 </div>
 <div id="appendix" class="section level2">
 <h2><a href="https://schae211.github.io/report/appendix.html">    5. Appendix</a></h2>
