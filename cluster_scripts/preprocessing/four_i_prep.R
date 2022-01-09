@@ -98,7 +98,8 @@ misty.views.smp <- map(samples, function(smp) {
   # Create MISTy views
   create_initial_view(data = expr) %>%
     add_paraview(positions = pos, l = l, 
-                 approx = ifelse(ratio == 1, 0.5, 1))
+                 #approx = ifelse(ratio == 1, 0.5, 1))
+                 nn = switch(t == 1, 1e3, NULL))
 })
 
 print(paste0(output.path, "ratio_", ratio, "_views.RDS"))
