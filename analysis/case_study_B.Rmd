@@ -9,8 +9,11 @@ knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
 
 # Introduction
 
-This document is supposed to show how the new implementation can be useful in 
-the case of a neighborhood composition analysis.
+In this case study I want to showcase how a new model function can be implemented, here non-negative least squares to analyze the MIBI triple-negative breast cancer data set.
+
+# Setup
+
+## Packages
 
 Loaded packages.
 
@@ -20,6 +23,8 @@ library(tidyverse, warn.conflicts = FALSE)
 library(future, warn.conflicts = FALSE)
 plan("multisession", workers=12)
 ```
+
+## Input
 
 ```{r}
 raw.expr <- readRDS("data/expression.RDS")
@@ -33,6 +38,8 @@ meta.data <- raw.data %>%
   ), immuneGroup = NULL)
 meta.data %>% slice_head(n=6)
 ```
+
+## Prepare Data
 
 ```{r}
 samples <- unique(meta.data$SampleID)
@@ -63,7 +70,7 @@ expr.smp <- map(samples, function(smp) {
 expr.smp$`1` %>% slice_head(n=6)
 ```
 
-Getting positions for each sample
+Getting positions for each sample.
 
 ```{r}
 pos.smp <- map(samples, function(smp) {
@@ -73,6 +80,8 @@ pos.smp <- map(samples, function(smp) {
 }) %>% set_names(samples)
 pos.smp$`1` %>% slice_head(n=6)
 ```
+
+## MISTy Views
 
 Compute MISTy views.
 
@@ -84,7 +93,9 @@ misty.views.smp <- map2(expr.smp, pos.smp, function(expr, coord) {
 }) %>% set_names(samples)
 ```
 
-Run classic model.
+# MISTy with RF
+
+Run classic model using a random forest to model each view.
 
 ```{r}
 run_misty_wrapper <- function(misty.views.smp) {
@@ -92,8 +103,7 @@ run_misty_wrapper <- function(misty.views.smp) {
   imap(misty.views.smp, function(misty.views, i) {
   
   misty.views %>%
-    run_misty(results.folder = paste0("output/case_study_B/RF", i), 
-              bypass.intra = TRUE,
+    run_misty(results.folder = paste0("output/case_study_B/RF", i),
               cv.folds = 10,
               model.function = random_forest_model)
   })
@@ -125,7 +135,9 @@ rf.results %>%
   plot_interaction_heatmap("para.120", clean=TRUE)
 ```
 
-Non-negative least squares for modeling the views.
+# MISTy with NNLS
+
+Run the model using non-negative least squares to model each view.
 
 ```{r}
 nnls_model <- function(view_data, target, seed, k = 10, ...) {
@@ -208,7 +220,7 @@ nnls_model <- function(view_data, target, seed, k = 10, ...) {
 }
 ```
 
-Run nnls model.
+Run the `nnls_model`.
 
 ```{r}
 run_misty_wrapper <- function(misty.views.smp) {
@@ -217,7 +229,6 @@ run_misty_wrapper <- function(misty.views.smp) {
   
   misty.views %>%
     run_misty(results.folder = paste0("output/case_study_B/NNLS", i), 
-              bypass.intra = TRUE,
               cv.folds = 10,
               model.function = nnls_model)
   })
@@ -246,6 +257,8 @@ nnls.results %>%
   plot_interaction_heatmap("juxta.40", clean=TRUE, cutoff = 1.5) %>%
   plot_interaction_heatmap("para.120", clean=TRUE)
 ```
+
+
 
 # Appendix
 
