@@ -216,7 +216,7 @@ misty.views %>%
 
  - Short description: Sequential training of weak learners (either regression trees or linear models) where the learner $m+1$ is fitted on the residuals of the model containing $m$ learners ($F_M$). The error can be minimized by exploiting the gradient with respect to the model $F_M$.
 
- - Unbiased predictions are based on k-fold cross-validation (aggregarted 
+ - Unbiased predictions are based on k-fold cross-validation (aggregated 
  predictions for the holdout sets)
  
  - Importances for each predictor for a given target a determined by averaging the decrease in RSS over all splits in which a predictor was used (for tree gradient boosting).
