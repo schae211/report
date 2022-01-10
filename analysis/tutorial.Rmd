@@ -29,7 +29,7 @@ plan("multisession", workers=14)
 
 In this file, I will briefly explain how I envision the new MISTy workflow. I refactored and expanded the code such that users can supply their own function to model each view if they would like. If not, we ship MISTy with several implemented functions such as gradient boosting that can simply be plugged into the model. More details can be found below.
 
-# Overivew
+# Overview
 
 ## Data
 
