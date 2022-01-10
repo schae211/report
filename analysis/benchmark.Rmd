@@ -42,11 +42,11 @@ This document is split into 5 main sections:
 
 2. [Comparing Performances]
 
- * Mulit R2 (proportion of variance explained) and Gain in R2 are compared between the different algorithms of each dataset.
+ * Multi R2 (proportion of variance explained) and Gain in R2 are compared between the different algorithms of each dataset.
 
 3. [Comparing Importances]
 
- * Cosine Similarity of the importance vectors are compared between the different algorithms of each dataset. Additionally the jacard index after binarization of the importantes is used for comparison.
+ * Cosine Similarity of the importance vectors are compared between the different algorithms for each view in each dataset. Additionally the jaccard index after binarization of the importantes is used for comparison.
 
 4. [Comparing Runtimes]
 
@@ -1024,7 +1024,7 @@ filter_runs(all.results, "synthetic", "l6") %>%
   check_algs()
 ```
 
-Cosine similarity.
+Looking at the cosine similarity we see that the importances returned by the MARS model and by the bagged MARS model are essentially the same which we would expect. The importances returned by the MARS models, the RF, and the TBOOST are all very similar in both the intra- and the paraview. In the contrast, the values returned by the LM are very different, especially in the paraview. They are closer to SVM and LBOOST.
 
 ```{r fig.height=6, fig.width=6, warning=FALSE}
 filter_runs(all.results, "synthetic", "l6") %>%
@@ -1062,7 +1062,7 @@ filter_runs(all.results, "synthetic", "l6") %>%
   plot_cosine_similarity()
 ```
 
-Jaccard Index compared to radnom forest
+Jaccard Index compared to random forest
 
 ```{r}
 filter_runs(all.results, "synthetic", "l6") %>%
@@ -1082,6 +1082,8 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
   check_algs()
 ```
+
+Here we see a similar clustering as for the `synthetic` dataset, with TBOOST, BGMARS, MARS, and RF clustering together on one side, and LBOOST, LM, and SVM on the other side. Interestingly the overall cosine similarity between the different algorithms decreases going from the intra, to the juxta, to the paraview, as we can see by looking at the different scales.
 
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
@@ -1133,11 +1135,15 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 
 ## `merfish_preoptic`
 
+For some reason there are some NAs in the models based on gradient boosting.
+
 ```{r}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_importance() %>%
   check_algs()
 ```
+
+Again, we can observe the same trend as in the other datasets. TBOOST, MARS, and RF cluster together on one side, and LM and LBOOST on the other side.
 
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
@@ -1187,6 +1193,8 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
 
 ## `merfish_liver`
 
+
+
 ```{r eval=FALSE}
 filter_runs(all.results, "merfish_liver", "std280") %>%
   get_importance() %>%
@@ -1199,15 +1207,21 @@ filter_runs(all.results, "merfish_liver", "std280") %>%
 
 ## `merfish_bc`
 
+Since not all sample could be processed by BGMARS, MLP, and SVM, we should exclude them from the analysis.
+
 ```{r}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
+  filter(!(algorithm %in% c("BGMARS", "SVM", "MLP"))) %>%
   check_algs()
 ```
+
+Interestingly, ther is a different trend in this datasets compared to the other datasets. RF is more dimilar to LBOOST than to MARS and TBOOST in the intraview. And in the juxta- and paraview the importances of the different models are very different.
 
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
+  filter(!(algorithm %in% c("BGMARS", "SVM", "MLP"))) %>%
   cosine_heatmap()
 ```
 
@@ -1215,6 +1229,7 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
 ```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
+  filter(!(algorithm %in% c("BGMARS", "SVM", "MLP"))) %>%
   jaccard_heatmap(cutoff = 0.5)
 ```
 </details>
@@ -1223,6 +1238,7 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
 ```{r fig.width=12, fig.height=12, warning=FALSE}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
+  filter(!(algorithm %in% c("BGMARS", "SVM", "MLP"))) %>%
   correlation_scatter()
 ```
 </details>
@@ -1234,6 +1250,7 @@ Cosine Similarity compared to random forest
 ```{r}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
+  filter(!(algorithm %in% c("BGMARS", "SVM", "MLP"))) %>%
   wrap_function(cosine_similarity) %>%
   plot_cosine_similarity()
 ```
@@ -1243,6 +1260,7 @@ Jaccard Index compared to random forest
 ```{r}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
+  filter(!(algorithm %in% c("BGMARS", "SVM", "MLP"))) %>%
   wrap_function(jaccard_index, cutoff=0) %>%
   plot_jaccard()
 ```
@@ -1363,6 +1381,7 @@ filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>%
   dplyr::select(name, everything())
 ```
 
+We can clearly see that `max.depths = 1` reduces the performance significantly. Apart from that the model seems very robust to hyperparameter changes which is another reason why random forests are so popular.
 
 ```{r}
 filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>% 
@@ -1370,8 +1389,6 @@ filter_runs(all.results, "mibi_tnbc", "RF_hyper") %>%
   mutate(algorithm = str_remove(algorithm, "RF_hyper_")) %>%
   plot_performance(str.measure="multi.R2")
 ```
-
-We can clearly see that `max.depths = 1` reduces the performance significantly. Apart from that the model seems very robust to hyperparamter changes which is anothter reason why random forests are so popular.
 
 ## MARS
 
@@ -1389,15 +1406,15 @@ filter_runs(all.results, "mibi_tnbc", "MARS_hyper") %>%
   dplyr::select(name, everything())
 ```
 
+Interestingly the performance seems to be pretty much invariant to the choice
+of hyperparameters here, hinting that it might be ok to reduce `fast.k` from 20 to 5.
+
 ```{r}
 filter_runs(all.results, "mibi_tnbc", "MARS_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "MARS_hyper_")) %>%
   plot_performance(str.measure="multi.R2")
 ```
-
-Interestingly the performance seems to be pretty much invariant to the choice
-of hyperparameters here.
 
 ### `synthetic`
 
@@ -1519,6 +1536,9 @@ filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>%
 
 ### `mibi_tnbc`
 
+No penalty leads to the best results and more boosting rounds 
+increases the performance here. In general more boosting iterations are needed for linear gradient boosting compared to tree gradient boosting.
+
 ```{r}
 filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>% 
   get_performance() %>%
@@ -1527,13 +1547,9 @@ filter_runs(all.results, "mibi_tnbc", "LBOOST_hyper") %>%
   plot_performance(str.measure="multi.R2")
 ```
 
-No penalty leads to the best results and more boosting rounds 
-increases the performance here. In general more boosting iterations are needed for linear gradient boosting compared to tree gradient boosting.
-
 ### `merfish_bc`
 
-```{r eval=FALSE}
-# TODO
+```{r}
 filter_runs(all.results, "merfish_bc", "LBOOST_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
@@ -1546,8 +1562,9 @@ filter_runs(all.results, "merfish_bc", "LBOOST_hyper") %>%
   dplyr::select(name, everything())
 ```
 
-```{r eval=FALSE}
-# TODO
+Here the see the same trend
+
+```{r}
 filter_runs(all.results, "merfish_bc", "LBOOST_hyper") %>% 
   get_performance() %>%
   mutate(algorithm = str_remove(algorithm, "LBOOST_hyper_")) %>%
@@ -1569,6 +1586,8 @@ filter_runs(all.results, "synthetic", "LBOOST_hyper") %>%
            c("nrounds", "lambda", "alpha"), "_") %>%
   dplyr::select(name, everything())
 ```
+
+And here as well.
 
 ```{r}
 filter_runs(all.results, "synthetic", "LBOOST_hyper") %>% 
@@ -1594,6 +1613,8 @@ filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>%
 
 ### `mibi_tnbc`
 
+Similarly to the random forest above, we see that `max_depth = 1` reduces the overall performance. Apart from that the model seems to be very robust to hyperparamter changes.
+
 ```{r}
 filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>% 
   get_performance() %>%
@@ -1601,11 +1622,9 @@ filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>%
   plot_performance(str.measure="multi.R2")
 ```
 
-Similarly to the random forest above, we see that `max_depth = 1` reduces the overall performance. Apart from that the model seems to be very robust to hyperparamter changes.
-
 ## MLP
 
-### Runtimes
+Since the runtime is the biggest issue for the MLP model, I tested all backpropagation implemented in `RSNNS` but this did not really help to increase the runtime very much. In fact the default algorithm "Std_Backpropagation" is almost the fastest.
 
 ```{r message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library(mistyR))
@@ -1618,8 +1637,10 @@ funcs <- c("Std_Backpropagation", "BackpropBatch", "Quickprop",
 map_dfr(funcs, function(func) {
    #print(func)
    start <- Sys.time()
-   
-   walk(all.views$`/synthetic/l12`, function(view) {
+   considered.views <-
+     all.views$`/synthetic/l12`[as.numeric(str_extract(
+       names(all.views$`/synthetic/l12`), "[0-9]+")) <= 5]
+   walk(considered.views, function(view) {
      run_misty(views = view, model.function = mlp_model,
                learnFunc = func)
    })
@@ -1631,7 +1652,5 @@ map_dfr(funcs, function(func) {
   }) %>%
   arrange(time)
 ```
-
-And we see that the choice of learning algorithm does not make much of a difference here and that the default "BackpropBatch" seems to be the best choice.
 
 # References
