@@ -32,7 +32,33 @@ def.ord <-  c("RF", "TBOOST", "MARS100", "MARS", "MARS80", "MARS60", "MARS40",
               "BGMARS", "LBOOST", "LM", "SVM", "MLP")
 ```
 
-# Introduction and Data {.tabset}
+# Introduction
+
+This document is split into 5 main sections:
+
+1. [Data]
+
+ * The different datasets used to benchmark the different algorithms are introduced, including how and which MISTy views were computed.
+
+2. [Comparing Performances]
+
+ * Mulit R2 (proportion of variance explained) and Gain in R2 are compared between the different algorithms of each dataset.
+
+3. [Comparing Importances]
+
+ * Cosine Similarity of the importance vectors are compared between the different algorithms of each dataset. Additionally the jacard index after binarization of the importantes is used for comparison.
+
+4. [Comparing Runtimes]
+
+ * The runtimes for the different algorithms on the synthetic datasets are compared.
+
+5. [Hyperparameter Optimization]
+
+ * For each algorithm different sets of hyperparameters were tested on different datasets and the resulting performance are compared here.
+
+---
+
+# Data {.tabset}
 
 Loading the data.
 
@@ -110,12 +136,6 @@ summary(
   map_dbl(all.views$`/synthetic/l6`, 
           ~ nrow(.x$intraview$data))
 )
-```
-
--   QC of MISTy runs:
-
-```{r}
-
 ```
 
 ------------------------------------------------------------------------
@@ -351,6 +371,28 @@ The scripts that were used for all analysis can be found in this [GitHub reposit
 
 ------------------------------------------------------------------------
 
+# Algorithm Abbreviations
+
+* RF: Random Forest
+
+* TBOOST: Gradient Boosting with Trees
+
+* LBOOST: Gradient Boosting with Linear Models
+
+* MARS: Multivariate Adaptive Regression Splines
+
+* BGMARS: Bagged Multivariate Adaptive Regression Splines Models
+
+* LM: Linear Model
+
+* SVM: Linear Support Vector Machine
+
+* MLP: Multi-Layer Perceptron
+
+-> See details in the [method](https://schae211.github.io/report/tutorial.html) section.
+
+------------------------------------------------------------------------
+
 # Comparing Performances {.tabset}
 
 Define a function to get clean data for a particular study.
@@ -483,6 +525,9 @@ filter_runs(all.results, "synthetic", c("l6", "l12", "l24")) %>%
   check_runs(ordering = def.ord)
 ```
 
+Looking at the multi R2, one can clearly see that the RF, TBOOST, MARS, and bagged MARS perform all very well, whereas LBOOST, LM, SVM, and MLP are all worse with LBOOST (with default parameters) being the worst of all models tested here.
+
+Interestingly, the gain in R2 seems to decrease a little bit if `l` is increased from 6 to 12 to 24. For all models but LBOOST, only ligC and ligB see a rather large incrase in gain in R2.
 
 ```{r fig.width=8, fig.height=4}
 filter_runs(all.results, "synthetic", c("l6", "l12", "l24")) %>%
@@ -505,6 +550,10 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
   check_runs(ordering = def.ord)
 ```
 
+The MLP cleary performs worst followed by the SVM. Also LBOOST, MARS, and LM are worst than RF and TBOOST.
+
+The gain in R2 is by far the lowest for LBOOST.
+
 ```{r fig.width=8}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_performance() %T>%
@@ -520,13 +569,15 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 ## `merfish_preoptic`
 
 We see that MARS (with the current configuration) is not scalable enough to
-handle such large datasets with 100 markers and up to 70,000 spatial units.
+handle such large datasets with 100 markers and up to 70,000 spatial units. Even if an approximation of 60% is used, only 4 of 36 samples could be processed.
 
 ```{r}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_performance() %>%
   check_runs(ordering = def.ord)
 ```
+
+The results show again that RF and TBOOST perform very similar, whereas LM is a little bit worse and LBOOST being much worse.
 
 ```{r fig.width=8}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
@@ -544,14 +595,15 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
 
 ## `merfish_liver`
 
-For some reason everything but bagged MARS, MARS, and gradient boosted trees 
-failed.
+Everything but RF, TBOOST, and LM will be excluded from the analysis. (where are the MARS results?). In general this datasets is a rather uncommon one, since it comprises many field of views per sample, but each field of view only has between 200 and 360 cells approximately. Such a small field of view makes it difficult for the algorithms to learn something.
 
 ```{r}
 filter_runs(all.results, "merfish_liver", "std280") %>%
   get_performance() %>%
   check_runs(ordering = def.ord)
 ```
+
+It seems like the number of cells in each field of view is much to small for the flexible models such as RF and TBOOST. The LM outperforms these models by a large margin.
 
 ```{r fig.width=8}
 filter_runs(all.results, "merfish_liver", "std280") %>%
@@ -569,15 +621,15 @@ filter_runs(all.results, "merfish_liver", "std280") %>%
 
 ## `merfish_bc`
 
-Since the bagged MARS algorithm could only finish the computation for a single
-sample I must exclude the result. One should also keep in mind that the 
-MARS algorithm was not able to finish (2 samples are missing).
+Since the bagged MARS algorithm could only finish the computation for two samples I wll exclude the result. The results from SVM and MLP will be removed as well. One should also keep in mind that the MARS algorithm was not able to finish (1 samples are missing).
 
 ```{r}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_performance() %>%
   check_runs(ordering = def.ord)
 ```
+
+The MISTy results for this dataset are remarkable in the sense that all algorithms apart from MARS perform equally well, meaning that the LM performs as well as the RF. This is interesting since the LM is much more interpretable and faster to compute.
 
 ```{r fig.width=8}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
@@ -641,7 +693,7 @@ get_importance <- function(filtered.run) {
 }
 ```
 
-Define function to check whether all importances are present for each algorithm
+Define function to check how many importances are available for each algorithm and how many are missing.
 
 ```{r}
 check_algs <- function(misty.performances) {
@@ -675,7 +727,7 @@ split_importances <- function(misty.importances) {
 ```
 
 Define function to compute the cosine similarity given a tibble of vectors, 
-where each column represents a vector. Indices are harcoded.
+where each column represents a vector. Indices are hardcoded
 
 ```{r}
 cosine_similarity <- function(imp.tbl, exclude = c(1:5), relative = "RF") {
@@ -751,8 +803,7 @@ wrap_function <- function(misty.importances, f, ...) {
 }
 ```
 
-Function to compute the cosine similarity for each algorithm 
-for all views and samples.
+Define functions to plot the cosine similarity or the jaccard index after binarization of the importances relative to RF.
 
 ```{r}
 plot_cosine_similarity <- function(cosine_similarity) {
@@ -780,8 +831,7 @@ plot_jaccard <- function(jaccard) {
 }
 ```
 
-Function to plot heatmap of the cosine similarity of the jaccard index
-after binarization of the importances.
+Functions to plot heatmaps of the cosine similarity, pearson correaltion, or jaccard index after binarization.
 
 ```{r}
 cosine_heatmap <- function(misty.importances) {
@@ -820,10 +870,7 @@ cosine_heatmap <- function(misty.importances) {
   
   do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
 }
-```
 
-
-```{r}
 jaccard_heatmap <- function(misty.importances, cutoff = 0.5) {
   tidy.df <- misty.importances %>%
     unite(relation, Predictor, Target) %>%
@@ -865,10 +912,7 @@ jaccard_heatmap <- function(misty.importances, cutoff = 0.5) {
   })
   do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
 }
-```
 
-
-```{r}
 correlation_heatmap <- function(misty.importances, m = "pearson") {
   tidy.df <- misty.importances %>%
     unite(relation, Predictor, Target) %>%
@@ -907,6 +951,7 @@ correlation_heatmap <- function(misty.importances, m = "pearson") {
 }
 ```
 
+Define function to create a scatter plot matrix from MISTy importances.
 
 ```{r}
 correlation_scatter <- function(misty.importances) {
@@ -936,7 +981,7 @@ correlation_scatter <- function(misty.importances) {
 ```
 
 
-```{r}
+```{r include=FALSE, eval=FALSE}
 cosine_heatmap2 <- function(misty.importances) {
   tidy.df <- misty.importances %>%
     unite(relation, Predictor, Target) %>%
@@ -1046,7 +1091,7 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 ```
 
 <details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
-```{r fig.height=6, fig.width=6, warning=FALSE}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "mibi_tnbc", "standard") %>%
   get_importance() %>%
   drop_na() %>%
@@ -1101,7 +1146,7 @@ filter_runs(all.results, "merfish_preoptic", "hvg") %>%
 ```
 
 <details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
-```{r fig.height=6, fig.width=6, warning=FALSE}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
   get_importance() %>%
   jaccard_heatmap(cutoff = 0.5)
@@ -1167,7 +1212,7 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
 ```
 
 <details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
-```{r fig.height=6, fig.width=6, warning=FALSE}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
   get_importance() %>%
   jaccard_heatmap(cutoff = 0.5)
@@ -1222,7 +1267,7 @@ filter_runs(all.results, "4iANCA", "ratio_76") %>%
 ```
 
 <details> <summary>Click here for a heatmap of the Jaccard Indices</summary> 
-```{r fig.height=6, fig.width=6, warning=FALSE}
+```{r fig.height=8, fig.width=6, warning=FALSE}
 filter_runs(all.results, "4iANCA", "ratio_76") %>%
   get_importance() %>%
   filter(view != "para.10") %>%
