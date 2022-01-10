@@ -568,7 +568,7 @@ filter_runs(all.results, "mibi_tnbc", "standard") %>%
 ## `merfish_preoptic`
 
 We see that MARS (with the current configuration) is not scalable enough to
-handle such large datasets with 100 markers and up to 70,000 spatial units. Even if an approximation of 60% is used, only 4 of 36 samples could be processed.
+handle such large datasets with 100 markers and up to 70,000 spatial units. Even if an approximation of 60% is used, only 4 of 36 samples could be processed. (thus the name `MARS60`)
 
 ```{r}
 filter_runs(all.results, "merfish_preoptic", "hvg") %>%
@@ -620,7 +620,7 @@ filter_runs(all.results, "merfish_liver", "std280") %>%
 
 ## `merfish_bc`
 
-Since the bagged MARS algorithm could only finish the computation for two samples I wll exclude the result. The results from SVM and MLP will be removed as well. One should also keep in mind that the MARS algorithm was not able to finish (1 samples are missing).
+Since the bagged MARS algorithm could only finish the computation for two samples I wll exclude the result. The results from SVM and MLP will be removed as well.
 
 ```{r}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
@@ -629,6 +629,8 @@ filter_runs(all.results, "merfish_bc", "hvg") %>%
 ```
 
 The MISTy results for this dataset are remarkable in the sense that all algorithms apart from MARS perform equally well, meaning that the LM performs as well as the RF. This is interesting since the LM is much more interpretable and faster to compute.
+
+Again the numbers `MARS80` and `MARS60` indicate that only 80/60% of the training data where to train the view-specific models. However, the performance does not seem to be worse in this case if we use these approximations.
 
 ```{r fig.width=8}
 filter_runs(all.results, "merfish_bc", "hvg") %>%
