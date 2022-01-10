@@ -74,6 +74,28 @@ if (window.hljs) {
 
 
 
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
 
 
 
@@ -543,16 +565,16 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreea7f7d12d07401ceb310dcf28ba37c27453cc97f9targetblanka7f7d12a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/a7f7d12d07401ceb310dcf28ba37c27453cc97f9" target="_blank">a7f7d12</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree84b18a7c73cd626797e5a6d7bfd82af1b9dd53d8targetblank84b18a7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/84b18a7c73cd626797e5a6d7bfd82af1b9dd53d8" target="_blank">84b18a7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreea7f7d12d07401ceb310dcf28ba37c27453cc97f9targetblanka7f7d12a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree84b18a7c73cd626797e5a6d7bfd82af1b9dd53d8targetblank84b18a7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/a7f7d12d07401ceb310dcf28ba37c27453cc97f9" target="_blank">a7f7d12</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/84b18a7c73cd626797e5a6d7bfd82af1b9dd53d8" target="_blank">84b18a7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -568,6 +590,7 @@ Ignored files:
     Ignored:    output/2021-12-25-09-41_all_views.RDS
     Ignored:    output/2022-01-04-07-24_all_results.RDS
     Ignored:    output/2022-01-05-22-43_all_results.RDS
+    Ignored:    output/2022-01-10-10-49_all_results.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
     Ignored:    results/
@@ -612,6 +635,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/84b18a7c73cd626797e5a6d7bfd82af1b9dd53d8/analysis/tutorial.Rmd" target="_blank">84b18a7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+<td>
+removing absolute paths
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/33095d73a15fe4036f5bf23a7914af64a50c5666/docs/tutorial.html" target="_blank">33095d7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -978,13 +1035,13 @@ wflow_publish(files = "analysis/tutorial.Rmd")
 </div>
 <p>Setup.</p>
 <pre class="r"><code>knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-#knitr::opts_knit$set(root.dir = &quot;~/Saez/report&quot;)</code></pre>
+knitr::opts_knit$set(root.dir = &quot;~/Saez/report&quot;)</code></pre>
 <p>Loaded packages.</p>
 <pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
 suppressPackageStartupMessages(library(future))
 suppressPackageStartupMessages(library(tidyverse))
 plan(&quot;multisession&quot;, workers=14)</code></pre>
-<p>In this file, I will briefly explain how I envision the new MISTy workflow. I refactored and expanded the code such that users can supply their own function if they would like. If not, we ship MISTy with several implemented functions such as gradient boosting that can simply be plugged into the model. More details can be found below.</p>
+<p>In this file, I will briefly explain how I envision the new MISTy workflow. I refactored and expanded the code such that users can supply their own function to model each view if they would like. If not, we ship MISTy with several implemented functions such as gradient boosting that can simply be plugged into the model. More details can be found below.</p>
 <div id="overivew" class="section level1">
 <h1>Overivew</h1>
 <div id="data" class="section level2">
@@ -995,7 +1052,7 @@ plan(&quot;multisession&quot;, workers=14)</code></pre>
 </div>
 <div id="misty-views" class="section level2">
 <h2>MISTy Views</h2>
-<p>For the sake of keeping things simply, we will only look at the sample of the synthetic dataset.</p>
+<p>For the sake of keeping things simply, we will only look at the first sample of the synthetic dataset.</p>
 <p>We will start by creating two MISTy views: a) Intraview and b) Paraview with a Gaussian kernel (default) a radius of 10 and no zone of indifference.</p>
 <pre class="r"><code>expr &lt;- synthetic$synthetic1 %&gt;% dplyr::select(-c(row, col, type))
 pos &lt;- synthetic$synthetic1 %&gt;% dplyr::select(c(row, col))
@@ -1007,7 +1064,7 @@ Generating paraview</code></pre>
 </div>
 <div id="running-misty" class="section level2">
 <h2>Running MISty</h2>
-<p>The default ML algorithm is still random forest and thus we do not even have to specify it if we want to use it.</p>
+<p>The default ML algorithm is still random forest and thus we do not even have to specify it when we want to use it.</p>
 <pre class="r"><code>misty.run &lt;- misty.views %&gt;%
   run_misty()
 
@@ -1052,17 +1109,16 @@ function(view_data, target, seed, ...) {
     importances = model$variable.importance
   )
 }
-&lt;bytecode: 0x556ea7707d68&gt;
+&lt;bytecode: 0x5627a2db1060&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
-<p>It is a function that takes in the data of a single view, for example the <code>paraview</code> -</p>
+<p>It is a function that takes 3 arguments: The data of a single view (<code>view_data</code>), a <code>target</code>, and a random <code>seed</code> to make things reproducible. Let’s assume that we are looking at the <code>paraview</code>.</p>
 <pre class="r"><code>misty.views$paraview.10$data %&gt;% slice_head(n=6)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["ECM"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ligA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ligB"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ligC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ligD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["protE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["protF"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["prodA"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["prodB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["prodC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["prodD"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"6.979321","2":"13.15935","3":"1.285712","4":"9.557256","5":"17.04973","6":"13.97745","7":"28.12211","8":"4.366114","9":"0.8159148","10":"3.870546","11":"5.637949"},{"1":"15.047960","2":"12.93732","3":"2.314226","4":"18.517582","5":"15.10552","6":"26.59867","7":"27.74473","8":"5.238444","9":"1.6585141","10":"7.287498","11":"6.013656"},{"1":"17.366190","2":"13.57398","3":"2.782903","4":"20.417886","5":"16.08916","6":"28.14198","7":"29.03742","8":"5.041102","9":"1.9478960","10":"8.227380","11":"5.975769"},{"1":"18.401444","2":"14.27625","3":"3.002274","4":"20.974014","5":"16.90832","6":"31.49055","7":"30.87604","8":"5.614053","9":"2.0930029","10":"8.001041","11":"6.506692"},{"1":"19.932558","2":"14.73801","3":"3.163228","4":"21.988465","5":"17.54009","6":"33.20876","7":"32.66920","8":"5.689368","9":"2.0762916","10":"8.614926","11":"6.644928"},{"1":"26.260790","2":"15.73162","3":"4.316208","4":"25.595469","5":"19.70285","6":"41.80724","7":"35.88199","8":"5.734761","9":"2.8539163","10":"9.239076","11":"7.115921"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>and models the target variable with the RF algorithm. Importantly, within the <code>run_misty</code> function before the <code>view_data</code> are supplied to the random_forest_model, the target column is replaced by the actual values from the <code>intraview</code>.</p>
-<p>So assuming the target is “ECM” the following happens within the MISTy framework.</p>
+<p>Now, the <code>random_forest_model</code> predict the expression of the target variable using a random forest (implemented by <code>ranger</code>). Importantly, within the <code>run_misty</code> function before the <code>view_data</code> are supplied to the random_forest_model, the target column is replaced by the actual values from the <code>intraview</code> as shown below with the target being “ECM”.</p>
 <pre class="r"><code>target &lt;- &quot;ECM&quot;
 expr &lt;- misty.views$intraview$data
 target.vector &lt;- expr %&gt;% dplyr::pull(target)
@@ -1075,7 +1131,7 @@ view_data %&gt;% slice_head(n=6)</code></pre>
 {"columns":[{"label":["ECM"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ligA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ligB"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ligC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ligD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["protE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["protF"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["prodA"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["prodB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["prodC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["prodD"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.03854680","2":"13.15935","3":"1.285712","4":"9.557256","5":"17.04973","6":"13.97745","7":"28.12211","8":"4.366114","9":"0.8159148","10":"3.870546","11":"5.637949"},{"1":"0.03266024","2":"12.93732","3":"2.314226","4":"18.517582","5":"15.10552","6":"26.59867","7":"27.74473","8":"5.238444","9":"1.6585141","10":"7.287498","11":"6.013656"},{"1":"0.14441839","2":"13.57398","3":"2.782903","4":"20.417886","5":"16.08916","6":"28.14198","7":"29.03742","8":"5.041102","9":"1.9478960","10":"8.227380","11":"5.975769"},{"1":"0.38700715","2":"14.27625","3":"3.002274","4":"20.974014","5":"16.90832","6":"31.49055","7":"30.87604","8":"5.614053","9":"2.0930029","10":"8.001041","11":"6.506692"},{"1":"0.16346509","2":"14.73801","3":"3.163228","4":"21.988465","5":"17.54009","6":"33.20876","7":"32.66920","8":"5.689368","9":"2.0762916","10":"8.614926","11":"6.644928"},{"1":"0.20329497","2":"15.73162","3":"4.316208","4":"25.595469","5":"19.70285","6":"41.80724","7":"35.88199","8":"5.734761","9":"2.8539163","10":"9.239076","11":"7.115921"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>And then the RF algorithm is called with the default algorithms merged with the additional ellipsis arguments.</p>
+<p>And then the RF algorithm is called with the default algorithms merged with additional ellipsis arguments from the <code>run_misty()</code> call.</p>
 <pre class="r"><code>seed &lt;- 42 # default
 ellipsis.args &lt;- list() # assume no ellipsis arguments were given
 
@@ -1108,6 +1164,7 @@ List of 2
   ..$ prediction: num [1:4205] 0.141 0.115 0.266 0.673 0.494 ...
  $ importances         : Named num [1:10] 54.1 60.9 60.3 49.9 69 ...
   ..- attr(*, &quot;names&quot;)= chr [1:10] &quot;ligA&quot; &quot;ligB&quot; &quot;ligC&quot; &quot;ligD&quot; ...</code></pre>
+<p>And the <code>random_forest_model</code> returns a list of unbiased predictions (which are here out-of-bag predictions) and importances (which are there reduction in the RSS averaged across each a split a given predictor is used in).</p>
 <p>(Note that <code>merge_2</code> is a function that is also exported by <code>mistyR</code>)</p>
 <p>As seen above, we can also easily supply arguments to the <code>ranger</code> RF implementation. Say we would like to increase the number of trees and use another splitrule. Let’s compare the runtime for example (should be higher with more trees).</p>
 <pre class="r"><code>tictoc::tic()
@@ -1117,7 +1174,8 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-4.714 sec elapsed</code></pre>
+4.722 sec elapsed
+unlink(&quot;results&quot;)</code></pre>
 <pre class="r"><code>tictoc::tic()
 misty.run &lt;- misty.views %&gt;%
   run_misty(model.function = random_forest_model, num.trees = 100, 
@@ -1125,7 +1183,7 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-1.819 sec elapsed</code></pre>
+1.801 sec elapsed</code></pre>
 </div>
 <div id="misty-results" class="section level2">
 <h2>MISTy results</h2>
@@ -1401,13 +1459,15 @@ schae211
 </table>
 </div>
 </div>
+<pre class="r"><code>unlink(&quot;results&quot;)</code></pre>
 <p>Below all the supplied function will be described in more detail.</p>
 </div>
 <div id="general-remarks" class="section level2">
 <h2>General Remarks</h2>
-<p>Useful ressources for an overview of regression models include <span class="citation">[@noauthororeditor2013applied, @James2013, @hastie01statisticallearning]</span>.</p>
-<p>Depending on the machine learning model different approaches were used for performance assessment. For the random forest out-of-bag estimates can be used which is computationally much more efficient than k-fold cross-validation. However, it has been shown that <span class="citation">[@10.1371/journal.pone.0201904]</span> that the out-of-bag estimates may underestimate the accuracy of the model for unobserved data. For algorithms not based on bagging (trained with boostrapped samples) k-fold cross-validation is used to assess the performance.</p>
-<p>Determining the importances of the predictors (i.e. other markers) for each target is much more algorithm specific than the performance estimation. For random forests for example the importance corresponds to the average decrease in the RSS over all splits for a given predictor. A similar idea is used to asses the importances of MARS models here. During the backward pass (when terms are deleted from the model), the decrease of the RSS is measured for each subset relative to the previous subset. Then, for each variable the average decrease in RSS over all subsets in which the variable is included is used as importance. However if the <code>degree</code> is larger than one, the importance for a given model term containing several predictors is spread equally for all predictors. (see <a href="http://www.milbo.org/doc/earth-notes.pdf">Notes on the earth package</a> for more details). Also the importance extraction for boosted trees (in <code>xgboost</code>) works similar to the method in random forest. Importantly one should note that random forests and boosted trees deal very different with correlated features since random forests are likely to use two correlated features evenly often whereas boosted models randomly chose one feature and then omit the other feature (see more details here <a href="https://xgboost.readthedocs.io/en/stable/R-package/discoverYourData.html">here</a>). For the Mutli-layer Perceptron the importances are computed by permuting each predictor (one at a time) and computing the reduction in predictive performance (global model agnostic method). A helpful guide to interpretable machine learning was written by Christoph Molnar <span class="citation">[@molnar2019]</span>.</p>
+<p>Useful ressources for an overview of regression models include <span class="citation">(<a href="#ref-hastie01statisticallearning" role="doc-biblioref"><em>3</em></a>)</span>.</p>
+<p>Depending on the machine learning model different approaches were used for performance assessment. For random forest out-of-bag estimates can be used which is computationally much more efficient than k-fold cross-validation. However, it has been shown that the out-of-bag estimates may underestimate the accuracy of the model for unobserved data <span class="citation">(<a href="#ref-10.1371/journal.pone.0201904" role="doc-biblioref"><em>4</em></a>)</span>. For algorithms not based on bagging (trained with boostrapped samples) k-fold cross-validation is used to assess the performance.</p>
+<p>Determining the importances of the predictors (e.g. all other markers) for each target is much more algorithm specific than the performance estimation. For random forests for example the importance corresponds to the average decrease in the RSS over all splits for a given predictor. A similar idea is used to asses the importances of MARS models. During the backward pass (when terms are deleted from the model), the decrease of the RSS is measured for each subset relative to the previous subset. Then for each variable, the average decrease in RSS over all subsets in which the variable is included is used as importance. However if the <code>degree</code> is larger than one, the importance for a given model term containing several predictors is spread equally for all predictors. (see <a href="http://www.milbo.org/doc/earth-notes.pdf">Notes on the earth package</a> for more details). Also the importance extraction for boosted trees (in <code>xgboost</code>) works similar to the method in random forest. Importantly one should note that random forests and boosted trees deal very different with correlated features since random forests are likely to use two correlated features evenly often whereas boosted models randomly chose one feature and then omit the other feature (see more details here <a href="https://xgboost.readthedocs.io/en/stable/R-package/discoverYourData.html">here</a>). For the Mutli-layer Perceptron the importances are computed by permuting each predictor (one at a time) and computing the reduction in predictive performance (global model agnostic method). This method is nicely described in “interpretable machine learning” by Christoph Molnar <span class="citation">(<a href="#ref-molnar2019" role="doc-biblioref"><em>5</em></a>)</span>. For linear models the importances simply correspond to the coefficients of the model.</p>
+<hr />
 </div>
 </div>
 <div id="all-supplied-functions" class="section level1 tabset">
@@ -1415,8 +1475,8 @@ schae211
 <div id="random-forest" class="section level2">
 <h2>Random Forest</h2>
 <ul>
-<li><p>Short description of the algorithm: A classical ensemble model consisting on regression trees which are training with boostrapped samples (bagging). In addition the constitutent trees are further “decorrelated” by only considering a random subset of the features at each split.</p></li>
-<li><p>Unbiased predictions are based on OOB predictions.</p></li>
+<li><p>Short description of the algorithm: A classical ensemble model consisting of regression trees which are training with boostrapped samples (bagging). In addition the constitutent trees are further “decorrelated” by only considering a random subset of the features at each split (by default the squareroot of the number of predictors).</p></li>
+<li><p>Unbiased predictions are based on out-of-bag (OOB) predictions.</p></li>
 <li><p>Importances for each predictor for a given target a determined by averaging the decrease in RSS over all splits in which a predictor was used.</p></li>
 </ul>
 <pre class="r"><code>random_forest_model
@@ -1451,7 +1511,7 @@ function(view_data, target, seed, ...) {
     importances = model$variable.importance
   )
 }
-&lt;bytecode: 0x556ea7707d68&gt;
+&lt;bytecode: 0x5627a2db1060&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model</li>
@@ -1734,8 +1794,8 @@ schae211
 <div id="gradient-boosting" class="section level2">
 <h2>Gradient Boosting</h2>
 <ul>
-<li><p>Short description: Sequential training of weak learners (either regression trees or linear models) where the learner <span class="math inline">\(m+1\)</span> is fitted on the residuals of the model containing <span class="math inline">\(m\)</span> learners (<span class="math inline">\(F_M\)</span>). The error can be minimized by exploiting the gradient with respect to the model <span class="math inline">\(F_M\)</span>.</p></li>
-<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
+<li><p>Short description: Sequential training of weak learners (either regression trees or linear models) where the learner <span class="math inline">\(m+1\)</span> is fitted on the residuals of the model containing <span class="math inline">\(m\)</span> learners (<span class="math inline">\(F_M\)</span>). The error can be minimized by exploiting the gradient of the loss function (squared residuals) with respect to the model <span class="math inline">\(F_M\)</span>.</p></li>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets).</p></li>
 <li><p>Importances for each predictor for a given target a determined by averaging the decrease in RSS over all splits in which a predictor was used (for tree gradient boosting).</p></li>
 </ul>
 <pre class="r"><code>gradient_boosting_model
@@ -1829,291 +1889,13 @@ function(view_data, target, seed, k = 10, ...) {
     importances = importances
   )
 }
-&lt;bytecode: 0x556eaccfebe8&gt;
+&lt;bytecode: 0x5627ab1d18a0&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
 </ul>
 <pre class="r"><code>misty.views %&gt;%
   run_misty(model.function = gradient_boosting_model) %&gt;%
-  collect_results() %&gt;%
-  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
-  plot_view_contributions() %&gt;%
-  plot_interaction_heatmap(&quot;para.10&quot;)
-
-Training models
-
-Collecting improvements
-
-Collecting contributions
-
-Collecting importances
-
-Aggregating
-Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-17-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-1">
-Past versions of unnamed-chunk-17-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-17-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">781ba63</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">2679775</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-08
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-17-1.png" target="_blank">6751419</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-02
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-17-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-2">
-Past versions of unnamed-chunk-17-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-17-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">2679775</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-08
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-17-2.png" target="_blank">6751419</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-02
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-17-3.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-17-3">
-Past versions of unnamed-chunk-17-3.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-17-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">2679775</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-08
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-17-3.png" target="_blank">6751419</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-02
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<ul>
-<li>Linear Gradient Boosting (here it is usually better to use more boosting iterations (<code>nrounds</code>) than 10).</li>
-</ul>
-<pre class="r"><code>misty.views %&gt;%
-  run_misty(model.function = gradient_boosting_model,
-            booster = &quot;gblinear&quot;, nrounds = 20) %&gt;%
   collect_results() %&gt;%
   plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
   plot_view_contributions() %&gt;%
@@ -2276,85 +2058,12 @@ schae211
 </table>
 </div>
 </div>
-</div>
-<div id="mars" class="section level2">
-<h2>MARS</h2>
 <ul>
-<li><p>MARS: Multivariate Adaptive Regression Splines</p></li>
-<li><p>Short description: Each (included) predictor is split into a pair of hinge functions which are then added to a linear regression model in the forward pass. In the backward pass model terms are deleted based on the GCV (generalized cross-validation) (=prunning). However, one can also increase the degree of interaction (<code>degree</code>) such that the constructed features are not single hinge functions but products of 2 (or more) hinge functions.</p></li>
-<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
-<li><p>The importances for each predictor are determined during the backward pass (when terms are deleted from the model). The decrease of the RSS is measured for each subset relative to the previous subset. Then, for each predictor the average decrease in RSS over all subsets in which the variable is included is used as importance. However if the <code>degree</code> hyperparamter is larger than one, the importance for a given model term containing several predictors is spread equally to all predictors.</p></li>
+<li>Linear Gradient Boosting (here it is usually better to use more boosting iterations (<code>nrounds</code>) than 10).</li>
 </ul>
-<pre class="r"><code>mars_model
-function(view_data, target, seed, approx = 1.0, k = 10, ...) {
-  
-  assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE),
-    msg = &quot;The package earth is required to use mars&quot;
-  )
-
-  ellipsis.args &lt;- list(...)
-
-  folds &lt;- withr::with_seed(
-    seed,
-    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
-  )
-
-  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
-
-    # subsampling to reduce the computational cost
-    if (approx != 1) in.fold &lt;- sample(in.fold, length(in.fold) * approx)
-
-    train &lt;- view_data[in.fold, ]
-    test &lt;- view_data[holdout, ]
-
-    algo.arguments &lt;- list(
-      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
-      data = train,
-      degree = 2,
-      fast.k = 5,   # reducing fast.k and
-      thresh = 0.01 # increasing thresh to increase the performance
-    )
-
-    if (!(length(ellipsis.args) == 0)) {
-      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-    }
-
-    model &lt;- do.call(earth::earth, algo.arguments)
-
-    label.hat &lt;- predict(model, test)
-
-    tibble::tibble(index = holdout, prediction = label.hat[,1])
-  }) %&gt;% dplyr::arrange(index)
-
-  algo.arguments.wm &lt;- list(
-    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
-    data = view_data,
-    degree = 2,
-    fast.k = 5,
-    thresh = 0.01
-  )
-
-  if (!(length(ellipsis.args) == 0)) {
-    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
-  }
-
-  whole.model &lt;- do.call(earth::earth, algo.arguments.wm)
-
-  importances &lt;- earth::evimp(whole.model, trim = FALSE, sqrt. = TRUE)[, 6]
-  names(importances) &lt;- stringr::str_remove(names(importances), &quot;-unused&quot;)
-  # fix for bypass intra
-  if (all(is.na(names(importances)))) importances &lt;- c(&quot;no.var&quot; = 0)
-
-  list(
-    unbiased.predictions = holdout.predictions,
-    importances = importances
-  )
-}
-&lt;bytecode: 0x556eb264f818&gt;
-&lt;environment: namespace:mistyR&gt;</code></pre>
 <pre class="r"><code>misty.views %&gt;%
-  run_misty(model.function = mars_model) %&gt;%
+  run_misty(model.function = gradient_boosting_model,
+            booster = &quot;gblinear&quot;, nrounds = 20) %&gt;%
   collect_results() %&gt;%
   plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
   plot_view_contributions() %&gt;%
@@ -2518,6 +2227,324 @@ schae211
 </div>
 </div>
 </div>
+<div id="mars" class="section level2">
+<h2>MARS</h2>
+<ul>
+<li><p>MARS: Multivariate Adaptive Regression Splines</p></li>
+<li><p>Short description: Each (included) predictor is split into a pair of hinge functions which are then added to a linear regression model in the forward pass. In the backward pass model terms are deleted based on the GCV (generalized cross-validation) (=prunning). However, one can also increase the degree of interaction (<code>degree</code>) such that the constructed features are not single hinge functions but products of 2 (or more) hinge functions.</p></li>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
+<li><p>The importances for each predictor are determined during the backward pass (when terms are deleted from the model). The decrease of the RSS is measured for each subset relative to the previous subset. Then, for each predictor the average decrease in RSS over all subsets in which the variable is included is used as importance. However if the <code>degree</code> hyperparamter is larger than one, the importance for a given model term containing several predictors is spread equally to all predictors.</p></li>
+</ul>
+<pre class="r"><code>mars_model
+function(view_data, target, seed, approx = 1.0, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;earth&quot;, quietly = TRUE),
+    msg = &quot;The package earth is required to use mars&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- sample(in.fold, length(in.fold) * approx)
+
+    train &lt;- view_data[in.fold, ]
+    test &lt;- view_data[holdout, ]
+
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = train,
+      degree = 2,
+      fast.k = 5,   # reducing fast.k and
+      thresh = 0.01 # increasing thresh to increase the performance
+    )
+
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+
+    model &lt;- do.call(earth::earth, algo.arguments)
+
+    label.hat &lt;- predict(model, test)
+
+    tibble::tibble(index = holdout, prediction = label.hat[,1])
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    degree = 2,
+    fast.k = 5,
+    thresh = 0.01
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(earth::earth, algo.arguments.wm)
+
+  importances &lt;- earth::evimp(whole.model, trim = FALSE, sqrt. = TRUE)[, 6]
+  names(importances) &lt;- stringr::str_remove(names(importances), &quot;-unused&quot;)
+  # fix for bypass intra
+  if (all(is.na(names(importances)))) importances &lt;- c(&quot;no.var&quot; = 0)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
+}
+&lt;bytecode: 0x5627aa8f0878&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = mars_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-23-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-1">
+Past versions of unnamed-chunk-23-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-23-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-23-1.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/tutorial.Rmd/unnamed-chunk-23-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-23-1.png" target="_blank">c428797</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-23-1.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-23-1.png" target="_blank">6751419</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-02
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-23-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-2">
+Past versions of unnamed-chunk-23-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-23-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-23-2.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-23-2.png" target="_blank">c428797</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-23-2.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-23-2.png" target="_blank">6751419</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-02
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-23-3.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-23-3">
+Past versions of unnamed-chunk-23-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-23-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-23-3.png" target="_blank">75dc39e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/tutorial.Rmd/unnamed-chunk-23-3.png" target="_blank">c428797</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/267977564c55644f746212980cad6a3d51d79eb0/docs/figure/tutorial.Rmd/unnamed-chunk-23-3.png" target="_blank">2679775</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-08
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/675141937b60625d766ff2a1574b4aecd533e948/docs/figure/tutorial.Rmd/unnamed-chunk-23-3.png" target="_blank">6751419</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-02
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
 <div id="bagged-mars" class="section level2">
 <h2>Bagged MARS</h2>
 <ul>
@@ -2525,7 +2552,6 @@ schae211
 <li><p>Short description: Each (included) predictor is split into a pair of hinge functions which are then added to a linear regression model in the forward pass. In the backward pass model terms are deleted based on the GCV (generalized cross-validation) (=prunning). However, one can also increase the degree of interaction (<code>degree</code>) such that the constructed features are not single hinge functions but products of 2 (or more) hinge functions.</p></li>
 <li><p>Unbiased predictions are based on OOB predictions.</p></li>
 <li><p>See importance extraction in MARS model above. Additionally the importances for each predictor are averaged over each constituent model.</p></li>
-<li><p>The name <code>bagged_earth_model</code> comes from the fact that the name mars is protected and thus the implementation of the algorithm is called <code>earth</code> (by Stephen Milborrow, derived from mda::mars by Trevor Hastie and Robert Tibshirani)</p></li>
 </ul>
 <pre class="r"><code>bagged_mars_model
 function(view_data, target, seed,
@@ -2596,470 +2622,13 @@ function(view_data, target, seed,
     importances = importances
   )
 }
-&lt;bytecode: 0x556eb3180748&gt;
+&lt;bytecode: 0x5627a984c090&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
 </ul>
 <pre class="r"><code>misty.views %&gt;%
   run_misty(model.function = bagged_mars_model) %&gt;%
-  collect_results() %&gt;%
-  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
-  plot_view_contributions() %&gt;%
-  plot_interaction_heatmap(&quot;para.10&quot;)
-
-Training models
-
-Collecting improvements
-
-Collecting contributions
-
-Collecting importances
-
-Aggregating
-Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-22-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-1">
-Past versions of unnamed-chunk-22-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-22-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-22-1.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-22-1.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-22-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-2">
-Past versions of unnamed-chunk-22-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-22-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-22-2.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-22-2.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-22-3.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-22-3">
-Past versions of unnamed-chunk-22-3.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-22-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-22-3.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-22-3.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="linear-model" class="section level2">
-<h2>Linear Model</h2>
-<ul>
-<li><p>Short description: Simple multivariate linear regression. Fast and good interpretability, but cannot account for non-linear interactions.</p></li>
-<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
-<li><p>In particular this model was supplied to understand more easily, how a view-specifc model based on cross-validation can be constructed</p></li>
-</ul>
-<pre class="r"><code>linear_model
-function(view_data, target, seed, k = 10, ...) {
-  folds &lt;- withr::with_seed(
-    seed,
-    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
-  )
-
-  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
-
-    algo.arguments &lt;- list(
-      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
-      data = view_data[in.fold, ]
-    )
-
-    model &lt;- do.call(stats::lm, algo.arguments)
-
-    pred &lt;- predict.lm(model, view_data[holdout, ])
-
-    tibble::tibble(index = holdout, prediction = as.vector(pred))
-  }) %&gt;% dplyr::arrange(index)
-
-  algo.arguments.wm &lt;- list(
-    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
-    data = view_data
-  )
-
-  whole.model &lt;- do.call(stats::lm, algo.arguments.wm)
-
-  importances &lt;- whole.model$coefficients[names(whole.model$coefficients) != &quot;(Intercept)&quot;]
-  # fix for bypass intra (replace NA with 0 for consistent behavior)
-  importances &lt;- ifelse(is.na(importances), 0, importances)
-
-  list(
-    unbiased.predictions = holdout.predictions,
-    importances = importances
-  )
-}
-&lt;bytecode: 0x556eadbe6978&gt;
-&lt;environment: namespace:mistyR&gt;</code></pre>
-<ul>
-<li>Running the model:</li>
-</ul>
-<pre class="r"><code>misty.views %&gt;%
-  run_misty(model.function = linear_model) %&gt;%
-  collect_results() %&gt;%
-  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
-  plot_view_contributions() %&gt;%
-  plot_interaction_heatmap(&quot;para.10&quot;)
-
-Training models
-
-Collecting improvements
-
-Collecting contributions
-
-Collecting importances
-
-Aggregating
-Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-24-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-1">
-Past versions of unnamed-chunk-24-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-24-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-24-1.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-24-1.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-24-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-2">
-Past versions of unnamed-chunk-24-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-24-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-24-2.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-24-2.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-24-3.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-24-3">
-Past versions of unnamed-chunk-24-3.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-24-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-24-3.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-24-3.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div id="linear-support-vector-machine" class="section level2">
-<h2>Linear Support Vector Machine</h2>
-<ul>
-<li><p>Short description: In regression setting the support vector machine can be framed as a robust regression technique that is less sensitive to outliers that linear regression (with squared deviation as loss function). The prediction is based on a weighted sum of the training instances that are a certain threshold (<span class="math inline">\(\epsilon\)</span>) away (= support vectors) from the regression line and the loss function penalizes both the residuals and the sum of squared coefficients.</p></li>
-<li><p>Unbiased predictions are based on k-fold cross-validation (aggregarted predictions for the holdout sets)</p></li>
-<li></li>
-<li><p>Importantly, we added an approximation argument to the implementation which basically says at what fraction of the training instances the SVM will be trained on (by default 40%). This drastically decreases the training time and does not seem to effect the performance to much.</p></li>
-</ul>
-<pre class="r"><code>svm_model
-function(view_data, target, seed, approx = 0.4, k = 10, ...) {
-  
-  assertthat::assert_that(requireNamespace(&quot;kernlab&quot;, quietly = TRUE),
-    msg = &quot;The package kernlab is required to use linear SVM&quot;
-  )
-
-  ellipsis.args &lt;- list(...)
-
-  folds &lt;- withr::with_seed(
-    seed,
-    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
-  )
-
-  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
-    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
-
-    # subsampling to reduce the computational cost
-    if (approx != 1) in.fold &lt;- sample(in.fold, length(in.fold) * approx)
-
-    algo.arguments &lt;- list(
-      x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
-      data = view_data[in.fold, ],
-      kernel = &quot;vanilladot&quot;,
-      C = 1,
-      type = &quot;eps-svr&quot;,
-      kpar = list() # no hyperparameters for linear kernel
-    )
-
-    if (!(length(ellipsis.args) == 0)) {
-      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
-    }
-
-    model &lt;- do.call(kernlab::ksvm, algo.arguments)
-
-    pred &lt;- kernlab::predict(model, view_data[holdout, ])
-
-    tibble::tibble(index = holdout, prediction = as.vector(pred))
-  }) %&gt;% dplyr::arrange(index)
-
-  algo.arguments.wm &lt;- list(
-    x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
-    data = view_data,
-    kernel = &quot;vanilladot&quot;,
-    C = 1,
-    type = &quot;eps-svr&quot;,
-    kpar = list() # no hyperparameters for linear kernel
-  )
-
-  if (!(length(ellipsis.args) == 0)) {
-    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
-  }
-
-  whole.model &lt;- do.call(kernlab::ksvm, algo.arguments.wm)
-
-  importances &lt;- (t(whole.model@coef) %*% whole.model@xmatrix)[1, ]
-  # fix for bypass intra
-  if (is.null(names(importances))) importances &lt;- c(&quot;no.var&quot; = 0)
-
-  list(
-    unbiased.predictions = holdout.predictions,
-    importances = importances
-  )
-}
-&lt;bytecode: 0x556ead9af740&gt;
-&lt;environment: namespace:mistyR&gt;</code></pre>
-<ul>
-<li>Running the model:</li>
-</ul>
-<pre class="r"><code>misty.views %&gt;%
-  run_misty(model.function = svm_model) %&gt;%
   collect_results() %&gt;%
   plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
   plot_view_contributions() %&gt;%
@@ -3223,10 +2792,174 @@ schae211
 </div>
 </div>
 </div>
+<div id="linear-model" class="section level2">
+<h2>Linear Model</h2>
+<ul>
+<li><p>Short description: Simple multivariate linear regression. Fast runtimes and good interpretability, but cannot account for non-linear interactions.</p></li>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
+</ul>
+<pre class="r"><code>linear_model
+function(view_data, target, seed, k = 10, ...) {
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    algo.arguments &lt;- list(
+      formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ]
+    )
+
+    model &lt;- do.call(stats::lm, algo.arguments)
+
+    pred &lt;- predict.lm(model, view_data[holdout, ])
+
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    formula = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data
+  )
+
+  whole.model &lt;- do.call(stats::lm, algo.arguments.wm)
+
+  importances &lt;- whole.model$coefficients[names(whole.model$coefficients) != &quot;(Intercept)&quot;]
+  # fix for bypass intra (replace NA with 0 for consistent behavior)
+  importances &lt;- ifelse(is.na(importances), 0, importances)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
+}
+&lt;bytecode: 0x5627ab752008&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model:</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = linear_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-29-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-29-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-29-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="linear-support-vector-machine" class="section level2">
+<h2>Linear Support Vector Machine</h2>
+<ul>
+<li><p>Short description: In regression setting the support vector machine can be framed as a robust regression technique that is less sensitive to outliers that linear regression (with squared deviation as loss function). The prediction is based on a weighted sum of the training instances that are a certain threshold (<span class="math inline">\(\epsilon\)</span>) away (= support vectors) from the regression line and the loss function penalizes both the residuals and the sum of squared coefficients.</p></li>
+<li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
+<li><p>Importantly, we added an approximation argument to the implementation which basically says at what fraction of the training instances the SVM will be trained on (by default 40%). This drastically decreases the training time and does not seem to effect the performance to much.</p></li>
+<li><p>By default only 40% of the training instances are used for training to increase the performance</p></li>
+</ul>
+<pre class="r"><code>svm_model
+function(view_data, target, seed, approx = 0.4, k = 10, ...) {
+  
+  assertthat::assert_that(requireNamespace(&quot;kernlab&quot;, quietly = TRUE),
+    msg = &quot;The package kernlab is required to use linear SVM&quot;
+  )
+
+  ellipsis.args &lt;- list(...)
+
+  folds &lt;- withr::with_seed(
+    seed,
+    caret::createFolds(seq.int(1, nrow(view_data)), k = k)
+  )
+
+  holdout.predictions &lt;- purrr::map_dfr(folds, function(holdout) {
+    in.fold &lt;- seq.int(1, nrow(view_data))[!(seq.int(1, nrow(view_data)) %in% holdout)]
+
+    # subsampling to reduce the computational cost
+    if (approx != 1) in.fold &lt;- sample(in.fold, length(in.fold) * approx)
+
+    algo.arguments &lt;- list(
+      x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+      data = view_data[in.fold, ],
+      kernel = &quot;vanilladot&quot;,
+      C = 1,
+      type = &quot;eps-svr&quot;,
+      kpar = list() # no hyperparameters for linear kernel
+    )
+
+    if (!(length(ellipsis.args) == 0)) {
+      algo.arguments &lt;- merge_two(algo.arguments, ellipsis.args)
+    }
+
+    model &lt;- do.call(kernlab::ksvm, algo.arguments)
+
+    pred &lt;- kernlab::predict(model, view_data[holdout, ])
+
+    tibble::tibble(index = holdout, prediction = as.vector(pred))
+  }) %&gt;% dplyr::arrange(index)
+
+  algo.arguments.wm &lt;- list(
+    x = stats::as.formula(paste0(target, &quot; ~ .&quot;)),
+    data = view_data,
+    kernel = &quot;vanilladot&quot;,
+    C = 1,
+    type = &quot;eps-svr&quot;,
+    kpar = list() # no hyperparameters for linear kernel
+  )
+
+  if (!(length(ellipsis.args) == 0)) {
+    algo.arguments.wm &lt;- merge_two(algo.arguments.wm, ellipsis.args)
+  }
+
+  whole.model &lt;- do.call(kernlab::ksvm, algo.arguments.wm)
+
+  importances &lt;- (t(whole.model@coef) %*% whole.model@xmatrix)[1, ]
+  # fix for bypass intra
+  if (is.null(names(importances))) importances &lt;- c(&quot;no.var&quot; = 0)
+
+  list(
+    unbiased.predictions = holdout.predictions,
+    importances = importances
+  )
+}
+&lt;bytecode: 0x5627a76ce9b0&gt;
+&lt;environment: namespace:mistyR&gt;</code></pre>
+<ul>
+<li>Running the model:</li>
+</ul>
+<pre class="r"><code>misty.views %&gt;%
+  run_misty(model.function = svm_model) %&gt;%
+  collect_results() %&gt;%
+  plot_improvement_stats(&quot;gain.R2&quot;) %&gt;%
+  plot_view_contributions() %&gt;%
+  plot_interaction_heatmap(&quot;para.10&quot;)
+
+Training models
+
+Collecting improvements
+
+Collecting contributions
+
+Collecting importances
+
+Aggregating
+Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-32-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-32-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-32-3.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
 <div id="multi-layer-perceptron" class="section level2">
 <h2>Multi-layer Perceptron</h2>
 <ul>
-<li><p>Short description: A small fully connected feedforward network, trained using standard backpropagation (no batches?). Default activation function is logistic.</p></li>
+<li><p>Short description: A small fully connected feedforward network, trained using standard backpropagation. Default activation function is logistic.</p></li>
 <li><p>Unbiased predictions are based on k-fold cross-validation (aggregated predictions for the holdout sets)</p></li>
 <li><p>Importantly, the feature importances is here calculated based on a global model agnostic method. More specifically each feature is permuted (one at a time) and then the reduction in predictive performance is used as measure for the variable importance. (This is achieved using the <code>iml</code> R package).</p></li>
 <li><p>By default only 60% of the training instances are used for training to increase the performance</p></li>
@@ -3315,7 +3048,7 @@ function(view_data, target, seed, approx = 0.6, k = 10, ...) {
     importances = importances
   )
 }
-&lt;bytecode: 0x556eb2798448&gt;
+&lt;bytecode: 0x56279fe168d0&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -3352,165 +3085,23 @@ Collecting importances
 
 Aggregating
 Warning: Removed 11 rows containing missing values (geom_segment).</code></pre>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-28-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-28-1">
-Past versions of unnamed-chunk-28-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-28-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-28-1.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-28-1.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
+<p><img src="figure/tutorial.Rmd/unnamed-chunk-35-1.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-35-2.png" width="672" style="display: block; margin: auto;" /><img src="figure/tutorial.Rmd/unnamed-chunk-35-3.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>unlink(&quot;results&quot;)</code></pre>
+<hr />
 </div>
 </div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-28-2.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-28-2">
-Past versions of unnamed-chunk-28-2.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-28-2" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-28-2.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-28-2.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p><img src="figure/tutorial.Rmd/unnamed-chunk-28-3.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-28-3">
-Past versions of unnamed-chunk-28-3.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-28-3" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/b4153a41bb53aac4acbb2fa85044d31f8ce42176/docs/figure/tutorial.Rmd/unnamed-chunk-28-3.png" target="_blank">b4153a4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/75dc39e2c8e50a11a103acf8597eecb0729ad37a/docs/figure/tutorial.Rmd/unnamed-chunk-28-3.png" target="_blank">75dc39e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div id="how-to-construct-you-own-function" class="section level1">
-<h1>How to construct you own function</h1>
-<p>To construct a view-specific function one needs to clearly state the expected input and output of the view-specific function.</p>
+<div id="how-to-construct-your-own-function" class="section level1">
+<h1>How to construct your own function</h1>
+<p>To construct a view-specific function let’s first have a look at the input and then at the output of view-specific functions within the MISTy framework.</p>
 <div id="input" class="section level2">
 <h2>Input</h2>
 <ol style="list-style-type: decimal">
-<li><code>view_data</code>: A tibble with each row corresponding to a spatial unit (e.g. Visium spot or single cell) and each column corresponding to a marker.</li>
+<li><code>view_data</code>: A tibble with each row corresponding to a spatial unit (e.g. single cell or Visium spot) and each column corresponding to a marker.</li>
 </ol>
-<p>Due to an assert statements in <code>run_misty</code>, one can be sure that the variance of each target is non-zero.</p>
-<p>For example the intraview from above.</p>
+<ul>
+<li><p>Due to an assert statements in <code>run_misty</code>, one can be sure that the variance of each target is non-zero.</p></li>
+<li><p>We can for example look at the intraview form the example above.</p></li>
+</ul>
 <pre class="r"><code>misty.views$intraview$data %&gt;% slice_head(n=6)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
@@ -3520,25 +3111,32 @@ schae211
 <ol start="2" style="list-style-type: decimal">
 <li><code>target</code>: String corresponding to the marker which should be modeled. (column name of the <code>view_data</code> tibble)</li>
 </ol>
-<p>For example “ECM”</p>
+<ul>
+<li>For example “ECM”</li>
+</ul>
 <ol start="3" style="list-style-type: decimal">
 <li><code>seed</code>: Integer (passed down from <code>run_misty</code>)</li>
 </ol>
-<p>The default seed is 42.</p>
+<ul>
+<li>The default seed is 42.</li>
+</ul>
 </div>
 <div id="output" class="section level2">
 <h2>Output</h2>
-<p>The output must be a named list comprising of:</p>
+<p>The output must be a <code>named list</code> comprising of:</p>
 <ol style="list-style-type: decimal">
 <li><code>unbiased.predictions</code>: Tibble with one column called <code>index</code> for the “cell id” and another column called <code>prediction</code> for the unbiased prediction.</li>
 </ol>
-<p>These unbiased predictions for the specified target can either come from the aggregated out-of-bag (OOB) predictions of a bagged ensemble model or the aggregated predictions for holdout sets of k-fold cross-validation.</p>
-<p>The unbiased predictions are needed as input for the ridge regression late-fusion model, which combines the unbiased predictions from each view-specific model to assess the contribution from each view (using the coefficients).</p>
+<ul>
+<li><p>These unbiased predictions for the specified target can either come from the aggregated out-of-bag (OOB) predictions of a bagged ensemble model or the aggregated predictions for holdout sets of k-fold cross-validation.</p></li>
+<li><p>The unbiased predictions are needed as input for the ridge regression late-fusion model, which combines the unbiased predictions from each view-specific model to assess the contribution from each view.</p></li>
+</ul>
 <ol start="2" style="list-style-type: decimal">
-<li><code>importances</code> : Named Vector with the importances of the predictors as values and the names of the predictors as names (see the example below)</li>
+<li><code>importances</code> : Named Vector with the importances of the predictors as values and the names of the predictors as names (see the example below). Also see the paragraph about importances in the <a href="#general-remarks">General Remarks</a> section.</li>
 </ol>
-<hr />
-<p>For example let’s have a look at the result list returned by the ranger model.</p>
+<ul>
+<li>For example let’s have a look at the result list returned by the ranger model.</li>
+</ul>
 <pre class="r"><code>res.list &lt;- random_forest_model(view_data = misty.views$intraview$data, 
                          target = &quot;ECM&quot;, 
                          seed = 42)
@@ -3570,7 +3168,7 @@ List of 2
 <div id="example-function" class="section level2">
 <h2>Example Function</h2>
 <p>To showcase how one can construct such a function, we will build a view-specific model based on a regression tree (implemented by <code>rpart</code>)</p>
-<p>To visualize what each step is necessary for, we will use the paraview from above and model “ECM”. So in general our input is going to look somehow like that. We have a tibble with the rows as spatial units (e.g. cells) and the columns are the markers (target or predictors).</p>
+<p>We will use the paraview from above as <code>view_data</code> and “ECM” as our <code>target</code>. So in general our input is going to look somehow like that. We have a tibble with the rows as spatial units (e.g. cells) and the columns are the markers (target or predictors).</p>
 <pre class="r"><code>seed &lt;- 42
 target &lt;- &quot;ECM&quot;
 expr &lt;- misty.views$intraview$data
@@ -3584,7 +3182,7 @@ view_data %&gt;% slice_head(n=6)</code></pre>
 {"columns":[{"label":["ECM"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["ligA"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["ligB"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ligC"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["ligD"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["protE"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["protF"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["prodA"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["prodB"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["prodC"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["prodD"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"0.03854680","2":"13.15935","3":"1.285712","4":"9.557256","5":"17.04973","6":"13.97745","7":"28.12211","8":"4.366114","9":"0.8159148","10":"3.870546","11":"5.637949"},{"1":"0.03266024","2":"12.93732","3":"2.314226","4":"18.517582","5":"15.10552","6":"26.59867","7":"27.74473","8":"5.238444","9":"1.6585141","10":"7.287498","11":"6.013656"},{"1":"0.14441839","2":"13.57398","3":"2.782903","4":"20.417886","5":"16.08916","6":"28.14198","7":"29.03742","8":"5.041102","9":"1.9478960","10":"8.227380","11":"5.975769"},{"1":"0.38700715","2":"14.27625","3":"3.002274","4":"20.974014","5":"16.90832","6":"31.49055","7":"30.87604","8":"5.614053","9":"2.0930029","10":"8.001041","11":"6.506692"},{"1":"0.16346509","2":"14.73801","3":"3.163228","4":"21.988465","5":"17.54009","6":"33.20876","7":"32.66920","8":"5.689368","9":"2.0762916","10":"8.614926","11":"6.644928"},{"1":"0.20329497","2":"15.73162","3":"4.316208","4":"25.595469","5":"19.70285","6":"41.80724","7":"35.88199","8":"5.734761","9":"2.8539163","10":"9.239076","11":"7.115921"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>So in the end the function should call <code>rpart</code> with this formula:</p>
+<p>We want to call <code>rpart</code> with this formula, specifying that every other marker should be used to predict the expression of our current target.</p>
 <pre class="r"><code>as.formula(paste0(target, &quot;~ .&quot;))
 ECM ~ .</code></pre>
 <pre class="r"><code>test.model &lt;- rpart::rpart(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
@@ -3625,7 +3223,7 @@ Node number 2: 2438 observations
 Node number 3: 1767 observations
   mean=0.3351722, MSE=0.1824449 </code></pre>
 <p>Now to get unbiased predictions we need to perform cross validation and aggregate the predictions for the holdout instances.</p>
-<p>First we will create the 5 folds using <code>caret::createFolds</code></p>
+<p>First we will create 5 folds (<code>k=5</code>) using <code>caret::createFolds</code></p>
 <pre class="r"><code>seed &lt;- 42
 k &lt;- 5
 folds &lt;- withr::with_seed(
@@ -3661,7 +3259,7 @@ tibble [4,205 x 2] (S3: tbl_df/tbl/data.frame)
  $ index     : int [1:4205] 1 2 3 4 5 6 7 8 9 10 ...
  $ prediction: Named num [1:4205] 0.238 0.237 0.238 0.24 0.236 ...
   ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...</code></pre>
-<p>As described above, apart from the unbiased predictions, we need the importances of the predictors (interpretable model!). Therefore we will train one more model on the whole dataset. And return the importances as named vector.</p>
+<p>As described above, apart from the unbiased predictions, we need the importances of the predictors. Therefore we will train one more model on the whole dataset and return the importances as named vector.</p>
 <pre class="r"><code>algo.arguments.wm &lt;- list(formula = as.formula(paste0(target, &quot;~ .&quot;)), 
                           data = view_data)
   
@@ -3726,7 +3324,7 @@ List of 2
   .. ..- attr(*, &quot;names&quot;)= chr [1:4205] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
  $ importances         : Named num [1:6] 9.55 8.96 2.22 2.11 1.72 ...
   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;prodB&quot; &quot;ligB&quot; &quot;protE&quot; &quot;ligC&quot; ...</code></pre>
-<p>Now in the final step we will add the possibility to supply ellipsis arguments to the <code>rpart</code> model.</p>
+<p>Now in the final step we will add the possibility to supply ellipsis arguments to the <code>rpart</code> model. The ellipsis arguments from the <code>run_misty()</code> call are passed down to the view-specifc model within the MISTy framework.</p>
 <pre class="r"><code>reg_tree_model_2 &lt;- function(view_data, seed = 42, k = 5, ...) {
   
   ellipsis.args &lt;- list(...)
@@ -3792,11 +3390,28 @@ caret::defaultSummary(data = data.frame(obs = target.vector,
                                         pred = test2$unbiased.predictions$prediction))
       RMSE   Rsquared        MAE 
 0.42890871 0.01542591 0.29069186 </code></pre>
-<pre class="r"><code>unlink(&quot;results&quot;, recursive=TRUE)</code></pre>
+<hr />
 </div>
 </div>
 <div id="references" class="section level1">
 <h1>References</h1>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-noauthororeditor2013applied" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">M. Kuhn, K. Johnson, Applied predictive modeling (2013), (available at <a href="http://www.amazon.com/Applied-Predictive-Modeling-Max-Kuhn/dp/1461468485/">http://www.amazon.com/Applied-Predictive-Modeling-Max-Kuhn/dp/1461468485/</a>).</div>
+</div>
+<div id="ref-James2013" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">G. James, D. Witten, T. Hastie, R. Tibshirani, <em>An introduction to statistical learning: With applications in r</em> (Springer, 2013; <a href="https://faculty.marshall.usc.edu/gareth-james/ISL/">https://faculty.marshall.usc.edu/gareth-james/ISL/</a>).</div>
+</div>
+<div id="ref-hastie01statisticallearning" class="csl-entry">
+<div class="csl-left-margin">3. </div><div class="csl-right-inline">T. Hastie, R. Tibshirani, J. Friedman, <em>The elements of statistical learning</em> (Springer New York Inc., New York, NY, USA, 2001), <em>Springer series in statistics</em>.</div>
+</div>
+<div id="ref-10.1371/journal.pone.0201904" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">S. Janitza, R. Hornung, <span class="nocase">On the overestimation of random forest’s out-of-bag error</span>. <em>PLoS ONE</em>. <strong>13</strong>, e0201904 (2018).</div>
+</div>
+<div id="ref-molnar2019" class="csl-entry">
+<div class="csl-left-margin">5. </div><div class="csl-right-inline">C. Molnar, <em>Interpretable machine learning: A guide for making black box models explainable</em> (2019).</div>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
