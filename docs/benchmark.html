@@ -450,7 +450,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-01-09
+<strong>Last updated:</strong> 2022-01-10
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
@@ -565,16 +565,16 @@ relative
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree949cc6dd8698d5a2da02677815ba8a41cd0e47cetargetblank949cc6da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/949cc6dd8698d5a2da02677815ba8a41cd0e47ce" target="_blank">949cc6d</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree51bd26af4c1bf0c6fc16a366ef7190d89c6f09bbtargetblank51bd26aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/51bd26af4c1bf0c6fc16a366ef7190d89c6f09bb" target="_blank">51bd26a</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree949cc6dd8698d5a2da02677815ba8a41cd0e47cetargetblank949cc6da" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree51bd26af4c1bf0c6fc16a366ef7190d89c6f09bbtargetblank51bd26aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/949cc6dd8698d5a2da02677815ba8a41cd0e47ce" target="_blank">949cc6d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/51bd26af4c1bf0c6fc16a366ef7190d89c6f09bb" target="_blank">51bd26a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -593,9 +593,11 @@ Ignored files:
     Ignored:    output/2022-01-05-22-43_all_results.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
+    Ignored:    results/
 
 Unstaged changes:
     Modified:   analysis/conclusions.Rmd
+    Modified:   analysis/tutorial.Rmd
 
 </code></pre>
 <p>
@@ -634,6 +636,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/51bd26af4c1bf0c6fc16a366ef7190d89c6f09bb/analysis/benchmark.Rmd" target="_blank">51bd26a</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+<td>
+wflow_publish("analysis/benchmark.Rmd", delete_cache = TRUE)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/benchmark.html" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1567,8 +1603,43 @@ suppressPackageStartupMessages(library(slider))</code></pre>
 <pre class="r"><code># default ordering of the algorithms
 def.ord &lt;-  c(&quot;RF&quot;, &quot;TBOOST&quot;, &quot;MARS100&quot;, &quot;MARS&quot;, &quot;MARS80&quot;, &quot;MARS60&quot;, &quot;MARS40&quot;,
               &quot;BGMARS&quot;, &quot;LBOOST&quot;, &quot;LM&quot;, &quot;SVM&quot;, &quot;MLP&quot;)</code></pre>
-<div id="introduction-and-data" class="section level1 tabset">
-<h1 class="tabset">Introduction and Data</h1>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>This document is split into 5 main sections:</p>
+<ol style="list-style-type: decimal">
+<li><a href="#data">Data</a></li>
+</ol>
+<ul>
+<li>The different datasets used to benchmark the different algorithms are introduced, including how and which MISTy views were computed.</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li><a href="#comparing-performances">Comparing Performances</a></li>
+</ol>
+<ul>
+<li>Mulit R2 (proportion of variance explained) and Gain in R2 are compared between the different algorithms of each dataset.</li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><a href="#comparing-importances">Comparing Importances</a></li>
+</ol>
+<ul>
+<li>Cosine Similarity of the importance vectors are compared between the different algorithms of each dataset. Additionally the jacard index after binarization of the importantes is used for comparison.</li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li><a href="#comparing-runtimes">Comparing Runtimes</a></li>
+</ol>
+<ul>
+<li>The runtimes for the different algorithms on the synthetic datasets are compared.</li>
+</ul>
+<ol start="5" style="list-style-type: decimal">
+<li><a href="#hyperparameter-optimization">Hyperparameter Optimization</a></li>
+</ol>
+<ul>
+<li>For each algorithm different sets of hyperparameters were tested on different datasets and the resulting performance are compared here.</li>
+</ul>
+<hr />
+</div>
+<div id="data" class="section level1 tabset">
+<h1 class="tabset">Data</h1>
 <p>Loading the data.</p>
 <pre class="r"><code>all.files &lt;-  list.files(&quot;output&quot;, full.names = TRUE)
 res.files &lt;- all.files[str_ends(all.files, &quot;results.RDS&quot;)]
@@ -1621,9 +1692,6 @@ rm(all.files, res.files, view.files)</code></pre>
 </ul>
 <pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
    4110    4120    4148    4152    4179    4205 </code></pre>
-<ul>
-<li>QC of MISTy runs:</li>
-</ul>
 <hr />
 </div>
 <div id="mibi_tnbc" class="section level2">
@@ -1784,6 +1852,21 @@ rm(all.files, res.files, view.files)</code></pre>
 <p>The scripts that were used for all analysis can be found in this <a href="https://github.com/schae211/report/tree/master/cluster_scripts">GitHub repository</a>. The computations were performed on a cluster managed by Slurm.</p>
 <hr />
 </div>
+<div id="algorithm-abbreviations" class="section level1">
+<h1>Algorithm Abbreviations</h1>
+<ul>
+<li><p>RF: Random Forest</p></li>
+<li><p>TBOOST: Gradient Boosting with Trees</p></li>
+<li><p>LBOOST: Gradient Boosting with Linear Models</p></li>
+<li><p>MARS: Multivariate Adaptive Regression Splines</p></li>
+<li><p>BGMARS: Bagged Multivariate Adaptive Regression Splines Models</p></li>
+<li><p>LM: Linear Model</p></li>
+<li><p>SVM: Linear Support Vector Machine</p></li>
+<li><p>MLP: Multi-Layer Perceptron</p></li>
+</ul>
+<p>-&gt; See details in the <a href="https://schae211.github.io/report/tutorial.html">method</a> section.</p>
+<hr />
+</div>
 <div id="comparing-performances" class="section level1 tabset">
 <h1 class="tabset">Comparing Performances</h1>
 <p>Define a function to get clean data for a particular study.</p>
@@ -1899,6 +1982,8 @@ filter_runs &lt;- function(all.runs, str.study, views) {
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["l12"],"name":[2],"type":["int"],"align":["right"]},{"label":["l24"],"name":[3],"type":["int"],"align":["right"]},{"label":["l6"],"name":[4],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"10","3":"10","4":"10"},{"1":"TBOOST","2":"10","3":"10","4":"10"},{"1":"MARS","2":"10","3":"10","4":"10"},{"1":"BGMARS","2":"10","3":"10","4":"10"},{"1":"LBOOST","2":"10","3":"10","4":"10"},{"1":"LM","2":"10","3":"10","4":"10"},{"1":"SVM","2":"10","3":"10","4":"10"},{"1":"MLP","2":"10","3":"10","4":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>Looking at the multi R2, one can clearly see that the RF, TBOOST, MARS, and bagged MARS perform all very well, whereas LBOOST, LM, SVM, and MLP are all worse with LBOOST (with default parameters) being the worst of all models tested here.</p>
+<p>Interestingly, the gain in R2 seems to decrease a little bit if <code>l</code> is increased from 6 to 12 to 24. For all models but LBOOST, only ligC and ligB see a rather large incrase in gain in R2.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, c(&quot;l6&quot;, &quot;l12&quot;, &quot;l24&quot;)) %&gt;%
   get_performance() %&gt;%
   mutate(view = factor(view, levels = c(&quot;l6&quot;, &quot;l12&quot;, &quot;l24&quot;))) %T&gt;%
@@ -1909,13 +1994,13 @@ filter_runs &lt;- function(all.runs, str.study, views) {
                    targets = TRUE, wrap.views = TRUE, ncol=3,
                    ordering = def.ord) %&gt;%
   invisible()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-36-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-35-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-36-1">
-Past versions of unnamed-chunk-36-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-35-1">
+Past versions of unnamed-chunk-35-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-36-1" class="collapse">
+<div id="fig-unnamed-chunk-35-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -1934,53 +2019,222 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-36-1.png" target="_blank">f72d59c</a>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">f72d59c</a>
 </td>
 <td>
 schae211
 </td>
 <td>
 2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-36-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-36-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-36-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-36-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-35-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-35-2">
+Past versions of unnamed-chunk-35-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-35-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="mibi_tnbc-1" class="section level2">
 <h2><code>mibi_tnbc</code></h2>
@@ -1992,6 +2246,8 @@ schae211
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["standard"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"40"},{"1":"TBOOST","2":"40"},{"1":"MARS","2":"40"},{"1":"BGMARS","2":"40"},{"1":"LBOOST","2":"40"},{"1":"LM","2":"40"},{"1":"SVM","2":"40"},{"1":"MLP","2":"40"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>The MLP cleary performs worst followed by the SVM. Also LBOOST, MARS, and LM are worst than RF and TBOOST.</p>
+<p>The gain in R2 is by far the lowest for LBOOST.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
@@ -1999,13 +2255,13 @@ schae211
   plot_performance(str.measure = &quot;gain.R2&quot;, str.summary = &quot;mean&quot;,
                    targets = TRUE, ordering = def.ord) %&gt;%
   invisible()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-38-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-37-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-38-1">
-Past versions of unnamed-chunk-38-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-37-1">
+Past versions of unnamed-chunk-37-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-38-1" class="collapse">
+<div id="fig-unnamed-chunk-37-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -2024,58 +2280,315 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-38-1.png" target="_blank">f72d59c</a>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">668d4c6</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">9229052</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">f72d59c</a>
 </td>
 <td>
 schae211
 </td>
 <td>
 2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/c428797136ab78c4c3b44f20bffb8556bf7e1d72/docs/figure/benchmark.Rmd/unnamed-chunk-38-1.png" target="_blank">c428797</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-15
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-38-1.png" target="_blank">421d5d4</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-38-1.png" target="_blank">ef624c3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-14
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-38-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-37-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-37-2">
+Past versions of unnamed-chunk-37-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-37-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">668d4c6</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">9229052</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <hr />
 </div>
 <div id="merfish_preoptic-1" class="section level2">
 <h2><code>merfish_preoptic</code></h2>
-<p>We see that MARS (with the current configuration) is not scalable enough to handle such large datasets with 100 markers and up to 70,000 spatial units.</p>
+<p>We see that MARS (with the current configuration) is not scalable enough to handle such large datasets with 100 markers and up to 70,000 spatial units. Even if an approximation of 60% is used, only 4 of 36 samples could be processed.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_performance() %&gt;%
   check_runs(ordering = def.ord)</code></pre>
@@ -2084,6 +2597,7 @@ schae211
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"35"},{"1":"TBOOST","2":"36"},{"1":"MARS60","2":"4"},{"1":"LBOOST","2":"36"},{"1":"LM","2":"36"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>The results show again that RF and TBOOST perform very similar, whereas LM is a little bit worse and LBOOST being much worse.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
@@ -2093,13 +2607,13 @@ schae211
                    targets = FALSE, ordering = def.ord,
                    exclude = c(&quot;MARS&quot;, &quot;MARS40&quot;, &quot;MARS60&quot;, &quot;MARS80&quot;)) %&gt;%
   invisible()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-40-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-39-1.png" width="768" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-40-1">
-Past versions of unnamed-chunk-40-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-39-1">
+Past versions of unnamed-chunk-39-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-40-1" class="collapse">
+<div id="fig-unnamed-chunk-39-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -2118,36 +2632,249 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/421d5d44f065639498503f68193015533d86883b/docs/figure/benchmark.Rmd/unnamed-chunk-40-1.png" target="_blank">421d5d4</a>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">20f5cae</a>
 </td>
 <td>
 schae211
 </td>
 <td>
-2021-12-14
+2022-01-09
 </td>
 </tr>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/ef624c3b4397ed623a0d70d33b1434f26ec558f1/docs/figure/benchmark.Rmd/unnamed-chunk-40-1.png" target="_blank">ef624c3</a>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">03e2ec1</a>
 </td>
 <td>
 schae211
 </td>
 <td>
-2021-12-14
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/f72d59c3b66e424cd5f45999439ddcddcf91bbfc/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">f72d59c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-15
 </td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-40-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-39-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-39-2">
+Past versions of unnamed-chunk-39-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-39-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <hr />
 </div>
 <div id="merfish_liver-1" class="section level2">
 <h2><code>merfish_liver</code></h2>
-<p>For some reason everything but bagged MARS, MARS, and gradient boosted trees failed.</p>
+<p>Everything but RF, TBOOST, and LM will be excluded from the analysis. (where are the MARS results?). In general this datasets is a rather uncommon one, since it comprises many field of views per sample, but each field of view only has between 200 and 360 cells approximately. Such a small field of view makes it difficult for the algorithms to learn something.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
   get_performance() %&gt;%
   check_runs(ordering = def.ord)</code></pre>
@@ -2156,6 +2883,7 @@ schae211
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["std280"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"164"},{"1":"TBOOST","2":"164"},{"1":"LM","2":"164"},{"1":"SVM","2":"1"},{"1":"MLP","2":"24"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>It seems like the number of cells in each field of view is much to small for the flexible models such as RF and TBOOST. The LM outperforms these models by a large margin.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
@@ -2165,12 +2893,230 @@ schae211
                    targets = FALSE, ordering = def.ord,
                    exclude = c(&quot;MLP&quot;, &quot;SVM&quot;)) %&gt;%
   invisible()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-42-1.png" width="768" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-42-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-41-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-41-1">
+Past versions of unnamed-chunk-41-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-41-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-41-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-41-2">
+Past versions of unnamed-chunk-41-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-41-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <hr />
 </div>
 <div id="merfish_bc-1" class="section level2">
 <h2><code>merfish_bc</code></h2>
-<p>Since the bagged MARS algorithm could only finish the computation for a single sample I must exclude the result. One should also keep in mind that the MARS algorithm was not able to finish (2 samples are missing).</p>
+<p>Since the bagged MARS algorithm could only finish the computation for two samples I wll exclude the result. The results from SVM and MLP will be removed as well. One should also keep in mind that the MARS algorithm was not able to finish (1 samples are missing).</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
   get_performance() %&gt;%
   check_runs(ordering = def.ord)</code></pre>
@@ -2179,6 +3125,7 @@ schae211
 {"columns":[{"label":["algorithm"],"name":[1],"type":["fct"],"align":["left"]},{"label":["hvg"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"RF","2":"9"},{"1":"TBOOST","2":"9"},{"1":"MARS","2":"8"},{"1":"BGMARS","2":"2"},{"1":"LBOOST","2":"9"},{"1":"LM","2":"9"},{"1":"SVM","2":"2"},{"1":"MLP","2":"2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<p>The MISTy results for this dataset are remarkable in the sense that all algorithms apart from MARS perform equally well, meaning that the LM performs as well as the RF. This is interesting since the LM is much more interpretable and faster to compute.</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
   get_performance() %T&gt;%
   plot_performance(str.measure = &quot;multi.R2&quot;, str.summary = &quot;mean&quot;,
@@ -2188,7 +3135,258 @@ schae211
                    targets = FALSE, exclude = c(&quot;BGMARS&quot;, &quot;SVM&quot;, &quot;MLP&quot;),
                    ordering = def.ord) %&gt;%
   invisible()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-44-1.png" width="768" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-44-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-43-1.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-43-1">
+Past versions of unnamed-chunk-43-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-43-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-43-2.png" width="768" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-43-2">
+Past versions of unnamed-chunk-43-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-43-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <hr />
 </div>
 <div id="ianca-1" class="section level2">
@@ -2213,7 +3411,346 @@ schae211
                    ordering = def.ord) %&gt;%
   plot_performance(str.measure = &quot;gain.R2&quot;, wrap.views = TRUE, ncol=3,
                    ordering = def.ord)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-46-1.png" width="960" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-46-2.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-45-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-45-1">
+Past versions of unnamed-chunk-45-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-45-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">668d4c6</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">9229052</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-45-2.png" width="960" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-45-2">
+Past versions of unnamed-chunk-45-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-45-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">668d4c6</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">9229052</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <hr />
 </div>
 </div>
@@ -2234,7 +3771,7 @@ schae211
   }) %&gt;%
     mutate(sample = str_extract(sample, &quot;[^/]+$&quot;))
 }</code></pre>
-<p>Define function to check whether all importances are present for each algorithm</p>
+<p>Define function to check how many importances are available for each algorithm and how many are missing.</p>
 <pre class="r"><code>check_algs &lt;- function(misty.performances) {
   misty.performances %&gt;%
     unite(relation, Predictor, Target, sep=&quot;_&quot;) %&gt;%
@@ -2259,7 +3796,7 @@ schae211
   
   list(splits = group_split(tidy.df), keys = group_keys(tidy.df))
 }</code></pre>
-<p>Define function to compute the cosine similarity given a tibble of vectors, where each column represents a vector. Indices are harcoded.</p>
+<p>Define function to compute the cosine similarity given a tibble of vectors, where each column represents a vector. Indices are hardcoded</p>
 <pre class="r"><code>cosine_similarity &lt;- function(imp.tbl, exclude = c(1:5), relative = &quot;RF&quot;) {
   comp &lt;- imp.tbl %&gt;% pull(relative)
   map_dbl(imp.tbl[-exclude], function(vec) {
@@ -2319,7 +3856,7 @@ schae211
       dplyr::summarise(mean = mean(cosine), sd = sd(cosine), .groups=&quot;drop&quot;) %&gt;%
       arrange(algorithm)
 }</code></pre>
-<p>Function to compute the cosine similarity for each algorithm for all views and samples.</p>
+<p>Define functions to plot the cosine similarity or the jaccard index after binarization of the importances relative to RF.</p>
 <pre class="r"><code>plot_cosine_similarity &lt;- function(cosine_similarity) {
   cosine_similarity %&gt;%
     mutate(low = mean-sd, high = mean+sd) %&gt;%
@@ -2343,7 +3880,7 @@ plot_jaccard &lt;- function(jaccard) {
     theme(axis.text.x = element_text(angle=45, vjust=0.5, hjust=0.5)) +
     lims(y = c(0, 1))
 }</code></pre>
-<p>Function to plot heatmap of the cosine similarity of the jaccard index after binarization of the importances.</p>
+<p>Functions to plot heatmaps of the cosine similarity, pearson correaltion, or jaccard index after binarization.</p>
 <pre class="r"><code>cosine_heatmap &lt;- function(misty.importances) {
   tidy.df &lt;- misty.importances %&gt;%
     unite(relation, Predictor, Target) %&gt;%
@@ -2379,8 +3916,9 @@ plot_jaccard &lt;- function(jaccard) {
     })
   
   do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
-}</code></pre>
-<pre class="r"><code>jaccard_heatmap &lt;- function(misty.importances, cutoff = 0.5) {
+}
+
+jaccard_heatmap &lt;- function(misty.importances, cutoff = 0.5) {
   tidy.df &lt;- misty.importances %&gt;%
     unite(relation, Predictor, Target) %&gt;%
     drop_na() %&gt;%
@@ -2420,8 +3958,9 @@ plot_jaccard &lt;- function(jaccard) {
       pheatmap::pheatmap(main = paste(&quot;Jaccard Index:&quot;, v), silent=TRUE)
   })
   do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
-}</code></pre>
-<pre class="r"><code>correlation_heatmap &lt;- function(misty.importances, m = &quot;pearson&quot;) {
+}
+
+correlation_heatmap &lt;- function(misty.importances, m = &quot;pearson&quot;) {
   tidy.df &lt;- misty.importances %&gt;%
     unite(relation, Predictor, Target) %&gt;%
     drop_na() %&gt;%
@@ -2457,6 +3996,7 @@ plot_jaccard &lt;- function(jaccard) {
   
   do.call(gridExtra::grid.arrange, map(plots,~.x[[4]]))
 }</code></pre>
+<p>Define function to create a scatter plot matrix from MISTy importances.</p>
 <pre class="r"><code>correlation_scatter &lt;- function(misty.importances) {
   views &lt;- misty.importances$view %&gt;% unique
   
@@ -2481,36 +4021,6 @@ plot_jaccard &lt;- function(jaccard) {
       #print()
   })
 }</code></pre>
-<pre class="r"><code>cosine_heatmap2 &lt;- function(misty.importances) {
-  tidy.df &lt;- misty.importances %&gt;%
-    unite(relation, Predictor, Target) %&gt;%
-    drop_na() %&gt;%
-    pivot_wider(names_from = relation, values_from = Importance) %&gt;%
-    filter(view == &quot;intra&quot;) %&gt;%
-    dplyr::select(-c(study, view.comp)) %&gt;%
-    mutate(sample = str_extract(sample, &quot;[^/]+$&quot;)) %&gt;%
-    group_by(algorithm) %&gt;%
-    dplyr::summarise(across(4:(ncol(.)-1), mean)) %&gt;%
-    replace(is.na(.), 0) %&gt;%
-    pivot_longer(cols = !algorithm) %&gt;%
-    pivot_wider(names_from = algorithm, values_from = value) %&gt;%
-    dplyr::select(-name)
-  
-  map_dfr(colnames(tidy.df), function(alg) {
-    comp &lt;- tidy.df %&gt;% pull(alg)
-    map_dbl(tidy.df, function(vec) {
-      comp %*% vec * 1/(comp %*% comp)**0.5 * 1/(vec %*% vec)**0.5
-    })
-  }) %&gt;%
-    mutate(comp = colnames(.)) %&gt;%
-    pivot_longer(!comp, names_to = &quot;algorithm&quot;, values_to = &quot;measure&quot;) %&gt;%
-    mutate(algorithm = factor(algorithm, levels = def.ord)) %&gt;%
-    mutate(comp = factor(comp, levels = def.ord)) %&gt;%
-    ggplot() +
-    geom_tile(aes(x = algorithm, y = comp, fill = measure)) +
-    scale_fill_viridis_c() +
-    scale_y_discrete(limits=rev)
-}</code></pre>
 <div id="synthetic-2" class="section level2">
 <h2><code>synthetic</code></h2>
 <p>For the boosting functions several importances are not returned?</p>
@@ -2526,7 +4036,100 @@ plot_jaccard &lt;- function(jaccard) {
 <pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
   get_importance() %&gt;%
   cosine_heatmap()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-60-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-57-1.png" width="576" style="display: block; margin: auto;" /></p>
+<details>
+<summary>
+Click here for a heatmap of the Jaccard Indices
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<img src="figure/benchmark.Rmd/unnamed-chunk-58-1.png" width="576" style="display: block; margin: auto;" />
+</details>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  correlation_scatter()</code></pre>
+<pre><code>Registered S3 method overwritten by &#39;GGally&#39;:
+  method from   
+  +.gg   ggplot2</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-59-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-59-1">
+Past versions of unnamed-chunk-59-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-59-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-59-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-59-1.png" target="_blank">dc93ff5</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-19
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-59-1.png" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<img src="figure/benchmark.Rmd/unnamed-chunk-59-2.png" width="1152" style="display: block; margin: auto;" />
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>These pairwise comparison allow to take the variance into account, where as the heatmaps can only display a single value (mean).</p>
+<p>Cosine Similarity compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-60-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-60-1">
 Past versions of unnamed-chunk-60-1.png
@@ -2641,14 +4244,12 @@ schae211
 </table>
 </div>
 </div>
-<details>
-<summary>
-Click here for a heatmap of the Jaccard Indices
-</summary>
+<p>Jaccard Index compared to radnom forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
   get_importance() %&gt;%
-  jaccard_heatmap(cutoff = 0.5)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-61-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-61-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-61-1">
 Past versions of unnamed-chunk-61-1.png
@@ -2671,6 +4272,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-61-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-61-1.png" target="_blank">03e2ec1</a>
@@ -2775,167 +4387,23 @@ schae211
 </div>
 </div>
 </details>
-<details>
-<summary>
-Click here for a Scatter Plot Matrix
-</summary>
-<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
-  get_importance() %&gt;%
-  correlation_scatter()</code></pre>
-<pre><code>Registered S3 method overwritten by &#39;GGally&#39;:
-  method from   
-  +.gg   ggplot2</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-62-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-62-1">
-Past versions of unnamed-chunk-62-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-62-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">03e2ec1</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">8e3228c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">90075f3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-04
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">bfae26e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-01
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">50661af</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-25
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">7993ac7</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">feb3094</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">781ba63</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">dc93ff5</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-19
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-62-1.png" target="_blank">e9c0076</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-18
-</td>
-</tr>
-</tbody>
-</table>
+<hr />
 </div>
-</div>
-<img src="figure/benchmark.Rmd/unnamed-chunk-62-2.png" width="1152" style="display: block; margin: auto;" />
-</details>
-<details>
-<summary>
-Click here for pairwise comparison to RF
-</summary>
-<p>These pairwise comparison allow to take the variance into account, where as the heatmaps can only display a single value (mean).</p>
-<p>Cosine Similarity compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+<div id="mibi_tnbc-2" class="section level2">
+<h2><code>mibi_tnbc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  wrap_function(cosine_similarity) %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-63-1.png" width="672" style="display: block; margin: auto;" /></p>
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"34170","3":"151200"},{"1":"LBOOST","2":"34170","3":"151200"},{"1":"LM","2":"34170","3":"151200"},{"1":"MARS","2":"34170","3":"151200"},{"1":"MLP","2":"34170","3":"151200"},{"1":"RF","2":"34170","3":"151200"},{"1":"SVM","2":"34566","3":"151200"},{"1":"TBOOST","2":"47018","3":"151200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+  get_importance() %&gt;%
+  drop_na() %&gt;%
+  cosine_heatmap()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-63-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-63-1">
 Past versions of unnamed-chunk-63-1.png
@@ -2958,6 +4426,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-63-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-63-1.png" target="_blank">03e2ec1</a>
@@ -3061,12 +4540,15 @@ schae211
 </table>
 </div>
 </div>
-<p>Jaccard Index compared to radnom forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;synthetic&quot;, &quot;l6&quot;) %&gt;%
+<details>
+<summary>
+Click here for a heatmap of the Jaccard Indices
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  wrap_function(jaccard_index, cutoff=0) %&gt;%
-  plot_jaccard()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-64-1.png" width="672" style="display: block; margin: auto;" /></p>
+  drop_na() %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-64-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-64-1">
 Past versions of unnamed-chunk-64-1.png
@@ -3089,6 +4571,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-64-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-64-1.png" target="_blank">781ba63</a>
@@ -3127,23 +4620,369 @@ schae211
 </div>
 </div>
 </details>
-<hr />
-</div>
-<div id="mibi_tnbc-2" class="section level2">
-<h2><code>mibi_tnbc</code></h2>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"34170","3":"151200"},{"1":"LBOOST","2":"34170","3":"151200"},{"1":"LM","2":"34170","3":"151200"},{"1":"MARS","2":"34170","3":"151200"},{"1":"MLP","2":"34170","3":"151200"},{"1":"RF","2":"34170","3":"151200"},{"1":"SVM","2":"34566","3":"151200"},{"1":"TBOOST","2":"47018","3":"151200"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+  correlation_scatter()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-65-1">
+Past versions of unnamed-chunk-65-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-65-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">dc93ff5</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-19
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">e9c0076</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">3a864d2</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-18
+</td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-65-2">
+Past versions of unnamed-chunk-65-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-65-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">668d4c6</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-65-3.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-65-3">
+Past versions of unnamed-chunk-65-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-65-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">668d4c6</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  drop_na() %&gt;%
-  cosine_heatmap()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-66-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-66-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-66-1">
 Past versions of unnamed-chunk-66-1.png
@@ -3166,6 +5005,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-66-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-66-1.png" target="_blank">03e2ec1</a>
@@ -3269,15 +5119,12 @@ schae211
 </table>
 </div>
 </div>
-<details>
-<summary>
-Click here for a heatmap of the Jaccard Indices
-</summary>
+<p>Jaccard Index compared to radnom forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
   get_importance() %&gt;%
-  drop_na() %&gt;%
-  jaccard_heatmap(cutoff = 0.5)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-67-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-67-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-67-1">
 Past versions of unnamed-chunk-67-1.png
@@ -3300,6 +5147,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">03e2ec1</a>
@@ -3415,151 +5273,22 @@ schae211
 </div>
 </div>
 </details>
-<details>
-<summary>
-Click here for a Scatter Plot Matrix
-</summary>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
-  get_importance() %&gt;%
-  correlation_scatter()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-68-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-68-1">
-Past versions of unnamed-chunk-68-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-68-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">03e2ec1</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">8e3228c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">bfae26e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-01
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">50661af</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-25
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">7993ac7</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">feb3094</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">781ba63</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/e9c007647ea473f2118b7e74517932deb1b93556/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">e9c0076</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-18
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/3a864d203ceeb495196ea22f94cfdcc8c7060e0d/docs/figure/benchmark.Rmd/unnamed-chunk-68-1.png" target="_blank">3a864d2</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-18
-</td>
-</tr>
-</tbody>
-</table>
+<hr />
 </div>
-</div>
-<img src="figure/benchmark.Rmd/unnamed-chunk-68-2.png" width="1152" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-68-3.png" width="1152" style="display: block; margin: auto;" />
-</details>
-<details>
-<summary>
-Click here for pairwise comparison to RF
-</summary>
-<p>Cosine Similarity compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+<div id="merfish_preoptic-2" class="section level2">
+<h2><code>merfish_preoptic</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  wrap_function(cosine_similarity) %&gt;%
-  plot_cosine_similarity()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-69-1.png" width="672" style="display: block; margin: auto;" /></p>
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"LBOOST","2":"8667","3":"1248048"},{"1":"LM","2":"0","3":"1248048"},{"1":"MARS60","2":"0","3":"138672"},{"1":"RF","2":"0","3":"1213380"},{"1":"TBOOST","2":"142643","3":"1248048"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_heatmap()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-69-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-69-1">
 Past versions of unnamed-chunk-69-1.png
@@ -3582,6 +5311,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-69-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-69-1.png" target="_blank">781ba63</a>
@@ -3630,12 +5370,14 @@ schae211
 </table>
 </div>
 </div>
-<p>Jaccard Index compared to radnom forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;mibi_tnbc&quot;, &quot;standard&quot;) %&gt;%
+<details>
+<summary>
+Click here for a heatmap of the Jaccard Indices
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  wrap_function(jaccard_index, cutoff=0) %&gt;%
-  plot_jaccard()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-70-1.png" width="672" style="display: block; margin: auto;" /></p>
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-70-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-70-1">
 Past versions of unnamed-chunk-70-1.png
@@ -3658,6 +5400,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-70-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-70-1.png" target="_blank">03e2ec1</a>
@@ -3762,22 +5515,370 @@ schae211
 </div>
 </div>
 </details>
-<hr />
-</div>
-<div id="merfish_preoptic-2" class="section level2">
-<h2><code>merfish_preoptic</code></h2>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"LBOOST","2":"8667","3":"1248048"},{"1":"LM","2":"0","3":"1248048"},{"1":"MARS60","2":"0","3":"138672"},{"1":"RF","2":"0","3":"1213380"},{"1":"TBOOST","2":"142643","3":"1248048"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+  correlation_scatter()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-71-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-71-1">
+Past versions of unnamed-chunk-71-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-71-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/273feaac918ca38dd279b70245e20e7ddefefb25/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">273feaa</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-71-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-71-2">
+Past versions of unnamed-chunk-71-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-71-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/273feaac918ca38dd279b70245e20e7ddefefb25/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">273feaa</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-71-3.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-71-3">
+Past versions of unnamed-chunk-71-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-71-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/273feaac918ca38dd279b70245e20e7ddefefb25/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">273feaa</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  cosine_heatmap()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-72-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 15 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-72-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-72-1">
 Past versions of unnamed-chunk-72-1.png
@@ -3800,6 +5901,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-72-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-72-1.png" target="_blank">03e2ec1</a>
@@ -3892,14 +6004,13 @@ schae211
 </table>
 </div>
 </div>
-<details>
-<summary>
-Click here for a heatmap of the Jaccard Indices
-</summary>
+<p>Jaccard Index compared to random forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  jaccard_heatmap(cutoff = 0.5)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-73-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-73-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-73-1">
 Past versions of unnamed-chunk-73-1.png
@@ -3922,6 +6033,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-73-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-73-1.png" target="_blank">03e2ec1</a>
@@ -4026,152 +6148,30 @@ schae211
 </div>
 </div>
 </details>
-<details>
-<summary>
-Click here for a Scatter Plot Matrix
-</summary>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+<hr />
+</div>
+<div id="merfish_liver-2" class="section level2">
+<h2><code>merfish_liver</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
   get_importance() %&gt;%
-  correlation_scatter()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-74-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-74-1">
-Past versions of unnamed-chunk-74-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-74-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-74-1.png" target="_blank">7993ac7</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-74-1.png" target="_blank">feb3094</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-74-1.png" target="_blank">781ba63</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-74-1.png" target="_blank">dc93ff5</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-19
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<img src="figure/benchmark.Rmd/unnamed-chunk-74-2.png" width="1152" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-74-3.png" width="1152" style="display: block; margin: auto;" />
+  check_algs()</code></pre>
 </details>
-<details>
-<summary>
-Click here for pairwise comparison to RF
-</summary>
-<p>Cosine Similarity compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
-  get_importance() %&gt;%
-  wrap_function(cosine_similarity) %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 15 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-75-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-75-1">
-Past versions of unnamed-chunk-75-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-75-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-75-1.png" target="_blank">781ba63</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-75-1.png" target="_blank">dc93ff5</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-19
-</td>
-</tr>
-</tbody>
-</table>
+<hr />
 </div>
-</div>
-<p>Jaccard Index compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_preoptic&quot;, &quot;hvg&quot;) %&gt;%
+<div id="merfish_bc-2" class="section level2">
+<h2><code>merfish_bc</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  wrap_function(jaccard_index, cutoff=0) %&gt;%
-  plot_jaccard()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-76-1.png" width="672" style="display: block; margin: auto;" /></p>
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"255","3":"43860"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"28815","3":"197370"},{"1":"MARS","2":"19635","3":"175440"},{"1":"MLP","2":"2040","3":"43860"},{"1":"RF","2":"10710","3":"197370"},{"1":"SVM","2":"14790","3":"43860"},{"1":"TBOOST","2":"48335","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  cosine_heatmap()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-76-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-76-1">
 Past versions of unnamed-chunk-76-1.png
@@ -4194,6 +6194,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-76-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/bbf04bbb5e42a9c22992a5299c8cf0c5fc22b99f/docs/figure/benchmark.Rmd/unnamed-chunk-76-1.png" target="_blank">bbf04bb</a>
@@ -4231,31 +6242,548 @@ schae211
 </table>
 </div>
 </div>
-</details>
-<hr />
-</div>
-<div id="merfish_liver-2" class="section level2">
-<h2><code>merfish_liver</code></h2>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_liver&quot;, &quot;std280&quot;) %&gt;%
-  get_importance() %&gt;%
-  check_algs()</code></pre>
-</details>
-<hr />
-</div>
-<div id="merfish_bc-2" class="section level2">
-<h2><code>merfish_bc</code></h2>
+<details>
+<summary>
+Click here for a heatmap of the Jaccard Indices
+</summary>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"255","3":"43860"},{"1":"LBOOST","2":"0","3":"197370"},{"1":"LM","2":"28815","3":"197370"},{"1":"MARS","2":"19635","3":"175440"},{"1":"MLP","2":"2040","3":"43860"},{"1":"RF","2":"10710","3":"197370"},{"1":"SVM","2":"14790","3":"43860"},{"1":"TBOOST","2":"48335","3":"197370"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-77-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-77-1">
+Past versions of unnamed-chunk-77-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-77-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">9229052</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bbf04bbb5e42a9c22992a5299c8cf0c5fc22b99f/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">bbf04bb</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-77-1.png" target="_blank">dc93ff5</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-19
+</td>
+</tr>
+</tbody>
+</table>
 </div>
+</div>
+</details>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  cosine_heatmap()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-79-1.png" width="576" style="display: block; margin: auto;" /></p>
+  correlation_scatter()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-78-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-78-1">
+Past versions of unnamed-chunk-78-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-78-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/273feaac918ca38dd279b70245e20e7ddefefb25/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">273feaa</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bbf04bbb5e42a9c22992a5299c8cf0c5fc22b99f/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">bbf04bb</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/781ba638f2acfdc32de627718c184805cc4c9048/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">781ba63</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-21
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/dc93ff5b67be49a0cf5ee4af2e2782eaae9e0f3a/docs/figure/benchmark.Rmd/unnamed-chunk-78-1.png" target="_blank">dc93ff5</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-78-2.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-78-2">
+Past versions of unnamed-chunk-78-2.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-78-2" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-78-2.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-78-2.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-78-2.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-78-2.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-78-2.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-78-2.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/273feaac918ca38dd279b70245e20e7ddefefb25/docs/figure/benchmark.Rmd/unnamed-chunk-78-2.png" target="_blank">273feaa</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-78-3.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-78-3">
+Past versions of unnamed-chunk-78-3.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-78-3" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-78-3.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-78-3.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-78-3.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-78-3.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-78-3.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-78-3.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/273feaac918ca38dd279b70245e20e7ddefefb25/docs/figure/benchmark.Rmd/unnamed-chunk-78-3.png" target="_blank">273feaa</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-24
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+  get_importance() %&gt;%
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-79-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-79-1">
 Past versions of unnamed-chunk-79-1.png
@@ -4278,6 +6806,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-79-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-79-1.png" target="_blank">03e2ec1</a>
@@ -4403,14 +6942,12 @@ schae211
 </table>
 </div>
 </div>
-<details>
-<summary>
-Click here for a heatmap of the Jaccard Indices
-</summary>
+<p>Jaccard Index compared to random forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
   get_importance() %&gt;%
-  jaccard_heatmap(cutoff = 0.5)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-80-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-80-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-80-1">
 Past versions of unnamed-chunk-80-1.png
@@ -4433,6 +6970,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-80-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-80-1.png" target="_blank">03e2ec1</a>
@@ -4526,86 +7074,23 @@ schae211
 </div>
 </div>
 </details>
-<details>
-<summary>
-Click here for a Scatter Plot Matrix
-</summary>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
-  get_importance() %&gt;%
-  correlation_scatter()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-81-1.png" width="1152" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-81-1">
-Past versions of unnamed-chunk-81-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-81-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-81-1.png" target="_blank">7993ac7</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-81-1.png" target="_blank">feb3094</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/bbf04bbb5e42a9c22992a5299c8cf0c5fc22b99f/docs/figure/benchmark.Rmd/unnamed-chunk-81-1.png" target="_blank">bbf04bb</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-21
-</td>
-</tr>
-</tbody>
-</table>
+<hr />
 </div>
-</div>
-<img src="figure/benchmark.Rmd/unnamed-chunk-81-2.png" width="1152" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-81-3.png" width="1152" style="display: block; margin: auto;" />
-</details>
-<details>
-<summary>
-Click here for pairwise comparison to RF
-</summary>
-<p>Cosine Similarity compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+<div id="ianca-2" class="section level2">
+<h2><code>4iANCA</code></h2>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
   get_importance() %&gt;%
-  wrap_function(cosine_similarity) %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 12 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-82-1.png" width="672" style="display: block; margin: auto;" /></p>
+  check_algs()</code></pre>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"50544"},{"1":"LBOOST","2":"0","3":"50544"},{"1":"LM","2":"0","3":"50544"},{"1":"MARS100","2":"0","3":"50544"},{"1":"MARS60","2":"0","3":"50544"},{"1":"MARS80","2":"0","3":"50544"},{"1":"RF","2":"0","3":"50544"},{"1":"TBOOST","2":"1122","3":"50544"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
+  get_importance() %&gt;%
+  filter(view != &quot;para.10&quot;) %&gt;%
+  cosine_heatmap()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-82-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-82-1">
 Past versions of unnamed-chunk-82-1.png
@@ -4628,6 +7113,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-82-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-82-1.png" target="_blank">03e2ec1</a>
@@ -4687,12 +7183,15 @@ schae211
 </table>
 </div>
 </div>
-<p>Jaccard Index compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;merfish_bc&quot;, &quot;hvg&quot;) %&gt;%
+<details>
+<summary>
+Click here for a heatmap of the Jaccard Indices
+</summary>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
   get_importance() %&gt;%
-  wrap_function(jaccard_index, cutoff=0) %&gt;%
-  plot_jaccard()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-83-1.png" width="672" style="display: block; margin: auto;" /></p>
+  filter(view != &quot;para.10&quot;) %&gt;%
+  jaccard_heatmap(cutoff = 0.5)</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-83-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-83-1">
 Past versions of unnamed-chunk-83-1.png
@@ -4715,6 +7214,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-83-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-83-1.png" target="_blank">03e2ec1</a>
@@ -4797,23 +7307,154 @@ schae211
 </div>
 </div>
 </details>
-<hr />
-</div>
-<div id="ianca-2" class="section level2">
-<h2><code>4iANCA</code></h2>
-<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
-  get_importance() %&gt;%
-  check_algs()</code></pre>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":["algorithm"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n.NAs"],"name":[2],"type":["int"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"BGMARS","2":"0","3":"50544"},{"1":"LBOOST","2":"0","3":"50544"},{"1":"LM","2":"0","3":"50544"},{"1":"MARS100","2":"0","3":"50544"},{"1":"MARS60","2":"0","3":"50544"},{"1":"MARS80","2":"0","3":"50544"},{"1":"RF","2":"0","3":"50544"},{"1":"TBOOST","2":"1122","3":"50544"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
+<details>
+<summary>
+Click here for a Scatter Plot Matrix
+</summary>
 <pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
   get_importance() %&gt;%
   filter(view != &quot;para.10&quot;) %&gt;%
-  cosine_heatmap()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-85-1.png" width="576" style="display: block; margin: auto;" /></p>
+  correlation_scatter()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-84-1.png" width="1152" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-84-1">
+Past versions of unnamed-chunk-84-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-84-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">03e2ec1</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">8e3228c</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-06
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">7993ac7</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/feb30945e02a68fbce5fe3fcd3664440c3266d0f/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">feb3094</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/9229052d2535073c992e78722393aa181c209ec7/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">9229052</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-23
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/6de2243e92eb53e7a18997952ef54f36a31f40df/docs/figure/benchmark.Rmd/unnamed-chunk-84-1.png" target="_blank">6de2243</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-22
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<img src="figure/benchmark.Rmd/unnamed-chunk-84-2.png" width="1152" style="display: block; margin: auto;" />
+</details>
+<details>
+<summary>
+Click here for pairwise comparison to RF
+</summary>
+<p>Cosine Similarity compared to random forest</p>
+<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
+  get_importance() %&gt;%
+  filter(view != &quot;para.10&quot;) %&gt;%
+  wrap_function(cosine_similarity) %&gt;%
+  plot_cosine_similarity()</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-85-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-85-1">
 Past versions of unnamed-chunk-85-1.png
@@ -4836,6 +7477,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-85-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-85-1.png" target="_blank">03e2ec1</a>
@@ -4917,15 +7569,13 @@ schae211
 </table>
 </div>
 </div>
-<details>
-<summary>
-Click here for a heatmap of the Jaccard Indices
-</summary>
+<p>Jaccard Index compared to random forest</p>
 <pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
   get_importance() %&gt;%
   filter(view != &quot;para.10&quot;) %&gt;%
-  jaccard_heatmap(cutoff = 0.5)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-86-1.png" width="576" style="display: block; margin: auto;" /></p>
+  wrap_function(jaccard_index, cutoff=0) %&gt;%
+  plot_jaccard()</code></pre>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-86-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-86-1">
 Past versions of unnamed-chunk-86-1.png
@@ -4948,6 +7598,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-86-1.png" target="_blank">20f5cae</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-09
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-86-1.png" target="_blank">7993ac7</a>
@@ -4997,128 +7658,6 @@ schae211
 </div>
 </div>
 </details>
-<details>
-<summary>
-Click here for a Scatter Plot Matrix
-</summary>
-<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
-  get_importance() %&gt;%
-  filter(view != &quot;para.10&quot;) %&gt;%
-  correlation_scatter()</code></pre>
-<img src="figure/benchmark.Rmd/unnamed-chunk-87-1.png" width="1152" style="display: block; margin: auto;" /><img src="figure/benchmark.Rmd/unnamed-chunk-87-2.png" width="1152" style="display: block; margin: auto;" />
-</details>
-<details>
-<summary>
-Click here for pairwise comparison to RF
-</summary>
-<p>Cosine Similarity compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
-  get_importance() %&gt;%
-  filter(view != &quot;para.10&quot;) %&gt;%
-  wrap_function(cosine_similarity) %&gt;%
-  plot_cosine_similarity()</code></pre>
-<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-88-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-88-1">
-Past versions of unnamed-chunk-88-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-88-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-88-1.png" target="_blank">668d4c6</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-88-1.png" target="_blank">03e2ec1</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-88-1.png" target="_blank">8e3228c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-88-1.png" target="_blank">bfae26e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-01
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-88-1.png" target="_blank">50661af</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-25
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-88-1.png" target="_blank">7993ac7</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<p>Jaccard Index compared to random forest</p>
-<pre class="r"><code>filter_runs(all.results, &quot;4iANCA&quot;, &quot;ratio_76&quot;) %&gt;%
-  get_importance() %&gt;%
-  filter(view != &quot;para.10&quot;) %&gt;%
-  wrap_function(jaccard_index, cutoff=0) %&gt;%
-  plot_jaccard()</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-89-1.png" width="672" style="display: block; margin: auto;" /></p>
-</details>
 <hr />
 </div>
 </div>
@@ -5148,7 +7687,7 @@ c(&quot;RF&quot; = random_forest_model, &quot;TBOOST&quot; = gradient_boosting_m
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"13.51490 secs","3":"0.5039213"},{"1":"MARS","2":"17.59827 secs","3":"0.6561751"},{"1":"TBOOST","2":"26.73633 secs","3":"0.9968996"},{"1":"RF","2":"26.81948 secs","3":"1.0000000"},{"1":"BGMARS","2":"55.67664 secs","3":"2.0759781"},{"1":"SVM","2":"79.13323 secs","3":"2.9505883"},{"1":"MLP","2":"183.20245 secs","3":"6.8309482"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"13.26601 secs","3":"0.4905081"},{"1":"MARS","2":"18.15417 secs","3":"0.6712469"},{"1":"TBOOST","2":"26.47454 secs","3":"0.9788908"},{"1":"RF","2":"27.04545 secs","3":"1.0000000"},{"1":"BGMARS","2":"55.72487 secs","3":"2.0604161"},{"1":"SVM","2":"78.64590 secs","3":"2.9079165"},{"1":"MLP","2":"183.02307 secs","3":"6.7672414"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>As expected the linear model is by far the fastest model. Random forest and gradient boosting with trees are equally fast and perform much better than the multi-layer perceptron, bagged mars models, and the support vector machine.</p>
@@ -5177,13 +7716,13 @@ c(&quot;RF&quot; = random_forest_model, &quot;TBOOST&quot; = gradient_boosting_m
   get_performance() %&gt;%
   mutate(algorithm = str_remove(algorithm, &quot;RF_hyper_&quot;)) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-92-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-89-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-92-1">
-Past versions of unnamed-chunk-92-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-89-1">
+Past versions of unnamed-chunk-89-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-92-1" class="collapse">
+<div id="fig-unnamed-chunk-89-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5202,46 +7741,13 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-92-1.png" target="_blank">03e2ec1</a>
+<a href="https://github.com/schae211/report/blob/20f5caef61b95ac4e98fabc84156cc37145a6c81/docs/figure/benchmark.Rmd/unnamed-chunk-89-1.png" target="_blank">20f5cae</a>
 </td>
 <td>
 schae211
 </td>
 <td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/8e3228c738ef42285600b9cebed9075c17ae2995/docs/figure/benchmark.Rmd/unnamed-chunk-92-1.png" target="_blank">8e3228c</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-92-1.png" target="_blank">bfae26e</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-01
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-92-1.png" target="_blank">7993ac7</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2021-12-23
+2022-01-09
 </td>
 </tr>
 </tbody>
@@ -5273,7 +7779,7 @@ schae211
   get_performance() %&gt;%
   mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-94-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-91-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Interestingly the performance seems to be pretty much invariant to the choice of hyperparameters here.</p>
 </div>
 <div id="synthetic-3" class="section level3">
@@ -5296,66 +7802,7 @@ schae211
   get_performance() %&gt;%
   mutate(algorithm = str_remove(algorithm, &quot;MARS_hyper_&quot;)) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;, targets = TRUE)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-96-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-96-1">
-Past versions of unnamed-chunk-96-1.png
-</button>
-</p>
-<div id="fig-unnamed-chunk-96-1" class="collapse">
-<div class="table-responsive">
-<table class="table table-condensed table-hover">
-<thead>
-<tr>
-<th>
-Version
-</th>
-<th>
-Author
-</th>
-<th>
-Date
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/668d4c650e8f0d12dfcc73bf692d70d83d646d32/docs/figure/benchmark.Rmd/unnamed-chunk-96-1.png" target="_blank">668d4c6</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-09
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-96-1.png" target="_blank">03e2ec1</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-06
-</td>
-</tr>
-<tr>
-<td>
-<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-96-1.png" target="_blank">90075f3</a>
-</td>
-<td>
-schae211
-</td>
-<td>
-2022-01-04
-</td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-93-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>For the synthetic datasets we clearly see that a higher degree increases the model performance.</p>
 </div>
 <div id="runtimes" class="section level3">
@@ -5397,7 +7844,7 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"15.71445 secs"},{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"16.12073 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"17.98280 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"20.16956 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"21.65940 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"22.59966 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"22.91815 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"22.99514 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"23.25387 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"23.35675 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"23.67025 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"24.03669 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"16.40509 secs"},{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"16.46193 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"17.83489 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"20.32509 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"21.04166 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"22.93558 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"22.99106 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"23.10314 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"23.24881 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"23.33785 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"23.39720 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"25.08580 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
@@ -5438,7 +7885,7 @@ pmap_dfr(list(degrees, fastks, threshs),
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["thresh"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_5_0.05","2":"2","3":"5","4":"0.050","5":"14.90690 secs"},{"1":"2_10_0.05","2":"2","3":"10","4":"0.050","5":"15.16004 secs"},{"1":"2_20_0.05","2":"2","3":"20","4":"0.050","5":"16.11653 secs"},{"1":"1_5_0.001","2":"1","3":"5","4":"0.001","5":"16.20413 secs"},{"1":"1_10_0.001","2":"1","3":"10","4":"0.001","5":"17.54349 secs"},{"1":"2_5_0.01","2":"2","3":"5","4":"0.010","5":"18.28662 secs"},{"1":"2_10_0.01","2":"2","3":"10","4":"0.010","5":"20.80772 secs"},{"1":"2_20_0.01","2":"2","3":"20","4":"0.010","5":"22.24724 secs"},{"1":"2_5_0.001","2":"2","3":"5","4":"0.001","5":"22.46598 secs"},{"1":"1_20_0.001","2":"1","3":"20","4":"0.001","5":"24.58686 secs"},{"1":"2_10_0.001","2":"2","3":"10","4":"0.001","5":"31.26892 secs"},{"1":"2_20_0.001","2":"2","3":"20","4":"0.001","5":"38.64154 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["thresh"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_20_0.05","2":"2","3":"20","4":"0.050","5":"15.29084 secs"},{"1":"2_5_0.05","2":"2","3":"5","4":"0.050","5":"15.79439 secs"},{"1":"2_10_0.05","2":"2","3":"10","4":"0.050","5":"15.87883 secs"},{"1":"1_5_0.001","2":"1","3":"5","4":"0.001","5":"16.34350 secs"},{"1":"1_10_0.001","2":"1","3":"10","4":"0.001","5":"17.53760 secs"},{"1":"2_5_0.01","2":"2","3":"5","4":"0.010","5":"18.46053 secs"},{"1":"2_10_0.01","2":"2","3":"10","4":"0.010","5":"20.71052 secs"},{"1":"2_5_0.001","2":"2","3":"5","4":"0.001","5":"22.61173 secs"},{"1":"2_20_0.01","2":"2","3":"20","4":"0.010","5":"23.03548 secs"},{"1":"1_20_0.001","2":"1","3":"20","4":"0.001","5":"24.72356 secs"},{"1":"2_10_0.001","2":"2","3":"10","4":"0.001","5":"31.39414 secs"},{"1":"2_20_0.001","2":"2","3":"20","4":"0.001","5":"38.67034 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -5467,13 +7914,13 @@ pmap_dfr(list(degrees, fastks, threshs),
   mutate(algorithm = str_remove(algorithm, &quot;LBOOST_hyper_&quot;)) %&gt;%
   filter(str_count(algorithm, &quot;_&quot;) == 2) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-100-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-97-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
-<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-100-1">
-Past versions of unnamed-chunk-100-1.png
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-97-1">
+Past versions of unnamed-chunk-97-1.png
 </button>
 </p>
-<div id="fig-unnamed-chunk-100-1" class="collapse">
+<div id="fig-unnamed-chunk-97-1" class="collapse">
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
 <thead>
@@ -5492,24 +7939,24 @@ Date
 <tbody>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/03e2ec1422f5b65d473a06f4ee2aaa519236b925/docs/figure/benchmark.Rmd/unnamed-chunk-100-1.png" target="_blank">03e2ec1</a>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-97-1.png" target="_blank">50661af</a>
 </td>
 <td>
 schae211
 </td>
 <td>
-2022-01-06
+2021-12-25
 </td>
 </tr>
 <tr>
 <td>
-<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-100-1.png" target="_blank">90075f3</a>
+<a href="https://github.com/schae211/report/blob/7993ac7be6dea694b12a273b405e49120bb46019/docs/figure/benchmark.Rmd/unnamed-chunk-97-1.png" target="_blank">7993ac7</a>
 </td>
 <td>
 schae211
 </td>
 <td>
-2022-01-04
+2021-12-23
 </td>
 </tr>
 </tbody>
@@ -5560,7 +8007,66 @@ filter_runs(all.results, &quot;merfish_bc&quot;, &quot;LBOOST_hyper&quot;) %&gt;
   mutate(algorithm = str_remove(algorithm, &quot;LBOOST_hyper_&quot;)) %&gt;%
   filter(str_count(algorithm, &quot;_&quot;) == 2) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-104-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-101-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-101-1">
+Past versions of unnamed-chunk-101-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-101-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/90075f34776a6b73103778830635b4b7ac4db86c/docs/figure/benchmark.Rmd/unnamed-chunk-101-1.png" target="_blank">90075f3</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-04
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/bfae26e10a4a4f882a9dc1cdfd56ed90ba1819b9/docs/figure/benchmark.Rmd/unnamed-chunk-101-1.png" target="_blank">bfae26e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-01
+</td>
+</tr>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/50661af7bfc8d240ab65efb9f9979e28c135f1dc/docs/figure/benchmark.Rmd/unnamed-chunk-101-1.png" target="_blank">50661af</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2021-12-25
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div id="tree-boosting" class="section level2">
@@ -5585,7 +8091,7 @@ filter_runs(all.results, &quot;merfish_bc&quot;, &quot;LBOOST_hyper&quot;) %&gt;
   get_performance() %&gt;%
   mutate(algorithm = str_remove(algorithm, &quot;TBOOST_hyper_&quot;)) %&gt;%
   plot_performance(str.measure=&quot;multi.R2&quot;)</code></pre>
-<p><img src="figure/benchmark.Rmd/unnamed-chunk-106-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="figure/benchmark.Rmd/unnamed-chunk-103-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Similarly to the random forest above, we see that <code>max_depth = 1</code> reduces the overall performance. Apart from that the model seems to be very robust to hyperparamter changes.</p>
 </div>
 </div>
@@ -5617,7 +8123,7 @@ map_dfr(funcs, function(func) {
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["funcs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]}],"data":[{"1":"BackpropBatch","2":"3.175349 mins"},{"1":"Std_Backpropagation","2":"3.253771 mins"},{"1":"BackpropMomentum","2":"3.303706 mins"},{"1":"BackpropChunk","2":"3.420895 mins"},{"1":"Quickprop","2":"3.746161 mins"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["funcs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]}],"data":[{"1":"BackpropBatch","2":"3.170768 mins"},{"1":"Std_Backpropagation","2":"3.231358 mins"},{"1":"BackpropMomentum","2":"3.295138 mins"},{"1":"BackpropChunk","2":"3.432157 mins"},{"1":"Quickprop","2":"3.752314 mins"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>And we see that the choice of learning algorithm does not make much of a difference here and that the default “BackpropBatch” seems to be the best choice.</p>
