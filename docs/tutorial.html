@@ -541,16 +541,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree0b86b597aa37321cacc97137a693d6392d0696a7targetblank0b86b59a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/0b86b597aa37321cacc97137a693d6392d0696a7" target="_blank">0b86b59</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreea74ac9dba16a5ffd9c1014af2664807e1b6ab8b7targetblanka74ac9da"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/a74ac9dba16a5ffd9c1014af2664807e1b6ab8b7" target="_blank">a74ac9d</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree0b86b597aa37321cacc97137a693d6392d0696a7targetblank0b86b59a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttreea74ac9dba16a5ffd9c1014af2664807e1b6ab8b7targetblanka74ac9da" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/0b86b597aa37321cacc97137a693d6392d0696a7" target="_blank">0b86b59</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/a74ac9dba16a5ffd9c1014af2664807e1b6ab8b7" target="_blank">a74ac9d</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -569,9 +569,7 @@ Ignored files:
     Ignored:    output/2022-01-10-10-49_all_results.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
-
-Unstaged changes:
-    Modified:   analysis/conclusions.Rmd
+    Ignored:    results/
 
 </code></pre>
 <p>
@@ -610,6 +608,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/a74ac9dba16a5ffd9c1014af2664807e1b6ab8b7/analysis/tutorial.Rmd" target="_blank">a74ac9d</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+<td>
+fixed typo
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/9ae181e11ae80ec7f52ff3de2e51a9b9359459ed/docs/tutorial.html" target="_blank">9ae181e</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1050,8 +1082,8 @@ suppressPackageStartupMessages(library(future))
 suppressPackageStartupMessages(library(tidyverse))
 plan(&quot;multisession&quot;, workers=14)</code></pre>
 <p>In this file, I will briefly explain how I envision the new MISTy workflow. I refactored and expanded the code such that users can supply their own function to model each view if they would like. If not, we ship MISTy with several implemented functions such as gradient boosting that can simply be plugged into the model. More details can be found below.</p>
-<div id="overivew" class="section level1">
-<h1>Overivew</h1>
+<div id="overview" class="section level1">
+<h1>Overview</h1>
 <div id="data" class="section level2">
 <h2>Data</h2>
 <p>Here we will be using the synthetic dataset supplied in the MISTy package. As explained in the <a href="https://saezlab.github.io/mistyR/articles/mistyR.html">Get Started Vignette</a>, this dataset is based on a two-dimensional cellular automata model which models the production, diffusion, degradation and interactions of 11 molecular species in 4 different cell types.</p>
@@ -1117,7 +1149,7 @@ function(view_data, target, seed, ...) {
     importances = model$variable.importance
   )
 }
-&lt;bytecode: 0x5653611a5798&gt;
+&lt;bytecode: 0x556d12a26030&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <p>It is a function that takes 3 arguments: The data of a single view (<code>view_data</code>), a <code>target</code>, and a random <code>seed</code> to make things reproducible. Let’s assume that we are looking at the <code>paraview</code>.</p>
 <pre class="r"><code>misty.views$paraview.10$data %&gt;% slice_head(n=6)</code></pre>
@@ -1182,7 +1214,7 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-4.837 sec elapsed
+4.768 sec elapsed
 unlink(&quot;results&quot;)</code></pre>
 <pre class="r"><code>tictoc::tic()
 misty.run &lt;- misty.views %&gt;%
@@ -1191,7 +1223,7 @@ misty.run &lt;- misty.views %&gt;%
 
 Training models
 tictoc::toc()
-1.846 sec elapsed</code></pre>
+1.808 sec elapsed</code></pre>
 </div>
 <div id="misty-results" class="section level2">
 <h2>MISTy results</h2>
@@ -1519,7 +1551,7 @@ function(view_data, target, seed, ...) {
     importances = model$variable.importance
   )
 }
-&lt;bytecode: 0x5653611a5798&gt;
+&lt;bytecode: 0x556d12a26030&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model</li>
@@ -1897,7 +1929,7 @@ function(view_data, target, seed, k = 10, ...) {
     importances = importances
   )
 }
-&lt;bytecode: 0x565365f02c10&gt;
+&lt;bytecode: 0x556d183236f8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -2375,7 +2407,7 @@ function(view_data, target, seed, approx = 1.0, k = 10, ...) {
     importances = importances
   )
 }
-&lt;bytecode: 0x56536b2ef2c8&gt;
+&lt;bytecode: 0x556d11b3b970&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <pre class="r"><code>misty.views %&gt;%
   run_misty(model.function = mars_model) %&gt;%
@@ -2729,7 +2761,7 @@ function(view_data, target, seed,
     importances = importances
   )
 }
-&lt;bytecode: 0x56536be19870&gt;
+&lt;bytecode: 0x556d17b3d918&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -2976,7 +3008,7 @@ function(view_data, target, seed, k = 10, ...) {
     importances = importances
   )
 }
-&lt;bytecode: 0x5653660f7550&gt;
+&lt;bytecode: 0x556d1b750ad8&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -3185,7 +3217,7 @@ function(view_data, target, seed, approx = 0.4, k = 10, ...) {
     importances = importances
   )
 }
-&lt;bytecode: 0x565365449228&gt;
+&lt;bytecode: 0x556d1b3c1608&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
@@ -3414,7 +3446,7 @@ function(view_data, target, seed, approx = 0.6, k = 10, ...) {
     importances = importances
   )
 }
-&lt;bytecode: 0x56536b168878&gt;
+&lt;bytecode: 0x556d12163d28&gt;
 &lt;environment: namespace:mistyR&gt;</code></pre>
 <ul>
 <li>Running the model:</li>
