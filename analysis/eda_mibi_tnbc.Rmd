@@ -16,7 +16,6 @@ Setup.
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}

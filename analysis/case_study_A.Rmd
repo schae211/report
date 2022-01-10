@@ -4,7 +4,6 @@ title: "Case Study A"
 
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 # Introduction

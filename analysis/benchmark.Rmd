@@ -16,7 +16,6 @@ Setup.
 
 ```{r setup, echo=FALSE}
 knitr::opts_chunk$set(echo = TRUE, collapse = FALSE)
-knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
@@ -1624,7 +1623,7 @@ filter_runs(all.results, "mibi_tnbc", "TBOOST_hyper") %>%
 
 ## MLP
 
-Since the runtime is the biggest issue for the MLP model, I tested all backpropagation implemented in `RSNNS` but this did not really help to increase the runtime very much. In fact the default algorithm "Std_Backpropagation" is almost the fastest.
+Since the runtime is the biggest issue for the MLP model, I tested all backpropagation implemented in `RSNNS` but this did not really help to increase the runtime very much. In fact the default algorithm "Std_Backpropagation" is one of the fastest.
 
 ```{r message=FALSE, warning=FALSE}
 suppressPackageStartupMessages(library(mistyR))

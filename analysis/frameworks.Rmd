@@ -4,7 +4,6 @@ title: "Overview"
 
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 ```{r}
@@ -21,12 +20,34 @@ This document is supposed to show the caveats of using machine learning
 frameworks in R such as `tidymodels`, `caret`, or `mlr3` for MISTy.
 
 It would have been nice if we could have plugged some existing framework
-into the backbone of MISTy such that user's could for example use any
+into the backend of MISTy such that user's could for example use any
 model that is part of `caret` to model views.
 
-However, it turns out that the libraries are slow and not flexible enough.
-For example, in `caret` it is difficult to get out-of-bag predictions and
-it is impossible to pass `NULL` parameters as I will show below.
+However, it turns out that the libraries are either too slow and not flexible enough. For example, in `caret` it is difficult to get out-of-bag predictions and it is impossible to pass `NULL` parameters as I will show below.
+
+This document is split into 4 main points.
+
+1. [Run Times]
+
+ * Here I am comparing the runtimes of the same ML models implemented in different machine learning frameworks (which usually use the same underlying implementation of the algorithm in R), showing that many frameworks are rather slow. (first for bagged linear models and the for the random forest).
+
+2. [Passing Arguments]
+
+ * Here I show how difficult it is to run models in `caret` with the default arguments, especially when the default argument is `NULL` as it is for example for `mtry = NULL` (the number of variable considered at each split), indicating that the number is computed internally.
+
+3. [Out-of-Bag Predictions]
+
+ * Here I show that the `caret` utility function to create bagged models is kind of useless for us, as it does not allow the extraction of out-of-bag estimated (only errors).
+
+4. [Installation]
+
+ * Here I briefly describe that we do not want use `mlr3` because many algorithms we need are only available in `mlr3extralearners` that needs to be installed via GitHub, which is not very suitable as a dependency.
+ 
+5. [Appendix]
+
+ * Here I point out that `rlist::list.merge` removes list entries which are NULL, which is a quite annoying behavior.
+
+# Data
 
 Let's get some data to explain the statements above.
 
@@ -39,6 +60,8 @@ predictors <- expr %>% select(-c(all_of(target)))
 outcome <- as.numeric(expr %>% pull(target))
 seed <- 42
 ```
+
+---
 
 # Run Times
 
@@ -220,9 +243,9 @@ test <- purrr::map(targets, function(target) {
 tictoc::toc()
 ```
 
-# Passing Arguments
+---
 
-## caret
+# Passing Arguments
 
 It is difficult to simply try to call ranger from 
 caret::train() without doing a grid search for parameter tuning. 
@@ -324,11 +347,11 @@ caret.model$finalModel$tuneValue
 
 Whereas in the `caret` wrapper the default for `nrpune` is 2.
 
+---
+
 # Out-of-Bag Predictions
 
-## `caret`
-
-Although caret allow to construct bagged models (though the documentation is
+Although `caret` allow to construct bagged models (though the documentation is
 bad) the returned OOB predictions have no index, meaning you get a data.frame contraining the OOB predictions and the actual
 values which allow you to calculate errors. However, this does not allow
 you to get overall OOB predictions for every observation, which is super 
@@ -376,9 +399,9 @@ res <- targets %>%
 str(res$ECM$fits[[1]]$oob)
 ```
 
-# Installation
+---
 
-## `mlr3`
+# Installation
 
 There is another (academic) ML libary in R which works just fine, but the
 learners we need such as `earth` (MARS) are only available in the package
@@ -408,6 +431,8 @@ learner$train(task, row_ids = sample(nrow(expr)))
 learner$model
 ```
 
+---
+
 # Appendix
 
 ## merge_two
@@ -415,7 +440,7 @@ learner$model
 Why did I create a function to merge two lists, while there is a function
 in the `rlist` package (`list.merge`) to do just that?
 
-# rlist::list.merge
+## rlist::list.merge
 
 Why does `rlist::list.merge` removes list entries which are NULL? This is
 incredibly stupid.

@@ -6,7 +6,6 @@ Setup.
 
 ```{r setup}
 knitr::opts_chunk$set(echo = TRUE, collapse = TRUE)
-#knitr::opts_knit$set(root.dir = "~/Saez/report")
 ```
 
 Loaded packages.
@@ -26,7 +25,7 @@ such that users could specify which model they would like to use. Chosing
 between bagging and CV for performance estimation and then between several
 pre-specified models.
 
-In this document I want to include how we thought about implementing this.
+In this document I want to show how we thought about implementing this.
 
 See the corresponding git branch [here](https://github.com/schae211/mistyR/tree/api/R).
 
@@ -524,19 +523,6 @@ run_misty <- function(views, results.folder = "results", seed = 42,
     purrr::set_names() %>%
     purrr::map_int(~ length(unique(expr %>% dplyr::pull(.x))))
 
-  # shouldn't we only check for this requirement if we do not bypass intra?
-  # (otherwise if we do one-hot encoding of celltypes we can only use
-  # 2 CV folds which may be suboptimal)
-  # assertthat::assert_that(all(target.unique >= cv.folds),
-  #     msg = paste(
-  #       "Targets",
-  #       paste(names(which(target.unique < cv.folds)),
-  #             collapse = ", "
-  #       ),
-  #       "have fewer unique values than cv.folds"
-  #     )
-  # )
-
   coef.file <- paste0(
     normalized.results.folder, .Platform$file.sep,
     "coefficients.txt"
@@ -680,7 +666,7 @@ run_misty <- function(views, results.folder = "results", seed = 42,
 }
 ```
 
-```{r hide=TRUE}
+```{r echo=FALSE}
 clear_cache <- function(id = NULL) {
   cache.folder <- R.utils::getAbsolutePath(".misty.temp")
   if (is.null(id)) {
@@ -721,7 +707,9 @@ sweep_cache <- function() {
 }
 ```
 
-So the `run_misty` signature would have looked like this:
+# API
+
+Let's generate a MISTy view based on the first sample of the `synthetic` dataset.
 
 ```{r}
 data("synthetic")
@@ -733,6 +721,8 @@ misty.views <- create_initial_view(expr) %>%
 
 ## Default: Random Forest
 
+Calling the default ranodm forest model explicitly would have looked like this.
+
 ```{r}
 misty.views %>% run_misty(method = "bag", learner = "ranger", 
                           n.learners = 100) %>%
@@ -743,6 +733,8 @@ misty.views %>% run_misty(method = "bag", learner = "ranger",
 ```
 
 ## Bagged MARS
+
+Whereas calling a bagged MARS model would have looked like this.
 
 ```{r}
 misty.views %>% run_misty(method = "bag", learner = "earth", 
