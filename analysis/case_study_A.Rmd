@@ -216,7 +216,7 @@ As mentioned in the introduction, MISTy is not able to learn anything from the s
 misty.results.rf %>%
   plot_improvement_stats("gain.R2") %>%
   plot_view_contributions() %>%
-  plot_interaction_heatmap("para.50")
+  plot_interaction_heatmap("para.50", cutoff = 0.5, clean = TRUE)
 ```
 
 ## Regression Boosted Trees
@@ -253,7 +253,7 @@ misty.run.tboost$warnings
 misty.results.tboost %>%
   plot_improvement_stats("gain.R2") %>%
   plot_view_contributions() %>%
-  plot_interaction_heatmap("para.50")
+  plot_interaction_heatmap("para.50", cutoff = 0.5, clean = TRUE)
 ```
 
 ## Non-negative Least Squares
@@ -366,7 +366,7 @@ Just like for the random forest model, there is no gain in R2 here.
 misty.results.nnls %>%
   plot_improvement_stats("gain.R2") %>%
   plot_view_contributions() %>%
-  plot_interaction_heatmap("para.50")
+  plot_interaction_heatmap("para.50", cutoff = 0.5, clean = TRUE)
 ```
 
 ## Classification Random Forest
@@ -452,7 +452,7 @@ misty.run.rfc$warnings
 misty.results.nnls %>%
   plot_improvement_stats("gain.R2") %>%
   plot_view_contributions() %>%
-  plot_interaction_heatmap("para.50")
+  plot_interaction_heatmap("para.50", cutoff = 0.5, clean = TRUE)
 ```
 
 # Appendix
