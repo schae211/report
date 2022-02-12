@@ -6,6 +6,9 @@ output:
     toc_float: yes
     toc_depth: 2
     code_folding: hide
+    theme: cosmo
+    highlight: textmate
+    df_print: paged
 editor_options: 
   chunk_output_type: inline
 bibliography: references.bib
