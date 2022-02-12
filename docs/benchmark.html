@@ -41,7 +41,7 @@
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -450,7 +450,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-01-10
+<strong>Last updated:</strong> 2022-02-12
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -459,8 +459,8 @@ div.tocify {
 <strong>Knit directory:</strong> <code>report/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version 1.7.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -541,22 +541,24 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree78504d0b256d8db5834df09b2238a3324c87a7datargetblank78504d0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/78504d0b256d8db5834df09b2238a3324c87a7da" target="_blank">78504d0</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree2f0f18aec5edc095a75791b0e439bbf2cbd5fec7targetblank2f0f18aa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/schae211/report/tree/2f0f18aec5edc095a75791b0e439bbf2cbd5fec7" target="_blank">2f0f18a</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree78504d0b256d8db5834df09b2238a3324c87a7datargetblank78504d0a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomschae211reporttree2f0f18aec5edc095a75791b0e439bbf2cbd5fec7targetblank2f0f18aa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/78504d0b256d8db5834df09b2238a3324c87a7da" target="_blank">78504d0</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/schae211/report/tree/2f0f18aec5edc095a75791b0e439bbf2cbd5fec7" target="_blank">2f0f18a</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rproj.user/
+    Ignored:    analysis/figure/
     Ignored:    data/imc/
     Ignored:    data/merfish_bc/
     Ignored:    data/merfish_liver/
@@ -569,9 +571,10 @@ Ignored files:
     Ignored:    output/2022-01-10-10-49_all_results.RDS
     Ignored:    output/case_study_A/
     Ignored:    output/case_study_B/
+    Ignored:    results/
 
-Unstaged changes:
-    Modified:   analysis/conclusions.Rmd
+Untracked files:
+    Untracked:  report.Rproj.RData
 
 </code></pre>
 <p>
@@ -610,6 +613,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/schae211/report/blob/2f0f18aec5edc095a75791b0e439bbf2cbd5fec7/analysis/benchmark.Rmd" target="_blank">2f0f18a</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-02-12
+</td>
+<td>
+wflow_publish(“analysis/benchmark.Rmd”)
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/schae211/report/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/benchmark.html" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -692,7 +729,7 @@ schae211
 2022-01-10
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd", delete_cache = TRUE)
+wflow_publish(“analysis/benchmark.Rmd,” delete_cache = TRUE)
 </td>
 </tr>
 <tr>
@@ -726,7 +763,7 @@ schae211
 2022-01-10
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd", delete_cache = TRUE)
+wflow_publish(“analysis/benchmark.Rmd,” delete_cache = TRUE)
 </td>
 </tr>
 <tr>
@@ -760,7 +797,7 @@ schae211
 2022-01-09
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd", delete_cache = TRUE)
+wflow_publish(“analysis/benchmark.Rmd,” delete_cache = TRUE)
 </td>
 </tr>
 <tr>
@@ -794,7 +831,7 @@ schae211
 2022-01-09
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -879,7 +916,7 @@ schae211
 2022-01-04
 </td>
 <td>
-wflow_publish(paste0("analysis/", cmd.arg1), delete_cache = TRUE,
+wflow_publish(paste0(“analysis/,” cmd.arg1), delete_cache = TRUE,
 </td>
 </tr>
 <tr>
@@ -998,7 +1035,7 @@ schae211
 2021-12-25
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1032,7 +1069,7 @@ schae211
 2021-12-24
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1066,7 +1103,7 @@ schae211
 2021-12-24
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1100,7 +1137,7 @@ schae211
 2021-12-23
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1185,7 +1222,7 @@ schae211
 2021-12-23
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1219,7 +1256,7 @@ schae211
 2021-12-22
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1253,7 +1290,7 @@ schae211
 2021-12-21
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1321,7 +1358,7 @@ schae211
 2021-12-19
 </td>
 <td>
-workflowr::wflow_publish("analysis/benchmark.Rmd")
+workflowr::wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1389,7 +1426,7 @@ schae211
 2021-12-18
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1508,7 +1545,7 @@ schae211
 2021-12-14
 </td>
 <td>
-workflowr::wflow_publish("analysis/benchmark.Rmd")
+workflowr::wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1542,7 +1579,7 @@ schae211
 2021-12-14
 </td>
 <td>
-workflowr::wflow_publish("analysis/benchmark.Rmd")
+workflowr::wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1576,7 +1613,7 @@ schae211
 2021-12-06
 </td>
 <td>
-wflow_publish("analysis/benchmark.Rmd")
+wflow_publish(“analysis/benchmark.Rmd”)
 </td>
 </tr>
 <tr>
@@ -1661,7 +1698,7 @@ schae211
 2021-12-02
 </td>
 <td>
-wflow_publish(files = "analysis/benchmark.Rmd")
+wflow_publish(files = “analysis/benchmark.Rmd”)
 </td>
 </tr>
 </tbody>
@@ -2095,6 +2132,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-35-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -2252,6 +2300,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-35-2.png" target="_blank">63f9bec</a>
@@ -2420,6 +2479,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-37-1.png" target="_blank">63f9bec</a>
@@ -2623,6 +2693,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-37-2.png" target="_blank">63f9bec</a>
@@ -2840,6 +2921,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-39-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -3008,6 +3100,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-39-2.png" target="_blank">63f9bec</a>
@@ -3192,6 +3295,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-41-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -3327,6 +3441,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-41-2.png" target="_blank">63f9bec</a>
@@ -3501,6 +3626,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-43-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -3658,6 +3794,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-43-2.png" target="_blank">63f9bec</a>
@@ -3841,6 +3988,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-45-1.png" target="_blank">63f9bec</a>
@@ -4044,6 +4202,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-45-2.png" target="_blank">63f9bec</a>
@@ -4534,6 +4703,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-57-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-57-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -4599,6 +4779,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-58-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-58-1.png" target="_blank">63f9bec</a>
@@ -4670,6 +4861,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-59-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-59-1.png" target="_blank">63f9bec</a>
@@ -4765,6 +4967,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-59-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-59-2.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -4835,6 +5048,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-60-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-60-1.png" target="_blank">63f9bec</a>
@@ -4988,6 +5212,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-61-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-61-1.png" target="_blank">63f9bec</a>
@@ -5178,6 +5413,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-63-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-63-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -5356,6 +5602,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-64-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-64-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -5466,6 +5723,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-65-1.png" target="_blank">63f9bec</a>
@@ -5649,6 +5917,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-65-2.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -5786,6 +6065,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-65-3.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -5920,6 +6210,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-66-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-66-1.png" target="_blank">63f9bec</a>
@@ -6095,6 +6396,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-67-1.png" target="_blank">63f9bec</a>
@@ -6296,6 +6608,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-69-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-69-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -6416,6 +6739,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-70-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-70-1.png" target="_blank">63f9bec</a>
@@ -6596,6 +6930,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-71-1.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -6755,6 +7100,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-71-2.png" target="_blank">63f9bec</a>
 </td>
 <td>
@@ -6879,6 +7235,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/schae211/report/blob/3915899f42ade5df14ae11c211d2a79cb9dd8b3c/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">3915899</a>
+</td>
+<td>
+schae211
+</td>
+<td>
+2022-01-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/schae211/report/blob/63f9beca9faf250400cd0e2036936fef1649aa30/docs/figure/benchmark.Rmd/unnamed-chunk-71-3.png" target="_blank">63f9bec</a>
@@ -9165,7 +9532,7 @@ c(&quot;RF&quot; = random_forest_model, &quot;TBOOST&quot; = gradient_boosting_m
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"13.27806 secs","3":"0.4955051"},{"1":"MARS","2":"18.27943 secs","3":"0.6821442"},{"1":"TBOOST","2":"26.40608 secs","3":"0.9854113"},{"1":"RF","2":"26.79701 secs","3":"1.0000000"},{"1":"BGMARS","2":"57.07258 secs","3":"2.1298112"},{"1":"SVM","2":"77.32385 secs","3":"2.8855397"},{"1":"MLP","2":"182.24579 secs","3":"6.8009735"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["model.function"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]},{"label":["relative_to_RF"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"LM","2":"11.82025 secs","3":"0.4387630"},{"1":"MARS","2":"19.24857 secs","3":"0.7144997"},{"1":"RF","2":"26.93993 secs","3":"1.0000000"},{"1":"BGMARS","2":"62.50133 secs","3":"2.3200255"},{"1":"SVM","2":"81.35215 secs","3":"3.0197609"},{"1":"TBOOST","2":"122.68422 secs","3":"4.5539918"},{"1":"MLP","2":"185.45065 secs","3":"6.8838579"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>As expected the linear model is by far the fastest model. Random forest and gradient boosting with trees are equally fast and perform much better than the multi-layer perceptron, bagged mars models, and the support vector machine.</p>
@@ -9407,7 +9774,7 @@ pmap_dfr(list(penalties, degrees, fastks, pmethods),
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"15.90717 secs"},{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"16.02891 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"18.24077 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"19.97222 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"20.59818 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"22.46414 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"22.54793 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"22.65142 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"23.03687 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"23.08336 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"23.24596 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"23.93053 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["penalty"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["degree"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["pmethod"],"name":[5],"type":["chr"],"align":["left"]},{"label":["time"],"name":[6],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_1_20_backward","2":"2","3":"1","4":"20","5":"backward","6":"16.41139 secs"},{"1":"0_1_20_backward","2":"0","3":"1","4":"20","5":"backward","6":"16.55394 secs"},{"1":"3_2_5_backward","2":"3","3":"2","4":"5","5":"backward","6":"18.73066 secs"},{"1":"-1_1_20_backward","2":"-1","3":"1","4":"20","5":"backward","6":"20.76862 secs"},{"1":"3_2_10_backward","2":"3","3":"2","4":"10","5":"backward","6":"21.47925 secs"},{"1":"2_2_20_backward","2":"2","3":"2","4":"20","5":"backward","6":"22.91440 secs"},{"1":"0_2_20_backward","2":"0","3":"2","4":"20","5":"backward","6":"23.12790 secs"},{"1":"3_2_20_none","2":"3","3":"2","4":"20","5":"none","6":"23.56652 secs"},{"1":"3_2_20_backward","2":"3","3":"2","4":"20","5":"backward","6":"23.58479 secs"},{"1":"-1_2_20_backward","2":"-1","3":"2","4":"20","5":"backward","6":"23.90287 secs"},{"1":"3_2_20_forward","2":"3","3":"2","4":"20","5":"forward","6":"23.91860 secs"},{"1":"4_2_20_backward","2":"4","3":"2","4":"20","5":"backward","6":"23.95826 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <pre class="r"><code>suppressPackageStartupMessages(library(mistyR))
@@ -9448,7 +9815,7 @@ pmap_dfr(list(degrees, fastks, threshs),
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["thresh"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_5_0.05","2":"2","3":"5","4":"0.050","5":"15.45645 secs"},{"1":"2_10_0.05","2":"2","3":"10","4":"0.050","5":"15.78368 secs"},{"1":"2_20_0.05","2":"2","3":"20","4":"0.050","5":"16.04532 secs"},{"1":"1_5_0.001","2":"1","3":"5","4":"0.001","5":"16.36098 secs"},{"1":"1_10_0.001","2":"1","3":"10","4":"0.001","5":"17.65791 secs"},{"1":"2_5_0.01","2":"2","3":"5","4":"0.010","5":"18.12847 secs"},{"1":"2_10_0.01","2":"2","3":"10","4":"0.010","5":"20.79479 secs"},{"1":"2_5_0.001","2":"2","3":"5","4":"0.001","5":"22.35907 secs"},{"1":"2_20_0.01","2":"2","3":"20","4":"0.010","5":"22.97342 secs"},{"1":"1_20_0.001","2":"1","3":"20","4":"0.001","5":"24.28867 secs"},{"1":"2_10_0.001","2":"2","3":"10","4":"0.001","5":"31.35607 secs"},{"1":"2_20_0.001","2":"2","3":"20","4":"0.001","5":"37.82669 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["degree"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["fast.k"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["thresh"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["time"],"name":[5],"type":["drtn"],"align":["right"]}],"data":[{"1":"2_20_0.05","2":"2","3":"20","4":"0.050","5":"15.63893 secs"},{"1":"1_5_0.001","2":"1","3":"5","4":"0.001","5":"16.07319 secs"},{"1":"2_5_0.05","2":"2","3":"5","4":"0.050","5":"16.08883 secs"},{"1":"2_10_0.05","2":"2","3":"10","4":"0.050","5":"16.63526 secs"},{"1":"1_10_0.001","2":"1","3":"10","4":"0.001","5":"18.57774 secs"},{"1":"2_5_0.01","2":"2","3":"5","4":"0.010","5":"18.79201 secs"},{"1":"2_10_0.01","2":"2","3":"10","4":"0.010","5":"21.21054 secs"},{"1":"2_5_0.001","2":"2","3":"5","4":"0.001","5":"23.25790 secs"},{"1":"2_20_0.01","2":"2","3":"20","4":"0.010","5":"24.06914 secs"},{"1":"1_20_0.001","2":"1","3":"20","4":"0.001","5":"24.44097 secs"},{"1":"2_10_0.001","2":"2","3":"10","4":"0.001","5":"31.94500 secs"},{"1":"2_20_0.001","2":"2","3":"20","4":"0.001","5":"38.74672 secs"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -9822,7 +10189,7 @@ map_dfr(funcs, function(func) {
   arrange(time)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["funcs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]}],"data":[{"1":"BackpropBatch","2":"1.592944 mins"},{"1":"BackpropMomentum","2":"1.637876 mins"},{"1":"Std_Backpropagation","2":"1.650764 mins"},{"1":"BackpropChunk","2":"1.688188 mins"},{"1":"Quickprop","2":"1.864727 mins"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["funcs"],"name":[1],"type":["chr"],"align":["left"]},{"label":["time"],"name":[2],"type":["drtn"],"align":["right"]}],"data":[{"1":"BackpropBatch","2":"1.612710 mins"},{"1":"Std_Backpropagation","2":"1.684679 mins"},{"1":"BackpropMomentum","2":"1.698120 mins"},{"1":"BackpropChunk","2":"1.744883 mins"},{"1":"Quickprop","2":"1.883477 mins"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
@@ -9854,46 +10221,52 @@ BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
 LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
 
 locale:
-[1] C
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] future_1.22.1   slider_0.2.2    magrittr_2.0.1  forcats_0.5.1  
- [5] stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4     readr_2.0.2    
+ [1] future_1.23.0   slider_0.2.2    magrittr_2.0.2  forcats_0.5.1  
+ [5] stringr_1.4.0   dplyr_1.0.7     purrr_0.3.4     readr_2.1.2    
  [9] tidyr_1.1.4     tibble_3.1.6    ggplot2_3.3.5   tidyverse_1.3.1
-[13] mistyR_1.3.3    workflowr_1.6.2
+[13] mistyR_1.3.5    workflowr_1.7.0
 
 loaded via a namespace (and not attached):
  [1] fs_1.5.2           lubridate_1.8.0    filelock_1.0.2     RColorBrewer_1.1-2
- [5] httr_1.4.2         rprojroot_2.0.2    tools_4.1.2        backports_1.3.0   
- [9] bslib_0.3.1        utf8_1.2.2         R6_2.5.1           DBI_1.1.1         
+ [5] httr_1.4.2         rprojroot_2.0.2    tools_4.1.2        backports_1.4.1   
+ [9] bslib_0.3.1        utf8_1.2.2         R6_2.5.1           DBI_1.1.2         
 [13] colorspace_2.0-2   withr_2.4.3        tidyselect_1.1.1   gridExtra_2.3     
-[17] GGally_2.1.2       compiler_4.1.2     git2r_0.28.0       cli_3.1.0         
-[21] rvest_1.0.1        xml2_1.3.2         labeling_0.4.2     sass_0.4.0        
-[25] scales_1.1.1       digest_0.6.29      R.utils_2.11.0     rmarkdown_2.11    
-[29] pkgconfig_2.0.3    htmltools_0.5.2    parallelly_1.28.1  dbplyr_2.1.1      
-[33] fastmap_1.1.0      highr_0.9          rlang_0.4.12       readxl_1.3.1      
-[37] rstudioapi_0.13    jquerylib_0.1.4    farver_2.1.0       generics_0.1.1    
-[41] jsonlite_1.7.2     R.oo_1.24.0        rlist_0.4.6.2      Rcpp_1.0.7        
-[45] munsell_0.5.0      fansi_0.5.0        furrr_0.2.3        R.methodsS3_1.8.1 
-[49] lifecycle_1.0.1    stringi_1.7.6      whisker_0.4        yaml_2.2.1        
-[53] plyr_1.8.6         grid_4.1.2         parallel_4.1.2     listenv_0.8.0     
-[57] promises_1.2.0.1   crayon_1.4.2       haven_2.4.3        hms_1.1.1         
-[61] knitr_1.37         pillar_1.6.4       codetools_0.2-18   reprex_2.0.1      
-[65] glue_1.6.0         evaluate_0.14      data.table_1.14.2  modelr_0.1.8      
-[69] vctrs_0.3.8        tzdb_0.1.2         httpuv_1.6.4       cellranger_1.1.0  
-[73] gtable_0.3.0       reshape_0.8.8      assertthat_0.2.1   xfun_0.29         
-[77] broom_0.7.9        later_1.3.0        viridisLite_0.4.0  pheatmap_1.0.12   
-[81] warp_0.2.0         globals_0.14.0     ellipsis_0.3.2    </code></pre>
+[17] GGally_2.1.2       processx_3.5.2     compiler_4.1.2     git2r_0.29.0      
+[21] cli_3.1.1          rvest_1.0.2        xml2_1.3.3         labeling_0.4.2    
+[25] sass_0.4.0         scales_1.1.1       callr_3.7.0        digest_0.6.29     
+[29] R.utils_2.11.0     rmarkdown_2.11     pkgconfig_2.0.3    htmltools_0.5.2   
+[33] parallelly_1.30.0  dbplyr_2.1.1       fastmap_1.1.0      highr_0.9         
+[37] rlang_1.0.0        readxl_1.3.1       rstudioapi_0.13    jquerylib_0.1.4   
+[41] farver_2.1.0       generics_0.1.1     jsonlite_1.7.3     R.oo_1.24.0       
+[45] rlist_0.4.6.2      Rcpp_1.0.8         munsell_0.5.0      fansi_1.0.2       
+[49] furrr_0.2.3        R.methodsS3_1.8.1  lifecycle_1.0.1    stringi_1.7.6     
+[53] whisker_0.4        yaml_2.2.2         plyr_1.8.6         grid_4.1.2        
+[57] parallel_4.1.2     listenv_0.8.0      promises_1.2.0.1   crayon_1.4.2      
+[61] haven_2.4.3        hms_1.1.1          knitr_1.37         ps_1.6.0          
+[65] pillar_1.6.5       codetools_0.2-18   reprex_2.0.1       glue_1.6.1        
+[69] evaluate_0.14      getPass_0.2-2      data.table_1.14.2  modelr_0.1.8      
+[73] vctrs_0.3.8        tzdb_0.2.0         httpuv_1.6.5       cellranger_1.1.0  
+[77] gtable_0.3.0       reshape_0.8.8      assertthat_0.2.1   xfun_0.29         
+[81] broom_0.7.12       later_1.3.0        viridisLite_0.4.0  pheatmap_1.0.12   
+[85] warp_0.2.0         globals_0.14.0     ellipsis_0.3.2    </code></pre>
 </div>
 </div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
